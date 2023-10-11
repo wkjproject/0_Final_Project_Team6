@@ -8,7 +8,7 @@
 
 /* ===== Reset 및 공통 스타일 ===== */
 * {
-	margin: 0;
+	margin: 10;
 	padding: 0;
 	box-sizing: border-box;
   font-family: 'GmarketSansMedium';
