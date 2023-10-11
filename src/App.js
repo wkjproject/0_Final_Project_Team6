@@ -17,11 +17,8 @@ import NotFound from './components/Pages/NotFound';
 function App() {
   return (
     <div className="App">
-      <h1>json 데이터 가져오기(프로젝트 상세 페이지)</h1>
-      <hr />헤더영역<hr />
-
       {/* <ProjectData></ProjectData> */}
-      <ProjectData2></ProjectData2>
+
       <BrowserRouter>
         <Header />
 
@@ -35,6 +32,7 @@ function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ProjectData2></ProjectData2>
     </div>
   );
 }
