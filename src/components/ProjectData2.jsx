@@ -16,7 +16,7 @@ function ProjectData() {
             {ProjectData !== undefined && ProjectData !== null && ProjectData.length > 0 &&
                 ProjectData.map((item) => (
                     <div>
-                        <h1>{item.projName}</h1>
+                        <h1 className='center'>{item.projName}</h1>
                         <div className='center'>
                             <div id='div1'><img id='mainImage' src={item.projMainImgPath} alt='메인 사진'></img></div>
                             <div id='div2'>
