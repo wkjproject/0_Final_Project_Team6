@@ -1,0 +1,112 @@
+/* ===== 헤더 공통 스타일 ===== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	font-weight: black;
+	color: navy;
+}
+
+.active {
+	background-color: rgb(241, 238, 238);
+}
+
+.header-container {
+	display: grid;
+	grid-template-columns: 1fr 8fr 2fr;
+	grid-template-areas: 
+	"box1 box2 box3"
+	"box1 box2 box4";
+}
+
+/* ===== 로고 ===== */
+.logo {	
+	grid-area: box1;
+	margin-left: 30px;
+}
+
+.logo img {
+	float: left;
+	width: 100px;
+	height: auto;
+}
+
+/* ===== 네이게이션 바 ===== */
+.navbar {
+	grid-area: box2;
+}
+
+.navbar ul {
+	list-style: none;
+	margin-top: 60px;
+	padding: 0;
+	text-align: left;
+}
+
+.navbar li {
+	text-decoration: none;
+	font-size: 30px;
+	display: inline-block;
+	margin-right: 30px;
+	letter-spacing: 2px;
+}
+
+.navbar li:not(:last-of-type) {
+	padding-right: 30px;
+	border-right: 2px solid black;
+}
+
+/* ===== 로그인 & 회원가입 ===== */
+.login-signup {
+	grid-area: box3;
+}
+
+.login-signup ul {
+	list-style: none;
+	margin: 15px 20px 15px 0px;
+	text-align: right;
+}
+
+.login-signup li {
+	display: inline;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.login-signup li:not(:last-of-type) {
+	padding-right: 20px;
+	border-right: 1px solid black;
+}
+
+/* ===== 검색창 ===== */
+.searchBox {
+	grid-area: box4;
+	position: relative;
+	width: 400px;
+	margin-left: auto;
+	margin-right: 30px;
+}
+
+.searchBox input {
+	width: 100%;
+	border: 1px solid #000000;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 20px;
+}
+
+.searchBox img {
+	position: absolute;
+	width: 20px;
+	top: 12.5px;
+	right: 15px;
+	margin: 0;
+}
