@@ -8,8 +8,12 @@
 
 /* ===== Reset 및 공통 스타일 ===== */
 * {
+  font-family: 'GmarketSansMedium';
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-  font-family: 'GmarketSansMedium';
 }
+
+
+
+

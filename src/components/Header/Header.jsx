@@ -7,7 +7,7 @@ export default function Header() {
 		<header className='header-container'>
 			{/* 로고 */}
 			<div className="logo">
-				<Link to="/">
+				<Link to="/home">
 					<img	src="./img/logo.png"	alt="로고"/>
 				</Link>
 			</div>

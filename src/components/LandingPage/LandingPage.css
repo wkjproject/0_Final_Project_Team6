@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1E1E1E;
+}
+
+.landing-container {
+	display: grid;
+  height: 100vh;
+  place-items: center;
+	grid-template-columns: 5fr 3fr;
+	grid-template-areas: 	"box1 box2";
+}
+
+/* ===== text-section(왼쪽) ===== */
+
+.text-section {
+  grid-area: box1;
+  padding-bottom: 80px;
+  padding-left: 150px;
+}
+
+.text-section .primary-heading {
+  font-size: 90px;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.text-section .primary-text {
+  font-size: 50px;
+}
+
+/* ===== image-section(오른쪽_이미지) ===== */
+
+.image-section {
+  grid-area: box2;
+  padding-right: 50px;
+  position: relative;
+}
+
+.image-section img {
+  width: 900px;
+  height: auto;
+}
+
+
+/* ===== image-section(오른쪽_함께하기 버튼) ===== */
+
+.button {
+  display: inline-block;
+  padding: 18px 30px 8px 30px;
+  background-color: #ff9a00; /* 배경색을 원하는 색상으로 설정 */
+  color: #fff; /* 텍스트 색상을 흰색 또는 원하는 색상으로 설정 */
+  border: none;
+  border-radius: 0 0 30px 30px; /* 버튼 모서리 둥글게 만들기 */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 38px;
+  letter-spacing: 5px;
+  font-weight: bold;
+  position: absolute;
+	width: 256.5px;
+	top: 641px;
+	right: 426px;
+}
+
+/* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+.button:hover {
+  background-color: #ffc976; /* 호버 시 배경색 변경 */
+}
+
+/* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+.button:active {
+  background-color: #ff7301; /* 클릭 시 배경색 변경 */
+}
