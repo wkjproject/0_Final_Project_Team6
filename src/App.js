@@ -32,11 +32,11 @@ function App() {
           <Route path='/searchPage' element={<SearchPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/IdpwFind' element={<IdpwFind />} />
+          <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
+          <Route path='/project2' element={<ProjectData2 />} />
         </Routes>
       </BrowserRouter>
-      <ProjectData2></ProjectData2>
     </div>
   );
 }
