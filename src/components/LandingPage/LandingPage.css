@@ -50,10 +50,10 @@
 .button {
   display: inline-block;
   padding: 18px 30px 8px 30px;
-  background-color: #ff9a00; /* 배경색을 원하는 색상으로 설정 */
-  color: #fff; /* 텍스트 색상을 흰색 또는 원하는 색상으로 설정 */
+  background-color: #ff9a00;
+  color: #fff;
   border: none;
-  border-radius: 0 0 30px 30px; /* 버튼 모서리 둥글게 만들기 */
+  border-radius: 0 0 30px 30px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -66,12 +66,10 @@
 	right: 426px;
 }
 
-/* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
-.button:hover {
-  background-color: #ffc976; /* 호버 시 배경색 변경 */
+.button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+  background-color: #ffc976;
 }
 
-/* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
-.button:active {
-  background-color: #ff7301; /* 클릭 시 배경색 변경 */
+.button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+  background-color: #ff7301;
 }
