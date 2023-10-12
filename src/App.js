@@ -37,6 +37,9 @@ function App() {
           <Route path='/project2' element={<ProjectData2 />} />
         </Routes>
       </BrowserRouter>
+      {/* <hr /> */}
+      {/* <hr /> */}
+      {/* <ProjectData2></ProjectData2> */}
     </div>
   );
 }
