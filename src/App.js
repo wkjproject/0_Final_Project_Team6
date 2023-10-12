@@ -32,7 +32,9 @@ function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      <ProjectData2></ProjectData2>
+      {/* <hr /> */}
+      {/* <hr /> */}
+      {/* <ProjectData2></ProjectData2> */}
     </div>
   );
 }
