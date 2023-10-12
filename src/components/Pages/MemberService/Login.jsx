@@ -40,7 +40,7 @@ export const Login = () => {
         dispatch(setUserName(res.data.userName));
          //로컬스토리지 x_auth에 토큰 저장
         localStorage.setItem('x_auth', res.data.token);
-        navigate('/');
+        navigate('/home');
       })
     }
     catch(e){
@@ -50,13 +50,13 @@ export const Login = () => {
   return (    
       <div className='LoginContainer'>
       <h2>로그인</h2>
-      <input type="text" ref={userMailRef} placeholder="이메일 입력" />
+      <input className='LoginInput' type="text" ref={userMailRef} placeholder="이메일 입력" />
       <br />
-      <input type="password" ref={userPasswordRef} placeholder="비밀번호 입력" />
+      <input className='LoginInput' type="password" ref={userPasswordRef} placeholder="비밀번호 입력" />
       <br />
       <p className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
       <br />
-      <button type="submit" onClick={submit}>
+      <button className='LoginButton' type="submit" onClick={submit}>
         로그인
       </button>
       <Kakao />

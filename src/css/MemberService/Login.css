@@ -10,14 +10,14 @@
   top: -15px;
   left: 60px;
 }
-input {
+.LoginInput {
   width: 20%;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 20px;
 }
-button {
+.LoginButton {
   background-color: #0074d9; /* 배경색 설정 */
   width: 16%;
   color: #fff; /* 텍스트 색상 설정 */
@@ -27,6 +27,6 @@ button {
   border-radius: 4px; /* 둥근 모서리 설정 */
 }
 
-input::placeholder {
+.LoginInput::placeholder {
   text-align: center; /* placeholder 텍스트를 가운데 정렬 */
 }

@@ -21,6 +21,7 @@ usersSchema.methods.generateToken = function (cb) {
   // 'team6mongo' 는 key로서 보안관리 필요
   let token = jwt.sign(this._id.toHexString(), 'team6mongo');
   this.token = token;
+  // mongoDB에 토큰 저장하는부분
   this.save()
     .then((data) => {
       cb(null, data);

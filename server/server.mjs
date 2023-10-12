@@ -60,12 +60,33 @@ app.post('/login/kakao', async (req, res) => {
     if (!userFind) {
       const sendData = new users(req.body);
       sendData.save();
-      res.status(200).json({
-        kakaoLoginSuccess: true,
-        message: '로그인 성공',
+      const userFindKakao = await users
+        .findOne({ userMail: req.body.userMail })
+        .exec();
+      await userFindKakao.generateToken((err, data) => {
+        if (err) return res.status(400).send(err);
+        // token을 클라이언트로 보냄
+        return res.status(200).json({
+          kakaoLoginSuccess: true,
+          message: '로그인 성공',
+          token: userFindKakao.token,
+          userName: userFindKakao.userName,
+          _id: userFindKakao._id,
+        });
       });
     }
     if (userFind) {
+      await userFind.generateToken((err, data) => {
+        if (err) return res.status(400).send(err);
+        // token을 클라이언트로 보냄
+        return res.status(200).json({
+          kakaoLoginSuccess: true,
+          message: '로그인 성공',
+          token: userFind.token,
+          userName: userFind.userName,
+          _id: userFind._id,
+        });
+      });
       const userTokenUpdate = await users.findOneAndUpdate(
         { userMail: req.body.userMail },
         { token: req.body.token }
@@ -81,6 +102,14 @@ app.post('/login/kakao', async (req, res) => {
 });
 
 // 네이버 로그인 부분
+
+// 회원가입 부분
+app.post('/signup', async (req, res) => {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //홈에서 유저네임불러오는 테스트용
 app.get('/projName', async (req, res) => {

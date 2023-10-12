@@ -10,7 +10,7 @@ import OpenProj from './components/Pages/OpenProj';
 import NewProj from './components/Pages/NewProj';
 import DeadlineProj from './components/Pages/DeadlineProj';
 import SearchPage from './components/Pages/SearchPage';
-import Signup from './components/Pages/Signup';
+import Signup from './components/Pages/MemberService/Signup';
 import NotFound from './components/Pages/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
