@@ -20,6 +20,7 @@ a:hover {
 }
 
 .header-container {
+	margin-bottom: 15px;
 	display: grid;
 	grid-template-columns: 1fr 8fr 2fr;
 	grid-template-areas: 
@@ -31,6 +32,7 @@ a:hover {
 .logo {	
 	grid-area: box1;
 	margin-left: 30px;
+	margin-top: 10px;
 }
 
 .logo img {
@@ -57,6 +59,7 @@ a:hover {
 	display: inline-block;
 	margin-right: 30px;
 	letter-spacing: 2px;
+	
 }
 
 .navbar li:not(:last-of-type) {
@@ -100,7 +103,7 @@ a:hover {
 	border: 1px solid #000000;
 	border-radius: 8px;
 	padding: 10px 12px;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .searchBox img {
