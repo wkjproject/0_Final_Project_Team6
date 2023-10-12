@@ -30,9 +30,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/project2" element={<ProjectData2 />} />
         </Routes>
       </BrowserRouter>
-      <ProjectData2></ProjectData2>
+
     </div>
   );
 }
