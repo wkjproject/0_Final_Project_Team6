@@ -1,8 +1,14 @@
 import './Home.css';
 import ProjectCard from './ProjectCard';
 // import Thumbnail from './Thumbnail';
+import useFetch from '../hooks/useFetch';
 
 function ProjectList() {
+  const ProjectData = useFetch("/projects");
+  if (ProjectData !== undefined && ProjectData !== null && ProjectData.length) { // 데이터가 언디파인이 아니거나 존재하거나 데이터가 조회되면
+    console.log(ProjectData);
+    //console.log(ProjectData[0]);
+}
 
   return (
     <div className="project-list">
