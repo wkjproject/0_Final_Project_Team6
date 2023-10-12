@@ -1,16 +1,52 @@
 /* 공통 폰트 */
+/* 폰트 굵기가 제대로 먹히지 않는 관계로 아래와 같이 하나하나 입력해주어야 한다고 합니다. url 같은 경우엔 버전마다 지원하는 게 달라서 각각 써주는 것이라고 하네요.  */
 @font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'GmarketSans';
+	font-weight: 300;
+	font-style: normal;
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'GmarketSans';
+	font-weight: 500;
+	font-style: normal;
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix') format('embedded-opentype'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'GmarketSans';
+	font-weight: 700;
+	font-style: normal;
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'yg-jalnan';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* ===== Reset 및 공통 스타일 ===== */
 * {
-  font-family: 'GmarketSansMedium';
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	font-family: 'GmarketSans';
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
