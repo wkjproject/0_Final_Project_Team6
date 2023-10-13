@@ -7,6 +7,35 @@
     text-align: center;
 }
 
+/* 모달 스크롤 스타일 */
+.backgroundArea {
+    overflow-y: auto;
+    /* 수직 스크롤바 활성화 */
+    max-height: 800px;
+}
+
+/* 스크롤바 숨김 */
+.backgroundArea::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.backgroundArea::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.backgroundArea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 스크롤바 숨김 (Firefox) */
+.backgroundArea {
+    scrollbar-width: thin;
+}
+
+.backgroundArea::-webkit-scrollbar {
+    scrollbar-width: thin;
+}
+
 select option {
     white-space: pre-line;
 }
@@ -91,7 +120,7 @@ ul.no-bullets2 hr {
 }
 
 .second-table table {
-    width: 360px;
+    width: 350px;
 }
 
 .second-table table tr td:first-child {
@@ -125,6 +154,10 @@ ul.no-bullets2 hr {
     /* 버튼을 수직 가운데 정렬 */
 }
 
+.total-amount {
+    margin-top: 10px;
+}
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -133,6 +166,7 @@ ul.no-bullets2 hr {
     width: 320px;
     margin: auto;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .button-group {
@@ -150,7 +184,7 @@ ul.no-bullets2 hr {
     font-size: 20px;
     height: auto;
     /* 높이 자동 조정 */
-    min-height: 40px;
+    min-height: 50px;
     /* 최소 높이 지정 */
     width: 100%;
     border-radius: 5px;
@@ -175,7 +209,7 @@ ul.no-bullets2 hr {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    color: rgba(0, 0, 255, 0.5);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
