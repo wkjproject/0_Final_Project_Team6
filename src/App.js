@@ -2,6 +2,7 @@ import './App.css';
 import './components/ProjectPage.css';
 //import ProjectData from './components/ProjectData';
 import ProjectData2 from './components/ProjectData2';
+import RewardSelect from './components/RewardSelect';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -35,6 +36,7 @@ function App() {
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
+          <Route path='/reward' element={<RewardSelect />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}

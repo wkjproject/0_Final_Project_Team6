@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { users, projects, userProjects, countProjects } from './mongo.mjs';
 import cookieParser from 'cookie-parser';
+import bcrypt from 'bcrypt';
 
 const port = 5000;
 const app = express();
@@ -61,7 +62,7 @@ app.post('/login/kakao', async (req, res) => {
       const sendData = new users(req.body);
       sendData.save();
       const userFindKakao = await users
-        .findOne({ userMail: req.body.userMail })
+        .findOne({ userMail: req.body.userMail }) //findOne은 일치하는 하나의 값만 가져옴
         .exec();
       await userFindKakao.generateToken((err, data) => {
         if (err) return res.status(400).send(err);
@@ -106,6 +107,37 @@ app.post('/login/kakao', async (req, res) => {
 // 회원가입 부분
 app.post('/signup', async (req, res) => {
   try {
+    const { userName, userMail, userPassword, userPhoneNum, userAddr } =
+      req.body;
+    const hashedPwd = await bcrypt.hash(userPassword, 10);
+    const data = {
+      userName: userName,
+      userMail: userMail,
+      userPassword: hashedPwd,
+      userPhoneNum: userPhoneNum,
+      userAddr: userAddr,
+    };
+    await users.insertMany([data]);
+    return res.status(200).json({ signupSuccess: true });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//이메일 중복확인
+app.post('/signup/userMailCheck', async (req, res) => {
+  try {
+    const userFindMail = await users
+      .findOne({ userMail: req.body.userMail })
+      .exec();
+    if (!userFindMail) {
+      // 중복확인이기때문에 사용자가 존재하지않을때 true
+      return res.status(200).json({ userMailCheck: true });
+    }
+    if (userFindMail) {
+      //중복확인이기때문에 사용자가 존재하면 false
+      return res.status(200).json({ userMailCheck: false });
+    }
   } catch (err) {
     console.log(err);
   }
