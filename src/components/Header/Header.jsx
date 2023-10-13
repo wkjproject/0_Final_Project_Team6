@@ -7,7 +7,7 @@ export default function Header() {
 		<header className='header-container'>
 			{/* 로고 */}
 			<div className="logo">
-				<Link to="/">
+				<Link to="/home">
 					<img	src="./img/logo.png"	alt="로고"/>
 				</Link>
 			</div>
@@ -32,7 +32,7 @@ export default function Header() {
 			{/* 검색창 */}
 			<div className='searchBox'>
 				<input type="text" />
-				<a href="/"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"/></a>
+				<Link to="/searchPage"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"/></Link>
 			</div>
     </header>
 	)

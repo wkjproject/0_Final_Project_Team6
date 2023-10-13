@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1E1E1E;
+}
+
+.landing-container {
+	display: grid;
+  height: 100vh;
+  place-items: center;
+	grid-template-columns: 5fr 3fr;
+	grid-template-areas: 	"box1 box2";
+}
+
+/* ===== text-section(왼쪽) ===== */
+
+.text-section {
+  line-height:120px;
+  font-weight: 300;
+  grid-area: box1;
+  padding-bottom: 80px;
+  padding-left: 150px;
+}
+.text-section b{
+  font-weight: 700;
+}
+
+.text-section .primary-heading {
+  font-size: 90px;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.text-section .primary-text {
+  margin-top: -30px;
+  font-size: 40px;
+}
+
+/* ===== image-section(오른쪽_이미지) ===== */
+
+.image-section {
+  grid-area: box2;
+  padding-right: 50px;
+  position: relative;
+}
+
+.image-section img {
+  width: 900px;
+  height: auto;
+}
+
+
+/* ===== image-section(오른쪽_함께하기 버튼) ===== */
+
+.button {
+  display: inline-block;
+  padding: 18px 30px 8px 30px;
+  background-color: #ff9a00;
+  color: #fff;
+  border: none;
+  border-radius: 0 0 30px 30px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px;
+  letter-spacing: 5px;
+  font-family: 'yg-jalnan';
+  font-weight: normal;
+  position: absolute;
+	width: 256.5px;
+	top: 643px;
+	right: 426px;
+}
+
+.button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+  background-color: #ffc976;
+}
+
+.button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+  background-color: #ff7301;
+}
