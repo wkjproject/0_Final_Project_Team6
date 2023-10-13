@@ -17,6 +17,8 @@ import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 
+import ReduxTest from './components/Pages/ReduxTest';
+
 function App() {
   return (
     <div className='App'>
@@ -37,6 +39,7 @@ function App() {
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
           <Route path='/reward' element={<RewardSelect />} />
+          <Route path='/reduxTest' element={<ReduxTest />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}
