@@ -15,6 +15,7 @@ import NotFound from './components/Pages/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
+import Slide from './components/Slide/Slide';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
       <BrowserRouter>
         <Header />
+        <Slide />
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/home' element={<Home />} />

@@ -7,11 +7,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Slide.css";
 
 const slides = [ /* 이미지 src */
-	'https://eventusstorage.blob.core.windows.net/evs/Image/kyrielle/71287/ProjectInfo/Cover/1a6c262bb3664008b6475814bac58626.jpg',
-	'https://eventusstorage.blob.core.windows.net/evs/Image/greentea71/71356/ProjectInfo/Cover/7a96c12df916464891b9de7b4e8cf35b.jpg',
-	'./img/CarouselTest/slide1.jpg',
-	'./img/CarouselTest/slide2.jpg',
-	'./img/CarouselTest/slide3.jpg',
+	'https://eventusstorage.blob.core.windows.net/evs/Image/nightmarket/71569/ProjectInfo/Cover/ee418a8afba7404c8d06e8e41ceea8b1.jpg',
+	'https://eventusstorage.blob.core.windows.net/evs/Image/sistertable/71296/ProjectInfo/Cover/e0f2eb6434244ab98c886520d8a108ee.png',
+	'https://eventusstorage.blob.core.windows.net/evs/Image/studiocheucheu/71357/ProjectInfo/Cover/cd1d757c6fdf4328862cec61d6a3b0a4.jpg',
+  './img/CarouselTest/slide1.jpg',
+  './img/CarouselTest/slide2.jpg'
 ]
 
 export default function Slide() {
@@ -52,6 +52,7 @@ export default function Slide() {
       },
     ],
   };
+
 
 	return (
 		<div className='slide-container'>
