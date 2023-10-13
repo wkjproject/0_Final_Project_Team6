@@ -44,7 +44,7 @@ function AddressSearch() {
   return (
     <div>
       <input className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
-      <button className='AddressSearchButtonShort' onClick={() => setModalIsOpen(true)}>주소검색</button>
+      <button className='AddressSearchButtonShort' onClick={(evt) => {evt.preventDefault(); setModalIsOpen(true)}}>주소검색</button>
       {/* 모달 다이얼로그 */}
       <Modal
         isOpen={modalIsOpen}

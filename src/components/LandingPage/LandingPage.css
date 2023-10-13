@@ -16,9 +16,14 @@
 /* ===== text-section(왼쪽) ===== */
 
 .text-section {
+  line-height:120px;
+  font-weight: 300;
   grid-area: box1;
   padding-bottom: 80px;
   padding-left: 150px;
+}
+.text-section b{
+  font-weight: 700;
 }
 
 .text-section .primary-heading {
@@ -28,7 +33,8 @@
 }
 
 .text-section .primary-text {
-  font-size: 50px;
+  margin-top: -30px;
+  font-size: 40px;
 }
 
 /* ===== image-section(오른쪽_이미지) ===== */
@@ -57,12 +63,13 @@
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  font-size: 38px;
+  font-size: 30px;
   letter-spacing: 5px;
-  font-weight: bold;
+  font-family: 'yg-jalnan';
+  font-weight: normal;
   position: absolute;
 	width: 256.5px;
-	top: 641px;
+	top: 643px;
 	right: 426px;
 }
 

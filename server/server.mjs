@@ -45,6 +45,11 @@ app.post('/login', async (req, res) => {
           _id: userFind._id,
         });
       });
+    } else {
+      res.status(200).json({
+        loginSuccess: false,
+        message: '비밀번호가 틀렸습니다.',
+      });
     }
   } catch (e) {
     res.status(500).json({ loginSuccess: false, message: '서버 에러' });
@@ -142,6 +147,8 @@ app.post('/signup/userMailCheck', async (req, res) => {
     console.log(err);
   }
 });
+
+// 만료된 토큰 자동 삭제
 
 //홈에서 유저네임불러오는 테스트용
 app.get('/projName', async (req, res) => {

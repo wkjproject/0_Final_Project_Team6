@@ -101,7 +101,7 @@ export default function Signup() {
 				<br/>
 				<br/>
 				<br/>
-				<form className='SignupForm' onSubmit={submit}>
+				<div>
 					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' required></input>
 					<button className='signupButtonShort' onClick={userMailCheck}>중복확인</button>
 					<br/>
@@ -121,8 +121,8 @@ export default function Signup() {
 					<AddressSearch />
 					<br/>
 					<br/>
-					<button className='signupButton' type='submit'>회원가입</button>
-				</form>
+					<button className='signupButton' onClick={submit}>회원가입</button>
+				</div>
     </div>
 	)
 }
