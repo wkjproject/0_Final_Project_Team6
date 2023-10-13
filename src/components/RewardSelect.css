@@ -34,6 +34,11 @@ select option {
     background: white;
     font-size: 20px;
     text-align: left;
+    width: 300px;
+}
+
+.firstTable tr {
+    width: 350px;
 }
 
 .no-bullets {
@@ -41,6 +46,17 @@ select option {
     list-style-type: none;
     text-align: left;
     font-size: 20px;
+    margin-left: 45px;
+
+}
+
+.no-bullets2 {
+    width: 100%;
+    list-style-type: none;
+    text-align: left;
+    font-size: 20px;
+    margin-left: 45px;
+
 }
 
 ul.no-bullets hr {
@@ -54,6 +70,24 @@ ul.no-bullets hr {
     /* 배경색을 원하는 색상으로 설정 (예: 검정색) */
     margin: 10px 0;
     /* 위아래 여백 조절 (선택적으로 조정) */
+}
+
+ul.no-bullets2 hr {
+    width: 300px;
+    /* <hr/>의 너비를 300px로 설정 */
+    border: 0;
+    /* 테두리 제거 */
+    height: 1px;
+    /* 높이를 1px로 설정하여 수평 라인 효과 생성 */
+    background-color: #1E1E1E;
+    /* 배경색을 원하는 색상으로 설정 (예: 검정색) */
+    margin: 10px 0;
+    /* 위아래 여백 조절 (선택적으로 조정) */
+}
+
+.selected-reward-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .second-table table {
