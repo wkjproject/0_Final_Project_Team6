@@ -58,6 +58,7 @@
 }
 
 .thumbnail {
+  display: flex;
   position: relative;
   justify-content: center;
   /* width: 320px; */
@@ -101,12 +102,11 @@
 
 .pc-title {
   background-color: transparent;
-
+  padding: 0.5rem 0;
 }
 
 .pc-location {
   background-color: transparent;
-  line-height: 2rem;
 }
 
 .pc-price {
