@@ -77,7 +77,7 @@ function AddressSearch() {
         />
         {/* 상세 주소 입력 필드 */}
         {showDetailedAddress && (
-              <input
+              <input className='AddressSearchInputShort'
                 type="text"
                 placeholder="상세주소를 입력하세요"
                 value={detailedAddress}
@@ -86,7 +86,7 @@ function AddressSearch() {
             )}
         {/* 상세 주소 저장 버튼 */}
         {showDetailedAddress && (
-          <button onClick={saveDetailedAddress}>상세주소 저장</button>
+          <button className='AddressSearchButtonShort' onClick={saveDetailedAddress}>상세주소 저장</button>
         )}
       </Modal>
     </div>
