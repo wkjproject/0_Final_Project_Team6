@@ -5,7 +5,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
-import './Select.css';
+import './RewardSelect.css'
 
 const RewardSelect = () => {
   const [showModal, setShowModal] = useState(false);
@@ -97,23 +97,23 @@ const RewardSelect = () => {
                         onClick={() => handleRewardSelect(reward)}
                         className='selectButton'
                       >
-                        <table>
+                        <table className='firstTable'>
                           <tr>
-                            <td>리워드</td>
-                            <td>: {reward.projRewardName}</td>
+                            <td>리워드 </td>
+                            <td> : {reward.projRewardName}</td>
                           </tr>
                           <tr>
-                            <td>금액</td>
-                            <td>: {formatAmount(reward.projRewardAmount)}</td>
+                            <td>금액 </td>
+                            <td> : {formatAmount(reward.projRewardAmount)}</td>
                           </tr>
                           <tr>
-                            <td>갯수</td>
-                            <td>: {reward.projRewardCount}</td>
+                            <td>갯수 </td>
+                            <td> : {reward.projRewardCount}</td>
                           </tr>
                         </table>
                       </button>
                       {projectIndex !== ProjectData.length - 1 ||
-                      index !== project.projReward.length - 1 ? (
+                        index !== project.projReward.length - 1 ? (
                         <hr />
                       ) : null}
                     </div>
@@ -127,8 +127,8 @@ const RewardSelect = () => {
 
       {selectedRewards.length > 0 && (
         <div>
-          <h2 className='selected-reward-header'>선택한 리워드 :</h2>
-          <ul className='no-bullets'>
+          <h2 className="selected-reward-header">선택한 리워드 :</h2>
+          <ul className="no-bullets2">
             {selectedRewards.map((selectedReward, index) => (
               <li
                 key={index}

@@ -7,6 +7,35 @@
     text-align: center;
 }
 
+/* 모달 스크롤 스타일 */
+.backgroundArea {
+    overflow-y: auto;
+    /* 수직 스크롤바 활성화 */
+    max-height: 800px;
+}
+
+/* 스크롤바 숨김 */
+.backgroundArea::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.backgroundArea::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.backgroundArea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 스크롤바 숨김 (Firefox) */
+.backgroundArea {
+    scrollbar-width: thin;
+}
+
+.backgroundArea::-webkit-scrollbar {
+    scrollbar-width: thin;
+}
+
 select option {
     white-space: pre-line;
 }
@@ -34,6 +63,11 @@ select option {
     background: white;
     font-size: 20px;
     text-align: left;
+    width: 300px;
+}
+
+.firstTable tr {
+    width: 350px;
 }
 
 .no-bullets {
@@ -41,6 +75,17 @@ select option {
     list-style-type: none;
     text-align: left;
     font-size: 20px;
+    margin-left: 45px;
+
+}
+
+.no-bullets2 {
+    width: 100%;
+    list-style-type: none;
+    text-align: left;
+    font-size: 20px;
+    margin-left: 45px;
+
 }
 
 ul.no-bullets hr {
@@ -56,8 +101,26 @@ ul.no-bullets hr {
     /* 위아래 여백 조절 (선택적으로 조정) */
 }
 
+ul.no-bullets2 hr {
+    width: 300px;
+    /* <hr/>의 너비를 300px로 설정 */
+    border: 0;
+    /* 테두리 제거 */
+    height: 1px;
+    /* 높이를 1px로 설정하여 수평 라인 효과 생성 */
+    background-color: #1E1E1E;
+    /* 배경색을 원하는 색상으로 설정 (예: 검정색) */
+    margin: 10px 0;
+    /* 위아래 여백 조절 (선택적으로 조정) */
+}
+
+.selected-reward-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .second-table table {
-    width: 360px;
+    width: 350px;
 }
 
 .second-table table tr td:first-child {
@@ -91,6 +154,10 @@ ul.no-bullets hr {
     /* 버튼을 수직 가운데 정렬 */
 }
 
+.total-amount {
+    margin-top: 10px;
+}
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -99,6 +166,7 @@ ul.no-bullets hr {
     width: 320px;
     margin: auto;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .button-group {
@@ -116,7 +184,7 @@ ul.no-bullets hr {
     font-size: 20px;
     height: auto;
     /* 높이 자동 조정 */
-    min-height: 40px;
+    min-height: 50px;
     /* 최소 높이 지정 */
     width: 100%;
     border-radius: 5px;
@@ -141,7 +209,7 @@ ul.no-bullets hr {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    color: rgba(0, 0, 255, 0.5);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
