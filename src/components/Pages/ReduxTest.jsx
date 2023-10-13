@@ -10,7 +10,8 @@ export default function ReduxTest() {
 		useEffect(() => {
 			axios.get('http://localhost:5000/projName')
 			.then((res) => {
-				 setProjNameState(res.data.projName);  
+				dispatch(setProjName(res.data.projName)); //크롬 웹스토어 Redux Devtools 로 리덕스에 값 들어갔는지 확인할수있어요
+				setProjNameState(res.data.projName);  
 		})
 	},[]);
 	const projName = useSelector((state)=> state.projName.projName) 

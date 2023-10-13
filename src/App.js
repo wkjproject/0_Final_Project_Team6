@@ -1,5 +1,5 @@
 import "./App.css";
-import "./components/ProjectPage.css";
+import "./components/ProjectData2.css";
 //import ProjectData from './components/ProjectData';
 import ProjectData2 from './components/ProjectData2';
 import RewardSelect from './components/RewardSelect';
