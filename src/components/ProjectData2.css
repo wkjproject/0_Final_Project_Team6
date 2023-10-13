@@ -32,14 +32,14 @@
 .mainImage {
     flex: 1;
     /* 이미지 요소가 남은 공간을 모두 차지하도록 설정 */
-    max-width: 1300px;
+    max-width: 1150px;
     /* 이미지가 너무 크면 컨테이너에 맞게 조절 */
     width: 1150px;
     height: 700px;
     /* 가로 비율 유지 */
     object-fit: cover;
     /* 이미지 비율 유지하며 채우기 */
-    margin-right: 20px;
+    border-radius: 5px;
 }
 
 .div2 {
@@ -54,6 +54,10 @@
     /* 컨텐츠 요소가 남은 공간을 모두 차지하도록 설정 */
     padding: 20px;
     /* 내용 여백 설정 (선택 사항) */
+}
+
+.RewardSelect {
+    margin-left: 20px;
 }
 
 .select {
@@ -71,14 +75,25 @@
     /* 원하는 높이 설정 */
 }
 
+.shortDesc {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1150px;
+    border: solid 1px #1e1e1e;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
 #projDesc {
     text-align: center;
-    width: 1100px;
+    width: 1150px;
     background-color: snow;
     margin: auto;
     border-style: solid;
     border-width: 1px;
-    border-radius: 25px;
+    border-radius: 5px;
     padding: 50px;
 }
 

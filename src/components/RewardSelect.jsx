@@ -86,7 +86,7 @@ const RewardSelect = () => {
         <span className='arrow'>{showModal ? '▲' : '▼'}</span>
       </button>
       {showModal && (
-        <div className='modal' ref={modalRef} style={{ width: '350px' }}>
+        <div className='modal' ref={modalRef} style={{ width: '360px', margin: 'auto' }}>
           <div className='modal-content'>
             <ul className='no-bullets'>
               {ProjectData.map((project, projectIndex) => (
@@ -126,7 +126,7 @@ const RewardSelect = () => {
       )}
 
       {selectedRewards.length > 0 && (
-        <div>
+        <div className='selectedReward'>
           <h2 className="selected-reward-header">선택한 리워드 :</h2>
           <ul className="no-bullets2">
             {selectedRewards.map((selectedReward, index) => (
@@ -134,7 +134,7 @@ const RewardSelect = () => {
                 key={index}
                 className={index >= 0 && index <= 100 ? 'second-table' : ''}
               >
-                <table>
+                <table >
                   <tr>
                     <td>리워드</td>
                     <td>: {selectedReward.projRewardName}</td>

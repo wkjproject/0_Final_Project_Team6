@@ -24,12 +24,17 @@ function ProjectData2() {
                     <h1 className='titlealign'>{item.projName}</h1>
                     <div className='center'>
                         <div>
-                            <img className='mainImage' src={item.projMainImgPath} alt='메인 사진'></img>
+                            <div>
+                                <img className='mainImage' src={item.projMainImgPath} alt='메인 사진'></img>
+                            </div>
+                            <div className='shortDesc'>
+                                간단 요약 영역
+                            </div>
                             <div id='projDesc'>
                                 <MenuTabs></MenuTabs>
                             </div>
                         </div>
-                        <div>
+                        <div className='RewardSelect'>
                             <RewardSelect></RewardSelect>
                         </div>
                     </div>
