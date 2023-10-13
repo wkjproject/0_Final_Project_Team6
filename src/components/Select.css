@@ -1,0 +1,161 @@
+.backgroundArea {
+    background: white;
+    border: solid 1px skyblue;
+    margin: auto;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+}
+
+select option {
+    white-space: pre-line;
+}
+
+.reward-button {
+    width: 360px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    border: solid 1px skyblue;
+    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.reward-text {
+    border: none;
+    text-align: center;
+    color: #1E1E1E;
+}
+
+.selectButton {
+    padding: 0;
+    border: none;
+    background: white;
+    font-size: 20px;
+    text-align: left;
+}
+
+.no-bullets {
+    width: 100%;
+    list-style-type: none;
+    text-align: left;
+    font-size: 20px;
+}
+
+ul.no-bullets hr {
+    width: 300px;
+    /* <hr/>의 너비를 300px로 설정 */
+    border: 0;
+    /* 테두리 제거 */
+    height: 1px;
+    /* 높이를 1px로 설정하여 수평 라인 효과 생성 */
+    background-color: #1E1E1E;
+    /* 배경색을 원하는 색상으로 설정 (예: 검정색) */
+    margin: 10px 0;
+    /* 위아래 여백 조절 (선택적으로 조정) */
+}
+
+.second-table table {
+    width: 360px;
+}
+
+.second-table table tr td:first-child {
+    width: 90px;
+    /* 첫 번째 <td> 요소의 너비를 90px로 설정 */
+}
+
+.second-table table tr td:nth-child(2) {
+    width: 250px;
+    /* 두 번째 <td> 요소의 너비를 250px로 설정 */
+}
+
+.second-table table tr td:last-child {
+    background-color: white;
+    /* 세 번째 <td> 요소의 너비는 자동으로 계산 */
+}
+
+.button-cell {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.remove-button {
+    height: 30px;
+    border: none;
+    background-color: white;
+    color: RGB(192, 192, 192);
+    margin-right: 20px;
+    /* 오른쪽 화살표와 간격을 두기 */
+    vertical-align: middle;
+    /* 버튼을 수직 가운데 정렬 */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    width: 320px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    /* 버튼을 세로로 나열 */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    /* 버튼 그룹과 신청하기 버튼 사이에 여백 추가 */
+}
+
+.fundingBtn {
+    font-size: 20px;
+    height: auto;
+    /* 높이 자동 조정 */
+    min-height: 40px;
+    /* 최소 높이 지정 */
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 255, 0.4);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 텍스트 수직 중앙 정렬 */
+}
+
+.heartBtn,
+.shareBtn {
+    font-size: 20px;
+    height: auto;
+    /* 높이 자동 조정 */
+    min-height: 40px;
+    /* 최소 높이 지정 */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: rgba(0, 0, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 텍스트 수직 중앙 정렬 */
+    width: 100%;
+    /* 버튼의 너비 100%로 변경 */
+}
+
+.heartBtn {
+    width: 100px;
+    height: 50px;
+}
+
+.shareBtn {
+    width: 200px;
+    height: 50px;
+}
