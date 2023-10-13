@@ -50,3 +50,20 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+:root{
+	--Black: #1e1e1e;
+	--Darkgray: #606060;
+	--Middlegray:#8F8F8F;
+	--Lightgray:#AAAAAA;
+	--Brightgary:#CECCCD;
+/* 버튼 OR 메인컬러 */
+	--ButtonHover: #FFC976;
+	--ButtonDefault:#FE9A00;
+	--ButtonPressed:#FF7301;
+/* 텍스트 사이즈 */
+	--TextLarge: 28px;
+	--TextMidium: 18px;
+	--TextSmall: 14px;
+	--TextXsmall: 10px;
+}
