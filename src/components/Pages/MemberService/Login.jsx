@@ -18,7 +18,6 @@ export const Login = () => {
       // Ref로 추적중인 입력데이터의 현재값을 불러오는거에요.
       const userMail = userMailRef.current.value;
       const userPassword = userPasswordRef.current.value;
-
       // axios로 서버에 post요청을 보내요
       // nodejs 서버 port를 5000번으로 해뒀어요. 그래서 http://localhost:5000이고 
       // 뒤에 login은 server/server.mjs 파일에 18번째 줄 app.post('/login', async (req, res) => { 에서
@@ -36,11 +35,18 @@ export const Login = () => {
         // userNameAction 에서 받은 데이터는 src/redux/reducer/userNameReducer.js 에서 case 'SET_USERNAME': 부분으로 넘어가게돼요
         // userNameAction 에서 정의한 type: 'SET_USERNAME', 이 부분의 SET_USERNAME과 userNameReducer 의 case 'SET_USERNAME' 의 SET_USERNAME이 같은쪽으로 넘어가는거에요
         // 리듀서는 redux/store.js 에 다 저장되어서 하나로 관리되고있어요.
+        if(res.data.loginSuccess){
+          // 리덕스에 userName 저장
+          dispatch(setUserName(res.data.userName));
 
-        dispatch(setUserName(res.data.userName));
-         //로컬스토리지 x_auth에 토큰 저장
-        localStorage.setItem('x_auth', res.data.token);
-        navigate('/');
+          //로컬스토리지 x_auth에 토큰 저장
+          localStorage.setItem('x_auth', res.data.token);
+          navigate('/home');
+        }
+        if(!res.data.loginSuccess){
+          alert(res.data.message);
+        }
+
       })
     }
     catch(e){
@@ -50,13 +56,13 @@ export const Login = () => {
   return (    
       <div className='LoginContainer'>
       <h2>로그인</h2>
-      <input type="text" ref={userMailRef} placeholder="이메일 입력" />
+      <input className='LoginInput' type="text" ref={userMailRef} placeholder="이메일 입력" />
       <br />
-      <input type="password" ref={userPasswordRef} placeholder="비밀번호 입력" />
+      <input className='LoginInput' type="password" ref={userPasswordRef} placeholder="비밀번호 입력" />
       <br />
       <p className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
       <br />
-      <button type="submit" onClick={submit}>
+      <button className='LoginButton' type="submit" onClick={submit}>
         로그인
       </button>
       <Kakao />
