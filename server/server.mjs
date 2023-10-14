@@ -105,6 +105,23 @@ app.post('/login/kakao', async (req, res) => {
 
 // 네이버 로그인 부분
 
+// 로그아웃 부분
+app.get('/logout', middleAuth, async (req, res) => {
+  try {
+    const logoutUser = await users.findOneAndUpdate(
+      { _id: req.foundUser._id }, // middleAuth 의 foundUser
+      { token: '' },
+      { tokenExp: null }
+    );
+    if (!logoutUser) {
+      return res.json({ logoutSuccess: false });
+    }
+    return res.status(200).send({ logoutSuccess: true });
+  } catch (err) {
+    return res.json({ logoutSuccess: false, err });
+  }
+});
+
 // 회원가입 부분
 app.post('/signup', async (req, res) => {
   try {
@@ -144,7 +161,7 @@ app.post('/signup/userMailCheck', async (req, res) => {
   }
 });
 
-// 사용자 인증에 필요한 src\redux\reducer\authAction.js 에서 get 요청
+// 사용자 인증부분
 app.get('/auth', middleAuth, (req, res) => {
   try {
     // 사용자 _id(몽고DB 고유 _id) + 로컬스토리지 토큰 과 서버에 있는 _id + 토큰을 비교해 일치할경우 다음과같은 응답

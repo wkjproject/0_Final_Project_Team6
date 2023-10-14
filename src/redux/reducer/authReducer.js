@@ -1,4 +1,7 @@
-export const authReducer = (state = {}, action) => {
+export const authReducer = (
+  state = { auth: { _id: null, isLogin: false, isAdmin: false } },
+  action
+) => {
   switch (action.type) {
     case 'SET_AUTHUSER':
       return {
