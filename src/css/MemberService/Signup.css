@@ -24,6 +24,11 @@
   font-size: 20px;
   color: var(--Black);
 }
+.signupInput::placeholder,
+.signupInputShort::placeholder {
+  text-align: center; /* placeholder 텍스트를 가운데 정렬 */
+}
+
 .signupButton {
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 100%;

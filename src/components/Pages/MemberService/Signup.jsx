@@ -6,9 +6,11 @@ import '../../../css/MemberService/Signup.css'
 import AddressSearch from './Address/AddressSearch'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/reducer/userNameActions';
+import { Terms } from './termsModal/Terms';
 
 export default function Signup() {
 	const [userMailCheckState, setUserMailCheckState] = useState(false);
+	const [checkboxCheck, setCheckboxCheck] = useState(false);
 	const dispatch = useDispatch();
 	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	const userAddr = useSelector((state)=>state.userAddr.userAddr);
@@ -69,6 +71,10 @@ export default function Signup() {
 			alert('연락처 형식이 올바르지 않습니다.');
 			return;
 		}
+		if (!checkboxCheck){
+			alert('약관에 동의해야 합니다.')
+			return;
+		}
 		if (userMailCheckState){
 			try {
 				await axios
@@ -126,7 +132,10 @@ export default function Signup() {
 					<AddressSearch />
 					<br/>
 					<br/>
-					<button className='signupButton' onClick={submit}>회원가입</button>
+					<label for="myCheckbox">약관 동의</label>
+					<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
+					<Terms />
+					<button className='signupButton' onClick={submit}>가입하기</button>
 				</div>
     </div>
 	)
