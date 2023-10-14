@@ -31,9 +31,12 @@ app.post('/login', async (req, res) => {
       });
     }
     // 이메일이 DB에 있을 경우 비밀번호 확인하는 부분
-    // 차후 bcrypt를 사용해 bcrypt.compare로 비교할예정
-    if (userFind.userPassword === req.body.userPassword) {
-      // 해당 이메일 데이터에 토큰 생성
+    // bcrypt를 사용해 bcrypt.compare로 비교
+    const checkUserPwd = await bcrypt.compare(
+      req.body.userPassword,
+      userFind.userPassword
+    );
+    if (checkUserPwd) {
       await userFind.generateToken((err, data) => {
         if (err) return res.status(400).send(err);
         // token을 클라이언트로 보냄

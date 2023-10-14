@@ -10,6 +10,7 @@ import { setUserName } from '../../../redux/reducer/userNameActions';
 export default function Signup() {
 	const [userMailCheckState, setUserMailCheckState] = useState(false);
 	const dispatch = useDispatch();
+	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	const userAddr = useSelector((state)=>state.userAddr.userAddr);
 	const userMailRef = useRef();
 	const userNameRef = useRef();
@@ -21,24 +22,29 @@ export default function Signup() {
 	const userMailCheck = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
-		try {
-			await axios
-			.post('http://localhost:5000/signup/userMailCheck',{
-				userMail,
-			})
-			.then((res) => {
-				if(res.data.userMailCheck){
-					alert('사용 가능한 이메일입니다.')
-					setUserMailCheckState(true)
-				}
-				if(!res.data.userMailCheck){
-					alert('사용 불가능한 이메일입니다.')
-				}
-			})
+		if (userMail !== '' && userMail !== null && emailRegex.test(userMail)) {
+			try {
+						await axios
+						.post('http://localhost:5000/signup/userMailCheck',{
+							userMail,
+						})
+						.then((res) => {
+							if(res.data.userMailCheck){
+								alert('사용 가능한 이메일입니다.')
+								setUserMailCheckState(true)
+							}
+							if(!res.data.userMailCheck){
+								alert('사용 불가능한 이메일입니다.')
+							}
+						})
+					}
+					catch (e) {
+						console.log(e)
+					}
+		} else {
+			alert('이메일 형식이 올바르지 않습니다.')
 		}
-		catch (e) {
-			console.log(e)
-		}
+		
 	}
 
 	// 회원가입 버튼 누르면 데이터 서버로 넘김
@@ -54,7 +60,6 @@ export default function Signup() {
 			return;
 		}
 
-		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 		if (!emailRegex.test(userMail)) {
 			alert('이메일 형식이 올바르지 않습니다.');
