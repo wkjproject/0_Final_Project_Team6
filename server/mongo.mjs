@@ -26,7 +26,7 @@ usersSchema.methods.generateToken = function (cb) {
   tokenExp.setMinutes(tokenExp.getMinutes() + 1); // 현재 시간에 1분을 추가
   // 사용자의 ID를 토큰 페이로드로 설정합니다.
   const payload = {
-    userId: this._id, // 예: 사용자의 MongoDB _id
+    _id: this._id, // 예: 사용자의 MongoDB _id
   };
   // 'team6mongo' 는 key로서 보안관리 필요
   let token = jwt.sign(payload, secretKey, {
@@ -51,8 +51,11 @@ usersSchema.statics.findByToken = async function (token) {
   const secretKey = 'team6mongo';
   try {
     const decoded = await jwt.verify(token, secretKey); // _id 기반으로 jwt토큰을 만들었기때문에 디코드하면 _id가 나옴
-    const foundUser = await thisUser.findOne({ _id: decoded, token: token });
-    return foundUser;
+    const user = await thisUser.findOne({
+      _id: decoded._id,
+      token: token,
+    });
+    return user;
   } catch (err) {
     console.error('Error in findByToken:', err);
     return null;

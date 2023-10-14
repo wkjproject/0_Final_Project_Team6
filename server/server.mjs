@@ -155,9 +155,10 @@ app.post('/signup/userMailCheck', async (req, res) => {
 // 사용자 인증에 필요한 src\redux\reducer\authAction.js 에서 get 요청
 app.get('/auth', middleAuth, (req, res) => {
   try {
+    // 사용자 _id(몽고DB 고유 _id) + 로컬스토리지 토큰 과 서버에 있는 _id + 토큰을 비교해 일치할경우 다음과같은 응답
     res.status(200).json({
-      _id: req.users._id, // 몽고DB _id
-      isAdmin: req.users.role === 0 ? false : true, // role이 0이면 일반사용자, 0이아니면 운영자
+      _id: req.foundUser._id, // middleAuth 에서 제공한 foundUser
+      isAdmin: req.foundUser.role === 0 ? false : true, // role이 0이면 일반사용자, 0이아니면 운영자
       isLogin: true,
     });
   } catch (err) {

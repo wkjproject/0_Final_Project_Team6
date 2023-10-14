@@ -8,7 +8,7 @@ export const setAuth = () => {
   const request = axios
     .get('http://localhost:5000/auth', {
       headers: {
-        Authorization: `Bearer ${token}`, // Bearer 스키마를 사용하는 토큰 전달
+        authorization: `Bearer ${token}`, // Bearer 스키마를 사용하는 토큰 전달
       },
     })
     .then((res) => res.data);

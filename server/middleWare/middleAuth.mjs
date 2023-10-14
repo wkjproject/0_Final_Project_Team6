@@ -14,8 +14,10 @@ export let middleAuth = (req, res, next) => {
     users
       .findByToken(token)
       .then((foundUser) => {
+        // 찾아낸 유저를 console.log 차후 없앨 예정
+        console.log(foundUser);
         if (!foundUser) {
-          return res.json({ isLogin: false, error: true });
+          return res.json({ isLogin: false });
         }
         req.token = token;
         req.foundUser = foundUser;
