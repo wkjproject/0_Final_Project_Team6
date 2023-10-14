@@ -3,6 +3,7 @@ import cors from 'cors';
 import { users, projects, userProjects, countProjects } from './mongo.mjs';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt';
+import { middleAuth } from './middleWare/middleAuth.mjs';
 
 const port = 5000;
 const app = express();
@@ -151,7 +152,18 @@ app.post('/signup/userMailCheck', async (req, res) => {
   }
 });
 
-// 만료된 토큰 자동 삭제
+// 사용자 인증에 필요한 src\redux\reducer\authAction.js 에서 get 요청
+app.get('/auth', middleAuth, (req, res) => {
+  try {
+    res.status(200).json({
+      _id: req.users._id, // 몽고DB _id
+      isAdmin: req.users.role === 0 ? false : true, // role이 0이면 일반사용자, 0이아니면 운영자
+      isLogin: true,
+    });
+  } catch (err) {
+    console.log('server.mjs', err);
+  }
+});
 
 //홈에서 유저네임불러오는 테스트용
 app.get('/projName', async (req, res) => {

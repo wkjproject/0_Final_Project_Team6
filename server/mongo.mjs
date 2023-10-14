@@ -44,6 +44,21 @@ usersSchema.methods.generateToken = function (cb) {
     });
 };
 
+// 토큰 복호화
+
+usersSchema.statics.findByToken = async function (token) {
+  const thisUser = this;
+  const secretKey = 'team6mongo';
+  try {
+    const decoded = await jwt.verify(token, secretKey); // _id 기반으로 jwt토큰을 만들었기때문에 디코드하면 _id가 나옴
+    const foundUser = await thisUser.findOne({ _id: decoded, token: token });
+    return foundUser;
+  } catch (err) {
+    console.error('Error in findByToken:', err);
+    return null;
+  }
+};
+
 export const users = mongoose.model('users', usersSchema);
 export const projects = mongoose.model('projects', projectsSchema);
 export const userProjects = mongoose.model('userProjects', userProjectsSchema);

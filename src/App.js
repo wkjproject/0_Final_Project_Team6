@@ -1,5 +1,5 @@
-import "./App.css";
-import "./components/ProjectData2.css";
+import './App.css';
+import './components/ProjectData2.css';
 //import ProjectData from './components/ProjectData';
 import ProjectData2 from './components/ProjectData2';
 import RewardSelect from './components/RewardSelect';
@@ -18,8 +18,10 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 
 import ReduxTest from './components/Pages/ReduxTest';
+import Auth from './components/HigherOrderComponents/Auth';
 
 function App() {
+  const AuthLogin = Auth(Login, null);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -33,7 +35,7 @@ function App() {
           <Route path='/newProj' element={<NewProj />} />
           <Route path='/deadlineProj' element={<DeadlineProj />} />
           <Route path='/searchPage' element={<SearchPage />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
