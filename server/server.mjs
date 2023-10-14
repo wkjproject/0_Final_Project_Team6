@@ -97,14 +97,6 @@ app.post('/login/kakao', async (req, res) => {
           _id: userFind._id,
         });
       });
-      const userTokenUpdate = await users.findOneAndUpdate(
-        { userMail: req.body.userMail },
-        { token: req.body.token }
-      );
-      if (!userTokenUpdate) {
-        return res.json({ kakaoLoginSuccess: false });
-      }
-      return res.status(200).json({ kakaoLoginSuccess: true });
     }
   } catch (err) {
     console.log(err);

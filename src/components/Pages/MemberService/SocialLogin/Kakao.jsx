@@ -20,6 +20,7 @@ export const Kakao = () => {
       }
     ).then((res) => {
       if(res.data.kakaoLoginSuccess){
+        localStorage.setItem('x_auth', res.data.token);
         navigate('/home')
       }
     });
