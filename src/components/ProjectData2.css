@@ -56,6 +56,19 @@
     /* 내용 여백 설정 (선택 사항) */
 }
 
+.shortDesc {
+    background: rgba(61, 196, 241, 0.4);
+    color: blue;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1150px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
 .RewardSelect {
     margin-left: 20px;
 }
@@ -75,26 +88,14 @@
     /* 원하는 높이 설정 */
 }
 
-.shortDesc {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 1150px;
-    border: solid 1px #1e1e1e;
-    border-radius: 5px;
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
-}
+
 
 #projDesc {
     text-align: center;
     width: 1150px;
     background-color: snow;
-    margin: auto;
-    border-style: solid;
-    border-width: 1px;
     border-radius: 5px;
-    padding: 50px;
+    padding-top: 10px;
 }
 
 /* 탭 목록을 수평으로 배열 */
