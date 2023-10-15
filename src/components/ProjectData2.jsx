@@ -28,7 +28,7 @@ function ProjectData2() {
                                 <img className='mainImage' src={item.projMainImgPath} alt='메인 사진'></img>
                             </div>
                             <div className='shortDesc'>
-                                간단 요약 영역
+                                {item.shortDesc}
                             </div>
                             <div id='projDesc'>
                                 <MenuTabs></MenuTabs>
