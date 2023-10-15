@@ -3,6 +3,7 @@ import { usersSchema } from './mongoSchema/usersSchema.mjs';
 import { projectsSchema } from './mongoSchema/projectsSchema.mjs';
 import { userProjectsSchema } from './mongoSchema/userProjectsSchema.mjs';
 import { countProjectsSchema } from './mongoSchema/countProjectsSchema.mjs';
+import { verifiCodeSchema } from './mongoSchema/verifiCodeSchema.mjs';
 import jwt from 'jsonwebtoken';
 
 const uri =
@@ -69,6 +70,7 @@ export const countProjects = mongoose.model(
   'countProjects',
   countProjectsSchema
 );
+export const verifiCode = mongoose.model('vefiriCode', verifiCodeSchema);
 
 // 만료된 token, tokenExp '' 로 업데이트
 function removeExpiredTokens() {
@@ -77,14 +79,14 @@ function removeExpiredTokens() {
   users
     .updateMany(
       { tokenExp: { $lte: currentTime } },
-      { $set: { token: '', tokenExp: '' } }
+      { $set: { token: '', tokenExp: null } }
     )
     .then(() => {
-      console.log(`1분마다 만료된 토큰 삭제 중...`);
+      console.log(`10분마다 만료된 토큰 삭제 중...`);
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-setInterval(removeExpiredTokens, 60000); // 1분마다 DB에서 만료된 토큰 삭제
+setInterval(removeExpiredTokens, 600000); // 10분마다 DB에서 만료된 토큰 삭제

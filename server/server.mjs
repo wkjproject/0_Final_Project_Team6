@@ -1,9 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import { users, projects, userProjects, countProjects } from './mongo.mjs';
+import {
+  users,
+  projects,
+  userProjects,
+  countProjects,
+  verifiCode,
+} from './mongo.mjs';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt';
 import { middleAuth } from './middleWare/middleAuth.mjs';
+import nodemailer from 'nodemailer';
+import { randomCode } from './function/GenRandomCode.mjs';
 
 const port = 5000;
 const app = express();
@@ -142,7 +150,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-//이메일 중복확인
+//회원가입 이메일 중복확인, 아이디 찾기 부분
 app.post('/signup/userMailCheck', async (req, res) => {
   try {
     const userFindMail = await users
@@ -158,6 +166,58 @@ app.post('/signup/userMailCheck', async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+  }
+});
+
+// 비밀번호 찾기에서 인증번호 받기 부분
+app.post('/pwCodeMailSend', async (req, res) => {
+  try {
+    const userFindMail = await users
+      .findOne({ userMail: req.body.userMail })
+      .exec();
+    // 현재 DB에 해당 유저가 존재하고 role 이 1이 아닐때만
+    if (userFindMail && userFindMail.role !== 1) {
+      const random = randomCode();
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.zoho.com',
+        secure: true,
+        port: 465,
+        // 비밀번호는 차후 보안강화예정
+        auth: {
+          user: 'team6mongo@zohomail.com',
+          pass: 'PsFe51X6pjhA',
+        },
+      });
+      const mailOption = {
+        from: 'team6mongo@zohomail.com',
+        to: req.body.userMail,
+        subject: 'WW 비밀번호 찾기 인증번호',
+        text: `인증번호는 ${random} 입니다.`,
+      };
+      const data = {
+        userMail: req.body.userMail,
+        userMailVerifiNum: random,
+      };
+      const sendData = new verifiCode(data);
+      sendData.save();
+      transporter.sendMail(mailOption, function (err, info) {
+        if (err) {
+          return res.status(500).json({ sendMailSuccess: false, message: err });
+        } else {
+          return res
+            .status(200)
+            .json({ sendMailSuccess: true, message: '인증번호 발송 성공' });
+        }
+      });
+    }
+    if (!userFindMail) {
+      return res.json({
+        sendMailSuccess: false,
+        message: '등록되지 않은 이메일입니다.',
+      });
+    }
+  } catch (err) {
+    console.log('server.mjs 비밀번호 찾기 부분', err);
   }
 });
 

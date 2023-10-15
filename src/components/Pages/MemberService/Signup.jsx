@@ -113,20 +113,20 @@ export default function Signup() {
 				<br/>
 				<br/>
 				<div>
-					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' required></input>
+					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 					<button className='signupButtonShort' onClick={userMailCheck}>중복확인</button>
 					<br/>
 					<br/>
-					<input className='signupInput' type='text' ref={userNameRef} placeholder='이름' required></input>
+					<input className='signupInput' type='text' ref={userNameRef} placeholder='이름' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordRef} placeholder='비밀번호' required></input>
+					<input className='signupInput' type='password' ref={userPasswordRef} placeholder='비밀번호' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' required></input>
+					<input className='signupInput' type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' required></input>
+					<input className='signupInput' type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' ></input>
 					<br/>
 					<br/>
 					<AddressSearch />
