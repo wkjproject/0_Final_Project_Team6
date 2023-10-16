@@ -221,6 +221,31 @@ app.post('/pwCodeMailSend', async (req, res) => {
   }
 });
 
+// 비밀번호 찾기에서 인증번호 확인 부분
+
+app.post('/verifiCode', async (req, res) => {
+  try {
+    const userFindMail = await verifiCode
+      .findOne({ userMail: req.body.userMail })
+      .exec();
+    if (
+      userFindMail &&
+      userFindMail.userMailVerifiNum === req.body.verifiCode
+    ) {
+      return res
+        .status(200)
+        .json({ verificationSuccess: true, message: '인증번호가 일치합니다.' });
+    } else {
+      return res.status(200).json({
+        verificationSuccess: false,
+        message: '인증번호를 확인해주세요.',
+      });
+    }
+  } catch {}
+});
+
+// 비밀번호 찾기에서 새로운 비밀번호로 변경 부분
+
 // 사용자 인증부분
 app.get('/auth', middleAuth, (req, res) => {
   try {
