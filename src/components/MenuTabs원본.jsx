@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import useFetch from '../components/hooks/useFetch';
 import './MenuTabs.css'
-import { useLocation } from 'react-router';
 
 class MenuTabs extends Component {
 
@@ -60,27 +59,13 @@ class MenuTabs extends Component {
 // 각 탭에 대한 컴포넌트
 function Tab1Content() {
 
-    const location = useLocation();
-    const { _id } = location.state || {};
-
-    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
-
-    if (!projectData) {
-        return <div>Loading...</div>;
-    }
-
-    // "proj_id" 값을 기반으로 해당 "projName"을 찾기
-    const selectedProject = projectData.find(item => item.proj_id === _id);
-
-    if (!selectedProject) {
-        return <div>Project not found</div>;
-    }
-
-    const { projDesc } = selectedProject;
+    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
 
     return (
         <div>
-            <div dangerouslySetInnerHTML={{ __html: projDesc }} />
+            {ProjectData.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.projDesc }} />
+            ))}
         </div>
 
     );
@@ -93,7 +78,6 @@ function Tab2Content() {
 }
 
 function Tab3Content() {
-    //QnA와 코멘트 페이지는 json서버에서 받아오는 형식. 고정적으로 처리할 예정
     const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
 
     return (
