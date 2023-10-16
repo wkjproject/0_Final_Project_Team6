@@ -2,7 +2,7 @@ import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
-
+import '../../../css/MemberService/IdpwFind.css'
 
 export default function IdpwFind() {
 	const navigate = useNavigate();
@@ -141,25 +141,30 @@ export default function IdpwFind() {
   }
 }, []);
 	return (
-		<div>
-			<button onClick={moveIdFind}>
+		<div className='IdpwFindContainer'>
+			<button button className='IdpwFindButton' onClick={moveIdFind}>
         아이디 찾기
       </button>
 			<br/>
-			<button onClick={movePwFind}>
+			<button button className='IdpwFindButton' onClick={movePwFind}>
         비밀번호 찾기
       </button>
+			<br/>
+			<br/>
 			<br/>
 			<br/>
 			{IdpwFindState ? (
 				IdFind ? (
 				<>
 				<p>{getUserMail}</p>
+				<br/>
 				<p>회원으로 등록된 이메일 아이디입니다.</p>
-				<NavLink to="/Login"><button>로그인</button></NavLink>
+				<NavLink to="/Login"><button className='IdpwFindButton' >로그인</button></NavLink>
 				</>) : (				<>
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
-				<input type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
+				<br/>
+				<input className='IdpwFindInput' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
+				<br/>
 				<br/>
 				<button className='IdpwFindButton' onClick={userMailFind}>로그인 아이디 확인</button>
 				</>)
@@ -177,7 +182,7 @@ export default function IdpwFind() {
 				<input className='IdpwFindInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 				<button className='IdpwFindButtonShort' onClick={verifiCodeMailSend} disabled={isButtonDisabled}>{isButtonDisabled ? `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}` : '인증번호 받기'}</button>
 				<br/>
-				<input className='IdpwFindInputShort' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>
+				<input className='IdpwFindInput' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>
 				<br/>
 				<button className='IdpwFindButton' onClick={verifiConfirm}>비밀번호 재설정</button>
 				</>)

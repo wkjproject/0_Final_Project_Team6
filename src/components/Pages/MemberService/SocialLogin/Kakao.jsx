@@ -30,7 +30,14 @@ export const Kakao = () => {
   };
   return (
     <div>
-    <KakaoLogin token={kakaoClientId} onSuccess={kakaoSuccess} onFail={kakaoFail} />
+    <KakaoLogin style={{  width: '100%',
+  backgroundColor: 'rgb(252,235,30)',
+  color: 'var(--Black)', /* 텍스트 색상 */
+  padding: '10px 20px', /* 내부 여백 */
+  border: 'none', /* 테두리 제거 */
+  cursor: 'pointer', /* 커서 스타일 */
+  borderRadius: '4px' /* 둥근 모서리 */}} token={kakaoClientId} onSuccess={kakaoSuccess} onFail={kakaoFail} />
     </div>
   )
 }
+
