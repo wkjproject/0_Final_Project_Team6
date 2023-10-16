@@ -13,7 +13,7 @@ export default function ReduxTest() {
 				dispatch(setProjName(res.data.projName)); //크롬 웹스토어 Redux Devtools 로 리덕스에 값 들어갔는지 확인할수있어요
 				setProjNameState(res.data.projName);
 			})
-	}, [dispatch]);
+	}, []);
 	const projName = useSelector((state) => state.projName.projName)
 	return (
 		<>
