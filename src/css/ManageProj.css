@@ -1,0 +1,55 @@
+/* 프로젝트 기본 설정 */
+
+h1 {
+	font-size: var(--TextLarge);
+	text-align: center;
+	margin-top: 100px;
+	letter-spacing: 2px;
+}
+
+.active {
+	font-weight: bold;
+	background-color: white;
+	color: var(--Black);
+}
+
+p {color: blue;}
+
+ul {
+	text-align:center;
+	margin:0;
+	padding:0px;
+}
+
+li {
+	display:inline-block;
+  list-style-type:none;
+	margin: 20px 10px;
+	font-size: var(--TextMidium);
+	color: var(--Darkgray);
+}
+
+li:hover {
+	font-weight: bold;
+}
+
+li:not(:last-of-type) {
+  padding-right: 20px;
+  border-right: 1px solid #1e1e1e;
+}
+
+
+/* 프로젝트 내역(리스트) 설정 */
+.project-container {
+	display: flex;
+	justify-content: center;
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+  height: 100%;
+  box-sizing: border-box;
+}
