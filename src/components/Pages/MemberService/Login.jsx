@@ -55,7 +55,7 @@ export const Login = () => {
   }
   return (    
       <MemberShipContainer>
-      <div style={{textAlign:'center'}}>
+      <MemberShipDivCenter>
       <h2>로그인</h2>
       <br />
       <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력"></MemberShipInput>
@@ -70,7 +70,7 @@ export const Login = () => {
       <Kakao />
       <br />
       <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
-      </div>
+      </MemberShipDivCenter>
       </MemberShipContainer>
   )
   }

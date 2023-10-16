@@ -27,7 +27,7 @@ function App() {
   //3번째 인자 true 하면 관리자만 출입가능. default 값 false
   const AuthLogin = Auth(Login, false);
   const AuthSignup = Auth(Signup, false);
-  const AuthHome = Auth(Home, null);
+  const AuthHome = Auth(Home, null, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}

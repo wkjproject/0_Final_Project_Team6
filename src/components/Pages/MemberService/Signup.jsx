@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Kakao } from './SocialLogin/Kakao';
-import '../../../css/MemberService/Signup.css'
+import {MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort} from '../../../css/MemberService/MemberShipCss'
 import AddressSearch from './Address/AddressSearch'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/reducer/userNameActions';
@@ -105,28 +105,28 @@ export default function Signup() {
 		}
 	};
 	return (
-		<div className='SignupContainer'>
+		<MemberShipContainer>
 			  <h2>회원가입</h2>
-				<br/>
-				<Kakao />
-				<br/>
-				<br/>
-				<br/>
 				<div>
-					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
-					<button className='signupButtonShort' onClick={userMailCheck}>중복확인</button>
+					<br/>
+					<Kakao />
 					<br/>
 					<br/>
-					<input className='signupInput' type='text' ref={userNameRef} placeholder='이름' ></input>
+					<br/>
+					<MemberShipInputShort type='text' ref={userMailRef} placeholder='이메일 입력' ></MemberShipInputShort>
+					<MemberShipButtonShort onClick={userMailCheck}>중복확인</MemberShipButtonShort>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordRef} placeholder='비밀번호' ></input>
+					<MemberShipInput type='text' ref={userNameRef} placeholder='이름' ></MemberShipInput>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' ></input>
+					<MemberShipInput type='password' ref={userPasswordRef} placeholder='비밀번호' ></MemberShipInput>
 					<br/>
 					<br/>
-					<input className='signupInput' type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' ></input>
+					<MemberShipInput type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' ></MemberShipInput>
+					<br/>
+					<br/>
+					<MemberShipInput type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' ></MemberShipInput>
 					<br/>
 					<br/>
 					<AddressSearch />
@@ -135,8 +135,8 @@ export default function Signup() {
 					<label for="myCheckbox">약관 동의</label>
 					<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
 					<Terms />
-					<button className='signupButton' onClick={submit}>가입하기</button>
+					<MemberShipButton onClick={submit}>가입하기</MemberShipButton>
 				</div>
-    </div>
+    </MemberShipContainer>
 	)
 }
