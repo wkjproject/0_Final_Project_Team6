@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import useFetch from '../components/hooks/useFetch';
+import './MenuTabs.css'
 
 class MenuTabs extends Component {
 
@@ -19,10 +20,30 @@ class MenuTabs extends Component {
         return (
             <div>
                 <ul className="tab-list">
-                    <li onClick={() => this.handleTabClick('tab1')}>소개글</li>
-                    <li onClick={() => this.handleTabClick('tab2')}>코멘트</li>
-                    <li onClick={() => this.handleTabClick('tab3')}>QnA</li>
-                    <li onClick={() => this.handleTabClick('tab4')}>회사 소개</li>
+                    <li
+                        className={this.state.activeTab === 'tab1' ? 'active' : ''}
+                        onClick={() => this.handleTabClick('tab1')}
+                    >
+                        소개글
+                    </li>
+                    <li
+                        className={this.state.activeTab === 'tab2' ? 'active' : ''}
+                        onClick={() => this.handleTabClick('tab2')}
+                    >
+                        코멘트
+                    </li>
+                    <li
+                        className={this.state.activeTab === 'tab3' ? 'active' : ''}
+                        onClick={() => this.handleTabClick('tab3')}
+                    >
+                        QnA
+                    </li>
+                    <li
+                        className={this.state.activeTab === 'tab4' ? 'active' : ''}
+                        onClick={() => this.handleTabClick('tab4')}
+                    >
+                        회사 소개
+                    </li>
                 </ul>
                 <div className="tab-content">
                     {this.state.activeTab === 'tab1' && <Tab1Content />}
