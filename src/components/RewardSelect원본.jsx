@@ -5,7 +5,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
-import { useLocation } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
 
 const RewardSelect = () => {
@@ -24,7 +23,9 @@ const RewardSelect = () => {
     }
   };
 
-
+  const ProjectData = useFetch(
+    'https://json-server-vercel-sepia-omega.vercel.app/projects'
+  );
 
   const modalRef = useRef(null);
   const backgroundAreaRef = useRef(null);
@@ -73,29 +74,15 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
-  const location = useLocation(); // useLocation을 추가
-  const { _id } = location.state || {};
-
-  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
-
-  if (!projectData) {
-    return <div>Loading...</div>;
-  }
-
-  // "proj_id" 값을 기반으로 해당 "projName"을 찾기
-  const selectedProject = projectData.find(item => item.proj_id === _id);
-
-  if (!selectedProject) {
-    return <div>Project not found</div>;
-  }
-
-  const { projName } = selectedProject;
-
   return (
     <div className='backgroundArea' ref={backgroundAreaRef}>
-      <div className='info'>
-        {projName}
-      </div>
+      {ProjectData.map((item) => (
+        <div className='info'>
+          {/* <p>{item.projName}</p>
+          <p>{item.projPlace}</p>
+          <p>{item.projAddr}</p> */}
+        </div>
+      ))}
       <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
         <button
           onClick={() => setShowModal(!showModal)}
@@ -110,35 +97,37 @@ const RewardSelect = () => {
           <div className='modal' ref={modalRef} >
             <div className='modal-content'>
               <ul className='no-bullets'>
-                <li key={selectedProject.proj_id}>
-                  {selectedProject.projReward.map((reward, index) => (
-                    <div key={index}>
-                      <button
-                        onClick={() => handleRewardSelect(reward)}
-                        className='selectButton'
-                      >
-                        <table className='firstTable'>
-                          <tr>
-                            <td>그룹 </td>
-                            <td> : {reward.projRewardName}</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>금액 </td>
-                            <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
-                          </tr>
-                        </table>
-                      </button>
-                      {/* {projectIndex !== projectData.length - 1 ||
-                        index !== project.projReward.length - 1 ? (
-                        <hr />
-                      ) : null} */}
-                    </div>
-                  ))}
-                </li>
+                {ProjectData.map((project, projectIndex) => (
+                  <li key={project.proj_id}>
+                    {project.projReward.map((reward, index) => (
+                      <div key={index}>
+                        <button
+                          onClick={() => handleRewardSelect(reward)}
+                          className='selectButton'
+                        >
+                          <table className='firstTable'>
+                            <tr>
+                              <td>그룹 </td>
+                              <td> : {reward.projRewardName}</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>금액 </td>
+                              <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
+                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                            </tr>
+                          </table>
+                        </button>
+                        {projectIndex !== ProjectData.length - 1 ||
+                          index !== project.projReward.length - 1 ? (
+                          <hr />
+                        ) : null}
+                      </div>
+                    ))}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
