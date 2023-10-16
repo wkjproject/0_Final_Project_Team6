@@ -36,6 +36,14 @@
     scrollbar-width: thin;
 }
 
+.info {
+    padding-top: 20px;
+    font-size: 20px;
+    width: 360px;
+    margin: auto;
+    text-align: left;
+}
+
 .select option {
     white-space: pre-line;
 }
@@ -49,6 +57,8 @@
 }
 
 .reward-button {
+    height: 40px;
+    padding-left: 10px;
     text-align: left;
     width: 99%;
     font-size: 18px;
@@ -249,7 +259,7 @@ ul.no-bullets2 hr {
     cursor: pointer;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
     /* 텍스트 수직 중앙 정렬 */
     width: 100%;
@@ -260,10 +270,14 @@ ul.no-bullets2 hr {
     width: 100px;
     height: 50px;
     color: rgba(0, 0, 0, 0.4);
+    text-align: left;
+    padding-left: 25px;
 }
 
 .shareBtn {
     width: 200px;
     height: 50px;
     color: black;
+    justify-content: center;
+    /* 센터 정렬 */
 }

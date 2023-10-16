@@ -9,11 +9,13 @@ import { useLocation } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
 
 const RewardSelect = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedRewards, setSelectedRewards] = useState([]);
-  const [heartClicked, setHeartClicked] = useState(false);
-  const [clickedCount, setClickedCount] = useState(0);
+  // 상태 변수 초기화
+  const [showModal, setShowModal] = useState(false); // 모달 표시 여부
+  const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
+  const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
+  const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
 
+  // 하트 클릭 토글 함수
   const toggleHeart = () => {
     if (heartClicked) {
       setHeartClicked(false);
@@ -24,11 +26,11 @@ const RewardSelect = () => {
     }
   };
 
-
-
+  // useRef를 사용하여 모달 및 배경 영역의 참조 생성
   const modalRef = useRef(null);
   const backgroundAreaRef = useRef(null);
 
+  // 외부를 클릭했을 때 모달 닫기 위한 useEffect
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -46,10 +48,12 @@ const RewardSelect = () => {
     };
   }, []);
 
+  // 금액을 숫자 형식으로 포맷하는 함수
   const formatAmount = (amount) => {
     return amount.toLocaleString();
   };
 
+  // 선택한 리워드들의 총 금액을 계산하는 함수
   const calculateTotalAmount = () => {
     return selectedRewards.reduce(
       (total, reward) => total + reward.projRewardAmount,
@@ -57,15 +61,15 @@ const RewardSelect = () => {
     );
   };
 
+  // 리워드 선택 처리 함수
   const handleRewardSelect = (reward) => {
-    if (
-      !selectedRewards.some((r) => r.projRewardName === reward.projRewardName)
-    ) {
+    if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
       setSelectedRewards([...selectedRewards, reward]);
     }
     setShowModal(false); // 리스트가 선택되면 모달 닫기
   };
 
+  // 선택한 리워드 제거 처리 함수
   const handleRewardRemove = (rewardToRemove) => {
     const updatedRewards = selectedRewards.filter(
       (reward) => reward !== rewardToRemove
@@ -73,139 +77,146 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
-  const location = useLocation(); // useLocation을 추가
+  // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
+  const location = useLocation();
   const { _id } = location.state || {};
 
+  // API를 사용하여 프로젝트 데이터 가져오기
   const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
 
+  // 데이터 로딩 중이면 "Loading..." 표시
   if (!projectData) {
     return <div>Loading...</div>;
   }
 
-  // "proj_id" 값을 기반으로 해당 "projName"을 찾기
+  // 선택한 프로젝트 찾기
   const selectedProject = projectData.find(item => item.proj_id === _id);
 
+  // 프로젝트가 없으면 "Project not found" 표시
   if (!selectedProject) {
     return <div>Project not found</div>;
   }
 
-  const { projName } = selectedProject;
+  // 프로젝트 정보 추출
+  //const { } = selectedProject;
 
+  // 컴포넌트 렌더링
   return (
-    <div className='backgroundArea' ref={backgroundAreaRef}>
-      <div className='info'>
-        {projName}
-      </div>
-      <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
-        <button
-          onClick={() => setShowModal(!showModal)}
-          className='reward-button'
-        >
-          <span className='reward-text'>
-            {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
-          </span>{' '}
-          <span className='arrow'>{showModal ? '▲' : '▼'}</span>
-        </button>
-        {showModal && (
-          <div className='modal' ref={modalRef} >
-            <div className='modal-content'>
-              <ul className='no-bullets'>
-                <li key={selectedProject.proj_id}>
-                  {selectedProject.projReward.map((reward, index) => (
-                    <div key={index}>
-                      <button
-                        onClick={() => handleRewardSelect(reward)}
-                        className='selectButton'
-                      >
-                        <table className='firstTable'>
-                          <tr>
-                            <td>그룹 </td>
-                            <td> : {reward.projRewardName}</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>금액 </td>
-                            <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
-                          </tr>
-                        </table>
-                      </button>
-                      {/* {projectIndex !== projectData.length - 1 ||
-                        index !== project.projReward.length - 1 ? (
-                        <hr />
-                      ) : null} */}
-                    </div>
-                  ))}
+    <div>
+
+      <div className='backgroundArea' ref={backgroundAreaRef}>
+
+        {/* 리워드 선택 모달 */}
+        <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
+          <button
+            onClick={() => setShowModal(!showModal)}
+            className='reward-button'
+          >
+            <span className='reward-text'>
+              {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
+            </span>{' '}
+            <span className='arrow'>{showModal ? '▲' : '▼'}</span>
+          </button>
+          {showModal && (
+            <div className='modal' ref={modalRef} >
+              <div className='modal-content'>
+                <ul className='no-bullets'>
+                  <li key={selectedProject.proj_id}>
+                    {selectedProject.projReward.map((reward, index) => (
+                      <div key={index}>
+                        <button
+                          onClick={() => handleRewardSelect(reward)}
+                          className='selectButton'
+                        >
+                          <table className='firstTable'>
+                            <tr>
+                              <td>그룹 </td>
+                              <td> : {reward.projRewardName}</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>금액 </td>
+                              <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
+                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                            </tr>
+                          </table>
+                        </button>
+                        {index !== selectedProject.projReward.length - 1 && <hr />}
+                      </div>
+                    ))}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 선택한 리워드 목록 표시 */}
+        {selectedRewards.length > 0 && (
+          <div className='selectedReward'>
+            <h2 className="selected-reward-header">선택한 그룹 :</h2>
+            <ul className="no-bullets2" >
+              {selectedRewards.map((selectedReward, index) => (
+                <li
+                  key={index}
+                  className={index >= 0 && index <= 100 ? 'second-table' : ''}
+                  style={{ marginTop: '10px' }}
+                >
+                  <table >
+                    <tr>
+                      <td>그룹</td>
+                      <td>: {selectedReward.projRewardName}</td>
+                      <td className='button-cell' >
+                        <button
+                          className='remove-button'
+                          onClick={() => handleRewardRemove(selectedReward)}
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>금액</td>
+                      <td>
+                        : {formatAmount(selectedReward.projRewardAmount)} 원
+                      </td>
+                    </tr>
+                    <tr >
+                      <td style={{ paddingTop: '5px' }}>잔여 수량</td>
+                      <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
+                    </tr>
+                  </table>
                 </li>
-              </ul>
+              ))}
+            </ul>
+            <div className='total-amount'>
+              <h3>총 금액 : {formatAmount(calculateTotalAmount())} 원</h3>
             </div>
           </div>
-        )}
-      </div>
+        )
+        }
 
-      {selectedRewards.length > 0 && (
-        <div className='selectedReward'>
-          <h2 className="selected-reward-header">선택한 그룹 :</h2>
-          <ul className="no-bullets2" >
-            {selectedRewards.map((selectedReward, index) => (
-              <li
-                key={index}
-                className={index >= 0 && index <= 100 ? 'second-table' : ''}
-                style={{ marginTop: '10px' }}
-              >
-                <table >
-                  <tr>
-                    <td>그룹</td>
-                    <td>: {selectedReward.projRewardName}</td>
-                    <td className='button-cell' >
-                      <button
-                        className='remove-button'
-                        onClick={() => handleRewardRemove(selectedReward)}
-                      >
-                        X
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>금액</td>
-                    <td>
-                      : {formatAmount(selectedReward.projRewardAmount)} 원
-                    </td>
-                  </tr>
-                  <tr >
-                    <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
-                  </tr>
-                </table>
-                {/* {index !== selectedRewards.length - 1 ? <hr /> : null} */}
-              </li>
-            ))}
-          </ul>
-          <div className='total-amount'>
-            <h3>총 금액 : {formatAmount(calculateTotalAmount())} 원</h3>
+        {/* 신청하기, 하트, 공유하기 버튼 */}
+        <div className='button-container'>
+          <button className='fundingBtn'>신청하기</button>
+          <div className='button-group'>
+            <button
+              className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
+              onClick={toggleHeart}
+            >
+              {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
+            </button>
+            <button className='shareBtn' style={{ marginLeft: '20px' }}>
+              공유하기
+            </button>
           </div>
         </div>
-      )
-      }
-
-      <div className='button-container'>
-        <button className='fundingBtn'>신청하기</button>
-        <div className='button-group'>
-          <button
-            className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
-            onClick={toggleHeart}
-          >
-            {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : ''}
-          </button>
-          <button className='shareBtn' style={{ marginLeft: '20px' }}>
-            공유하기
-          </button>
-        </div>
       </div>
-    </div >
+    </div>
   );
 };
 
 export default RewardSelect;
+

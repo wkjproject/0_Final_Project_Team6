@@ -21,7 +21,7 @@ function ProjectData2() {
         return <div>Project not found</div>;
     }
 
-    const { projName, projMainImgPath, shortDesc } = selectedProject;
+    const { projName, projMainImgPath, shortDesc, projPlace, projAddr, projDate } = selectedProject;
 
     return (
         <div>
@@ -38,8 +38,30 @@ function ProjectData2() {
                         <MenuTabs></MenuTabs>
                     </div>
                 </div>
-                <div className='RewardSelect'>
-                    <RewardSelect></RewardSelect>
+                <div>
+                    <div className='backgroundAreaInfo'>
+                        <div className='info'>
+                            <div className='projName'>
+                                {projName}
+                                <br />
+                            </div>
+                            <div className='projPlace'>
+                                {projPlace}
+                                <br />
+                            </div>
+                            <div className='projAddr'>
+                                {projAddr}
+                                <br />
+                            </div>
+                            <div className='projDate'>
+                                {projDate}
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='RewardSelect'>
+                        <RewardSelect></RewardSelect>
+                    </div>
                 </div>
             </div>
         </div>
