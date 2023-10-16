@@ -60,15 +60,12 @@ class MenuTabs extends Component {
 function Tab1Content() {
 
     const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
-    if (ProjectData !== undefined && ProjectData !== null && ProjectData.length) { // 데이터가 언디파인이 아니거나 존재하거나 데이터가 조회되면
-    }
 
     return (
         <div>
-            {ProjectData !== undefined && ProjectData !== null && ProjectData.length > 0 &&
-                ProjectData.map((item) => (
-                    <div dangerouslySetInnerHTML={{ __html: item.projDesc }} />
-                ))}
+            {ProjectData.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.projDesc }} />
+            ))}
         </div>
 
     );
@@ -81,8 +78,15 @@ function Tab2Content() {
 }
 
 function Tab3Content() {
+    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
+
     return (
-        <div>QnA 페이지 추가 예정</div>
+        <div>
+            {ProjectData.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.QnA }} />
+            ))}
+        </div>
+
     );
 }
 
