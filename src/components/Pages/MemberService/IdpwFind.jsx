@@ -1,10 +1,11 @@
 import { isValidInputTimeValue } from '@testing-library/user-event/dist/utils';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 export default function IdpwFind() {
+	const navigate = useNavigate();
 	// 인증번호 받기 버튼 상태 관리(인증코드 받으면 3분동안 재발송 불가)
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [countdown, setCountdown] = useState(180); // 3분(180초)
@@ -21,6 +22,8 @@ export default function IdpwFind() {
 	// 아이디찾기 성공 시 아이디 저장
 	const [getUserMail, setGetUserMail] = useState();
 
+	// 이메일 상태 저장
+	const [userMailSave, setUserMailSave] = useState();
 	const userPasswordRef = useRef();
 	const userPasswordCheckRef = useRef();
 	const userMailRef = useRef();
@@ -33,6 +36,8 @@ export default function IdpwFind() {
 		evt.preventDefault();
 		setIdpwFindState(false);
 	}
+
+	// 아이디찾기에서 사용자 입력값이랑 서버에 있는 이메일이랑 비교하는 부분
 	const userMailFind = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
@@ -52,6 +57,8 @@ export default function IdpwFind() {
 			console.log('IdpwFind userMailFind', err);
 		}
 	}
+
+	// 비밀번호 찾기에서 인증번호 받기 부분
 	const verifiCodeMailSend = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
@@ -75,6 +82,8 @@ export default function IdpwFind() {
 			}
 		})
 	}
+
+	// 비밀번호 찾기에서 인증번호 확인 부분
 	const verifiConfirm = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
@@ -85,13 +94,16 @@ export default function IdpwFind() {
 		}).then((res) => {
 			if(res.data.verificationSuccess){
 				setVerifiConfirmState(true);
+				setUserMailSave(userMail);
 				alert(res.data.message);
 			}
 		})
 	}
+
+	// 비밀번호 찾기에서 새로운 비밀번호 변경 부분
 	const changeToNewPassword = async (evt) => {
 		evt.preventDefault();
-		const userMail = userMailRef.current.value;
+		const userMail = userMailSave;
 		const userPassword = userPasswordRef.current.value;
 		const userPasswordCheck = userPasswordCheckRef.current.value;
 		if (userPassword !== userPasswordCheck) {
@@ -101,6 +113,15 @@ export default function IdpwFind() {
 		await axios.post('http://localhost:5000/newPassword', {
 			userMail,
 			userPassword
+		}).then((res) => {
+			if(res.data.newPasswordSuccess){
+				alert(res.data.message)
+				navigate('/IdpwFind')
+				window.location.reload();
+			}
+			if(!res.data.newPasswordSuccess){
+				alert(res.data.message)
+			}
 		})
 	}
 

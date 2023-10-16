@@ -222,7 +222,6 @@ app.post('/pwCodeMailSend', async (req, res) => {
 });
 
 // 비밀번호 찾기에서 인증번호 확인 부분
-
 app.post('/verifiCode', async (req, res) => {
   try {
     const userFindMail = await verifiCode
@@ -245,6 +244,27 @@ app.post('/verifiCode', async (req, res) => {
 });
 
 // 비밀번호 찾기에서 새로운 비밀번호로 변경 부분
+app.post('/newPassword', async (req, res) => {
+  try {
+    const hashedPwd = await bcrypt.hash(req.body.userPassword, 10);
+    const newPasswordUpdate = await users.findOneAndUpdate(
+      { userMail: req.body.userMail },
+      { userPassword: hashedPwd }
+    );
+    if (newPasswordUpdate) {
+      return res
+        .status(200)
+        .json({ newPasswordSuccess: true, message: '비밀번호 변경 성공' });
+    }
+    if (!newPasswordUpdate) {
+      return res
+        .status(200)
+        .json({ newPasswordSuccess: false, message: '비밀번호 변경 실패' });
+    }
+  } catch (err) {
+    console.log('server.mjs newPassword', err);
+  }
+});
 
 // 사용자 인증부분
 app.get('/auth', middleAuth, (req, res) => {
