@@ -1,148 +1,147 @@
 .inlineBlock {
-    display: inline-block;
+  display: inline-block;
 }
 
 .titlealign {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    /* 수평 가운데 정렬 */
-    align-items: center;
-    /* 수직 가운데 정렬 */
-    flex-direction: row;
-    /* 자식 요소를 수직으로 배치 */
-    margin: auto;
-    width: 1200px;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: flex-start;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  /* 수평 가운데 정렬 */
+  align-items: center;
+  /* 수직 가운데 정렬 */
+  flex-direction: row;
+  /* 자식 요소를 수직으로 배치 */
+  margin: auto;
+  width: 1200px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
 }
 
-.center>div:nth-child(2) {
-    position: sticky;
-    top: 0;
+.center > div:nth-child(2) {
+  position: sticky;
+  top: 0;
 }
 
 .mainImage {
-    flex: 1;
-    /* 이미지 요소가 남은 공간을 모두 차지하도록 설정 */
-    max-width: 1150px;
-    /* 이미지가 너무 크면 컨테이너에 맞게 조절 */
-    width: 1150px;
-    height: 700px;
-    /* 가로 비율 유지 */
-    object-fit: cover;
-    /* 이미지 비율 유지하며 채우기 */
-    border-radius: 5px;
+  flex: 1;
+  /* 이미지 요소가 남은 공간을 모두 차지하도록 설정 */
+  max-width: 1150px;
+  /* 이미지가 너무 크면 컨테이너에 맞게 조절 */
+  width: 1150px;
+  height: 700px;
+  /* 가로 비율 유지 */
+  object-fit: cover;
+  /* 이미지 비율 유지하며 채우기 */
+  border-radius: 5px;
 }
 
 .div2 {
-    /* 사용 안하고 있음 */
-    width: 500px;
-    height: 460px;
-    background-color: white;
-    text-align: left;
-    border: solid 1px skyblue;
-    border-radius: 25px;
-    flex: 1;
-    /* 컨텐츠 요소가 남은 공간을 모두 차지하도록 설정 */
-    padding: 20px;
-    /* 내용 여백 설정 (선택 사항) */
+  /* 사용 안하고 있음 */
+  width: 500px;
+  height: 460px;
+  background-color: white;
+  text-align: left;
+  border: solid 1px skyblue;
+  border-radius: 25px;
+  flex: 1;
+  /* 컨텐츠 요소가 남은 공간을 모두 차지하도록 설정 */
+  padding: 20px;
+  /* 내용 여백 설정 (선택 사항) */
 }
 
 .shortDesc {
-    background: rgba(61, 196, 241, 0.4);
-    color: blue;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 1150px;
-    border: 0;
-    border-radius: 5px;
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
+  background: rgba(61, 196, 241, 0.4);
+  color: blue;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 1150px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
 }
 
 .RewardSelect {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .multiline-option {
-    padding: 5px;
-    /* 원하는 간격 설정 */
-    white-space: pre-line;
-    /* 텍스트 줄 바꿈 허용 */
-    min-height: 3em;
-    /* 원하는 높이 설정 */
+  padding: 5px;
+  /* 원하는 간격 설정 */
+  white-space: pre-line;
+  /* 텍스트 줄 바꿈 허용 */
+  min-height: 3em;
+  /* 원하는 높이 설정 */
 }
 
-
-
 #projDesc {
-    text-align: center;
-    width: 1150px;
-    background-color: snow;
-    border-radius: 5px;
-    padding-top: 10px;
+  text-align: center;
+  width: 1150px;
+  background-color: snow;
+  border-radius: 5px;
+  padding-top: 10px;
 }
 
 /* 탭 목록을 수평으로 배열 */
 .tab-list {
-    display: flex;
-    list-style: none;
-    padding: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
 }
 
 /* 각 탭 항목 스타일링 */
 .tab-list li {
-    flex: 1;
-    /* 동일한 너비로 나누기 */
-    text-align: center;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+  flex: 1;
+  /* 동일한 너비로 나누기 */
+  text-align: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
 }
 
 /* 활성 탭 스타일링 */
 .tab-list li.active {
-    background-color: #007bff;
-    /* 활성 탭 배경색 변경 */
-    color: #fff;
-    /* 텍스트 색상 변경 */
+  background-color: #007bff;
+  /* 활성 탭 배경색 변경 */
+  color: #fff;
+  /* 텍스트 색상 변경 */
 }
 
 .button-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .first-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    /* 첫 번째 줄과 두 번째 줄 사이의 간격 설정 */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  /* 첫 번째 줄과 두 번째 줄 사이의 간격 설정 */
 }
 
 .second-row {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
+/* 로그인버튼이랑 충돌나서 class 지정해주시는게 좋을거같아요
 button {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
+  flex: 1;
+  padding: 20px;
+  text-align: center;
 }
+ */

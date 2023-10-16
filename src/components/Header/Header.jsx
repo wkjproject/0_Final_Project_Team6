@@ -1,8 +1,15 @@
 import './Header.css';
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { Logout } from '../Pages/MemberService/Logout';
 
 export default function Header() {
+	// 리덕스에서 로그인 상태 확인
+	const isLogin = useSelector((state)=> state.auth.auth.isLogin);
+	// 리덕스에서 운영자 확인
+	const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+
 	return (
 		<header className='header-container'>
 			{/* 로고 */}
@@ -24,8 +31,29 @@ export default function Header() {
 			{/* 회원가입 & 로그인 */}
 			<div className='login-signup'>
 				<ul>
-					<li> <NavLink to="/login">로그인</NavLink></li>
-					<li> <NavLink to="/signup">회원가입</NavLink></li>
+					{isLogin ? (
+						isAdmin ? (
+							// 관리자로 로그인한 경우
+							<>
+							<button> <NavLink to="/">프로젝트 관리</NavLink></button>
+							<li> <NavLink to="/">회원관리</NavLink></li>
+							<Logout />
+							</>
+						) : (
+							// 일반 사용자로 로그인한 경우
+							<>
+							<button> <NavLink to="/">프로젝트 만들기</NavLink></button>
+							<li> <NavLink to="/">마이페이지</NavLink></li>
+							<Logout />
+							</>
+						)
+					) : (
+						// 로그인하지 않은 경우
+						<>
+							<li> <NavLink to="/login">로그인</NavLink></li>
+							<li> <NavLink to="/signup">회원가입</NavLink></li>
+						</>
+					)}
 				</ul>
 			</div>
 

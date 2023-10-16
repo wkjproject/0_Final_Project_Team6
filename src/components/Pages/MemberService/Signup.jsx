@@ -6,10 +6,13 @@ import '../../../css/MemberService/Signup.css'
 import AddressSearch from './Address/AddressSearch'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/reducer/userNameActions';
+import { Terms } from './termsModal/Terms';
 
 export default function Signup() {
 	const [userMailCheckState, setUserMailCheckState] = useState(false);
+	const [checkboxCheck, setCheckboxCheck] = useState(false);
 	const dispatch = useDispatch();
+	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	const userAddr = useSelector((state)=>state.userAddr.userAddr);
 	const userMailRef = useRef();
 	const userNameRef = useRef();
@@ -21,24 +24,29 @@ export default function Signup() {
 	const userMailCheck = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
-		try {
-			await axios
-			.post('http://localhost:5000/signup/userMailCheck',{
-				userMail,
-			})
-			.then((res) => {
-				if(res.data.userMailCheck){
-					alert('사용 가능한 이메일입니다.')
-					setUserMailCheckState(true)
-				}
-				if(!res.data.userMailCheck){
-					alert('사용 불가능한 이메일입니다.')
-				}
-			})
+		if (userMail !== '' && userMail !== null && emailRegex.test(userMail)) {
+			try {
+						await axios
+						.post('http://localhost:5000/signup/userMailCheck',{
+							userMail,
+						})
+						.then((res) => {
+							if(res.data.userMailCheck){
+								alert('사용 가능한 이메일입니다.')
+								setUserMailCheckState(true)
+							}
+							if(!res.data.userMailCheck){
+								alert('사용 불가능한 이메일입니다.')
+							}
+						})
+					}
+					catch (e) {
+						console.log(e)
+					}
+		} else {
+			alert('이메일 형식이 올바르지 않습니다.')
 		}
-		catch (e) {
-			console.log(e)
-		}
+		
 	}
 
 	// 회원가입 버튼 누르면 데이터 서버로 넘김
@@ -54,7 +62,6 @@ export default function Signup() {
 			return;
 		}
 
-		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 		if (!emailRegex.test(userMail)) {
 			alert('이메일 형식이 올바르지 않습니다.');
@@ -62,6 +69,10 @@ export default function Signup() {
 		}
 		if (!phoneRegex.test(userPhoneNum)) {
 			alert('연락처 형식이 올바르지 않습니다.');
+			return;
+		}
+		if (!checkboxCheck){
+			alert('약관에 동의해야 합니다.')
 			return;
 		}
 		if (userMailCheckState){
@@ -102,26 +113,29 @@ export default function Signup() {
 				<br/>
 				<br/>
 				<div>
-					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' required></input>
+					<input className='signupInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 					<button className='signupButtonShort' onClick={userMailCheck}>중복확인</button>
 					<br/>
 					<br/>
-					<input className='signupInput' type='text' ref={userNameRef} placeholder='이름' required></input>
+					<input className='signupInput' type='text' ref={userNameRef} placeholder='이름' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordRef} placeholder='비밀번호' required></input>
+					<input className='signupInput' type='password' ref={userPasswordRef} placeholder='비밀번호' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' required></input>
+					<input className='signupInput' type='password' ref={userPasswordCheckRef} placeholder='비밀번호 확인' ></input>
 					<br/>
 					<br/>
-					<input className='signupInput' type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' required></input>
+					<input className='signupInput' type='tel' ref={userPhoneNumRef} placeholder='연락처 (010-0000-0000)' ></input>
 					<br/>
 					<br/>
 					<AddressSearch />
 					<br/>
 					<br/>
-					<button className='signupButton' onClick={submit}>회원가입</button>
+					<label for="myCheckbox">약관 동의</label>
+					<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
+					<Terms />
+					<button className='signupButton' onClick={submit}>가입하기</button>
 				</div>
     </div>
 	)
