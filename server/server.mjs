@@ -15,11 +15,7 @@ import { randomCode } from './function/GenRandomCode.mjs';
 
 const port = 5000;
 const app = express();
-app.use(
-  cors({
-    credentials: true,
-  })
-);
+app.use(cors({}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
