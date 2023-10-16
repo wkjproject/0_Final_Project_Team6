@@ -25,6 +25,6 @@ export const usersSchema = new mongoose.Schema({
     type: String,
   },
   tokenExp: {
-    type: String,
+    type: Date,
   },
 });

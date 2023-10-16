@@ -6,6 +6,10 @@
   padding: 10px 12px;
   font-size: 20px;
 }
+.AddressSearchInputShort::placeholder {
+  text-align: center; /* placeholder 텍스트를 가운데 정렬 */
+}
+
 .AddressSearchButtonShort {
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 25%;

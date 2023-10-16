@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Kakao } from './SocialLogin/Kakao';
 import { setUserName } from '../../../redux/reducer/userNameActions';
-import '../../../css/MemberService/Login.css'
+import {MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort} from '../../../css/MemberService/MemberShipCss'
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -54,19 +54,23 @@ export const Login = () => {
     }
   }
   return (    
-      <div className='LoginContainer'>
+      <MemberShipContainer>
+      <div style={{textAlign:'center'}}>
       <h2>로그인</h2>
-      <input className='LoginInput' type="text" ref={userMailRef} placeholder="이메일 입력" />
       <br />
-      <input className='LoginInput' type="password" ref={userPasswordRef} placeholder="비밀번호 입력" />
+      <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력"></MemberShipInput>
       <br />
-      <p className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
       <br />
-      <button className='LoginButton' type="submit" onClick={submit}>
-        로그인
-      </button>
+      <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력"></MemberShipInput>
+      <br />
+      <p style={{position: 'relative',top: '5px',left: '70px',color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
+      <br />
+      <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
+      <br />
       <Kakao />
+      <br />
       <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
-    </div>
+      </div>
+      </MemberShipContainer>
   )
   }
