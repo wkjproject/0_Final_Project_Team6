@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import useFetch from '../hooks/useFetch';
 import '../../css/ManageProj.css';
 import ProjectCard from './ProjectCard';
 // import ProjectList from './ProjectsList';
-import useFetch from '../hooks/useFetch';
 
 export default function ManageProj() {
   const ProjectData = useFetch('/projects');
   const projList = Object.values(ProjectData); // 프로젝트 값을 배열로
 
-  const projectPerPage = 2; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
+  const projectPerPage = 6; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
   const [currTab, setCurrTab] = useState('waiting');  // 기본 값: 승인대기 프로젝트
   const [currPage, setCurrPage] = useState(1);        // 기본 값: 1페이지
 
@@ -52,7 +52,6 @@ export default function ManageProj() {
       <h1>프로젝트 관리</h1>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
-        {/* 승인 대기 프로젝트 탭 */}
         <ul>
           <li
             className={`tab ${currTab === 'waiting' ? 'active' : ''}`}
@@ -76,27 +75,31 @@ export default function ManageProj() {
       </div>
 
       {/* 선택된 탭에 따라 내용을 표시 */}
-      <div className='project-container'>
-        {displayedProjectsList.map((proj) => (
-          <ProjectCard
-            key={proj.projName}
-            projId={proj.proj_id}
-            image={proj.projMainImgPath}
-            title={proj.projName}
-            location={proj.projAddr.split(' ', 2)[1]}
-            dday={proj.projDate}
-            price={proj.projReward[0].projRewardAmount}
-            isNew={currTab === 'ongoing'} // ※ 일단 진행중 프로젝트는 == new 버튼 표시
-          />
-        ))}
-      </div>
+      <div className='projects-container'>
+        <div className='projects-list'>
+          {displayedProjectsList.map((proj) => (
+            <ProjectCard
+              key={proj.projName}
+              projId={proj.proj_id}
+              image={proj.projMainImgPath}
+              title={proj.projName}
+              location={proj.projAddr.split(' ', 2)[1]}
+              dday={proj.projDate}
+              price={proj.projReward[0].projRewardAmount}
+              isNew={currTab === 'ongoing'} // ※ 일단 진행중 프로젝트는 == new 버튼 표시
+            />
+          ))}
+        </div>
 
-      {/* 페이지 이동(pagination) 버튼 */}
-      <div className='pagination'>
-        <button onClick={toPrevPage}>이전</button>
-        <span> {currPage} </span>
-        <button onClick={toNextPage}>다음</button>
+        {/* 페이지 이동(pagination) 버튼 */}
+        <div className='pagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>  {currPage}/{totalPages}  </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
+        </div>
       </div>
-    </div>
+    
+    
   );
 }
