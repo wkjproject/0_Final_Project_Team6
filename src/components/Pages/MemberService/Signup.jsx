@@ -7,8 +7,10 @@ import AddressSearch from './Address/AddressSearch'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/reducer/userNameActions';
 import { Terms } from './termsModal/Terms';
+import Endpoint from '../../../config/Endpoint';
 
 export default function Signup() {
+	const endpoint = Endpoint();
 	const [userMailCheckState, setUserMailCheckState] = useState(false);
 	const [checkboxCheck, setCheckboxCheck] = useState(false);
 	const dispatch = useDispatch();
@@ -27,7 +29,7 @@ export default function Signup() {
 		if (userMail !== '' && userMail !== null && emailRegex.test(userMail)) {
 			try {
 						await axios
-						.post('http://localhost:5000/signup/userMailCheck',{
+						.post(`${endpoint}/signup/userMailCheck`,{
 							userMail,
 						})
 						.then((res) => {
@@ -78,7 +80,7 @@ export default function Signup() {
 		if (userMailCheckState){
 			try {
 				await axios
-					.post('http://localhost:5000/signup', {
+					.post(`${endpoint}/signup`, {
 						userMail,
 						userName,
 						userPassword,
