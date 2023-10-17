@@ -98,120 +98,134 @@ const RewardSelect = () => {
   }
 
   // 프로젝트 정보 추출
-  //const { } = selectedProject;
+  const { projName, projPlace, projAddr, projDate } = selectedProject;
 
   // 컴포넌트 렌더링
   return (
-    <div>
-
-      <div className='backgroundArea' ref={backgroundAreaRef}>
-
-        {/* 리워드 선택 모달 */}
-        <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
-          <button
-            onClick={() => setShowModal(!showModal)}
-            className='reward-button'
-          >
-            <span className='reward-text'>
-              {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
-            </span>{' '}
-            <span className='arrow'>{showModal ? '▲' : '▼'}</span>
-          </button>
-          {showModal && (
-            <div className='modal' ref={modalRef} >
-              <div className='modal-content'>
-                <ul className='no-bullets'>
-                  <li key={selectedProject.proj_id}>
-                    {selectedProject.projReward.map((reward, index) => (
-                      <div key={index}>
-                        <button
-                          onClick={() => handleRewardSelect(reward)}
-                          className='selectButton'
-                        >
-                          <table className='firstTable'>
-                            <tr>
-                              <td>그룹 </td>
-                              <td> : {reward.projRewardName}</td>
-                            </tr>
-                            <tr>
-                              <td style={{ paddingTop: '5px' }}>금액 </td>
-                              <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
-                            </tr>
-                            <tr>
-                              <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
-                            </tr>
-                          </table>
-                        </button>
-                        {index !== selectedProject.projReward.length - 1 && <hr />}
-                      </div>
-                    ))}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
+    <div className='backgroundArea' ref={backgroundAreaRef}>
+      <div className='info'>
+        <div className='projName'>
+          {projName}
+          <br />
         </div>
-
-        {/* 선택한 리워드 목록 표시 */}
-        {selectedRewards.length > 0 && (
-          <div className='selectedReward'>
-            <h2 className="selected-reward-header">선택한 그룹 :</h2>
-            <ul className="no-bullets2" >
-              {selectedRewards.map((selectedReward, index) => (
-                <li
-                  key={index}
-                  className={index >= 0 && index <= 100 ? 'second-table' : ''}
-                  style={{ marginTop: '10px' }}
-                >
-                  <table >
-                    <tr>
-                      <td>그룹</td>
-                      <td>: {selectedReward.projRewardName}</td>
-                      <td className='button-cell' >
-                        <button
-                          className='remove-button'
-                          onClick={() => handleRewardRemove(selectedReward)}
-                        >
-                          X
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>금액</td>
-                      <td>
-                        : {formatAmount(selectedReward.projRewardAmount)} 원
-                      </td>
-                    </tr>
-                    <tr >
-                      <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                      <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
-                    </tr>
-                  </table>
+        <div className='projPlace'>
+          {projPlace}
+          <br />
+        </div>
+        <div className='projAddr'>
+          {projAddr}
+          <br />
+        </div>
+        <div className='projDate'>
+          {projDate}
+          <br />
+        </div>
+      </div>
+      {/* 리워드 선택 모달 */}
+      <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
+        <button
+          onClick={() => setShowModal(!showModal)}
+          className='reward-button'
+        >
+          <span className='reward-text'>
+            {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
+          </span>{' '}
+          <span className='arrow'>{showModal ? '▲' : '▼'}</span>
+        </button>
+        {showModal && (
+          <div className='modal' ref={modalRef} >
+            <div className='modal-content'>
+              <ul className='no-bullets'>
+                <li key={selectedProject.proj_id}>
+                  {selectedProject.projReward.map((reward, index) => (
+                    <div key={index}>
+                      <button
+                        onClick={() => handleRewardSelect(reward)}
+                        className='selectButton'
+                      >
+                        <table className='firstTable'>
+                          <tr>
+                            <td>그룹 </td>
+                            <td> : {reward.projRewardName}</td>
+                          </tr>
+                          <tr>
+                            <td style={{ paddingTop: '5px' }}>금액 </td>
+                            <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
+                          </tr>
+                          <tr>
+                            <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
+                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                          </tr>
+                        </table>
+                      </button>
+                      {index !== selectedProject.projReward.length - 1 && <hr />}
+                    </div>
+                  ))}
                 </li>
-              ))}
-            </ul>
-            <div className='total-amount'>
-              <h3>총 금액 : {formatAmount(calculateTotalAmount())} 원</h3>
+              </ul>
             </div>
           </div>
-        )
-        }
+        )}
+      </div>
 
-        {/* 신청하기, 하트, 공유하기 버튼 */}
-        <div className='button-container'>
-          <button className='fundingBtn'>신청하기</button>
-          <div className='button-group'>
-            <button
-              className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
-              onClick={toggleHeart}
-            >
-              {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
-            </button>
-            <button className='shareBtn' style={{ marginLeft: '20px' }}>
-              공유하기
-            </button>
+      {/* 선택한 리워드 목록 표시 */}
+      {selectedRewards.length > 0 && (
+        <div className='selectedReward'>
+          <h2 className="selected-reward-header">선택한 그룹 :</h2>
+          <ul className="no-bullets2" >
+            {selectedRewards.map((selectedReward, index) => (
+              <li
+                key={index}
+                className={index >= 0 && index <= 100 ? 'second-table' : ''}
+                style={{ marginTop: '10px' }}
+              >
+                <table >
+                  <tr>
+                    <td>그룹</td>
+                    <td>: {selectedReward.projRewardName}</td>
+                    <td className='button-cell' >
+                      <button
+                        className='remove-button'
+                        onClick={() => handleRewardRemove(selectedReward)}
+                      >
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>금액</td>
+                    <td>
+                      : {formatAmount(selectedReward.projRewardAmount)} 원
+                    </td>
+                  </tr>
+                  <tr >
+                    <td style={{ paddingTop: '5px' }}>잔여 수량</td>
+                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
+                  </tr>
+                </table>
+              </li>
+            ))}
+          </ul>
+          <div className='total-amount'>
+            <h3>총 금액 : {formatAmount(calculateTotalAmount())} 원</h3>
           </div>
+        </div>
+      )
+      }
+
+      {/* 신청하기, 하트, 공유하기 버튼 */}
+      <div className='button-container'>
+        <button className='fundingBtn'>신청하기</button>
+        <div className='button-group'>
+          <button
+            className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
+            onClick={toggleHeart}
+          >
+            {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
+          </button>
+          <button className='shareBtn' style={{ marginLeft: '20px' }}>
+            공유하기
+          </button>
         </div>
       </div>
     </div>

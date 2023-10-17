@@ -29,23 +29,6 @@
   top: 0;
 }
 
-.backgroundAreaInfo {
-  position: static;
-}
-
-.RewardSelect {
-  position: sticky;
-}
-
-.RewardSelect {
-  position: sticky;
-  top: 0;
-  /* or any other value that suits your layout */
-}
-
-.projName {
-  font-size: 18px;
-}
 
 .mainImage {
   flex: 1;

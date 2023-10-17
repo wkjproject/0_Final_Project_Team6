@@ -44,6 +44,27 @@
     text-align: left;
 }
 
+.projName {
+    padding-bottom: 10px;
+    font-size: 28px;
+}
+
+.projPlace {
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: blue;
+}
+
+.projAddr {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.projDate {
+    padding-bottom: 0px;
+    font-size: 15px;
+}
+
 .select option {
     white-space: pre-line;
 }
@@ -211,7 +232,7 @@ ul.no-bullets2 hr {
     flex-direction: column;
     align-items: center;
     background: none;
-    width: 320px;
+    width: 360px;
     margin: auto;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -275,7 +296,7 @@ ul.no-bullets2 hr {
 }
 
 .shareBtn {
-    width: 200px;
+    width: 235px;
     height: 50px;
     color: black;
     justify-content: center;
