@@ -2,7 +2,7 @@
   "name": "0_final_project_team3",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://json-server-vercel-sepia-omega.vercel.app",
+  "proxy": "https://port-0-final-project-server1-euegqv2blntuic8i.sel5.cloudtype.app",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
