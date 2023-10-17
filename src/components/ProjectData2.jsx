@@ -2,48 +2,48 @@ import React from 'react';
 import useFetch from '../components/hooks/useFetch';
 import MenuTabs from './MenuTabs';
 import RewardSelect from './RewardSelect';
-
-
-//const apiUrl = process.env.REACT_APP_API_KEY;
-
-//console.log(apiUrl);
+import { useLocation } from 'react-router';
 
 function ProjectData2() {
+    const location = useLocation();
+    const { _id } = location.state || {};
 
-    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
-    if (ProjectData !== undefined && ProjectData !== null && ProjectData.length) { // 데이터가 언디파인이 아니거나 존재하거나 데이터가 조회되면
-        //console.log(ProjectData);
-        //console.log(ProjectData[0]);
+    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+
+    if (!projectData) {
+        return <div>Loading...</div>;
     }
+
+    // "proj_id" 값을 기반으로 해당 "projName"을 찾기
+    const selectedProject = projectData.find(item => item.proj_id === _id);
+
+    if (!selectedProject) {
+        return <div>Project not found</div>;
+    }
+
+    const { projName, projMainImgPath, shortDesc } = selectedProject;
 
     return (
         <div>
-            {ProjectData.map((item) => (
+            <h1 className='titlealign'>{projName}</h1>
+            <div className='center'>
                 <div>
-                    <hr />
-                    <h1 className='titlealign'>{item.projName}</h1>
-                    <div className='center'>
-                        <div>
-                            <div>
-                                <img className='mainImage' src={item.projMainImgPath} alt='메인 사진'></img>
-                            </div>
-                            <div className='shortDesc'>
-                                {item.shortDesc}
-                            </div>
-                            <div id='projDesc'>
-                                <MenuTabs></MenuTabs>
-                            </div>
-                        </div>
-                        <div className='RewardSelect'>
-                            <RewardSelect></RewardSelect>
-                        </div>
+                    <div>
+                        <img className='mainImage' src={projMainImgPath} alt='메인 사진'></img>
                     </div>
-                </div >
-            ))
-            }
-
-        </div >
+                    <div className='shortDesc'>
+                        {shortDesc}
+                    </div>
+                    <div id='projDesc'>
+                        <MenuTabs></MenuTabs>
+                    </div>
+                </div>
+                <div className='RewardSelect'>
+                    <RewardSelect></RewardSelect>
+                </div>
+            </div>
+        </div>
     );
 }
 
-export default ProjectData2
+export default ProjectData2;

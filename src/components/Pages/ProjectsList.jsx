@@ -16,6 +16,7 @@ function ProjectList() {
         ProjectData.map((proj) => (
           <ProjectCard 
             key={proj.projName}
+            projId={proj.proj_id}
             image={proj.projMainImgPath}
             title={proj.projName}
             location={proj.projAddr.split(' ',2)[1]}

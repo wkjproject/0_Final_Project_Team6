@@ -1,13 +1,14 @@
 import React from "react"
 import { useNavigate } from 'react-router';
 
-export default function Thumbnail ({image, isNew}) {
+export default function Thumbnail ({projId, image, isNew}) {
   //console.log('Thumbnail image: ', image);
   //console.log('Thumbnail isNew: ', isNew);
 
   const navigate = useNavigate();
   const openProjDetails = () => {
-    navigate("/project2");
+    console.log(`project_id: ${projId}`);
+    navigate("/project2", {state:{_id:projId}});
   }
 
   return (
