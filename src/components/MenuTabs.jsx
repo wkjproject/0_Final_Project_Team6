@@ -87,8 +87,16 @@ function Tab1Content() {
 }
 
 function Tab2Content() {
+    //QnA와 코멘트 페이지는 json서버에서 받아오는 형식. 고정적으로 처리할 예정
+    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
+
     return (
-        <div>코멘트 페이지 추가 예정</div>
+        <div>
+            {ProjectData.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.comment }} />
+            ))}
+        </div>
+
     );
 }
 

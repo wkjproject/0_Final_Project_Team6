@@ -29,3 +29,105 @@
     background-color: rgb(240, 240, 240);
     /* 활성 탭의 밑줄 색상 변경 */
 }
+
+.CommentItem_commentItem__3yCkD {
+    padding-top: 50px;
+}
+
+/* 닉네임과 시간/ 팔로우 영역을 한행으로 배치 */
+.CommentProfile_profileContainer___eLYZ {
+    display: flex;
+}
+
+/* 닉네임과 시간/ 팔로우 영역을 한행으로 배치 */
+.CommentProfile_profile__2rcAX {
+    display: flex;
+}
+
+/* 팔로우 버튼과 점 3개 영역 */
+.CommentProfile_followArea__10wVT {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/* 댓글 아이콘 영역 */
+.CommentItem_replyToggle__1McTx {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* 하트 아이콘 영역/ 하트 아이콘이 안 나옴 */
+.CommentReaction_count__2gH0W {
+    text-align: left;
+    display: none;
+}
+
+/* 닉네임하고 시간 영역 */
+.CommentProfile_writerArea__1bk5r {
+    padding-left: 0px;
+}
+
+/* 시간 영역 */
+.CommentProfile_date__10Pjc {
+    color: rgba(220, 220, 220, 1);
+    font-size: 12px;
+}
+
+/* 팔로우 버튼 */
+.CommentProfile_followArea__10wVT {
+    text-align: right;
+}
+
+/* 팔로우 버튼 div 영역 */
+.Button_button__2FuOU {
+    border: 0;
+    background: white;
+}
+
+/* 팔로우 밑에 점 3개 영역 */
+.PopMenu_toggle__7D0q2 {
+    border: 0;
+    background: white;
+}
+
+/* 코멘트 글자 영역 */
+.CommentContent_contentWrapper__2_AJP {
+    border: solid 1px rgba(220, 220, 220, 1);
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* 지지서명참여 텍스트 영역 */
+.CommentContentHeader_headerContainer__3u_NR {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+/* 유저가 단 댓글 div 영역 */
+.CommentContentArea_fullComment__5jBXI {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+/* 이모티콘이 달린 댓글 div 영역 */
+.KeywordList_keywordWrapper__tjX6z {
+    display: flex;
+    list-style: none;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+/* 이모티콘이 달린 댓글 영역 */
+.KeywordList_listItem__1HgaQ {
+    margin-right: 10px;
+}
+
+/* 코멘트 영역 밑에 hr 없앰 */
+.CommentReaction_container__tAtT- {
+    display: none;
+}
