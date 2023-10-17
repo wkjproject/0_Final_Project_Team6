@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import '../../css/ManageProj.css';
+import ProjectCard from './ProjectCard';
 import ProjectList from './ProjectsList';
 import useFetch from '../hooks/useFetch';
+import ProjectData from './../ProjectData';
 
 export default function ManageProj() {
-
-	const ProjectData = useFetch("/projects");
-  const [activeTab, setActiveTab] = useState('waiting');	// 기본값: 승인대기 프로젝트
-	const [currPage, setCurrPage] = useState(1);	// 기본값: 1페이지
+  const ProjectData = useFetch('/projects');
+    
+  const [activeTab, setActiveTab] = useState('waiting'); // 기본값: 승인대기 프로젝트
+  const [currPage, setCurrPage] = useState(1);	// 기본값: 1페이지
+  const projectsPerPage = 9; // 한 페이지에 보여줄 프로젝트 수(※가정)
 
   /* --- 탭 변경 함수 --- */
   const handleTabClick = (tabName) => {
@@ -15,7 +18,14 @@ export default function ManageProj() {
 		setCurrPage(1); // 탭 변경시 1페이지로 초기화
   };
 
-	/* --- 페이지 이동 함수 --- */
+  // 페이지 변경
+  const Pagination = (projects) => {
+    const startIndex = (currPage - 1) * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+    return projects.slice(startIndex, endIndex);
+  };
+
+  	/* --- 페이지 이동 함수 --- */
 	const toPrevPage = () => {	// 이전 페이지로 이동
     if (currPage > 1) {				// 현재 페이지가 1페이지보다 크면
       setCurrPage(currPage - 1);
@@ -31,18 +41,6 @@ export default function ManageProj() {
     if (currPage < maxPages) {	// 현재 페이지가 마지막 페이지가 아니면
       setCurrPage(currPage + 1);
     }
-  };
-
-
-	// 선택된 탭에 따라 해당 프로젝트 목록 가져오기
-	const getProjByTab = () => {    
-    // const projects = ProjectData;	// projects = 전체 프로젝트 목록 배열
-
-    // 페이지 번호에 따라 필요한 범위의 프로젝트만 가져오기
-    const projectsPerPage = 9;			// 한 페이지에 표시할 프로젝트 수(※일단 9개로 설정)
-    const startIndex = (currPage - 1) * projectsPerPage;
-    const endIndex = startIndex + projectsPerPage;
-    return ProjectData.slice(startIndex, endIndex);
   };
 
   return (
@@ -78,32 +76,56 @@ export default function ManageProj() {
       {activeTab === 'waiting' && (
         <div>
           <p>승인대기 프로젝트 내용</p>
-					<div className="project-container">
-						{/* <ProjectList/> */}
-						{getProjByTab().map((proj) => (
-              // 각 프로젝트 항목 렌더링
-              <ProjectData key={proj.projName}/>
-            ))}
-						
-					</div>
-					<div className="page-button">
-            <button onClick={toPrevPage}>이전</button> 
-            <span>{currPage}</span>
-            <button onClick={toNextPage}>다음</button>
+          <div className='project-container'>
+              {}
+              <div className="page-button">
+              <button onClick={toPrevPage}>이전</button> 
+              <span>{currPage}</span>
+              <button onClick={toNextPage}>다음</button>
+              </div>
+            
           </div>
         </div>
-				
       )}
       {activeTab === 'ongoing' && (
         <div>
           {/* 진행중 내용 */}
-					<p>진행 중 프로젝트 내용</p>
+          <div className='project-container'>
+            {ProjectData !== undefined && ProjectData !== null && ProjectData.length > 0 &&
+              ProjectData.filter((proj) => proj.projStatus === '1').map((proj) => (
+                <ProjectCard
+                  key={proj.projName}
+                  projId={proj.proj_id}
+                  image={proj.projMainImgPath}
+                  title={proj.projName}
+                  location={proj.projAddr.split(' ', 2)[1]}
+                  dday={proj.projDate}
+                  price={proj.projReward[0].projRewardAmount}
+                  isNew={true}
+                />
+              ))}
+          </div>
         </div>
       )}
       {activeTab === 'ended' && (
         <div>
           {/* 마감된 내용 */}
-					<p>마감된 프로젝트 내용</p>
+          <p>마감된 프로젝트 내용</p>
+          <div className='project-container'>
+            {ProjectData !== undefined && ProjectData !== null && ProjectData.length > 0 &&
+              ProjectData.filter((proj) => proj.projStatus === '2').map((proj) => (
+                <ProjectCard
+                  key={proj.projName}
+                  projId={proj.proj_id}
+                  image={proj.projMainImgPath}
+                  title={proj.projName}
+                  location={proj.projAddr.split(' ', 2)[1]}
+                  dday={proj.projDate}
+                  price={proj.projReward[0].projRewardAmount}
+                  isNew={true}
+                />
+              ))}
+          </div>
         </div>
       )}
     </div>

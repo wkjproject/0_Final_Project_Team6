@@ -7,21 +7,21 @@ h1 {
 	letter-spacing: 2px;
 }
 
-.active {
+.tabs .active {
 	font-weight: bold;
 	background-color: white;
 	color: var(--Black);
 }
 
-p {color: blue;}
+.tabs p {color: blue;}
 
-ul {
+.tabs ul {
 	text-align:center;
 	margin:0;
 	padding:0px;
 }
 
-li {
+.tabs li {
 	display:inline-block;
   list-style-type:none;
 	margin: 20px 10px;
@@ -29,11 +29,11 @@ li {
 	color: var(--Darkgray);
 }
 
-li:hover {
+.tabs li:hover {
 	font-weight: bold;
 }
 
-li:not(:last-of-type) {
+.tabs li:not(:last-of-type) {
   padding-right: 20px;
   border-right: 1px solid #1e1e1e;
 }
