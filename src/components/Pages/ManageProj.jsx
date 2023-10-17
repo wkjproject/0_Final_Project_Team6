@@ -1,0 +1,102 @@
+import React, { useState } from 'react';
+import '../../css/ManageProj.css';
+import ProjectCard from './ProjectCard';
+// import ProjectList from './ProjectsList';
+import useFetch from '../hooks/useFetch';
+
+export default function ManageProj() {
+  const ProjectData = useFetch('/projects');
+  const projList = Object.values(ProjectData); // 프로젝트 값을 배열로
+
+  const projectPerPage = 2; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
+  const [currTab, setCurrTab] = useState('waiting');  // 기본 값: 승인대기 프로젝트
+  const [currPage, setCurrPage] = useState(1);        // 기본 값: 1페이지
+
+  /* --- 탭 변경 함수 --- */
+  const handleTabClick = (tabName) => {
+    setCurrTab(tabName);
+    setCurrPage(1); // 탭 변경시, 1페이지로 초기화
+  };
+
+  /* --- 탭이름 및 projStatus(0: 승인대기 / 1: 진행중 / 2: 마감)에 따른 탭 구분 --- */
+  const filteredProjects =
+    currTab === 'waiting'
+      ? projList.filter((proj) => proj.projStatus === '0')           // 승인대기 프로젝트
+      : projList.filter((proj) => {
+          if (currTab === 'ongoing') return proj.projStatus === '1'; // 진행 중 프로젝트
+          if (currTab === 'ended') return proj.projStatus === '2';   // 마감된 프로젝트
+          return true;
+        });
+
+  /* --- 페이지 이동(pagination) 설정 --- */
+  const totalPages = Math.ceil(filteredProjects.length / projectPerPage);
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = filteredProjects.slice(startIndex, endIndex);
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) { // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) { // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
+
+  return (
+    <div>
+      <h1>프로젝트 관리</h1>
+      {/* 프로젝트 탭 */}
+      <div className='tabs'>
+        {/* 승인 대기 프로젝트 탭 */}
+        <ul>
+          <li
+            className={`tab ${currTab === 'waiting' ? 'active' : ''}`}
+            onClick={() => handleTabClick('waiting')}
+          >
+            승인 대기 프로젝트
+          </li>
+          <li
+            className={`tab ${currTab === 'ongoing' ? 'active' : ''}`}
+            onClick={() => handleTabClick('ongoing')}
+          >
+            진행 중 프로젝트
+          </li>
+          <li
+            className={`tab ${currTab === 'ended' ? 'active' : ''}`}
+            onClick={() => handleTabClick('ended')}
+          >
+            마감된 프로젝트
+          </li>
+        </ul>
+      </div>
+
+      {/* 선택된 탭에 따라 내용을 표시 */}
+      <div className='project-container'>
+        {displayedProjectsList.map((proj) => (
+          <ProjectCard
+            key={proj.projName}
+            projId={proj.proj_id}
+            image={proj.projMainImgPath}
+            title={proj.projName}
+            location={proj.projAddr.split(' ', 2)[1]}
+            dday={proj.projDate}
+            price={proj.projReward[0].projRewardAmount}
+            isNew={currTab === 'ongoing'} // ※ 일단 진행중 프로젝트는 == new 버튼 표시
+          />
+        ))}
+      </div>
+
+      {/* 페이지 이동(pagination) 버튼 */}
+      <div className='pagination'>
+        <button onClick={toPrevPage}>이전</button>
+        <span> {currPage} </span>
+        <button onClick={toNextPage}>다음</button>
+      </div>
+    </div>
+  );
+}

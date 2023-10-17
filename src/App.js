@@ -16,6 +16,7 @@ import NotFound from './components/Pages/NotFound';
 import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
+import ManageProj from './components/Pages/ManageProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -48,6 +49,7 @@ function App() {
           <Route path='/project2' element={<ProjectData2 />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
+          <Route path='/manageProj' element={<ManageProj />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}
