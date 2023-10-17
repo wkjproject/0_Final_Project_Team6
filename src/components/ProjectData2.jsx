@@ -38,7 +38,7 @@ function ProjectData2() {
                         <MenuTabs></MenuTabs>
                     </div>
                 </div>
-                <div>
+                <div className='scroll'>
                     <div className='backgroundAreaInfo'>
                         <div className='info'>
                             <div className='projName'>
