@@ -100,11 +100,34 @@
     margin-bottom: 10px;
 }
 
-/* 지지서명참여 텍스트 영역 */
+/* 지지서명참여 div 영역 */
 .CommentContentHeader_headerContainer__3u_NR {
     text-align: left;
     padding-left: 10px;
     padding-top: 10px;
+}
+
+/* 지지서명참여 텍스트 영역 */
+.CommentContentBadges_badgeContainer__3BrpX {
+    width: 200px;
+}
+
+/* 지지서명 텍스트 영역 */
+.LabelBadge_badge__3G0wm {
+    background: #fe9a00;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: white;
+}
+
+/* 참여 텍스트 영역 */
+.Badge_badge__ovUKI {
+    background: gray;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: white;
 }
 
 /* 유저가 단 댓글 div 영역 */
