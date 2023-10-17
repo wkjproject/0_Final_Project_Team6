@@ -67,10 +67,16 @@
     padding-left: 0px;
 }
 
-/* 시간 영역 */
+/* 닉네임 영역 */
+.CommentProfile_nickName__1igw3 {
+    padding-left: 0px;
+}
+
+/* 시간 영역(span) */
 .CommentProfile_date__10Pjc {
-    color: rgba(220, 220, 220, 1);
+    color: rgba(200, 200, 200, 1);
     font-size: 12px;
+
 }
 
 /* 팔로우 버튼 */

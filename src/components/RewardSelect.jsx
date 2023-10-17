@@ -108,16 +108,21 @@ const RewardSelect = () => {
           {projName}
           <br />
         </div>
-        <div className='projPlace'>
-          {projPlace}
-          <br />
-        </div>
         <div className='projAddr'>
           {projAddr}
           <br />
         </div>
-        <div className='projDate'>
-          {projDate}
+        <div className='projPlace'>
+          {projPlace}
+          <br />
+        </div>
+
+        <div className='projDate'>{/* 맵 함수는 배열 구조의 데이터를 한줄씩 출력 */}
+          {projDate.map((item, index) => (
+            <div key={index}>
+              {item}
+            </div>
+          ))}
           <br />
         </div>
       </div>
