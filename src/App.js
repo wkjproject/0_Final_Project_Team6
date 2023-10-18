@@ -19,6 +19,7 @@ import IdpwFind from './components/Pages/MemberService/IdpwFind';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import ProjectPay from './components/ProjectPay';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -46,6 +47,7 @@ function App() {
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
+          <Route path='/projectPay' element={<ProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
         </Routes>

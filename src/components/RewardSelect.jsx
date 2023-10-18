@@ -7,6 +7,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
 import { useLocation } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
+import { Link } from 'react-router-dom';
+
 
 const RewardSelect = () => {
   // 상태 변수 초기화
@@ -14,6 +16,10 @@ const RewardSelect = () => {
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
   const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
+
+  // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
+  const location = useLocation();
+  const { _id } = location.state || {};
 
   // 하트 클릭 토글 함수
   const toggleHeart = () => {
@@ -77,9 +83,7 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
-  // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
-  const location = useLocation();
-  const { _id } = location.state || {};
+
 
   // API를 사용하여 프로젝트 데이터 가져오기
   const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
@@ -99,6 +103,8 @@ const RewardSelect = () => {
 
   // 프로젝트 정보 추출
   const { projName, projPlace, projAddr, projDate } = selectedProject;
+
+
 
   // 컴포넌트 렌더링
   return (
@@ -220,7 +226,9 @@ const RewardSelect = () => {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-        <button className='fundingBtn'>신청하기</button>
+        <Link to={{ pathname: "/projectPay", state: { selectedRewards } }}>
+          <button className='fundingBtn'>신청하기</button>
+        </Link>
         <div className='button-group'>
           <button
             className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
