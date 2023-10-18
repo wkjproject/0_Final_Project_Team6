@@ -42,8 +42,8 @@ export default function EndedProj() {
             <MenuTabs></MenuTabs>
           </div>
         </div>
-        <div className='scroll'>
-          <div className='RewardSelect'>
+        <div className='endedNotice'>
+          <div className='endedDesc'>
             <p>마감된 프로젝트</p>
           </div>
         </div>

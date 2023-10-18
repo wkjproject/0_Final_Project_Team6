@@ -1,0 +1,10 @@
+.endedDesc {
+	margin-left: 20px;
+	background: white;
+	border: solid 1px skyblue;
+	margin: auto;
+	border-radius: 10px;
+	width: 400px;
+	height: 500px;
+	text-align: center;
+}

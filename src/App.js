@@ -18,6 +18,7 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
 import EndedProj from './components/Pages/EndedProj';
+import WaitingProj from './components/Pages/WaitingProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -52,6 +53,7 @@ function App() {
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
           <Route path='/endedProj' element={<EndedProj />} />
+          <Route path='/waitingProj' element={<WaitingProj />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}

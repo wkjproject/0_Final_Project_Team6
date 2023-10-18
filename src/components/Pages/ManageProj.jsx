@@ -85,6 +85,7 @@ export default function ManageProj() {
               title={proj.projName}
               location={proj.projAddr.split(' ', 2)[1]}
               dday={proj.projDate}
+              sday={proj.projFundDate[0].projFundStartDate}
               price={proj.projReward[0].projRewardAmount}
               isNew={currTab === 'ongoing'} // ※ 일단 진행중 프로젝트는 == new 버튼 표시
               projStatus={proj.projStatus}
