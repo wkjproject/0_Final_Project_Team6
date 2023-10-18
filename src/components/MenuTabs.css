@@ -30,6 +30,11 @@
     /* 활성 탭의 밑줄 색상 변경 */
 }
 
+/* 소개글 영역 */
+.projDesc {
+    margin: 20px auto 0;
+}
+
 .CommentItem_commentItem__3yCkD {
     padding-top: 50px;
 }
@@ -159,4 +164,20 @@
 /* 코멘트 영역 밑에 hr 없앰 */
 .CommentReaction_container__tAtT- {
     display: none;
+}
+
+/* 주최자 소개 css  */
+.makerIntro {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 20px auto 0;
+    border: solid 1px gray;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.makerTable {
+    margin: auto;
+    text-align: left;
 }
