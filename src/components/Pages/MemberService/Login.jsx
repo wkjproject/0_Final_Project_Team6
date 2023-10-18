@@ -40,7 +40,6 @@ export const Login = () => {
         if(res.data.loginSuccess){
           // 리덕스에 userName 저장
           dispatch(setUserName(res.data.userName));
-
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
           navigate('/home');

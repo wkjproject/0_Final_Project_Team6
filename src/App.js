@@ -20,6 +20,7 @@ import ManageProj from './components/Pages/ManageProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import Mypage from './components/Pages/Mypage/Mypage';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -28,7 +29,8 @@ function App() {
   //3번째 인자 true 하면 관리자만 출입가능. default 값 false
   const AuthLogin = Auth(Login, false);
   const AuthSignup = Auth(Signup, false);
-  const AuthHome = Auth(Home, null, true);
+  const AuthHome = Auth(Home, null);
+  const AuthMypage = Auth(Mypage, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -50,6 +52,7 @@ function App() {
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
+          <Route path='/mypage' element={<AuthMypage />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}
