@@ -81,7 +81,6 @@
 .CommentProfile_date__10Pjc {
     color: rgba(200, 200, 200, 1);
     font-size: 12px;
-
 }
 
 /* 팔로우 버튼 */
@@ -177,6 +176,18 @@
     border-radius: 5px;
 }
 
+/* QnA 영역 */
+.row {
+    margin-top: 40px;
+    font-size: 30px;
+}
+
+.row.list-unstyled {
+    font-size: 15px;
+    line-height: 2;
+}
+
+/* 주최자 소개 css  */
 .makerTable {
     margin: auto;
     text-align: left;

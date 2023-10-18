@@ -21,7 +21,7 @@ function ProjectData2() {
         return <div>Project not found</div>;
     }
 
-    const { projName, projMainImgPath, shortDesc } = selectedProject;
+    const { projName, projMainImgPath, projIntro } = selectedProject;
 
     return (
         <div>
@@ -32,7 +32,7 @@ function ProjectData2() {
                         <img className='mainImage' src={projMainImgPath} alt='메인 사진'></img>
                     </div>
                     <div className='shortDesc'>
-                        {shortDesc}
+                        {projIntro}
                     </div>
                     <div id='projDesc'>
                         <MenuTabs></MenuTabs>

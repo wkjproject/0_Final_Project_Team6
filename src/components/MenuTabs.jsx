@@ -37,7 +37,7 @@ class MenuTabs extends Component {
                         className={this.state.activeTab === 'tab3' ? 'active' : ''}
                         onClick={() => this.handleTabClick('tab3')}
                     >
-                        QnA
+                        Q&A
                     </li>
                     <li
                         className={this.state.activeTab === 'tab4' ? 'active' : ''}
