@@ -24,6 +24,7 @@ function ProjectList() {
             dday={proj.projDate}
             price={proj.projReward[0].projRewardAmount}
             isNew={true}
+            projStatus={proj.projStatus}
         />
         ))
       }

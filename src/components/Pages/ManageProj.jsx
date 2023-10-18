@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
-import '../../css/ManageProj.css';
 import ProjectCard from './ProjectCard';
+import '../../css/ManageProj.css';
 // import ProjectList from './ProjectsList';
 
 export default function ManageProj() {
@@ -87,6 +87,7 @@ export default function ManageProj() {
               dday={proj.projDate}
               price={proj.projReward[0].projRewardAmount}
               isNew={currTab === 'ongoing'} // ※ 일단 진행중 프로젝트는 == new 버튼 표시
+              projStatus={proj.projStatus}
             />
           ))}
         </div>
