@@ -18,7 +18,7 @@ export default function Thumbnail ({projId, image, isNew, MypageImageClass, Mypa
         src={image}
         alt=''
       />
-      <div className={`${MypageDivClass}`}>
+      <div className={`${MypageDivClass === 'fundingProjectImg' ? 'fundingProjectImg' : ''}`}>
         {MypageDivContent}
       </div>
       {isNew && <span className='new-tag'>new</span>}
