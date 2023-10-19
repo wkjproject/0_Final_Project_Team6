@@ -14,3 +14,23 @@
   color: white;
   font-size: 2.2rem;
 }
+
+.fundingProjectImgX::before,
+.fundingProjectImgX::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid red; /* X자의 색상 및 두께 설정 */
+  z-index: 999; /* 다른 내용 위에 표시하기 위해 Z 인덱스를 설정합니다. */
+  pointer-events: none; /* 마우스 이벤트가 해당 요소를 무시하도록 설정합니다. */
+}
+.fundingProjectImgX::before {
+  transform: rotate(45deg);
+}
+
+.fundingProjectImgX::after {
+  transform: rotate(-45deg);
+}

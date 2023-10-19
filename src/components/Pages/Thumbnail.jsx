@@ -12,7 +12,7 @@ export default function Thumbnail ({projId, image, isNew, MypageImageClass, Mypa
   }
 
   return (
-    <div className="thumbnail"  onClick={openProjDetails}>
+    <div className={`thumbnail ${MypageDivClass === 'fundingProjectImgX' ? 'fundingProjectImgX' : ''}`} onClick={openProjDetails}>
       <img 
         className={`photo ${MypageImageClass}`}
         src={image}

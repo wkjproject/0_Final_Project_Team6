@@ -81,7 +81,7 @@ export default function Mypage() {
             projId={proj.proj_id}
             image={proj.projMainImgPath}
             MypageImageClass={'fundingProjectImg'}
-            MypageDivClass={'fundingProjectText'}
+            MypageDivClass={funding.fundingStatus === 3 ? 'fundingProjectImgX' : 'fundingProjectText'}
             MypageDivContent={funding.fundingStatus === 0 ? '대기' : funding.fundingStatus === 1 ? '확정' : ''}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
