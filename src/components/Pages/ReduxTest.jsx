@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProjectList from './ProjectsList';
+//import ProjectList from './ProjectsList';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setProjName } from '../../redux/reducer/projNameAction';
@@ -18,7 +18,7 @@ export default function ReduxTest() {
 			}).catch((err) => {
 				console.log(err);
 			})
-	}, []);
+	}, [dispatch]);
 	const projName = useSelector((state) => state.projName.projName)
 	return (
 		<>

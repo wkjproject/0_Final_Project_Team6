@@ -7,8 +7,8 @@ export default function Thumbnail ({projId, image, imageClass, isNew}) {
 
   const navigate = useNavigate();
   const openProjDetails = () => {
-    console.log(`project_id: ${projId}`);
-    navigate("/project2", {state:{_id:projId}});
+    //console.log(`project_id: ${projId}`);
+    navigate("/project2", { state: { _id: projId } });
   }
 
   return (
@@ -17,7 +17,7 @@ export default function Thumbnail ({projId, image, imageClass, isNew}) {
         className={`photo ${imageClass}`}
         src={image}
         alt=''
-        />
+      />
       {isNew && <span className='new-tag'>new</span>}
     </div>
   );
