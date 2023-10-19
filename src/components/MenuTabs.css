@@ -177,6 +177,11 @@
 }
 
 /* QnA 영역 */
+
+.row.list-unstyled {
+    list-style-type: none;
+}
+
 .row {
     margin-top: 40px;
     font-size: 30px;
