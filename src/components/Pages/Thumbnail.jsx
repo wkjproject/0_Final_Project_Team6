@@ -1,10 +1,12 @@
 import React from "react"
 import { useNavigate } from 'react-router';
 
-export default function Thumbnail ({projId, image, isNew, projStatus, sday}) {
-  // console.log('Thumbnail image: ', image);
-  // console.log('Thumbnail isNew: ', isNew);
+export default function Thumbnail ({projId, image, isNew, projStatus, sday, MypageImageClass, MypageDivClass, MypageDivContent}) {
+  //console.log('Thumbnail image: ', image);
+  //console.log('Thumbnail isNew: ', isNew);
   // console.log(`project_id: ${projId}`);  
+
+
 
 /* ----- 오늘날짜(today) 계산 -----*/
 const date = new Date();
@@ -34,12 +36,15 @@ const role = '1'; // 일반사용자라고 가정
   }
 
   return (
-    <div className="thumbnail" onClick={openProjDetails}>
+    <div className={`thumbnail ${MypageDivClass === 'fundingProjectImgX' ? 'fundingProjectImgX' : ''}`} onClick={openProjDetails}>
       <img 
-        className="photo"
+        className={`photo ${MypageImageClass}`}
         src={image}
         alt=''
       />
+      <div className={`${MypageDivClass === 'fundingProjectImg' ? 'fundingProjectImg' : ''}`}>
+        {MypageDivContent}
+      </div>
       {isNew && <span className='new-tag'>new</span>}
     </div>
   );

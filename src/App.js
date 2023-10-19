@@ -23,6 +23,7 @@ import WaitingProj from './components/Pages/WaitingProj';
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
 import ProjectPay from './components/ProjectPay';
+import Mypage from './components/Pages/Mypage/Mypage';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -32,6 +33,7 @@ function App() {
   const AuthLogin = Auth(Login, false);
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
+  const AuthMypage = Auth(Mypage, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -56,6 +58,7 @@ function App() {
           <Route path='/manageProj' element={<ManageProj />} />
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
+          <Route path='/mypage' element={<AuthMypage />} />
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}

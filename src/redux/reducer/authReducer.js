@@ -1,5 +1,5 @@
 export const authReducer = (
-  state = { auth: { _id: null, isLogin: false, isAdmin: false } },
+  state = { auth: { _id: null, isLogin: false, isAdmin: false, userId: null } },
   action
 ) => {
   switch (action.type) {
