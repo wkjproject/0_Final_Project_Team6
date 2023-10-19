@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProjectList from './ProjectsList';
+//import ProjectList from './ProjectsList';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setProjName } from '../../redux/reducer/projNameAction';
@@ -8,14 +8,14 @@ export default function ReduxTest() {
 	const [projNameState, setProjNameState] = useState([]); // projName이 배열로 여러개 들어가있기때문에 초기값을 [] 배열로 받아줘야해요
 	const dispatch = useDispatch();  // useDispatch를 dispatch로 쉽게 쓰려고 넣는거에요.
 	useEffect(() => {
-		axios.get('http://localhost:5000/projName')
+		axios.get('https://port-0-final-project-server1-euegqv2blntuic8i.sel5.cloudtype.app/projName')
 			.then((res) => {
 				dispatch(setProjName(res.data.projName)); //크롬 웹스토어 Redux Devtools 로 리덕스에 값 들어갔는지 확인할수있어요
 				setProjNameState(res.data.projName);
 			}).catch((err) => {
 				console.log(err);
 			})
-	}, []);
+	}, [dispatch]);
 	const projName = useSelector((state) => state.projName.projName)
 	return (
 		<>

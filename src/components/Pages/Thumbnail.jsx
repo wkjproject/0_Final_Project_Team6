@@ -39,7 +39,7 @@ const role = '1'; // 일반사용자라고 가정
         className="photo"
         src={image}
         alt=''
-        />
+      />
       {isNew && <span className='new-tag'>new</span>}
     </div>
   );
