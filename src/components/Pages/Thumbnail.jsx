@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from 'react-router';
 
-export default function Thumbnail ({projId, image, imageClass, isNew}) {
+export default function Thumbnail ({projId, image, isNew, MypageImageClass, MypageDivClass, MypageDivContent}) {
   //console.log('Thumbnail image: ', image);
   //console.log('Thumbnail isNew: ', isNew);
 
@@ -14,10 +14,13 @@ export default function Thumbnail ({projId, image, imageClass, isNew}) {
   return (
     <div className="thumbnail"  onClick={openProjDetails}>
       <img 
-        className={`photo ${imageClass}`}
+        className={`photo ${MypageImageClass}`}
         src={image}
         alt=''
       />
+      <div className={`${MypageDivClass}`}>
+        {MypageDivContent}
+      </div>
       {isNew && <span className='new-tag'>new</span>}
     </div>
   );
