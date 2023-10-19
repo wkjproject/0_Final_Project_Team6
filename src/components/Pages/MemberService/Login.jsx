@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux';
 import { Kakao } from './SocialLogin/Kakao';
 import { setUserName } from '../../../redux/reducer/userNameActions';
 import {MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort} from '../../../css/MemberService/MemberShipCss'
+import Endpoint from '../../../config/Endpoint';
 
 export const Login = () => {
+  const endpoint = Endpoint();
   const navigate = useNavigate();
   const userMailRef = useRef();  // 사용자에게 입력받은 userMail을 Ref로 통해서 추적해요
   const userPasswordRef = useRef(); // 사용자에게 입력받은 userPassword를 Ref로 통해서 추적해요
@@ -22,7 +24,7 @@ export const Login = () => {
       // nodejs 서버 port를 5000번으로 해뒀어요. 그래서 http://localhost:5000이고 
       // 뒤에 login은 server/server.mjs 파일에 18번째 줄 app.post('/login', async (req, res) => { 에서
       // '/login' 으로 받아주고 있기 때문에 http://localhost:5000/login 인거에요. app.post('/start') 라고 해주시면 http://localhost:5000/start 가 돼요
-      await axios.post('http://localhost:5000/login', {
+      await axios.post(`${endpoint}/login`, {
         // 이 페이지에서 14~15번째 줄에 선언한 변수인 userMail, userPassword를 post로 nodejs에 보내는거에요.
         userMail,
         userPassword,
@@ -38,7 +40,6 @@ export const Login = () => {
         if(res.data.loginSuccess){
           // 리덕스에 userName 저장
           dispatch(setUserName(res.data.userName));
-
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
           navigate('/home');
@@ -55,7 +56,7 @@ export const Login = () => {
   }
   return (    
       <MemberShipContainer>
-      <div style={{textAlign:'center'}}>
+      <MemberShipDivCenter>
       <h2>로그인</h2>
       <br />
       <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력"></MemberShipInput>
@@ -70,7 +71,7 @@ export const Login = () => {
       <Kakao />
       <br />
       <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
-      </div>
+      </MemberShipDivCenter>
       </MemberShipContainer>
   )
   }
