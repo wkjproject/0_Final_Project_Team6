@@ -22,9 +22,11 @@ function ProjectList() {
             location={proj.projAddr.split(' ', 2)[1]}
 
             dday={proj.projDate}
+            sday={proj.projFundDate[0].projFundStartDate}
             price={proj.projReward[0].projRewardAmount}
             isNew={true}
-          />
+            projStatus={proj.projStatus}
+        />
         ))
       }
       {[...Array(100)].map((e, i) =>

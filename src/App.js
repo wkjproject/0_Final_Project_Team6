@@ -17,6 +17,8 @@ import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
+import ComingProj from './components/Pages/ComingProj';
+import WaitingProj from './components/Pages/WaitingProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -54,6 +56,8 @@ function App() {
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
+          <Route path='/comingProj' element={<ComingProj />} />
+          <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
         </Routes>
       </BrowserRouter>
