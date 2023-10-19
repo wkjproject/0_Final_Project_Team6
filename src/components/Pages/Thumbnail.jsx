@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from 'react-router';
 
-export default function Thumbnail ({projId, image, isNew}) {
+export default function Thumbnail ({projId, image, imageClass, isNew}) {
   //console.log('Thumbnail image: ', image);
   //console.log('Thumbnail isNew: ', isNew);
 
@@ -14,7 +14,7 @@ export default function Thumbnail ({projId, image, isNew}) {
   return (
     <div className="thumbnail"  onClick={openProjDetails}>
       <img 
-        className="photo"
+        className={`photo ${imageClass}`}
         src={image}
         alt=''
         />

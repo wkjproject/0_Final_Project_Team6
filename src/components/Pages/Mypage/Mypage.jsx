@@ -5,6 +5,7 @@ import Endpoint from '../../../config/Endpoint';
 import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import '../../../css/Mypage/Mypage.css';
 
 export default function Mypage() {
   // 리덕스의 userId 가져오기
@@ -75,6 +76,7 @@ export default function Mypage() {
             key={proj.projName}
             projId={proj.proj_id}
             image={proj.projMainImgPath}
+            imageClass={'fundingProjectImg'}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
             dday={proj.projDate}
