@@ -102,9 +102,8 @@ const RewardSelect = () => {
   }
 
   // 프로젝트 정보 추출
-  const { projName, projPlace, projAddr, projDate } = selectedProject;
-
-
+  const { projName, projPlace, projAddr, projDate, projStatus } = selectedProject;
+  console.log(`프로젝트 상태 : ${projStatus}`)
 
   // 컴포넌트 렌더링
   return (
@@ -226,9 +225,20 @@ const RewardSelect = () => {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-        <Link to={{ pathname: "/projectPay", state: { selectedRewards } }}>
-          <button className='fundingBtn'>신청하기</button>
-        </Link>
+        {/* ==는 에러 아님 === 사용 금지 */}
+        {projStatus == 1 ? (
+          <Link to={{ pathname: "/projectPay", state: { selectedRewards } }}>
+            <button className='fundingBtn'>신청하기</button>
+          </Link>
+        ) : projStatus == 2 ? (
+          <div className='closed-project-message'>
+            마감된 프로젝트입니다.
+          </div>
+        ) : (
+          <div className='other-status-message'>
+            ERROR
+          </div>
+        )}
         <div className='button-group'>
           <button
             className={`heartBtn ${heartClicked ? 'clicked' : ''}`}

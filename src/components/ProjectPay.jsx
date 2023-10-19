@@ -2,26 +2,37 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ProjectPay = () => {
-    // useLocation 훅을 사용하여 전달된 데이터 받기
+    // 사용할 데이터를 location에서 추출
     const location = useLocation();
-    const { selectedRewards } = location.state || {};
+    const { state } = location;
+
+    if (!state || !state.selectedRewards) {
+        // 데이터가 없거나 selectedRewards가 없을 경우 처리
+        console.error("No data or selectedRewards is missing");
+        return null; // 또는 오류 처리 방법에 따라 다른 동작을 수행
+    }
+
+    // state 객체에서 전달된 데이터 추출
+    const selectedRewards = state && state.selectedRewards;
+
+    // 이제 selectedRewards 변수를 사용하여 데이터를 화면에 출력하거나 다른 작업을 수행할 수 있습니다.
 
     return (
         <div>
-            <h2>선택한 리워드 목록</h2>
-            <ul>
-                {selectedRewards && selectedRewards.length > 0 ? (
-                    selectedRewards.map((selectedReward, index) => (
+            <h1>Project Pay Page</h1>
+            <div>
+                <h2>선택한 리워드:</h2>
+                <ul>
+                    {selectedRewards.map((reward, index) => (
                         <li key={index}>
-                            <div>그룹: {selectedReward.projRewardName}</div>
-                            <div>금액: {selectedReward.projRewardAmount} 원</div>
-                            <div>잔여 수량: {selectedReward.projRewardCount}</div>
+                            <p>그룹: {reward.projRewardName}</p>
+                            <p>금액: {reward.projRewardAmount} 원</p>
+                            <p>잔여 수량: {reward.projRewardCount}</p>
                         </li>
-                    ))
-                ) : (
-                    <p>선택한 리워드가 없습니다.</p>
-                )}
-            </ul>
+                    ))}
+                </ul>
+            </div>
+            {/* 다른 내용 및 렌더링을 이어서 작성할 수 있습니다. */}
         </div>
     );
 };
