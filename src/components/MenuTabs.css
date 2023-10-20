@@ -165,16 +165,6 @@
     display: none;
 }
 
-/* 주최자 소개 css  */
-.makerIntro {
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin: 20px auto 0;
-    border: solid 1px gray;
-    width: 50%;
-    border-radius: 5px;
-}
 
 /* QnA 영역 */
 
@@ -193,6 +183,16 @@
 }
 
 /* 주최자 소개 css  */
+#makerIntro {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 20px auto 0;
+    border: solid 1px gray;
+    width: 50%;
+    border-radius: 5px;
+}
+
 .makerTable {
     margin: auto;
     text-align: left;

@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
-import { Link } from 'react-router-dom';
 
 const RewardSelect = () => {
   // 상태 변수 초기화
@@ -80,17 +79,6 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
-  const handleApplyClick = () => {
-    if (selectedRewards.length === 0) {
-      alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
-    } else {
-      navigate('/projectPay', {
-        state: { data: selectedRewards, data2: { projName } },
-      });
-    }
-  }
-
-
   // API를 사용하여 프로젝트 데이터 가져오기
   const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
 
@@ -110,6 +98,16 @@ const RewardSelect = () => {
   // 프로젝트 정보 추출
   const { projName, projPlace, projAddr, projDate, projStatus } = selectedProject;
   console.log(`프로젝트 상태 : ${projStatus}`)
+
+  const handleApplyClick = () => {
+    if (selectedRewards.length === 0) {
+      alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
+    } else {
+      navigate('/projectPay', {
+        state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
+      });
+    }
+  }
 
   // 컴포넌트 렌더링
   return (
