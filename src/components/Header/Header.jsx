@@ -42,7 +42,7 @@ export default function Header() {
 						) : (
 							// 일반 사용자로 로그인한 경우
 							<>
-							<button> <NavLink to="/">프로젝트 만들기</NavLink></button>
+							<button> <NavLink to="/createProj">프로젝트 만들기</NavLink></button>
 							<li> <NavLink to="/mypage">마이페이지</NavLink></li>
 							<Logout />
 							</>
