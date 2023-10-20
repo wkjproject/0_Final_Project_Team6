@@ -63,7 +63,7 @@ export default function Header() {
                 </button>
                 <li>
                   {' '}
-                  <NavLink to='/'>마이페이지</NavLink>
+                  <NavLink to='/mypage'>마이페이지</NavLink>
                 </li>
                 <Logout />
               </>
