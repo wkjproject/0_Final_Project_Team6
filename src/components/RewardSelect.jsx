@@ -261,7 +261,4 @@ const RewardSelect = () => {
   );
 };
 
-
-
 export default RewardSelect;
-
