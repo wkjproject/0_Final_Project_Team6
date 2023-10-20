@@ -2,52 +2,60 @@
 // '승인하기'를 누르면 : projStatus가 0 --> 1 (오픈예정 프로젝트로 등록)
 
 import React from 'react';
-import { useLocation } from 'react-router';
 import useFetch from '../../hooks/useFetch';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';  // 리덕스 액션쪽으로 데이터 보내기
+import { setProjStatus } from './../../../redux/reducer/projStatusAction';
+import { useSelector } from 'react-redux';
+
 import ApprProj from './ApprProj';
 import MenuTabs from '../../MenuTabs';
 
 export default function WaitingProj() {
-	const location = useLocation();
-	const { _id } = location.state || {};
+  const location = useLocation();
+  const { _id } = location.state || {};
 
-	const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+  const projectData = useFetch(
+    'https://json-server-vercel-sepia-omega.vercel.app/projects'
+  );
 
-	if (!projectData) {
-			return <div>Loading...</div>;
-	}
+  if (!projectData) {
+    return <div>Loading...</div>;
+  }
 
-	// "proj_id" 값을 기반으로 해당 "projName"을 찾기
-	const selectedProject = projectData.find(item => item.proj_id === _id);
+  // "proj_id" 값을 기반으로 해당 "projName"을 찾기
+  const selectedProject = projectData.find((item) => item.proj_id === _id);
 
-	if (!selectedProject) {
-			return <div>Project not found</div>;
-	}
+  if (!selectedProject) {
+    return <div>Project not found</div>;
+  }
 
-	const { projName, projMainImgPath, projIntro } = selectedProject;
+  const { projName, projMainImgPath, projIntro } = selectedProject;
 
-    return (
+  return (
+    <div>
+      <h1 className='titlealign'>{projName}</h1>
+      <div className='center'>
         <div>
-            <h1 className='titlealign'>{projName}</h1>
-            <div className='center'>
-                <div>
-                    <div>
-                        <img className='mainImage' src={projMainImgPath} alt='메인 사진'></img>
-                    </div>
-                    <div className='shortDesc'>
-                        {projIntro}
-                    </div>
-                    <div id='projDesc'>
-                        <MenuTabs></MenuTabs>
-                    </div>
-                </div>
-                <div className='scroll'>
-
-                    <div className='RewardSelect'>
-                        <ApprProj></ApprProj>
-                    </div>
-                </div>
-            </div>
+          <div>
+            <img
+              className='mainImage'
+              src={projMainImgPath}
+              alt='메인 사진'
+            ></img>
+          </div>
+          <div className='shortDesc'>{projIntro}</div>
+          <div id='projDesc'>
+            <MenuTabs></MenuTabs>
+          </div>
         </div>
-    );
+        <div className='scroll'>
+          <div className='RewardSelect'>
+            <ApprProj></ApprProj>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
