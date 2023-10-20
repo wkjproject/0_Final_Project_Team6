@@ -20,6 +20,7 @@ import ManageProj from './components/Pages/ManageProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import HomeProj from './components/Pages/HomeProj';
 import ProjectPay from './components/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
 import CreateProj from './components/Pages/MemberService/CreateProj/Create.Proj';
@@ -44,11 +45,13 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/home' element={<AuthHome />} />
-          <Route path='/openProj' element={<OpenProj />} />
-          <Route path='/newProj' element={<NewProj />} />
-          <Route path='/deadlineProj' element={<DeadlineProj />} />
-          <Route path='/searchPage' element={<SearchPage />} />
+          <Route path='/home' element={<AuthHome />}>
+            <Route index element={<HomeProj />} />
+            <Route path='openProj' element={<OpenProj />} />
+            <Route path='newProj' element={<NewProj />} />
+            <Route path='deadlineProj' element={<DeadlineProj />} />
+            <Route path='searchPage' element={<SearchPage />} />
+          </Route>
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
