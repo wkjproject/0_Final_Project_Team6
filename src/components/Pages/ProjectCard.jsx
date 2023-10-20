@@ -2,7 +2,7 @@ import React from "react";
 import Thumbnail from './Thumbnail';
 import './Home.css';
 
-export default function ProjectCard({projId, image, location, title, price, dday, sday, isNew, projStatus, MypageImageClass, MypageDivClass, MypageDivContent, place, cancelPay}) {
+export default function ProjectCard({projId, image, location, title, price, dday, sday, isNew, projStatus, MypageImageClass, MypageDivClass, MypageDivContent, cancelPay}) {
 
   return (
   <div className="project-card">
@@ -12,10 +12,8 @@ export default function ProjectCard({projId, image, location, title, price, dday
     <span className=''> | </span>
     <span className='pc-price'>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
 
-    {place ? (
+    {cancelPay ? (
     <div className='fundingProjectPlaceContainer'>
-    <span>{place}</span>
-    <br/>
     <button class='fundingProjectPlaceCancelPayBtn' onClick={cancelPay}>결제취소</button>
     </div>)
     :('')}

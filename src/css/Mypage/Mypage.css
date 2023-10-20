@@ -19,6 +19,10 @@
   filter: brightness(100%);
 }
 
+.fundingProjectImgX {
+  filter: brightness(35%);
+}
+
 .fundingProjectImg:hover + .fundingProjectTextWait,
 .fundingProjectImg:hover + .fundingProjectTextConfirm {
   display: none;
@@ -44,7 +48,7 @@
   position: absolute;
   width: 115%;
   height: 100%;
-  border-top: 2px solid var(--Middlegray); /* X자의 색상 및 두께 설정 */
+  border-top: 5px solid var(--Brightgary); /* X자의 색상 및 두께 설정 */
   z-index: 999; /* 다른 내용 위에 표시하기 위해 Z 인덱스를 설정합니다. */
   pointer-events: none; /* 마우스 이벤트가 해당 요소를 무시하도록 설정합니다. */
 }

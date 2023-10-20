@@ -42,9 +42,12 @@ export default function FundingProject() {
 
     fundingProjectData();
   }, []);
-  const cancelPay = async (evt) => {
-    evt.preventDefault();
 
+  //결제취소부분
+  //결제취소 누르면 모달창으로 띄워서 프로젝트이름, 결제날짜, 결제리워드 띄워주고 결제취소하시겠습니까? 예 하면 취소되는걸로
+  // 
+  const cancelPay = async (evt, funding_id, projName, fundingDate, rewards ) => {
+    evt.preventDefault();
   }
 
   console.log(fundings)
@@ -56,18 +59,17 @@ export default function FundingProject() {
           return projectArray.map((proj) => (
           <>
           <ProjectCard
-            key={proj.projName}
+            key={funding.funding_id}
             projId={proj.proj_id}
             image={proj.projMainImgPath}
-            MypageImageClass={'fundingProjectImg'}
+            MypageImageClass={funding.fundingStatus === 3 ? 'fundingProjectImgX' : 'fundingProjectImg'}
             MypageDivClass={funding.fundingStatus === 3 ? 'fundingProjectImgX' : funding.fundingStatus === 0 ? 'fundingProjectTextWait' : 'fundingProjectTextConfirm'}
             MypageDivContent={funding.fundingStatus === 0 ? '대기' : funding.fundingStatus === 1 ? '확정' : ''}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
             dday={proj.projDate}
             price={proj.projReward[0].projRewardAmount}
-            place={proj.projPlace}
-            cancelPay={cancelPay}
+            cancelPay={funding.fundingStatus === 3? '' : cancelPay}
           />
           </>
           ))
