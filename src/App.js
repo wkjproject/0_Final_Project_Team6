@@ -4,22 +4,27 @@ import "./components/ProjectData2.css";
 import ProjectData2 from "./components/ProjectData2";
 import RewardSelect from "./components/RewardSelect";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Home from "./components/Pages/Home";
-import OpenProj from "./components/Pages/OpenProj";
-import NewProj from "./components/Pages/NewProj";
-import DeadlineProj from "./components/Pages/DeadlineProj";
-import SearchPage from "./components/Pages/SearchPage";
-import Signup from "./components/Pages/MemberService/Signup";
-import NotFound from "./components/Pages/NotFound";
-import LandingPage from "./components/LandingPage/LandingPage";
-import { Login } from "./components/Pages/MemberService/Login";
-import IdpwFind from "./components/Pages/MemberService/IdpwFind";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Home from './components/Pages/Home';
+import OpenProj from './components/Pages/OpenProj';
+import NewProj from './components/Pages/NewProj';
+import DeadlineProj from './components/Pages/DeadlineProj';
+import SearchPage from './components/Pages/SearchPage';
+import Signup from './components/Pages/MemberService/Signup';
+import NotFound from './components/Pages/NotFound';
+import LandingPage from './components/LandingPage/LandingPage';
+import { Login } from './components/Pages/MemberService/Login';
+import IdpwFind from './components/Pages/MemberService/IdpwFind';
+import ManageProj from './components/Pages/ManageProj';
+import ComingProj from './components/Pages/ComingProj';
+import WaitingProj from './components/Pages/WaitingProj';
 import CreateProj from "./components/Pages/MemberService/CreateProj/CreateProj";
 
-import ReduxTest from "./components/Pages/ReduxTest";
-import Auth from "./components/HigherOrderComponents/Auth";
+import ReduxTest from './components/Pages/ReduxTest';
+import Auth from './components/HigherOrderComponents/Auth';
+import ProjectPay from './components/ProjectPay';
+import Mypage from './components/Pages/Mypage/Mypage';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -29,6 +34,7 @@ function App() {
   const AuthLogin = Auth(Login, false);
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
+  const AuthMypage = Auth(Mypage, true);
   return (
     <div className="App">
       {/* <ProjectData></ProjectData> */}
@@ -36,20 +42,27 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<AuthHome />} />
-          <Route path="/openProj" element={<OpenProj />} />
-          <Route path="/newProj" element={<NewProj />} />
-          <Route path="/deadlineProj" element={<DeadlineProj />} />
-          <Route path="/searchPage" element={<SearchPage />} />
-          <Route path="/login" element={<AuthLogin />} />
-          <Route path="/signup" element={<AuthSignup />} />
-          <Route path="/idpwFind" element={<IdpwFind />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/project2" element={<ProjectData2 />} />
-          <Route path="/reward" element={<RewardSelect />} />
-          <Route path="/reduxTest" element={<ReduxTest />} />
+
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/home' element={<AuthHome />} />
+          <Route path='/openProj' element={<OpenProj />} />
+          <Route path='/newProj' element={<NewProj />} />
+          <Route path='/deadlineProj' element={<DeadlineProj />} />
+          <Route path='/searchPage' element={<SearchPage />} />
+          <Route path='/login' element={<AuthLogin />} />
+          <Route path='/signup' element={<AuthSignup />} />
+          <Route path='/idpwFind' element={<IdpwFind />} />
+          <Route path='/*' element={<NotFound />} />
+          <Route path='/project2' element={<ProjectData2 />} />
+          <Route path='/projectPay' element={<ProjectPay />} />
+          <Route path='/reward' element={<RewardSelect />} />
+          <Route path='/reduxTest' element={<ReduxTest />} />
+          <Route path='/manageProj' element={<ManageProj />} />
+          <Route path='/comingProj' element={<ComingProj />} />
+          <Route path='/waitingProj' element={<WaitingProj />} />
+          <Route path='/mypage' element={<AuthMypage />} />
           <Route path="/createProj" element={<CreateProj />} />
+
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}

@@ -32,6 +32,7 @@ export const MemberShipInputShort = styled.input`
   padding: 10px 12px;
   font-size: 20px;
   color: var(--Black);
+  
   ::placeholder {
   text-align: center; /* placeholder 텍스트를 가운데 정렬 */
   }

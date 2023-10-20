@@ -3,8 +3,10 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../../../css/MemberService/IdpwFind.css'
+import Endpoint from '../../../config/Endpoint';
 
 export default function IdpwFind() {
+	const endpoint = Endpoint();
 	const navigate = useNavigate();
 	// 인증번호 받기 버튼 상태 관리(인증코드 받으면 3분동안 재발송 불가)
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -42,7 +44,7 @@ export default function IdpwFind() {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
 		try {
-			await axios.post('http://localhost:5000/signup/userMailCheck', {
+			await axios.post(`${endpoint}/signup/userMailCheck`, {
 				userMail,
 			}).then((res) => {
 				if(!res.data.userMailCheck){ // 사용자가 존재하면 서버에서 false로 답변
@@ -62,7 +64,7 @@ export default function IdpwFind() {
 	const verifiCodeMailSend = async (evt) => {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
-		await axios.post('http://localhost:5000/pwCodeMailSend', {
+		await axios.post(`${endpoint}/pwCodeMailSend`, {
 		userMail
 		}).then((res) => {
 			if(res.data.sendMailSuccess){
@@ -88,7 +90,7 @@ export default function IdpwFind() {
 		evt.preventDefault();
 		const userMail = userMailRef.current.value;
 		const verifiCode = verifiCodeRef.current.value;
-		await axios.post('http://localhost:5000/verifiCode', {
+		await axios.post(`${endpoint}/verifiCode`, {
 			userMail,
 			verifiCode
 		}).then((res) => {
@@ -110,7 +112,7 @@ export default function IdpwFind() {
 			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
 		}
-		await axios.post('http://localhost:5000/newPassword', {
+		await axios.post(`${endpoint}/newPassword`, {
 			userMail,
 			userPassword
 		}).then((res) => {
@@ -179,12 +181,18 @@ export default function IdpwFind() {
 			</>) : 
 			(<>
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
+				<br/>
+				<div style={{textAlign:'center'}}>
 				<input className='IdpwFindInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 				<button className='IdpwFindButtonShort' onClick={verifiCodeMailSend} disabled={isButtonDisabled}>{isButtonDisabled ? `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}` : '인증번호 받기'}</button>
 				<br/>
-				<input className='IdpwFindInput' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>
 				<br/>
-				<button className='IdpwFindButton' onClick={verifiConfirm}>비밀번호 재설정</button>
+				<input className='IdpwFindInputInDiv' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>
+				<br/>
+				<br/>
+				<br/>
+				<button className='IdpwFindButtonInDiv' onClick={verifiConfirm}>비밀번호 재설정</button>
+				</div>
 				</>)
 			)}
 		</div>

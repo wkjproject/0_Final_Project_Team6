@@ -286,7 +286,20 @@ app.get('/projName', async (req, res) => {
   }
 });
 
+// 프로젝트 (승인) 상태: projStatus
+app.get('/projStatus', async (req, res) => {
+  try {
+    const projStatus = await projects.find({}, 'projStatus');
+    res.status(200).json({ projStatus });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
   console.log(`${port}번 포트`);
 });
+
+
+

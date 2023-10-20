@@ -6,7 +6,7 @@ import useFetch from '../hooks/useFetch';
 function ProjectList() {
   const ProjectData = useFetch("/projects");
   if (ProjectData !== undefined && ProjectData !== null && ProjectData.length) { // 데이터가 언디파인이 아니거나 존재하거나 데이터가 조회되면
-    console.log("프로젝트데이터:", ProjectData);
+    //console.log("프로젝트데이터:", ProjectData);
     //console.log(ProjectData[0]);
   }
 
@@ -14,22 +14,24 @@ function ProjectList() {
     <div className="project-list">
       {ProjectData !== undefined && ProjectData !== null && ProjectData.length > 0 &&
         ProjectData.map((proj) => (
-          <ProjectCard 
+          <ProjectCard
             key={proj.projName}
             projId={proj.proj_id}
             image={proj.projMainImgPath}
             title={proj.projName}
-            location={proj.projAddr.split(' ',2)[1]}
+            location={proj.projAddr.split(' ', 2)[1]}
 
             dday={proj.projDate}
+            sday={proj.projFundDate[0].projFundStartDate}
             price={proj.projReward[0].projRewardAmount}
             isNew={true}
+            projStatus={proj.projStatus}
         />
         ))
       }
       {[...Array(100)].map((e, i) =>
         <>
-          <ProjectCard key={i+'1st'} 
+          <ProjectCard key={i + '1st'}
             image='https://eventusstorage.blob.core.windows.net/evs/Image/kyrielle/71287/ProjectInfo/Cover/1a6c262bb3664008b6475814bac58626.jpg'
             title='선데이 어드벤쳐 보드게임'
             location='춘천시'
@@ -37,7 +39,7 @@ function ProjectList() {
             price='5,000'
             isNew={true}
           />
-          <ProjectCard key={i+'2nd'}
+          <ProjectCard key={i + '2nd'}
             image='https://eventusstorage.blob.core.windows.net/evs/Image/greentea71/71356/ProjectInfo/Cover/7a96c12df916464891b9de7b4e8cf35b.jpg'
             title='부산 세븐브릿지 을숙도대교 아웃도어미션게임<새이마이네임>'
             location='부산'

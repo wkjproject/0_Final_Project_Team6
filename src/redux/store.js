@@ -5,6 +5,7 @@ import { userNameReducer } from './reducer/userNameReducer'; // 리듀서를 imp
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userAddrReducer } from './reducer/userAddrReducer';
 import { projNameReducer } from './reducer/projNameReducer';
+import { projStatusReducer } from './reducer/projStatusReducer';
 import { authReducer } from './reducer/authReducer';
 // 일단은 이렇게 변수 하나당 한개의 리듀서로 가다가
 // 최종안 나오면 user끼리 project끼리 합치는게 나을거같아요.
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   userName: userNameReducer,
   userAddr: userAddrReducer,
   projName: projNameReducer,
+  projStatus: projStatusReducer,
   auth: authReducer,
 });
 

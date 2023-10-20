@@ -3,8 +3,10 @@ import KakaoLogin from 'react-kakao-login';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUserName } from '../../../../redux/reducer/userNameActions';
+import Endpoint from '../../../../config/Endpoint';
 
 export const Kakao = () => {
+  const endpoint = Endpoint();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const kakaoClientId = '8b2c41b57c3c1eae414552e99b435ce6'; //차후 따로 관리예정
@@ -14,7 +16,7 @@ export const Kakao = () => {
     // 리덕스에 userName 저장
     dispatch(setUserName(data.profile.properties.nickname));
     await axios.post(
-      'http://localhost:5000/login/kakao', {
+      `${endpoint}/login/kakao`, {
         userName,
         userMail,
       }
