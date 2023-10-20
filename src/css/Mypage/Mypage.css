@@ -29,15 +29,27 @@
 }
 
 .fundingProjectTextWait {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Black);
   position: absolute;
-  top: 40%;
+  width: 100%;
+  height: 70px;
+  top: 30%;
   color: var(--ButtonDefault);
   font-size: 2.2rem;
 }
 
 .fundingProjectTextConfirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Black);
   position: absolute;
-  top: 40%;
+  width: 100%;
+  height: 70px;
+  top: 30%;
   color: var(--Brightgary);
   font-size: 2.2rem;
 }
