@@ -42,7 +42,7 @@ const role = '1'; // 일반사용자라고 가정
         src={image}
         alt=''
       />
-      <div className={MypageDivClass === 'fundingProjectText' ? 'fundingProjectText' : (MypageDivClass === 'fundingProjectTextWait' ? 'fundingProjectTextWait' : 'fundingProjectTextConfirm')}>
+      <div className={MypageDivClass === 'fundingProjectTextConfirm' ? 'fundingProjectTextConfirm' : (MypageDivClass === 'fundingProjectTextWait' ? 'fundingProjectTextWait' : '')}>
         {MypageDivContent}
       </div>
       {isNew && <span className='new-tag'>new</span>}

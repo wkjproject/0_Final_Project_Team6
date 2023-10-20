@@ -83,6 +83,7 @@ export default function FundingProject() {
           <ProjectCard
             key={funding.funding_id}
             projId={proj.proj_id}
+            projStatus={proj.projStatus}
             image={proj.projMainImgPath}
             MypageImageClass={funding.fundingStatus === 3 ? 'fundingProjectImgX' : 'fundingProjectImg'}
             MypageDivClass={funding.fundingStatus === 3 ? 'fundingProjectImgX' : funding.fundingStatus === 0 ? 'fundingProjectTextWait' : 'fundingProjectTextConfirm'}
