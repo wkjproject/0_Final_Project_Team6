@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';  // 리덕스 액션쪽으로 데이�
 import { setProjStatus } from './../../../redux/reducer/projStatusAction';
 import { useSelector } from 'react-redux';
 import Endpoint from '../../../config/Endpoint';
+import './ApprProj.css';
 
 export default function ApprProj() {
 	const navigate = useNavigate();	
@@ -42,34 +43,40 @@ export default function ApprProj() {
   }
   
   const { projName, projPlace, projAddr, projDate, projStatus} = selectedProject;		 // 프로젝트 정보 추출 
+  const endpoint = Endpoint();
 
 
-
-	const ApproveProj = async (evt) => {
-    // 프로젝트 승인: '승인하기'를 누르면 : projStatus가 0 --> 1
-    const endpoint = Endpoint();
-  
-  await axios.post(`${endpoint}/newProjStatus`, { projStatus: 1 })
+	const ApproveProj = async () => {
+    // 프로젝트 승인: '승인하기'를 누르면 : projStatus가 0 --> 1  
+    await axios.post(`${endpoint}/newProjStatus`, { projStatus: 1 })
     .then((res) => {
       if(res.data.newProjStatusSuccess) {        
         alert(res.data.message)
         alert(`프로젝트가 승인되었습니다 => ${projStatus}`)
-        // navigate(-1)
-        // window.location.reload();
+        navigate(-1)
+        window.location.reload();
       }
-      if(!res.data.newProjStatusSuccess){
+      if(!res.data.newProjStatusSuccess) {
         alert(res.data.message)
       }
     })
   }
 
 
-	const RejectProj = () => {
+	const RejectProj = async () => {
     // 프로젝트 승인 거절: '거절하기'를 누르면 : projStatus가 0 --> 3
-    // setProjStatus(3);
-    alert('프로젝트가 승인거절 되었습니다.');
-    navigate(-1);
-	}
+    await axios.post(`${endpoint}/newProjStatus`, { projStatus: 3 })
+    .then((res) => {
+      if(res.data.newProjStatusSuccess) {        
+        alert(res.data.message)
+        alert(`프로젝트가 거절되었습니다 => ${projStatus}`)
+        navigate(-1);
+        window.location.reload();
+      }
+      if(!res.data.newProjStatusSuccess) {
+        alert(res.data.message)
+      }
+    })}
 
 	return (
 		<div className='backgroundArea'>
@@ -98,7 +105,7 @@ export default function ApprProj() {
       </div>
 
 			{/* 프로젝트 승인, 반려, 보류 버튼 */}
-      <div className='button-container'>
+      <div className='buttons-container'>
         <button className='apprBtn' onClick={() => ApproveProj()}>프로젝트 승인</button>
 				<button className='rejectBtn' onClick={() => RejectProj()}>프로젝트 승인 거절</button>
         <button className='holdBtn' onClick={() => navigate(-1)}>보류</button>

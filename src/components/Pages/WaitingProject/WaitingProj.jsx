@@ -3,11 +3,8 @@
 
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
-import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';  // 리덕스 액션쪽으로 데이터 보내기
-import { setProjStatus } from './../../../redux/reducer/projStatusAction';
-import { useSelector } from 'react-redux';
 
 import ApprProj from './ApprProj';
 import MenuTabs from '../../MenuTabs';
