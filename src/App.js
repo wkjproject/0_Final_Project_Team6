@@ -18,7 +18,7 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
 import ComingProj from './components/Pages/ComingProj';
-import WaitingProj from './components/Pages/WaitingProj';
+import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';

@@ -26,6 +26,7 @@ function ProjectList() {
             price={proj.projReward[0].projRewardAmount}
             isNew={true}
             projStatus={proj.projStatus}
+            maderId = {proj.userMade_id}
         />
         ))
       }
