@@ -4,7 +4,12 @@ import './components/ProjectData2.css';
 import ProjectData2 from './components/ProjectData2';
 import RewardSelect from './components/RewardSelect';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  createBrowserRouter,
+} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Pages/Home';
 import OpenProj from './components/Pages/OpenProj';
@@ -20,6 +25,7 @@ import ManageProj from './components/Pages/ManageProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import PopularProj from './components/Pages/PopularProj';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -29,6 +35,26 @@ function App() {
   const AuthLogin = Auth(Login, false);
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <LandingPage />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: '/home',
+      element: <Home />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: 'openProj', element: <OpenProj /> },
+        { path: 'newProj', element: <NewProj /> },
+        { path: 'deadlineProj', element: <DeadlineProj /> },
+        { path: 'search', element: <SearchPage /> },
+      ],
+    },
+  ]);
+
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -37,11 +63,13 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/home' element={<AuthHome />} />
-          <Route path='/openProj' element={<OpenProj />} />
-          <Route path='/newProj' element={<NewProj />} />
-          <Route path='/deadlineProj' element={<DeadlineProj />} />
-          <Route path='/searchPage' element={<SearchPage />} />
+          <Route path='/home' element={<AuthHome />}>
+            <Route index element={<PopularProj />} />
+            <Route path='openProj' element={<OpenProj />} />
+            <Route path='newProj' element={<NewProj />} />
+            <Route path='deadlineProj' element={<DeadlineProj />} />
+            <Route path='searchPage' element={<SearchPage />} />
+          </Route>
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
