@@ -76,6 +76,14 @@ const ProjectPay = () => {
                             ))}
                         </ul>
                     </div>
+                    <div className='payPerson'>
+                        <div className='payPersonHeader'>신청자 정보</div>
+                        <hr className='payHr' />
+                        <br />
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
                 <div className='b'>
                     <div className='payHeader2'>
