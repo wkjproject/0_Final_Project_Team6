@@ -27,7 +27,7 @@ import WaitingProj from './components/Pages/WaitingProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
-import PopularProj from './components/Pages/PopularProj';
+import HomeProj from './components/Pages/HomeProj';
 import ProjectPay from './components/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
 
@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/home' element={<AuthHome />}>
-            <Route index element={<PopularProj />} />
+            <Route index element={<HomeProj />} />
             <Route path='openProj' element={<OpenProj />} />
             <Route path='newProj' element={<NewProj />} />
             <Route path='deadlineProj' element={<DeadlineProj />} />

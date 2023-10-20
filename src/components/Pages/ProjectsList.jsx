@@ -2,36 +2,85 @@ import './Home.css';
 import ProjectCard from './ProjectCard';
 // import Thumbnail from './Thumbnail';
 import useFetch from '../hooks/useFetch';
-import { useProjApi } from '../../context/ProjectsApiContext';
+import { useProjectsApi } from '../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import JsonServerClient, { getProjects } from '../../api/jsonsSrverClient';
 
 // listtype:  home|openProj|newProj|deadlineProj|searchPage
 function ProjectList({ listtype }) {
-  const { keyword } = useParams();
-  const { projs } = useProjApi();
+  // const { keyword } = useParams();
+  const { projects } = useProjectsApi();
   const {
     isLoading,
     error,
     data: allProjects,
-  } = useQuery(['projects'], () => projs.search(keyword));
+  } = useQuery(['projects'], () => projects.getProjects());
+
+  // console.log('0. allProjects: ', allProjects);
 
   if (!Array.isArray(allProjects) || !allProjects.length) {
-    return <p>Nothing 😖</p>;
+    return <p> allProjects Nothing 😖</p>;
   }
 
+  /**
+   * Take the difference between the dates and divide by milliseconds per day.
+   * Round to nearest whole number to deal with DST.
+   */
+  function daysBetween(from, to) {
+    from.setHours(0);
+    to.setHours(0);
+    console.log(
+      'days from to: ',
+      Math.round((to - from) / (1000 * 60 * 60 * 24))
+    );
+    return Math.round((to - from) / (1000 * 60 * 60 * 24));
+  }
+  console.log('listtype =>', listtype);
   const filteredProjects = allProjects.filter((proj) => {
+    const today = new Date();
+    const fundStartDate = new Date(proj.projFundDate[0].projFundStartDate);
+    const fundEndDate = new Date(proj.projFundDate[0].projFundEndDate);
+
+    console.log('filter():listtype =>', listtype, proj.proj_id);
+    console.log('projStatus: ', proj.projStatus);
+    console.log(`today: ${today}`);
+    console.log(
+      `fundStartDate:${proj.projFundDate[0].projFundStartDate} => ${fundStartDate}`
+    );
+    console.log(
+      `fundEndDate:${proj.projFundDate[0].projFundEndDate} => ${fundEndDate}`
+    );
+
     switch (listtype) {
       case 'home':
-        return proj.projStatus === '1';
-      case 'openProj':
-        let fundDate = new proj.projFundDate.projFundStartDate();
-        let today = new Date();
-        return proj.projStatus === '1' && fundDate < today;
+        console.log(
+          `home:${proj.proj_id}: `,
+          proj.projStatus === '1' &&
+            fundStartDate <= today &&
+            today <= fundEndDate
+        );
+        return (
+          proj.projStatus === '1' &&
+          fundStartDate <= today &&
+          today <= fundEndDate
+        );
+      case 'openProj': // 오픈예정
+        return proj.projStatus === '1' && fundStartDate > today;
       case 'newProj':
-        break;
+        return (
+          proj.projStatus === '1' &&
+          fundStartDate <= today &&
+          today <= fundEndDate &&
+          daysBetween(fundStartDate, today) < 3
+        );
       case 'deadlineProj':
-        break;
+        return (
+          proj.projStatus === '1' &&
+          fundStartDate <= today &&
+          today <= fundEndDate &&
+          daysBetween(today, fundEndDate) < 3
+        );
       case 'searchPage':
         break;
       default:
@@ -40,14 +89,14 @@ function ProjectList({ listtype }) {
     return true;
   });
 
-  if (Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p>Nothing 😖</p>;
+  if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
+    return <p> filteredProjects Nothing 😖</p>;
   }
 
   return (
     <div className='project-list'>
       {isLoading && <p>Loading...</p>}
-      {error && <p>Something is wrong 😖</p>}
+      {error && <p> 😖 {error}</p>}
       {filteredProjects.length > 0 &&
         filteredProjects.map((proj) => (
           <ProjectCard
@@ -63,7 +112,7 @@ function ProjectList({ listtype }) {
             projStatus={proj.projStatus}
           />
         ))}
-      {[...Array(100)].map((e, i) => (
+      {/* {[...Array(100)].map((e, i) => (
         <>
           <ProjectCard
             key={i + '1st'}
@@ -83,7 +132,7 @@ function ProjectList({ listtype }) {
             isNew={true}
           />
         </>
-      ))}
+      ))} */}
     </div>
   );
 }

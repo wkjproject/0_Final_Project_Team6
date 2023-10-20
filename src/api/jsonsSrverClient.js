@@ -7,7 +7,7 @@ export default class JsonServerClient {
     });
   }
 
-  async getProjects(params) {
-    return this.httpClient.get('projects', params);
+  async getProjects() {
+    return this.httpClient.get('projects');
   }
 }

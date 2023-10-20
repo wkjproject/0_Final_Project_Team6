@@ -15,7 +15,7 @@ export default function Header() {
       {/* 로고 */}
       <div className='logo'>
         <Link to='/home'>
-          <img src='./img/logo.png' alt='로고' />
+          <img src='/img/logo.png' alt='로고' />
         </Link>
       </div>
 
