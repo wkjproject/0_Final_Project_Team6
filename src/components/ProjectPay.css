@@ -95,6 +95,23 @@
     padding-left: 20px;
 }
 
+.payPerson {
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(30, 30, 30, 0.2);
+    border-radius: 5px;
+}
+
+.payPersonHeader {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 20px;
+}
+
+
+
+
 /* 결제 확인 영역 */
 .payCheck {
     width: 500px;
