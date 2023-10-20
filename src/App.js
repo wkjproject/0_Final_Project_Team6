@@ -1,8 +1,8 @@
-import './App.css';
-import './components/ProjectData2.css';
+import "./App.css";
+import "./components/ProjectData2.css";
 //import ProjectData from './components/ProjectData';
-import ProjectData2 from './components/ProjectData2';
-import RewardSelect from './components/RewardSelect';
+import ProjectData2 from "./components/ProjectData2";
+import RewardSelect from "./components/RewardSelect";
 
 import {
   BrowserRouter,
@@ -22,8 +22,10 @@ import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
-import ComingProj from './components/Pages/ComingProj';
-import WaitingProj from './components/Pages/WaitingProj';
+
+import ComingProj from './components/Pages/ComingProject/ComingProj';
+import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
+import CreateProj from "./components/Pages/MemberService/CreateProj/CreateProj";
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -41,12 +43,13 @@ function App() {
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
   return (
-    <div className='App'>
+    <div className="App">
       {/* <ProjectData></ProjectData> */}
 
       <BrowserRouter>
         <Header />
         <Routes>
+
           <Route path='/' element={<LandingPage />} />
           <Route path='/home' element={<AuthHome />}>
             <Route index element={<HomeProj />} />
@@ -67,6 +70,8 @@ function App() {
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
+          <Route path="/createProj" element={<CreateProj />} />
+
         </Routes>
       </BrowserRouter>
       {/* <hr /> */}
