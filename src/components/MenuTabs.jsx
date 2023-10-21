@@ -135,7 +135,7 @@ function Tab4Content() {
 
     const { userMade_id } = selectedProject;
 
-    console.log(`프로젝트 만든 아이디 : ${userMade_id}`);
+    //console.log(`프로젝트 만든 아이디 : ${userMade_id}`);
 
 
     if (!usersData) {
@@ -154,27 +154,28 @@ function Tab4Content() {
     console.log(`프로젝트를 등록한 아이디 : ${users_id}`);
 
     return (
-        <div className='makerIntro'>
-            <h1>주최자</h1>
+        <div id='makerIntro'>
+            <h2>주최자</h2>
             <br />
-
-            <table className='makerTable'>
-                <tr>
-                    <td>이름 </td>
-                    <td> : </td>
-                    <td>{userName}</td>
-                </tr>
-                <tr>
-                    <td>메일 주소 </td>
-                    <td> : </td>
-                    <td>{userMail}</td>
-                </tr>
-                <tr>
-                    <td>연락처 </td>
-                    <td> : </td>
-                    <td>{userPhoneNum}</td>
-                </tr>
-            </table>
+            <div>
+                <table className='makerTable'>
+                    <tr>
+                        <td>이름 </td>
+                        <td> : </td>
+                        <td>{userName}</td>
+                    </tr>
+                    <tr>
+                        <td>메일 주소 </td>
+                        <td> : </td>
+                        <td>{userMail}</td>
+                    </tr>
+                    <tr>
+                        <td>연락처 </td>
+                        <td> : </td>
+                        <td>{userPhoneNum}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     );
 }
