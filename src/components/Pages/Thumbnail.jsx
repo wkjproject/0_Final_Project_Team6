@@ -1,5 +1,6 @@
 import React from "react"
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 export default function Thumbnail({ projId, image, isNew, projStatus, sday, maderId, MypageImageClass, MypageDivClass, MypageDivContent }) {
   const navigate = useNavigate();
