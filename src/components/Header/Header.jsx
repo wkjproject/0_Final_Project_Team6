@@ -36,7 +36,7 @@ export default function Header() {
 						isAdmin ? (
 							// 관리자로 로그인한 경우
 							<>
-							<button> <NavLink to="/">프로젝트 관리</NavLink></button>
+							<button> <NavLink to="/manageProj">프로젝트 관리</NavLink></button>
 							<li> <NavLink to="/">회원관리</NavLink></li>
 							<Logout />
 							</>
