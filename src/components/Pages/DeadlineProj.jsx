@@ -1,11 +1,7 @@
-import React from 'react';
-import ProjectList from './ProjectsList';
+import React from 'react'
 
 export default function DeadlineProj() {
-  return (
-    <>
-      <div>DeadlineProj</div>
-      <ProjectList listtype='deadlineProj' />
-    </>
-  );
+	return (
+		<div>DeadlineProj</div>
+	)
 }

@@ -1,11 +1,7 @@
-import React from 'react';
-import ProjectList from './ProjectsList';
+import React from 'react'
 
 export default function SearchPage() {
-  return (
-    <>
-      <div>SearchPage</div>
-      <ProjectList listtype='SearchPage' />
-    </>
-  );
+	return (
+		<div>SearchPage</div>
+	)
 }
