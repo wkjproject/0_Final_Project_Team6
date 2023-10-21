@@ -4,7 +4,12 @@ import "./components/ProjectData2.css";
 import ProjectData2 from "./components/ProjectData2";
 import RewardSelect from "./components/RewardSelect";
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  createBrowserRouter,
+} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Pages/Home';
 import OpenProj from './components/Pages/OpenProj';
@@ -24,6 +29,7 @@ import CreateProj from "./components/Pages/MemberService/CreateProj/CreateProj";
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import HomeProj from './components/Pages/HomeProj';
 import ProjectPay from './components/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
 
@@ -45,11 +51,13 @@ function App() {
         <Routes>
 
           <Route path='/' element={<LandingPage />} />
-          <Route path='/home' element={<AuthHome />} />
-          <Route path='/openProj' element={<OpenProj />} />
-          <Route path='/newProj' element={<NewProj />} />
-          <Route path='/deadlineProj' element={<DeadlineProj />} />
-          <Route path='/searchPage' element={<SearchPage />} />
+          <Route path='/home' element={<AuthHome />}>
+            <Route index element={<HomeProj />} />
+            <Route path='openProj' element={<OpenProj />} />
+            <Route path='newProj' element={<NewProj />} />
+            <Route path='deadlineProj' element={<DeadlineProj />} />
+            <Route path='searchPage' element={<SearchPage />} />
+          </Route>
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
