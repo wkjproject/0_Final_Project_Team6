@@ -6,7 +6,7 @@ import { Logout } from '../Pages/MemberService/Logout';
 
 export default function Header() {
 	// 리덕스에서 로그인 상태 확인
-	const isLogin = useSelector((state)=> state.auth.auth.isLogin);
+	const isLogin = useSelector((state) => state.auth.auth.isLogin);
 	// 리덕스에서 운영자 확인
 	const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
 
@@ -15,9 +15,10 @@ export default function Header() {
 			{/* 로고 */}
 			<div className="logo">
 				<Link to="/home">
-					<img	src="./img/logo.png"	alt="로고"/>
+					<img src="./img/logo.png" alt="로고" />
 				</Link>
 			</div>
+			<hr />
 
 			{/* 네비게이션 바 */}
 			<div className='navbar'>
@@ -42,7 +43,7 @@ export default function Header() {
 						) : (
 							// 일반 사용자로 로그인한 경우
 							<>
-							<button> <NavLink to="/">프로젝트 만들기</NavLink></button>
+							<button> <NavLink to="/createProj">프로젝트 만들기</NavLink></button>
 							<li> <NavLink to="/mypage">마이페이지</NavLink></li>
 							<Logout />
 							</>
@@ -60,8 +61,10 @@ export default function Header() {
 			{/* 검색창 */}
 			<div className='searchBox'>
 				<input type="text" />
-				<Link to="/searchPage"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"/></Link>
+				<Link to="/searchPage"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" alt='' /></Link>
 			</div>
-    </header>
+			<hr />
+
+		</header>
 	)
 }

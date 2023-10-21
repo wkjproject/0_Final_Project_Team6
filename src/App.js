@@ -18,9 +18,8 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
 
-import ComingProj from './components/Pages/ComingProject/ComingProj';
-import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
-import CreateProj from "./components/Pages/MemberService/CreateProj/CreateProj";
+import ComingProj from './components/Pages/ComingProj';
+import WaitingProj from './components/Pages/WaitingProj';
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -36,6 +35,7 @@ function App() {
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
+  const AuthProjectPay = Auth(ProjectPay, true);
   return (
     <div className="App">
       {/* <ProjectData></ProjectData> */}
@@ -55,14 +55,13 @@ function App() {
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
-          <Route path='/projectPay' element={<ProjectPay />} />
+          <Route path='/projectPay' element={<AuthProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
-          <Route path="/createProj" element={<CreateProj />} />
 
         </Routes>
       </BrowserRouter>

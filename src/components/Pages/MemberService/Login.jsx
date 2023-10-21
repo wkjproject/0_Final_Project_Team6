@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Kakao } from './SocialLogin/Kakao';
@@ -14,6 +14,7 @@ export const Login = () => {
   const userPasswordRef = useRef(); // 사용자에게 입력받은 userPassword를 Ref로 통해서 추적해요
   const dispatch = useDispatch(); // useDispatch() 를 좀 더 편하게 쓰기위해서 dispatch 변수에다가 할당해요
   //submit는 로그인버튼이에요
+  const location = useLocation();
   const submit = async (evt) => {
     evt.preventDefault(); // 버튼으로 만들어져있기때문에 눌렀을때 다른 작업을 못하게 막는거에요
     try {
@@ -42,7 +43,11 @@ export const Login = () => {
           dispatch(setUserName(res.data.userName));
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
-          navigate('/home');
+          if (location.state && location.state.from) {
+            navigate(location.state.from);
+          } else {
+            navigate('/home');
+          }
         }
         if(!res.data.loginSuccess){
           alert(res.data.message);
