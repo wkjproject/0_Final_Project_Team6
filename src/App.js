@@ -20,7 +20,6 @@ import ManageProj from './components/Pages/ManageProj';
 
 import ComingProj from './components/Pages/ComingProj';
 import WaitingProj from './components/Pages/WaitingProj';
-import CreateProj from "./components/Pages/CreateProj";
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
@@ -63,7 +62,6 @@ function App() {
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
-          <Route path="/createProj" element={<CreateProj />} />
 
         </Routes>
       </BrowserRouter>
