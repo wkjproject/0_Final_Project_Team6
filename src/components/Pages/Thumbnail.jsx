@@ -45,7 +45,7 @@ export default function Thumbnail({ projId, image, isNew, projStatus, sday, made
         src={image}
         alt=''
       />
-      <div className={MypageDivClass === 'fundingProjectText' ? 'fundingProjectText' : (MypageDivClass === 'fundingProjectTextWait' ? 'fundingProjectTextWait' : 'fundingProjectTextConfirm')}>
+      <div className={MypageDivClass === 'fundingProjectText' ? 'fundingProjectText' : (MypageDivClass === 'fundingProjectTextWait' ? 'fundingProjectTextWait' : (MypageDivClass === 'fundingProjectTextConfirm' ? 'fundingProjectTextConfirm' : ''))}>
         {MypageDivContent}
       </div>
       {isNew && <span className='new-tag'>new</span>}
