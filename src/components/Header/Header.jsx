@@ -1,41 +1,33 @@
 import './Header.css';
-import React from 'react';
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { Logout } from '../Pages/MemberService/Logout';
 
 export default function Header() {
-  // 리덕스에서 로그인 상태 확인
-  const isLogin = useSelector((state) => state.auth.auth.isLogin);
-  // 리덕스에서 운영자 확인
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+	// 리덕스에서 로그인 상태 확인
+	const isLogin = useSelector((state) => state.auth.auth.isLogin);
+	// 리덕스에서 운영자 확인
+	const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
 
-  return (
-    <header className='header-container'>
-      {/* 로고 */}
-      <div className='logo'>
-        <Link to='/home'>
-          <img src='/img/logo.png' alt='로고' />
-        </Link>
-      </div>
+	return (
+		<header className='header-container'>
+			{/* 로고 */}
+			<div className="logo">
+				<Link to="/home">
+					<img src="./img/logo.png" alt="로고" />
+				</Link>
+			</div>
+			<hr />
 
-      {/* 네비게이션 바 */}
-      <div className='navbar'>
-        <ul>
-          <li>
-            {' '}
-            <NavLink to='/home/openProj'>오픈예정</NavLink>
-          </li>
-          <li>
-            {' '}
-            <NavLink to='/home/newProj'>신규 프로젝트</NavLink>
-          </li>
-          <li>
-            {' '}
-            <NavLink to='/home/deadlineProj'>마감임박</NavLink>
-          </li>
-        </ul>
-      </div>
+			{/* 네비게이션 바 */}
+			<div className='navbar'>
+				<ul>
+					<li> <NavLink to="/openProj">오픈예정</NavLink></li>
+					<li> <NavLink to="/newProj">신규 프로젝트</NavLink></li>
+					<li> <NavLink to="/deadlineProj">마감임박</NavLink></li>
+				</ul>
+			</div>
 
 			{/* 회원가입 & 로그인 */}
 			<div className='login-signup'>
@@ -66,13 +58,13 @@ export default function Header() {
 				</ul>
 			</div>
 
-      {/* 검색창 */}
-      <div className='searchBox'>
-        <input type='text' />
-        <Link to='/home/searchPage'>
-          <img src='https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png' />
-        </Link>
-      </div>
-    </header>
-  );
+			{/* 검색창 */}
+			<div className='searchBox'>
+				<input type="text" />
+				<Link to="/searchPage"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" alt='' /></Link>
+			</div>
+			<hr />
+
+		</header>
+	)
 }

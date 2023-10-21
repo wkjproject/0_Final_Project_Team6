@@ -209,6 +209,8 @@ ul.no-bullets2 hr {
 
 .button-cell {
     height: 30px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .remove-button {
@@ -217,10 +219,12 @@ ul.no-bullets2 hr {
     border: none;
     background-color: white;
     color: RGB(192, 192, 192);
-    margin-right: 0px;
+    margin-right: 10px;
+    margin-top: 5px;
     /* 오른쪽과 간격을 두기 */
     vertical-align: super;
-    padding-top: 10px;
+    padding-top: 0px;
+
 }
 
 .total-amount {
@@ -301,4 +305,18 @@ ul.no-bullets2 hr {
     color: black;
     justify-content: center;
     /* 센터 정렬 */
+}
+
+.closed-project-message {
+    color: red;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.other-status-message {
+    color: red;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

@@ -1,11 +1,7 @@
-import React from 'react';
-import ProjectList from './ProjectsList';
+import React from 'react'
 
 export default function NewProj() {
-  return (
-    <>
-      <div>NewProj</div>
-      <ProjectList listtype='newProj' />
-    </>
-  );
+	return (
+		<div>NewProj</div>
+	)
 }
