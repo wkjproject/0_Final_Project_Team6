@@ -82,6 +82,9 @@ export default function IdpwFind() {
 					});
 				}, 1000); // 1초(1000 밀리초)
 			}
+			if(!res.data.sendMailSuccess){
+				alert(res.data.message);
+			}
 		})
 	}
 
@@ -126,6 +129,10 @@ export default function IdpwFind() {
 			}
 		})
 	}
+	// 아이디찾기 성공 후 로그인 버튼을 누르면 로그인으로 가도록
+	const moveLogin = () => {
+		navigate('/login');
+	}
 
 	//사용자가 뒤로가기, 새로고침, 브라우저 종료 시 상태값 변경
 	useEffect(() => {
@@ -161,7 +168,7 @@ export default function IdpwFind() {
 				<p>{getUserMail}</p>
 				<br/>
 				<p>회원으로 등록된 이메일 아이디입니다.</p>
-				<NavLink to="/Login"><button className='IdpwFindButton' >로그인</button></NavLink>
+				<button className='IdpwFindButton' onClick={moveLogin} >로그인</button>
 				</>) : (				<>
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
 				<br/>
