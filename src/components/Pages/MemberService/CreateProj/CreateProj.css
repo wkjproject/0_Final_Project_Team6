@@ -18,12 +18,12 @@ button{
 input::placeholder {
   text-align: center;
 }
-p{
+.form p{
   margin: 50px;
   text-align: center;
 }
 
-b{
+.form b{
   color:#FE9A00;
 }
 .checkbefore{
