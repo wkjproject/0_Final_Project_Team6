@@ -18,14 +18,13 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
 
-import ComingProj from './components/Pages/ComingProj';
-import WaitingProj from './components/Pages/WaitingProj';
-
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
 import ProjectPay from './components/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
 import CreateProj from './components/Pages/MemberService/CreateProj/Create.Proj';
+import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
+import ComingProj from './components/Pages/ComingProject/ComingProj';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
