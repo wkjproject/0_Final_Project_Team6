@@ -193,11 +193,13 @@ ul.no-bullets2 hr {
 
 .second-table table tr td:first-child {
     width: 80px;
+    padding-top: 5px;
     /* 첫 번째 <td> 요소의 너비를 100px로 설정 */
 }
 
 .second-table table tr td:nth-child(2) {
-    width: 200px;
+    padding-top: 5px;
+    width: 240px;
     /* 두 번째 <td> 요소의 너비를 250px로 설정 */
 }
 
@@ -208,7 +210,8 @@ ul.no-bullets2 hr {
 }
 
 .button-cell {
-    height: 30px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: flex-end;
 }
