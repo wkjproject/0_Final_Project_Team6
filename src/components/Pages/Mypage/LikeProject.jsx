@@ -14,34 +14,43 @@ export default function LikeProject() {
   const [mount, setMount] = useState(false);
 	// likeProject에 서버로부터 받아온 값 넣어주기
   const [likeProject, setLikeProject] = useState();
+  useEffect(() => {
+  if (mount) {
+    // likeProject가 변경될 때 실행할 코드
+    // 이 코드는 likeProject를 업데이트하는 코드와 관련된 것이어야 합니다.
+    // 그렇지 않으면 무한 루프가 발생할 수 있습니다.
+  }
+}, [likeProject]);
 	useEffect(() => {
-    const endpoint = Endpoint();
-    const LikeProjectData = async () => {
-      try {
-        await axios.post(`${endpoint}/likeProject`, {
-          user_id
-        }).then((res) => {
+    if (!mount) {
+      const endpoint = Endpoint();
+      const LikeProjectData = async () => {
+        try {
+          const res = await axios.post(`${endpoint}/likeProject`, {
+            user_id
+          });
           setLikeProject(res.data.likes);
           setMount(true);
-
-        })
-      } catch (err) {
-        console.log(err);
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
 
-    LikeProjectData();
+      LikeProjectData();
+    }
   }, []);
 
 	const cancelLike = async (evt, proj_id) => {
 		evt.preventDefault();
 		try {
-			axios.post(`${endpoint}/cancelLike`, {
+			await axios.post(`${endpoint}/cancelLike`, {
 				user_id,
 				proj_id
-			}).then((res) => {
-
 			})
+      const res = await axios.post(`${endpoint}/likeProject`, {
+      user_id
+      });
+      setLikeProject(res.data.likes);
 		} catch(err) {
 			console.log('cancelLike', err)
 		}
