@@ -15,7 +15,10 @@ function ProjectList({ listtype }) {
     isLoading,
     error,
     data: allProjects,
-  } = useQuery(['projects'], () => projects.getProjects());
+  } = useQuery({
+    queryKey: ['projects'],
+    queryFn: () => projects.getProjects(),
+  });
 
   // console.log('0. allProjects: ', allProjects);
 
