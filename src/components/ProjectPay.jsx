@@ -20,7 +20,9 @@ const ProjectPay = () => {
             <br />
             <div className='payList'>
                 <div className='a'>
-                    <div className='payHeader'>결제 정보</div>
+                    <div className='payHeader'>
+                        결제 정보
+                    </div>
                     <div className='payInfo'>
                         <div>
                             <div className='payInfoHeader'>모임/행사 정보</div>
