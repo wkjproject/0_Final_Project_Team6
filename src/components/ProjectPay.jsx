@@ -16,7 +16,7 @@ const ProjectPay = () => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const userId = useSelector((state) => state.auth.auth["userName"]); // 로그인한 userID
+    const userId = useSelector((state) => state.auth.auth["_id"]); // 로그인한 userID
     console.log(`userId: ${userId}`);
 
     return (
