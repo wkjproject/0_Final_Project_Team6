@@ -14,6 +14,7 @@ export default function Thumbnail({
   MypageImageClass,
   MypageDivClass,
   MypageDivContent,
+  cancelLike
 }) {
   const navigate = useNavigate();
 
@@ -68,10 +69,15 @@ export default function Thumbnail({
             ? 'fundingProjectTextWait'
             : MypageDivClass === 'fundingProjectTextConfirm'
             ? 'fundingProjectTextConfirm'
+            : MypageDivClass === 'LikeProjectImg'
+            ? 'LikeProjectImg'
             : ''
         }
       >
-        {MypageDivContent}
+        {MypageDivClass === 'LikeProjectImg' ? (<button className='LikeProjectButton' onClick={(evt) => {
+        cancelLike(evt);
+        evt.stopPropagation(); // 이벤트 전파 중단
+      }}>{MypageDivContent}</button>) : (MypageDivContent)}
       </div>
       {isNew && <span className='new-tag'>new</span>}
     </div>
