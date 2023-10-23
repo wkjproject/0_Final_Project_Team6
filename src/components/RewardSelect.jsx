@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
+import { useSelector } from 'react-redux';
 
 const RewardSelect = () => {
   // 상태 변수 초기화
@@ -10,6 +11,8 @@ const RewardSelect = () => {
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
   const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
 
+  // 리덕스에서 로그인 상태 확인
+  const isLogin = useSelector((state) => state.auth.auth.isLogin);
 
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
@@ -103,11 +106,19 @@ const RewardSelect = () => {
     if (selectedRewards.length === 0) {
       alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
     } else {
-      navigate('/projectPay', {
-        state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
-      });
+      if (isLogin) {
+        navigate('/projectPay', {
+          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
+        });
+      } else {
+        const userConfirmed = window.confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동할까요?");
+        if (userConfirmed) {
+          navigate('/login');
+        }
+      }
     }
   }
+
 
   // 컴포넌트 렌더링
   return (
