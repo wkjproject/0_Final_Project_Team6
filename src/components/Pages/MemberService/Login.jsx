@@ -15,6 +15,8 @@ export const Login = () => {
   const dispatch = useDispatch(); // useDispatch() 를 좀 더 편하게 쓰기위해서 dispatch 변수에다가 할당해요
   //submit는 로그인버튼이에요
   const location = useLocation();
+
+  //로그인 시 엔터키 추가
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault(); // 엔터 키의 기본 동작 막기
