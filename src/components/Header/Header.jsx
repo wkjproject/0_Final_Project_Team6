@@ -36,16 +36,16 @@ export default function Header() {
 						isAdmin ? (
 							// 관리자로 로그인한 경우
 							<>
-							<button> <NavLink to="/manageProj">프로젝트 관리</NavLink></button>
-							<li> <NavLink to="/">회원관리</NavLink></li>
-							<Logout />
+								<button> <NavLink to="/manageProj">프로젝트 관리</NavLink></button>
+								<li> <NavLink to="/">회원관리</NavLink></li>
+								<Logout />
 							</>
 						) : (
 							// 일반 사용자로 로그인한 경우
 							<>
-							<button> <NavLink to="/createProj">프로젝트 만들기</NavLink></button>
-							<li> <NavLink to="/mypage">마이페이지</NavLink></li>
-							<Logout />
+								<button> <NavLink to="/createProj">프로젝트 만들기</NavLink></button>
+								<li> <NavLink to="/mypage">마이페이지</NavLink></li>
+								<Logout />
 							</>
 						)
 					) : (
@@ -57,6 +57,7 @@ export default function Header() {
 					)}
 				</ul>
 			</div>
+			<hr />
 
 			{/* 검색창 */}
 			<div className='searchBox'>
