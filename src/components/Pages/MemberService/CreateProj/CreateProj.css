@@ -1,15 +1,14 @@
-
-button:disabled{
+button:disabled {
   border: 1px solid #ffdfaf;
   background-color: #ffddab;
   color: white;
   border-radius: 8px;
   height: 50px;
-  width: 150px; 
+  width: 150px;
 }
-button{
-  border: 1px solid #FE9A00;
-  background-color: #FE9A00;
+button {
+  border: 1px solid #fe9a00;
+  background-color: #fe9a00;
   color: white;
   border-radius: 8px;
   height: 50px;
@@ -18,63 +17,63 @@ button{
 input::placeholder {
   text-align: center;
 }
-.form p{
+.form p {
   margin: 50px;
   text-align: center;
 }
 
-.form b{
-  color:#FE9A00;
+.form b {
+  color: #fe9a00;
 }
-.checkbefore{
+.checkbefore {
   margin: 50px;
   text-align: center;
 }
 
-.form{
+.form {
   width: 60%;
   margin: 0 auto;
   position: relative;
 }
-.createform{
+.createform {
   font-weight: 300;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   align-items: center;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
-.createform h3{
-  padding:10px;
+.createform h3 {
+  padding: 10px;
   width: 250px;
   text-align: right;
   margin-right: 50px;
 }
-.createform select{
+.createform select {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
   height: 30px;
   width: 200px;
 }
-.createform .selectRegion{
+.createform .selectRegion {
   margin-left: 30px;
 }
-.createform .inputBox{
+.createform .inputBox {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
   height: 30px;
-  width: 430px; 
+  width: 430px;
 }
 
-.createform .dateinput{
+.createform .dateinput {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
   height: 30px;
   margin-left: 10px;
-  width: 200px; 
+  width: 200px;
 }
 
-.createform .editorbox{
+.createform .editorbox {
   width: 650px;
   height: 300px;
   margin-bottom: 70px;
@@ -105,7 +104,8 @@ input::placeholder {
 }
 
 /* 체크박스 */
-.checkbox,.checkbox2{
+.checkbox,
+.checkbox2 {
   display: flex;
   overflow: hidden;
   justify-content: center;
@@ -113,46 +113,47 @@ input::placeholder {
 .checkbox p {
   margin: 0px;
 }
-.checkbox2{
+.checkbox2 {
   margin-bottom: 0px;
 }
-.checkbox p, .checkbox2 p{
+.checkbox p,
+.checkbox2 p {
   margin-left: 20px;
 }
 
 /* 세부사항 */
-.rule{
+.rule {
   display: flex;
   align-items: center;
   margin: 0 auto;
   flex-wrap: wrap;
   width: 70%;
   background-color: rgb(241, 241, 241);
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   padding: 40px;
   border-radius: 10px;
 }
 
-.rule h3{
+.rule h3 {
   text-align: center;
   margin-bottom: 30px;
   width: 100%;
 }
 
-.rule-detail{
+.rule-detail {
   text-align: left;
   width: 50%;
 }
-.rule-detail h4{
+.rule-detail h4 {
   margin-bottom: 30px;
   text-align: center;
 }
 
-.rule li{
+.rule li {
   margin-bottom: 20px;
 }
 
-.submit{
+.submit {
   display: block;
   text-align: center;
   margin: 0 auto;
