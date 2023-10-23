@@ -13,7 +13,7 @@ export default function MadeProject() {
 
   // madeProject에 서버로부터 받아온 값 넣어주기
   const [madeProject, setMadeProject] = useState();
-	// 제작프로젝트는 userProjects 컬렉션에서 users_id가 현재 리덕스 userId랑 일치하는것만 가져와서 userMadeProject 와 projects 컬렉션의 proj_id가 일치하는것만 뿌림
+	// 제작프로젝트는 현재 리덕스의 userId와 projects 컬렉션의 userMade_id 랑 일치하는 값만 가져오면됨
   // 제작프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projReward[0]
 	  useEffect(() => {
     const endpoint = Endpoint();
@@ -35,6 +35,20 @@ export default function MadeProject() {
   }, []);
   console.log(madeProject)
 	return (
-		<div>{mount ? (madeProject):('no')}</div>
+		<>
+    {mount && madeProject.map((proj, index) => (          
+          <ProjectCard
+            key={proj.projName}
+            projId={proj.proj_id}
+            projStatus={proj.projStatus}
+            image={proj.projMainImgPath}
+            title={proj.projName}
+            location={proj.projAddr.split(' ', 2)[1]}
+            dday={proj.projDate}
+            price={proj.projReward[0].projRewardAmount}
+          />)
+
+    )}
+    </>
 	)
 }
