@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectList from './ProjectsList';
 
-export default function HomeProj() {
+export default function PopularProj() {
   return (
     <div>
       <p>HomeProj</p>

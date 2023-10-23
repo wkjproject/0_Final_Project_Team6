@@ -28,34 +28,33 @@ function ProjectList({ listtype }) {
    * Round to nearest whole number to deal with DST.
    */
   function daysBetween(from, to) {
-    from.setHours(0);
-    to.setHours(0);
+    from.setHours(0, 0, 0, 0);
+    to.setHours(0, 0, 0, 0);
     console.log(
       'days from to: ',
       Math.round((to - from) / (1000 * 60 * 60 * 24))
     );
     return Math.round((to - from) / (1000 * 60 * 60 * 24));
   }
-  console.log('listtype =>', listtype);
+
   const filteredProjects = allProjects.filter((proj) => {
     const today = new Date();
     const fundStartDate = new Date(proj.projFundDate[0].projFundStartDate);
     const fundEndDate = new Date(proj.projFundDate[0].projFundEndDate);
+    // today.setHours(0, 0, 0, 0);
+    fundStartDate.setHours(0, 0, 0, 0);
+    fundEndDate.setHours(23, 59, 59, 0);
 
-    console.log('filter():listtype =>', listtype, proj.proj_id);
-    console.log('projStatus: ', proj.projStatus);
-    console.log(`today: ${today}`);
-    console.log(
-      `fundStartDate:${proj.projFundDate[0].projFundStartDate} => ${fundStartDate}`
-    );
-    console.log(
-      `fundEndDate:${proj.projFundDate[0].projFundEndDate} => ${fundEndDate}`
-    );
+    console.log(`filter():listtype =>, ${listtype}, proj-id:${proj.proj_id}`);
+    console.log('  projStatus: ', proj.projStatus);
+    console.log(`  today: ${today}`);
+    console.log(`  fundStartDate:${fundStartDate.toDateString()}`);
+    console.log(`  fundEndDate:${fundEndDate.toDateString()}`);
 
     switch (listtype) {
       case 'home':
         console.log(
-          `home:${proj.proj_id}: `,
+          `home: ${proj.proj_id} => `,
           proj.projStatus === '1' &&
             fundStartDate <= today &&
             today <= fundEndDate
@@ -66,8 +65,19 @@ function ProjectList({ listtype }) {
           today <= fundEndDate
         );
       case 'openProj': // 오픈예정
-        return proj.projStatus === '1' && fundStartDate > today;
+        console.log(
+          `openProj: ${proj.proj_id} => `,
+          proj.projStatus === '1' && today < fundStartDate
+        );
+        return proj.projStatus === '1' && today < fundStartDate;
       case 'newProj':
+        console.log(
+          `newProj: ${proj.proj_id} => `,
+          proj.projStatus === '1' &&
+            fundStartDate <= today &&
+            today <= fundEndDate &&
+            daysBetween(fundStartDate, today) < 3
+        );
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&
@@ -75,6 +85,13 @@ function ProjectList({ listtype }) {
           daysBetween(fundStartDate, today) < 3
         );
       case 'deadlineProj':
+        console.log(
+          `deadlineProj: ${proj.proj_id} => `,
+          proj.projStatus === '1' &&
+            fundStartDate <= today &&
+            today <= fundEndDate &&
+            daysBetween(today, fundEndDate) < 3
+        );
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&

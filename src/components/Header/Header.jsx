@@ -15,7 +15,7 @@ export default function Header() {
       {/* 로고 */}
       <div className='logo'>
         <Link to='/home'>
-          <img src='./img/logo.png' alt='로고' />
+          <img src='/img/logo.png' alt='로고' />
         </Link>
       </div>
       <hr />
@@ -25,15 +25,15 @@ export default function Header() {
         <ul>
           <li>
             {' '}
-            <NavLink to='/openProj'>오픈예정</NavLink>
+            <NavLink to='/home/openProj'>오픈예정</NavLink>
           </li>
           <li>
             {' '}
-            <NavLink to='/newProj'>신규 프로젝트</NavLink>
+            <NavLink to='/home/newProj'>신규 프로젝트</NavLink>
           </li>
           <li>
             {' '}
-            <NavLink to='/deadlineProj'>마감임박</NavLink>
+            <NavLink to='/home/deadlineProj'>마감임박</NavLink>
           </li>
         </ul>
       </div>
@@ -89,7 +89,7 @@ export default function Header() {
       {/* 검색창 */}
       <div className='searchBox'>
         <input type='text' />
-        <Link to='/searchPage'>
+        <Link to='/home/searchPage'>
           <img
             src='https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png'
             alt=''
