@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './ProjectPay.css';
+import { useSelector } from 'react-redux';
 
 const ProjectPay = () => {
     const location = useLocation();
@@ -14,6 +15,9 @@ const ProjectPay = () => {
     function addCommasToNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    const userId = useSelector((state) => state.auth.auth["userName"]); // 로그인한 userID
+    console.log(`userId: ${userId}`);
 
     return (
         <div className='payDiv'>
@@ -83,7 +87,7 @@ const ProjectPay = () => {
                         <hr className='payHr' />
                         <br />
                         <div>
-
+                            {userId}
                         </div>
                     </div>
                 </div>
