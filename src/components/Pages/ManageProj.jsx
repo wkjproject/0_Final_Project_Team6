@@ -53,7 +53,7 @@ export default function ManageProj() {
 
   return (
     <div>
-      <h1>프로젝트 관리</h1>
+      <h1 className='manage-project'>프로젝트 관리</h1>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
         <ul>
