@@ -26,6 +26,9 @@ import Mypage from './components/Pages/Mypage/Mypage';
 import CreateProj from './components/Pages/MemberService/CreateProj/CreateProj';
 import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
 import ComingProj from './components/Pages/ComingProject/ComingProj';
+import ManageUsers from './components/Pages/ManageUsers';
+
+import Footer from './components/Footer/Footer';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -64,8 +67,10 @@ function App() {
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
           <Route path='/createProj' element={<CreateProj />} />
+          <Route path='/manageUsers' element={<ManageUsers />} />
         </Routes>
       </BrowserRouter>
+        <Footer />
       {/* <hr /> */}
       {/* <hr /> */}
       {/* <ProjectData2></ProjectData2> */}
