@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ProjectPay.css';
 import { useSelector } from 'react-redux';
@@ -24,6 +24,13 @@ const ProjectPay = () => {
     //console.log(`userName: ${userName}`);
     //console.log(`userPhoneNum: ${userPhoneNum}`);
 
+    const totalAmount = rewardsArray.reduce((total, reward) => total + reward.projRewardAmount, 0);
+
+    const [isChecked, setChecked] = useState(false);
+
+    const handleCheckboxChange = (event) => {
+        setChecked(event.target.checked);
+    };
     return (
         <div className='payDiv'>
             <br />
@@ -122,9 +129,44 @@ const ProjectPay = () => {
                         결제확인
                     </div>
                     <div className='payCheck'>
-                        상품금액
-                        <br />
-                        결제금액
+                        <table>
+                            <tr>
+                                <td>상품금액</td>
+                                <td>:</td>
+                                <td>{addCommasToNumber(totalAmount)}원</td>
+                            </tr>
+                            <tr>
+                                <td>할인 금액</td>
+                                <td>:</td>
+                                <td>0원</td>
+                            </tr>
+                            <tr>
+                                <td>총 결제 금액</td>
+                                <td>:</td>
+                                <td>{addCommasToNumber(totalAmount)}원</td>
+                            </tr>
+                        </table>
+                        <div>
+                            <label className='payCheck-label1'>
+                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <span className="payCheck-checkbox1"></span>
+                                결제 진행 필수 동의
+                            </label>
+                        </div>
+                        <div>
+                            <label className='payCheck-label2'>
+                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <span className="payCheck-checkbox2"></span>
+                                구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
+                            </label>
+                        </div>
+                        <div>
+                            <label className='payCheck-label3'>
+                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <span className="payCheck-checkbox3"></span>
+                                개인정보 제3자 제공 동의(필수)
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
