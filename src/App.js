@@ -36,7 +36,6 @@ function App() {
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
-  const AuthProjectPay = Auth(ProjectPay, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -57,7 +56,7 @@ function App() {
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
-          <Route path='/projectPay' element={<AuthProjectPay />} />
+          <Route path='/projectPay' element={<ProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
