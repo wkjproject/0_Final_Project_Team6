@@ -26,11 +26,36 @@ const ProjectPay = () => {
 
     const totalAmount = rewardsArray.reduce((total, reward) => total + reward.projRewardAmount, 0);
 
-    const [isChecked, setChecked] = useState(false);
+    const [isChecked1, setChecked1] = useState(false);
+    const [isChecked2, setChecked2] = useState(false);
+    const [isChecked3, setChecked3] = useState(false);
 
-    const handleCheckboxChange = (event) => {
-        setChecked(event.target.checked);
+    const handleCheckboxChange1 = (event) => {
+        const isChecked = event.target.checked;
+        setChecked1(isChecked);
+        setChecked2(isChecked);
+        setChecked3(isChecked);
     };
+
+    const handlePayment = () => {
+        // 2번째와 3번째 체크박스가 모두 체크되지 않았을 때 확인 메시지 표시
+        if (!isChecked2) {
+            const confirmResult = window.confirm("구매조건, 결제 진행 및 결제 대행 서비스 동의가 필요합니다\n동의 하시겠습니까?");
+            if (confirmResult) {
+                setChecked2(true);
+            }
+        } else if (!isChecked3) {
+            const confirmResult = window.confirm("개인정보 제3자 제공 동의가 필요합니다\n동의 하시겠습니까?");
+            if (confirmResult) {
+                setChecked3(true);
+            }
+        }
+        else {
+            alert("결제 페이지 이동 예정")
+            // 결제 로직 실행
+        }
+    };
+
     return (
         <div className='payDiv'>
             <br />
@@ -148,24 +173,29 @@ const ProjectPay = () => {
                         </table>
                         <div>
                             <label className='payCheck-label1'>
-                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <input type="checkbox" checked={isChecked1} onChange={handleCheckboxChange1} />
                                 <span className="payCheck-checkbox1"></span>
                                 결제 진행 필수 동의
                             </label>
                         </div>
                         <div>
                             <label className='payCheck-label2'>
-                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <input type="checkbox" checked={isChecked2} onChange={() => setChecked2(!isChecked2)} />
                                 <span className="payCheck-checkbox2"></span>
                                 구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
                             </label>
                         </div>
                         <div>
                             <label className='payCheck-label3'>
-                                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                                <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
                                 <span className="payCheck-checkbox3"></span>
                                 개인정보 제3자 제공 동의(필수)
                             </label>
+                        </div>
+                        <div>
+                            <button onClick={handlePayment}>
+                                {addCommasToNumber(totalAmount)}원 결제하기
+                            </button>
                         </div>
                     </div>
                 </div>
