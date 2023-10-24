@@ -1,11 +1,12 @@
 import React from 'react';
 import ProjectList from './ProjectsList';
+import ProjectRanking from './ProjectRanking';
 
 export default function PopularProj() {
   return (
-    <div>
-      <p>HomeProj</p>
+    <>
       <ProjectList listtype='home' />
-    </div>
+      <ProjectRanking />
+    </>
   );
 }

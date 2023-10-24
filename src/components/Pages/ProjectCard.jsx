@@ -6,7 +6,7 @@ export default function ProjectCard({
   projId,
   image,
   location,
-  title,
+  projName,
   price,
   dday,
   sday,
@@ -21,7 +21,9 @@ export default function ProjectCard({
   return (
     <div className='project-card'>
       <Thumbnail
+        key={projId}
         projId={projId}
+        projName={projName}
         image={image}
         sday={sday}
         isNew={isNew}
@@ -31,14 +33,14 @@ export default function ProjectCard({
         MypageDivClass={MypageDivClass}
         MypageDivContent={MypageDivContent}
       />
-      <h5 className='pc-title'>{title}</h5>
+      <h5 className='pc-title'>{projName}</h5>
       <span className='pc-location'>{location}</span>
       <span className=''> | </span>
       <span className='pc-price'>
         {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
       </span>
 
-      {cancelPay ? (
+      {cancelPay && cancelPay ? (
         <div className='fundingProjectPlaceContainer'>
           <button class='fundingProjectPlaceCancelPayBtn' onClick={cancelPay}>
             결제취소
