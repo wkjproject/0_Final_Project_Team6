@@ -6,6 +6,7 @@ import { Kakao } from './SocialLogin/Kakao';
 import { setUserName } from '../../../redux/reducer/userNameActions';
 import { setUserAddr } from '../../../redux/reducer/userAddrActions';
 import { setUserPhoneNum } from '../../../redux/reducer/userPhoneNumActions';
+import { setUserMail } from '../../../redux/reducer/userMailActions';
 import { MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort } from '../../../css/MemberService/MemberShipCss'
 import Endpoint from '../../../config/Endpoint';
 
@@ -45,6 +46,7 @@ export const Login = () => {
           dispatch(setUserName(res.data.userName));
           dispatch(setUserAddr(res.data.userAddr));
           dispatch(setUserPhoneNum(res.data.userPhoneNum));
+          dispatch(setUserMail(res.data.userMail));
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
           if (location.state && location.state.from) {
