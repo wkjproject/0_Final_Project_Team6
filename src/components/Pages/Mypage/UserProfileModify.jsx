@@ -12,8 +12,8 @@ export default function UserProfileModify() {
 	const endpoint = Endpoint();
 	const userNameRef = useRef();
 	// 비밀번호만 차후 초기화시키려고 useState로 설정 
-	const [userPassword, setUserPassword] = useState();
-	const [userPasswordCheck, setUserPasswordCheck] = useState();
+	const [userPassword, setUserPassword] = useState('');
+	const [userPasswordCheck, setUserPasswordCheck] = useState('');
   const userPhoneNumRef = useRef();
 	// 리덕스 정보 가져오기
 	const userId = useSelector((state) => state.auth.auth.userId)
@@ -30,7 +30,6 @@ export default function UserProfileModify() {
 		const userPhoneNumChanged = userPhoneNumRef.current.value === '' ? userPhoneNum : userPhoneNumRef.current.value;
 		// AddressSearch 컴포넌트에서 dispatch하는 userAddr과 로그인시 auth로 입력하는 authUserAddr가 일치할경우 authUserAddr
 		const userAddrChanged = (userAddr !== undefined && userAddr === authUserAddr) ? userAddr : authUserAddr;
-		console.log(userAddrChanged)
 		if (userPassword !== userPasswordCheck) {
 			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
