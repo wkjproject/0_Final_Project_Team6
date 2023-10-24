@@ -1,12 +1,12 @@
 import './Home.css';
 import React from 'react';
 // import Slides from './Slides';
-import ProjectList from './ProjectsList';
+// import ProjectList from './ProjectsList';
 import Slide from '../Slide/Slide';
 import { Outlet } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ProjApiProvider } from '../../context/ProjectsApiContext';
-import ProjectRanking from './ProjectRanking';
+// import ProjectRanking from './ProjectRanking';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +25,6 @@ export default function Home() {
             <Slide />
             <div className='project-container'>
               <Outlet />
-              <ProjectRanking />
             </div>
           </div>
         </QueryClientProvider>
