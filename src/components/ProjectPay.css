@@ -20,6 +20,11 @@
     /* 'a'와 'b'를 수직으로 맞춰 상단 정렬 */
 }
 
+.payList>div:nth-child(2) {
+    position: sticky;
+    top: 0;
+}
+
 /* 왼쪽 헤더 */
 .payHeader {
     width: 500px;
@@ -110,6 +115,21 @@
 }
 
 .payPersonTable {
+    padding-left: 20px;
+}
+
+.payType {
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(30, 30, 30, 0.2);
+    border-radius: 5px;
+    height: 2000px;
+}
+
+.payTypeHeader {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding-left: 20px;
 }
 
