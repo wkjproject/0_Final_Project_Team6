@@ -68,13 +68,13 @@ function ProjectList({ listtype }) {
   });
 
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p> filteredProjects Nothing 😖</p>;
+    return <p>Nothing</p>;
   }
 
   return (
     <div className='project-list'>
       {isLoading && <p>Loading...</p>}
-      {error && <p> 😖 {error}</p>}
+      {error && <p>{error}</p>}
       {filteredProjects.length > 0 &&
         filteredProjects.map((proj, index) => {
           return (
