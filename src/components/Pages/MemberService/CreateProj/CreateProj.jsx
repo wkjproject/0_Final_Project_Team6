@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import EditorBox from "./EditorBox";
 import "./CreateProj.css";
 
