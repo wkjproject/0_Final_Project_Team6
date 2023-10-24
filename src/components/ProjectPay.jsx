@@ -17,11 +17,12 @@ const ProjectPay = () => {
     }
 
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
+    const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userName
     const userAddr = useSelector((state) => state.userAddr.userAddr); // 로그인한 userAddr
     const userPhoneNum = useSelector((state) => state.userPhoneNum.userPhoneNum); // 로그인한 userPhoneNum
-    console.log(`userAddr: ${userAddr}`);
-    console.log(`userName: ${userName}`);
-    console.log(`userPhoneNum: ${userPhoneNum}`);
+    //console.log(`userAddr: ${userAddr}`);
+    //console.log(`userName: ${userName}`);
+    //console.log(`userPhoneNum: ${userPhoneNum}`);
 
     return (
         <div className='payDiv'>
@@ -91,11 +92,28 @@ const ProjectPay = () => {
                         <hr className='payHr' />
                         <br />
                         <div>
-                            {userName}
-                            <br />
-                            {userAddr}
-                            <br />
-                            {userPhoneNum}
+                            <table className='payPersonTable'>
+                                <tr>
+                                    <td>이름</td>
+                                    <td>:</td>
+                                    <td>{userName}</td>
+                                </tr>
+                                <tr>
+                                    <td>메일</td>
+                                    <td>:</td>
+                                    <td>{userMail}</td>
+                                </tr>
+                                <tr>
+                                    <td>주소</td>
+                                    <td>:</td>
+                                    <td>{userAddr}</td>
+                                </tr>
+                                <tr>
+                                    <td>핸드폰 번호</td>
+                                    <td>:</td>
+                                    <td>{userPhoneNum}</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -104,7 +122,9 @@ const ProjectPay = () => {
                         결제확인
                     </div>
                     <div className='payCheck'>
-
+                        상품금액
+                        <br />
+                        결제금액
                     </div>
                 </div>
             </div>
