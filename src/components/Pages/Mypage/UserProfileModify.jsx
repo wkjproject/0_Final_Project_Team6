@@ -10,38 +10,20 @@ import AddressSearch from '../MemberService/Address/AddressSearch';
 export default function UserProfileModify() {
 	const endpoint = Endpoint();
 	const dispatch = useDispatch();
-	const userAddr = useSelector((state)=>state.userAddr.userAddr);
 	const userNameRef = useRef();
   const userPasswordRef = useRef();
   const userPasswordCheckRef = useRef();
   const userPhoneNumRef = useRef();
   const navigate = useNavigate();
-  // 데이터 불러올때까지 mount 값 false
-  const [mount, setMount] = useState(false);
-	// 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
-	// 가져온 정보 useState로 넣어두기
-	const [userData, setUserdata] = useState();
+	// 리덕스 정보 가져오기
+	const userMail = useSelector((state) => state.auth.auth.userMail)
+	const userName = useSelector((state) => state.auth.auth.userName)
+	const userPhoneNum = useSelector((state) => state.auth.auth.userPhoneNum)
+	const userAddr = useSelector((state) => state.auth.auth.userAddr)
+
 
 	// useEffect로 처음에 화면 넘어갔을때 이메일, 이름, 연락처, 주소 가져오기
-	useEffect(() => {
-	const endpoint = Endpoint();
-	const userProfileModifyData = async () => {
-		try {
-			await axios.post(`${endpoint}/userProfileModify`, {
-				user_id
-			}).then((res) => {
-				if(res.data.userProfileModifySuccess){
-					setUserdata(res.data.userData);
-					setMount(true);
-				}
-			})
-		} catch (err) {
-			console.log(err);
-		}
-	}
-    userProfileModifyData();
-  }, []);
+
 
 	// 회원가입 수정 버튼을 누르면 데이터 서버로 넘김
 	const submit = async (evt) => {
@@ -85,13 +67,13 @@ export default function UserProfileModify() {
 	return (
 		<div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', marginTop:'30px'}}>
 			  <h2>회원정보 수정</h2>
-				{mount ? (				<div>
+				<div>
 					<br/>
 					<br/>
-					<MemberShipInput type='text' placeholder={userData.userMail} readOnly></MemberShipInput>
+					<MemberShipInput type='text' placeholder={userMail} readOnly></MemberShipInput>
 					<br/>
 					<br/>
-					<MemberShipInput type='text' ref={userNameRef} placeholder= {userData.userName}></MemberShipInput>
+					<MemberShipInput type='text' ref={userNameRef} placeholder= {userName}></MemberShipInput>
 					<br/>
 					<br/>
 					<MemberShipInput type='password' ref={userPasswordRef} placeholder='새로운 비밀번호' ></MemberShipInput>
@@ -100,14 +82,14 @@ export default function UserProfileModify() {
 					<MemberShipInput type='password' ref={userPasswordCheckRef} placeholder='새로운 비밀번호 확인' ></MemberShipInput>
 					<br/>
 					<br/>
-					<MemberShipInput type='tel' ref={userPhoneNumRef} placeholder= {userData.userPhoneNum} ></MemberShipInput>
+					<MemberShipInput type='tel' ref={userPhoneNumRef} placeholder= {userPhoneNum} ></MemberShipInput>
 					<br/>
 					<br/>
 					<AddressSearch />
 					<br/>
 					<br/>
 					<MemberShipButton onClick={submit}>회원정보 수정</MemberShipButton>
-				</div>) : ('')}
+				</div>
 		</div>
 	)
 }
