@@ -123,3 +123,52 @@
     margin-left: 20px;
     height: 600px;
 }
+
+.payCheck-label1 {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #333;
+    /* 레이블 텍스트 색상 설정 */
+}
+
+.payCheck-label1 input {
+    display: none;
+    /* 기본 체크박스를 숨깁니다. */
+}
+
+.payCheck-checkbox1 {
+    width: 20px;
+    /* 체크박스의 가로 크기 */
+    height: 20px;
+    /* 체크박스의 세로 크기 */
+    border: 0.5px solid #333;
+    /* 체크박스 테두리 스타일 */
+    background-color: #fff;
+    /* 체크박스 배경색 */
+    border-radius: 3px;
+    /* 체크박스 모서리 둥글게 */
+    margin-right: 8px;
+    /* 체크박스와 레이블 사이 간격 조절 */
+}
+
+.payCheck-label1 input:checked+.payCheck-checkbox1::before {
+    content: '\2714';
+    /* 유니코드 체크 마크 (✓) */
+    color: white;
+    /* 체크 표시 색상 */
+    font-size: 16px;
+    /* 체크 표시 크기 */
+    text-align: center;
+    line-height: 1;
+    background-color: #45bff0;
+    /* 체크된 상태의 배경색 */
+    padding-left: 3px;
+}
+
+.payCheck-label1 input:checked+.payCheck-checkbox1 {
+    background-color: #45bff0;
+    /* 체크된 상태의 배경색 */
+    border-color: #45bff0;
+    /* 체크된 상태의 테두리 색상 */
+}
