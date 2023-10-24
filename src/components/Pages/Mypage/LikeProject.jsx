@@ -14,13 +14,6 @@ export default function LikeProject() {
   const [mount, setMount] = useState(false);
 	// likeProject에 서버로부터 받아온 값 넣어주기
   const [likeProject, setLikeProject] = useState();
-  useEffect(() => {
-  if (mount) {
-    // likeProject가 변경될 때 실행할 코드
-    // 이 코드는 likeProject를 업데이트하는 코드와 관련된 것이어야 합니다.
-    // 그렇지 않으면 무한 루프가 발생할 수 있습니다.
-  }
-}, [likeProject]);
 	useEffect(() => {
     if (!mount) {
       const endpoint = Endpoint();
