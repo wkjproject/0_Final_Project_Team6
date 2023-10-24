@@ -293,7 +293,7 @@ const CreateProj = () => {
           </div>
 
           <hr></hr>
-          <h3>마지막으로, 이런 점들을 확인해 주세요!</h3>
+          <h3 className="warnmessage">마지막으로, 이런 점들을 확인해 주세요!</h3>
           <div className="checkbox">
             <input
               type="checkbox"
