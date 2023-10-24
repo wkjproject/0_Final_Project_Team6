@@ -8,8 +8,9 @@ button:disabled {
 }
 
 button {
-  border: 1px solid #FE9A00;
-  background-color: #FE9A00;
+  border: 1px solid #fe9a00;
+  background-color: #fe9a00;
+
   color: white;
   border-radius: 8px;
   height: 50px;
@@ -26,7 +27,7 @@ input::placeholder {
 }
 
 .form b {
-  color: #FE9A00;
+  color: #fe9a00;
 }
 
 .checkbefore {
@@ -66,6 +67,7 @@ input::placeholder {
 .createform .selectRegion {
   margin-left: 30px;
 }
+
 
 .createform .inputBox {
   border: 1px solid #8f8f8f;
@@ -163,6 +165,7 @@ input::placeholder {
   text-align: left;
   width: 50%;
 }
+
 
 .rule-detail h4 {
   margin-bottom: 30px;

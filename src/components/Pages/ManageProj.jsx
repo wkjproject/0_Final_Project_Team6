@@ -5,12 +5,14 @@ import '../../css/ManageProj.css';
 // import ProjectList from './ProjectsList';
 
 export default function ManageProj() {
-  const ProjectData = useFetch('/projects');
+  const ProjectData = useFetch(
+    'https://json-server-vercel-sepia-omega.vercel.app/projects'
+  );
   const projList = Object.values(ProjectData); // 프로젝트 값을 배열로
 
   const projectPerPage = 6; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
-  const [currTab, setCurrTab] = useState('waiting');  // 기본 값: 승인대기 프로젝트
-  const [currPage, setCurrPage] = useState(1);        // 기본 값: 1페이지
+  const [currTab, setCurrTab] = useState('waiting'); // 기본 값: 승인대기 프로젝트
+  const [currPage, setCurrPage] = useState(1); // 기본 값: 1페이지
 
   /* --- 탭 변경 함수 --- */
   const handleTabClick = (tabName) => {
@@ -21,10 +23,10 @@ export default function ManageProj() {
   /* --- 탭이름 및 projStatus(0: 승인대기 / 1: 진행중 / 2: 마감)에 따른 탭 구분 --- */
   const filteredProjects =
     currTab === 'waiting'
-      ? projList.filter((proj) => proj.projStatus === '0')           // 승인대기 프로젝트
+      ? projList.filter((proj) => proj.projStatus === '0') // 승인대기 프로젝트
       : projList.filter((proj) => {
           if (currTab === 'ongoing') return proj.projStatus === '1'; // 진행 중 프로젝트
-          if (currTab === 'ended') return proj.projStatus === '2';   // 마감된 프로젝트
+          if (currTab === 'ended') return proj.projStatus === '2'; // 마감된 프로젝트
           return true;
         });
 
@@ -36,20 +38,22 @@ export default function ManageProj() {
 
   /* --- 페이지 이동 함수 --- */
   const toPrevPage = () => {
-    if (currPage > 1) { // 현재 페이지가 1페이지보다 크면
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
       setCurrPage(currPage - 1);
     }
   };
 
   const toNextPage = () => {
-    if (currPage < totalPages) { // 현재 페이지가 마지막 페이지가 아니면
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
       setCurrPage(currPage + 1);
     }
   };
 
   return (
     <div>
-      <h1>프로젝트 관리</h1>
+      <h1 className='manage-project'>프로젝트 관리</h1>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
         <ul>
@@ -96,12 +100,13 @@ export default function ManageProj() {
         {/* 페이지 이동(pagination) 버튼 */}
         <div className='pagination'>
           <button onClick={toPrevPage}>이전</button>
-          <span>  {currPage}/{totalPages}  </span>
+          <span>
+            {' '}
+            {currPage}/{totalPages}{' '}
+          </span>
           <button onClick={toNextPage}>다음</button>
         </div>
-        </div>
       </div>
-    
-    
+    </div>
   );
 }

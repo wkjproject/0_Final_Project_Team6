@@ -1,8 +1,8 @@
-import "./App.css";
-import "./components/ProjectData2.css";
+import './App.css';
+import './components/ProjectData2.css';
 //import ProjectData from './components/ProjectData';
-import ProjectData2 from "./components/ProjectData2";
-import RewardSelect from "./components/RewardSelect";
+import ProjectData2 from './components/ProjectData2';
+import RewardSelect from './components/RewardSelect';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -17,14 +17,18 @@ import LandingPage from './components/LandingPage/LandingPage';
 import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
-import ComingProj from './components/Pages/ComingProj';
-import WaitingProj from './components/Pages/WaitingProj';
-import CreateProj from "./components/Pages/MemberService/CreateProj/CreateProj";
 
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
+import PopularProj from './components/Pages/PopularProj';
 import ProjectPay from './components/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
+import CreateProj from './components/Pages/MemberService/CreateProj/CreateProj';
+import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
+import ComingProj from './components/Pages/ComingProject/ComingProj';
+import ManageUsers from './components/Pages/ManageUsers';
+
+import Footer from './components/Footer/Footer';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -36,19 +40,20 @@ function App() {
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
   return (
-    <div className="App">
+    <div className='App'>
       {/* <ProjectData></ProjectData> */}
 
       <BrowserRouter>
         <Header />
         <Routes>
-
           <Route path='/' element={<LandingPage />} />
-          <Route path='/home' element={<AuthHome />} />
-          <Route path='/openProj' element={<OpenProj />} />
-          <Route path='/newProj' element={<NewProj />} />
-          <Route path='/deadlineProj' element={<DeadlineProj />} />
-          <Route path='/searchPage' element={<SearchPage />} />
+          <Route path='/home' element={<AuthHome />}>
+            <Route index element={<PopularProj />} />
+            <Route path='openProj' element={<OpenProj />} />
+            <Route path='newProj' element={<NewProj />} />
+            <Route path='deadlineProj' element={<DeadlineProj />} />
+            <Route path='searchPage' element={<SearchPage />} />
+          </Route>
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
@@ -61,10 +66,11 @@ function App() {
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
-          <Route path="/createProj" element={<CreateProj />} />
-
+          <Route path='/createProj' element={<CreateProj />} />
+          <Route path='/manageUsers' element={<ManageUsers />} />
         </Routes>
       </BrowserRouter>
+        <Footer />
       {/* <hr /> */}
       {/* <hr /> */}
       {/* <ProjectData2></ProjectData2> */}

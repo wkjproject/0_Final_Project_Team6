@@ -1,14 +1,8 @@
-// 상품 리워드 전체 목록을 셀렉트 형식으로 볼 수 있는 컴포넌트
-// 선택한 리워드는 바로 아래에 추가되고, 중복 선택해도 추가되지 않음
-// x로 선택한 리워드를 제거가능, 선택한 리워드의 금액은 하단에 계산됨
-// 에러 없음
-
 import React, { useState, useRef, useEffect } from 'react';
 import useFetch from './hooks/useFetch';
-import { useLocation } from 'react-router-dom'; // 추가된 import
+import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
-import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 
 const RewardSelect = () => {
   // 상태 변수 초기화
@@ -16,6 +10,9 @@ const RewardSelect = () => {
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
   const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
+
+  // 리덕스에서 로그인 상태 확인
+  const isLogin = useSelector((state) => state.auth.auth.isLogin);
 
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
@@ -59,6 +56,8 @@ const RewardSelect = () => {
     return amount.toLocaleString();
   };
 
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 얻기
+
   // 선택한 리워드들의 총 금액을 계산하는 함수
   const calculateTotalAmount = () => {
     return selectedRewards.reduce(
@@ -83,8 +82,6 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
-
-
   // API를 사용하여 프로젝트 데이터 가져오기
   const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
 
@@ -102,8 +99,25 @@ const RewardSelect = () => {
   }
 
   // 프로젝트 정보 추출
-  const { projName, projPlace, projAddr, projDate } = selectedProject;
+  const { projName, projPlace, projAddr, projDate, projStatus } = selectedProject;
+  console.log(`프로젝트 상태 : ${projStatus}`)
 
+  const handleApplyClick = () => {
+    if (selectedRewards.length === 0) {
+      alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
+    } else {
+      if (isLogin) {
+        navigate('/projectPay', {
+          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
+        });
+      } else {
+        const userConfirmed = window.confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동할까요?");
+        if (userConfirmed) {
+          navigate('/login');
+        }
+      }
+    }
+  }
 
 
   // 컴포넌트 렌더링
@@ -226,24 +240,34 @@ const RewardSelect = () => {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-        <Link to={{ pathname: "/projectPay", state: { selectedRewards } }}>
-          <button className='fundingBtn'>신청하기</button>
-        </Link>
-        <div className='button-group'>
-          <button
-            className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
-            onClick={toggleHeart}
-          >
-            {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
-          </button>
-          <button className='shareBtn' style={{ marginLeft: '20px' }}>
-            공유하기
-          </button>
-        </div>
+        {projStatus == 1 ? (
+          <div>
+            <button className='fundingBtn' onClick={handleApplyClick}>신청하기</button>
+            <div className='button-group'>
+              <button
+                className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
+                onClick={toggleHeart}
+              >
+                {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
+              </button>
+              <button className='shareBtn' style={{ marginLeft: '20px' }}>
+                공유하기
+              </button>
+            </div>
+          </div>
+        ) : projStatus == 2 ? (
+          <div className='closed-project-message'>
+            마감된 프로젝트입니다.
+          </div>
+        ) : (
+          <div className='other-status-message'>
+            ERROR
+          </div>
+        )}
       </div>
+
     </div>
   );
 };
 
 export default RewardSelect;
-

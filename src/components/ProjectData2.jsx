@@ -39,7 +39,6 @@ function ProjectData2() {
                     </div>
                 </div>
                 <div className='scroll'>
-
                     <div className='RewardSelect'>
                         <RewardSelect></RewardSelect>
                     </div>

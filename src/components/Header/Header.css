@@ -21,7 +21,6 @@ a:hover {
 }
 
 .header-container {
-  margin-bottom: 15px;
   display: grid;
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-areas:

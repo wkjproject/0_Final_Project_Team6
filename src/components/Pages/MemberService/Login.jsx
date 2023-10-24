@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Kakao } from './SocialLogin/Kakao';
@@ -14,8 +14,17 @@ export const Login = () => {
   const userPasswordRef = useRef(); // 사용자에게 입력받은 userPassword를 Ref로 통해서 추적해요
   const dispatch = useDispatch(); // useDispatch() 를 좀 더 편하게 쓰기위해서 dispatch 변수에다가 할당해요
   //submit는 로그인버튼이에요
+  const location = useLocation();
+
+  //로그인 시 엔터키 추가
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // 엔터 키의 기본 동작 막기
+      submit(); // 로그인 처리 함수 호출
+    }
+  };
   const submit = async (evt) => {
-    evt.preventDefault(); // 버튼으로 만들어져있기때문에 눌렀을때 다른 작업을 못하게 막는거에요
+    /* evt.preventDefault(); */ // 버튼으로 만들어져있기때문에 눌렀을때 다른 작업을 못하게 막는거에요
     try {
       // Ref로 추적중인 입력데이터의 현재값을 불러오는거에요.
       const userMail = userMailRef.current.value;
@@ -42,7 +51,11 @@ export const Login = () => {
           dispatch(setUserName(res.data.userName));
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
-          navigate('/home');
+          if (location.state && location.state.from) {
+            navigate(location.state.from);
+          } else {
+            navigate('/home');
+          }
         }
         if(!res.data.loginSuccess){
           alert(res.data.message);
@@ -59,10 +72,10 @@ export const Login = () => {
       <MemberShipDivCenter>
       <h2>로그인</h2>
       <br />
-      <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력"></MemberShipInput>
+      <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력" onKeyPress={handleKeyPress}></MemberShipInput>
       <br />
       <br />
-      <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력"></MemberShipInput>
+      <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력" onKeyPress={handleKeyPress} ></MemberShipInput>
       <br />
       <p style={{position: 'relative',top: '5px',left: '70px',color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
       <br />

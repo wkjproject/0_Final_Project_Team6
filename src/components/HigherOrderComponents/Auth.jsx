@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { setAuth } from '../../redux/reducer/authAction';
 
 export default function Auth(SpecificComponent, option, adminRoute = null) {
@@ -8,7 +8,7 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const location = useLocation();
     useEffect(() => {
       const fetchData = async () => {
         const res = await dispatch(setAuth());
@@ -17,7 +17,7 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
         //로그인 하지 않은 상태
         if (!res.payload.isLogin) {
           if (option) {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
           }
         } else {
           //로그인 한 상태
