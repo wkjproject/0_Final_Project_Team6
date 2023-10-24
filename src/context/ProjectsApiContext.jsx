@@ -17,6 +17,6 @@ export function ProjApiProvider({ children }) {
 }
 
 export function useProjectsApi() {
-  console.log('useProjectsApi:', ProjectsApiContext);
+  //console.log('useProjectsApi:', ProjectsApiContext);
   return useContext(ProjectsApiContext);
 }

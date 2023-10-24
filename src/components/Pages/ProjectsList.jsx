@@ -45,39 +45,39 @@ function ProjectList({ listtype }) {
     fundStartDate.setHours(0, 0, 0, 0);
     fundEndDate.setHours(23, 59, 59, 0);
 
-    console.log(`filter():listtype =>, ${listtype}, proj-id:${proj.proj_id}`);
-    console.log('  projStatus: ', proj.projStatus);
-    console.log(`  today: ${today}`);
-    console.log(`  fundStartDate:${fundStartDate.toDateString()}`);
-    console.log(`  fundEndDate:${fundEndDate.toDateString()}`);
+    // console.log(`filter():listtype =>, ${listtype}, proj-id:${proj.proj_id}`);
+    // console.log('  projStatus: ', proj.projStatus);
+    // console.log(`  today: ${today}`);
+    // console.log(`  fundStartDate:${fundStartDate.toDateString()}`);
+    // console.log(`  fundEndDate:${fundEndDate.toDateString()}`);
 
     switch (listtype) {
       case 'home':
-        console.log(
-          `home: ${proj.proj_id} => `,
-          proj.projStatus === '1' &&
-            fundStartDate <= today &&
-            today <= fundEndDate
-        );
+        // console.log(
+        //   `home: ${proj.proj_id} => `,
+        //   proj.projStatus === '1' &&
+        //   fundStartDate <= today &&
+        //   today <= fundEndDate
+        // );
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&
           today <= fundEndDate
         );
       case 'openProj': // 오픈예정
-        console.log(
-          `openProj: ${proj.proj_id} => `,
-          proj.projStatus === '1' && today < fundStartDate
-        );
+        // console.log(
+        //   `openProj: ${proj.proj_id} => `,
+        //   proj.projStatus === '1' && today < fundStartDate
+        // );
         return proj.projStatus === '1' && today < fundStartDate;
       case 'newProj':
-        console.log(
-          `newProj: ${proj.proj_id} => `,
-          proj.projStatus === '1' &&
-            fundStartDate <= today &&
-            today <= fundEndDate &&
-            daysBetween(fundStartDate, today) < 3
-        );
+        // console.log(
+        //   `newProj: ${proj.proj_id} => `,
+        //   proj.projStatus === '1' &&
+        //   fundStartDate <= today &&
+        //   today <= fundEndDate &&
+        //   daysBetween(fundStartDate, today) < 3
+        // );
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&
@@ -85,13 +85,13 @@ function ProjectList({ listtype }) {
           daysBetween(fundStartDate, today) < 3
         );
       case 'deadlineProj':
-        console.log(
-          `deadlineProj: ${proj.proj_id} => `,
-          proj.projStatus === '1' &&
-            fundStartDate <= today &&
-            today <= fundEndDate &&
-            daysBetween(today, fundEndDate) < 3
-        );
+        // console.log(
+        //   `deadlineProj: ${proj.proj_id} => `,
+        //   proj.projStatus === '1' &&
+        //   fundStartDate <= today &&
+        //   today <= fundEndDate &&
+        //   daysBetween(today, fundEndDate) < 3
+        // );
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&
