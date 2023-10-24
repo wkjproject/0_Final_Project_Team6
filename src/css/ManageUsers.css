@@ -55,3 +55,18 @@
 .user-table tr:hover {
   background-color: #ddd;
 }
+
+.user-table button {
+	background-color: var(--ButtonDefault);
+	width: 90px;
+	height: 30px;
+	border: none;
+}
+
+.user-table button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+  background-color: #ffc976;
+}
+
+.user-table button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+  background-color: #ff7301;
+}
