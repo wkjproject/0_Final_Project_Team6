@@ -302,6 +302,19 @@ ul.no-bullets2 hr {
     padding-left: 25px;
 }
 
+.textNum {
+    height: 21px;
+    padding-left: 5px;
+}
+
+.withIcon_icon__3VTbq {
+    margin-bottom: 2px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+    margin-right: 10px;
+}
+
 .shareBtn {
     width: 235px;
     height: 50px;
