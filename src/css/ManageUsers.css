@@ -3,7 +3,7 @@
 .user-container h1 {
 	font-size: var(--TextLarge);
 	margin-top: 100px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	letter-spacing: 3px;
 }
 

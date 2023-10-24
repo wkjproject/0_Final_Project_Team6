@@ -41,14 +41,12 @@ export default function ManageUsers() {
         return a.userName.localeCompare(b.userName);
       } else if (sortKey === 'userMail') {
         return a.userMail.localeCompare(b.userMail);
-      } else if (sortKey === 'userPhoneNum') {  // 연락처가 없을 경우 --> 'N/A'로 표시하고 맨 아래로 정렬
+      } else if (sortKey === 'userPhoneNum') { 
         if (a.userPhoneNum && b.userPhoneNum) {
           return a.userPhoneNum.localeCompare(b.userPhoneNum);
-        } else if (!a.userPhoneNum && b.userPhoneNum) {
-          return 1; // a가 undefined일 경우 b를 더 높게 정렬
-        } else if (a.userPhoneNum && !b.userPhoneNum) {
-          return -1; // b가 undefined일 경우 a를 더 높게 정렬
-        }
+        } // 연락처가 없을 경우(undefined) --> 'N/A'로 표시하고 맨 아래로 정렬
+        else if (!a.userPhoneNum && b.userPhoneNum) {return 1;} 
+        else if (a.userPhoneNum && !b.userPhoneNum) {return -1;}
       }
       return 0;
     });

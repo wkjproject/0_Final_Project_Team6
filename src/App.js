@@ -39,6 +39,9 @@ function App() {
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
+  const AuthManageProj = Auth(ManageProj, true, true);
+  const AuthManageUsers = Auth(ManageUsers, true, true);
+
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -62,12 +65,12 @@ function App() {
           <Route path='/projectPay' element={<ProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
-          <Route path='/manageProj' element={<ManageProj />} />
+          <Route path='/manageProj' element={<AuthManageProj />} />
           <Route path='/comingProj' element={<ComingProj />} />
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
           <Route path='/createProj' element={<CreateProj />} />
-          <Route path='/manageUsers' element={<ManageUsers />} />
+          <Route path='/manageUsers' element={<AuthManageUsers />} />
         </Routes>
       </BrowserRouter>
         <Footer />
