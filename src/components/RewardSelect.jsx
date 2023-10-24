@@ -240,7 +240,7 @@ const RewardSelect = () => {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-        {projStatus == 1 ? (
+        {projStatus === '1' ? (
           <div>
             <button className='fundingBtn' onClick={handleApplyClick}>신청하기</button>
             <div className='button-group'>
@@ -255,7 +255,7 @@ const RewardSelect = () => {
               </button>
             </div>
           </div>
-        ) : projStatus == 2 ? (
+        ) : projStatus === '2' ? (
           <div className='closed-project-message'>
             마감된 프로젝트입니다.
           </div>
