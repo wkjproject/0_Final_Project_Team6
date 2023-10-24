@@ -1,6 +1,6 @@
 /* 프로젝트 기본 설정 */
 
-h1 {
+.manage-project {
 	font-size: var(--TextLarge);
 	text-align: center;
 	margin-top: 100px;

@@ -51,7 +51,7 @@ export default function Header() {
                 </button>
                 <li>
                   {' '}
-                  <NavLink to='/'>회원관리</NavLink>
+                  <NavLink to='/manageUsers'>회원관리</NavLink>
                 </li>
                 <Logout />
               </>
