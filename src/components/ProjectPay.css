@@ -153,11 +153,13 @@
     color: #333;
     /* 레이블 텍스트 색상 설정 */
     user-select: none;
+
 }
 
 .payCheck-label1 input {
     display: none;
     /* 기본 체크박스를 숨깁니다. */
+    width: 20px;
 }
 
 .payCheck-checkbox1 {
@@ -173,6 +175,12 @@
     /* 체크박스 모서리 둥글게 */
     margin-right: 8px;
     /* 체크박스와 레이블 사이 간격 조절 */
+}
+
+.agreeText {
+    text-align: left;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .payCheck-label1 input:checked+.payCheck-checkbox1::before {
@@ -294,4 +302,16 @@
     /* 체크된 상태의 배경색 */
     border-color: #45bff0;
     /* 체크된 상태의 테두리 색상 */
+}
+
+.agreeBtn {
+    font-size: 13px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-bottom: 4px;
 }

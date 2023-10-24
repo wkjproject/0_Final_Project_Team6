@@ -179,22 +179,33 @@ const ProjectPay = () => {
                         <div>
                             <label className='payCheck-label1'>
                                 <input type="checkbox" checked={isChecked1} onChange={handleCheckboxChange1} />
-                                <span className="payCheck-checkbox1"></span>
-                                결제 진행 필수 동의
+                                <div className="payCheck-checkbox1"></div>
+                                <div className='agreeText'>
+                                    결제 진행 필수 동의
+                                </div>
                             </label>
                         </div>
                         <div>
                             <label className='payCheck-label2'>
                                 <input type="checkbox" checked={isChecked2} onChange={() => setChecked2(!isChecked2)} />
-                                <span className="payCheck-checkbox2"></span>
-                                구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
+                                <div className="payCheck-checkbox2"></div>
+                                <div className='agreeText'>
+                                    구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
+                                </div>
                             </label>
                         </div>
                         <div>
                             <label className='payCheck-label3'>
                                 <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
-                                <span className="payCheck-checkbox3"></span>
-                                개인정보 제3자 제공 동의(필수)
+                                <div className="payCheck-checkbox3"></div>
+                                <div className='agreeText'>
+                                    개인정보 제3자 제공 동의(필수)
+                                </div>
+                                <div>
+                                    <button className='agreeBtn'>
+                                        &#5171;
+                                    </button>
+                                </div>
                             </label>
                         </div>
                         <div>
