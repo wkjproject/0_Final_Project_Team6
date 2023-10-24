@@ -14,24 +14,25 @@ export default function UserProfileModify() {
   const userPasswordRef = useRef();
   const userPasswordCheckRef = useRef();
   const userPhoneNumRef = useRef();
+	const userAddrRef = useRef();
   const navigate = useNavigate();
 	// 리덕스 정보 가져오기
+	const userId = useSelector((state) => state.auth.auth.userId)
 	const userMail = useSelector((state) => state.auth.auth.userMail)
 	const userName = useSelector((state) => state.auth.auth.userName)
 	const userPhoneNum = useSelector((state) => state.auth.auth.userPhoneNum)
 	const userAddr = useSelector((state) => state.auth.auth.userAddr)
 
 
-	// useEffect로 처음에 화면 넘어갔을때 이메일, 이름, 연락처, 주소 가져오기
-
 
 	// 회원가입 수정 버튼을 누르면 데이터 서버로 넘김
 	const submit = async (evt) => {
 		evt.preventDefault();
-		const userName = userNameRef.current.value;
+		const userNameChanged = userNameRef.current.value === '' ? userName : userNameRef.current.value;
 		const userPassword = userPasswordRef.current.value;
 		const userPasswordCheck = userPasswordCheckRef.current.value;
-		const userPhoneNum = userPhoneNumRef.current.value;
+		const userPhoneNumChanged = userPhoneNumRef.current.value === '' ? userPhoneNum : userPhoneNumRef.current.value;
+		const userAddrChanged = userAddrRef.current.value === '' ? userAddr : userAddrRef.current.value;
 		if (userPassword !== userPasswordCheck) {
 			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
@@ -43,26 +44,31 @@ export default function UserProfileModify() {
 			return;
 		}
 			try {
-				await axios
-					.post(`${endpoint}/signup`, {
-						userName,
+				if(userPassword.trim() !== '') {
+					await axios
+					.post(`${endpoint}/userProfileModify`, {
+						userId,
+						userNameChanged,
 						userPassword,
-						userPhoneNum,
-						userAddr,
+						userPhoneNumChanged,
+						userAddrChanged,
 					})
 					.then((res) => {
-						if(res.data.signupSuccess){
-							dispatch(setUserName(res.data.userName)); // 리덕스로 userName 보냄
-							alert('회원가입 성공!')
-							navigate('/login');
-						}
 					})
-					.catch((e) => {
-						alert(e);
-					});
-			} catch (e) {
-				alert(e);
-			}
+				}
+				if(userPassword.trim() === '') {
+					await axios
+					.post(`${endpoint}/userProfileModify`, {
+						userId,
+						userNameChanged,
+						userPhoneNumChanged,
+						userAddrChanged,
+					})
+					.then((res) => {
+					})
+				}
+				} catch(err){
+					console.log(err)}
 	};
 	return (
 		<div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', marginTop:'30px'}}>
