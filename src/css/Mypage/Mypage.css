@@ -102,3 +102,16 @@
   border-radius: 4px; /* 둥근 모서리 */
   margin-top: px;
 }
+
+.LikeProjectImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 2rem;
+  top: 0%;
+  right: 0%;
+  z-index: 9999;
+}
+.LikeProjectButton {
+}

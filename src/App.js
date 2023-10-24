@@ -26,6 +26,9 @@ import Mypage from './components/Pages/Mypage/Mypage';
 import CreateProj from './components/Pages/MemberService/CreateProj/CreateProj';
 import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
 import ComingProj from './components/Pages/ComingProject/ComingProj';
+import ManageUsers from './components/Pages/ManageUsers';
+
+import Footer from './components/Footer/Footer';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -36,7 +39,6 @@ function App() {
   const AuthSignup = Auth(Signup, false);
   const AuthHome = Auth(Home, null);
   const AuthMypage = Auth(Mypage, true);
-  const AuthProjectPay = Auth(ProjectPay, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -57,7 +59,7 @@ function App() {
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/project2' element={<ProjectData2 />} />
-          <Route path='/projectPay' element={<AuthProjectPay />} />
+          <Route path='/projectPay' element={<ProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
           <Route path='/manageProj' element={<ManageProj />} />
@@ -65,8 +67,10 @@ function App() {
           <Route path='/waitingProj' element={<WaitingProj />} />
           <Route path='/mypage' element={<AuthMypage />} />
           <Route path='/createProj' element={<CreateProj />} />
+          <Route path='/manageUsers' element={<ManageUsers />} />
         </Routes>
       </BrowserRouter>
+        <Footer />
       {/* <hr /> */}
       {/* <hr /> */}
       {/* <ProjectData2></ProjectData2> */}
