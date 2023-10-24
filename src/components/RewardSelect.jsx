@@ -148,14 +148,13 @@ const RewardSelect = () => {
       </div>
       {/* 리워드 선택 모달 */}
       <div className={`rewardBtnBorder ${showModal ? 'border-active' : ''}`}>
-        <button
-          onClick={() => setShowModal(!showModal)}
-          className='reward-button'
-        >
-          <span className='reward-text'>
-            {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
-          </span>{' '}
-          <span className='arrow'>{showModal ? '▲' : '▼'}</span>
+        <button onClick={() => setShowModal(!showModal)} className='reward-button'>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span className='reward-text'>
+              {showModal ? '그룹을 선택해주세요.' : '그룹 선택하기'}
+            </span>{' '}
+            <span className='arrow'>{showModal ? '∧' : '∨'}</span>
+          </div>
         </button>
         {showModal && (
           <div className='modal' ref={modalRef} >

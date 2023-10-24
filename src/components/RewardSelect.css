@@ -111,6 +111,10 @@
     color: #1E1E1E;
 }
 
+.arrow {
+    margin-right: 10px;
+}
+
 .selectButton {
     margin-top: 5px;
     padding: 0;
