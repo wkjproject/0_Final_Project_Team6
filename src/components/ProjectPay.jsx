@@ -16,8 +16,12 @@ const ProjectPay = () => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const userId = useSelector((state) => state.auth.auth["_id"]); // 로그인한 userID
-    console.log(`userId: ${userId}`);
+    const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
+    const userAddr = useSelector((state) => state.userAddr.userAddr); // 로그인한 userAddr
+    const userPhoneNum = useSelector((state) => state.userPhoneNum.userPhoneNum); // 로그인한 userPhoneNum
+    console.log(`userAddr: ${userAddr}`);
+    console.log(`userName: ${userName}`);
+    console.log(`userPhoneNum: ${userPhoneNum}`);
 
     return (
         <div className='payDiv'>
@@ -87,7 +91,11 @@ const ProjectPay = () => {
                         <hr className='payHr' />
                         <br />
                         <div>
-                            {userId}
+                            {userName}
+                            <br />
+                            {userAddr}
+                            <br />
+                            {userPhoneNum}
                         </div>
                     </div>
                 </div>
