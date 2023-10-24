@@ -51,7 +51,7 @@ const ProjectPay = () => {
             }
         }
         else {
-            alert("결제 페이지 이동 예정")
+            alert("메인 페이지 이동 예정")
             // 결제 로직 실행
         }
     };
@@ -60,7 +60,7 @@ const ProjectPay = () => {
         <div className='payDiv'>
             <br />
             <div className='payList'>
-                <div className='a'>
+                <div className='payInfoDiv'>
                     <div className='payHeader'>
                         결제 정보
                     </div>
@@ -148,8 +148,13 @@ const ProjectPay = () => {
                             </table>
                         </div>
                     </div>
+                    <div className='payType'>
+                        <div className='payTypeHeader'>결제 수단</div>
+                        <hr className='payHr' />
+                        <br />
+                    </div>
                 </div>
-                <div className='b'>
+                <div className='payCheckDiv'>
                     <div className='payHeader2'>
                         결제확인
                     </div>
