@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddr } from '../../../../redux/reducer/userAddrActions';
 import '../../../../css/MemberService/AddressSearch.css';
 
-function AddressSearch() {
+function AddressSearch({ userProfileUserAddr }) {
   const dispatch = useDispatch();
-  const userAddr = useSelector((state)=>state.userAddr.userAddr);
+  let userAddr = useSelector((state)=>state.userAddr.userAddr);
+  if(userProfileUserAddr !== undefined){
+    userAddr = userProfileUserAddr
+  }
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [userAddress, setUserAddress] = useState(userAddr);
   const [detailedAddress, setDetailedAddress] = useState(''); // 상세 주소 입력

@@ -17,6 +17,7 @@ export default function ProjectCard({
   MypageDivClass,
   MypageDivContent,
   cancelPay,
+  cancelLike,
 }) {
   return (
     <div className='project-card'>
@@ -30,6 +31,7 @@ export default function ProjectCard({
         MypageImageClass={MypageImageClass}
         MypageDivClass={MypageDivClass}
         MypageDivContent={MypageDivContent}
+        cancelLike={cancelLike}
       />
       <h5 className='pc-title'>{title}</h5>
       <span className='pc-location'>{location}</span>
