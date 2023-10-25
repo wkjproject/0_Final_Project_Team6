@@ -38,7 +38,7 @@ export const Kakao = () => {
   padding: '10px 20px', /* 내부 여백 */
   border: 'none', /* 테두리 제거 */
   cursor: 'pointer', /* 커서 스타일 */
-  borderRadius: '10px', /* 둥근 모서리 */
+  borderRadius: '5px', /* 둥근 모서리 */
   boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.1)'}} token={kakaoClientId} onSuccess={kakaoSuccess} onFail={kakaoFail} />
     </div>
   )
