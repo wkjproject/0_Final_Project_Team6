@@ -18,7 +18,6 @@ export default function Header() {
           <img src='/img/logo.png' alt='로고' />
         </Link>
       </div>
-      <hr />
 
       {/* 네비게이션 바 */}
       <div className='navbar'>
@@ -45,7 +44,7 @@ export default function Header() {
             isAdmin ? (
               // 관리자로 로그인한 경우
               <>
-                <button>
+                <button className='navButton'>
                   {' '}
                   <NavLink to='/manageProj'>프로젝트 관리</NavLink>
                 </button>
@@ -58,7 +57,7 @@ export default function Header() {
             ) : (
               // 일반 사용자로 로그인한 경우
               <>
-                <button>
+                <button className='navButton'>
                   {' '}
                   <NavLink to='/createProj'>프로젝트 만들기</NavLink>
                 </button>
@@ -84,7 +83,6 @@ export default function Header() {
           )}
         </ul>
       </div>
-      <hr />
 
       {/* 검색창 */}
       <div className='searchBox'>
@@ -96,7 +94,7 @@ export default function Header() {
           />
         </Link>
       </div>
-      <hr />
+    
     </header>
   );
 }

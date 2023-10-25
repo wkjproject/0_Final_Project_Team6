@@ -1,4 +1,4 @@
-button:disabled {
+.form button:disabled {
   border: 1px solid #ffdfaf;
   background-color: #ffddab;
   color: white;
@@ -7,7 +7,7 @@ button:disabled {
   width: 150px;
 }
 
-button {
+.form button {
   border: 1px solid #fe9a00;
   background-color: #fe9a00;
 
@@ -17,7 +17,7 @@ button {
   width: 150px;
 }
 
-input::placeholder {
+.form input::placeholder {
   text-align: center;
 }
 
