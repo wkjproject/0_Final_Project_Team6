@@ -406,3 +406,7 @@
 .payAgree3 {
     margin-bottom: 20px;
 }
+
+body.modal-open {
+    overflow: hidden;
+}
