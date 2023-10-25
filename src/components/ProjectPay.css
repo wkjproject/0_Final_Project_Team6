@@ -136,14 +136,22 @@
 
 
 /* 결제 확인 영역 */
+.payCheckDiv {
+    width: 500px;
+    margin-left: 20px;
+}
+
 .payCheck {
     width: 500px;
     border: 1px solid rgba(30, 30, 30, 0.2);
     border-radius: 5px;
-    margin-left: 20px;
-    height: 600px;
-    padding-left: 20px;
-    padding-top: 20px;
+    height: 400px;
+}
+
+.payCheckArea {
+    width: 460px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .payCheck-label1 {
@@ -356,29 +364,31 @@
 }
 
 .agreeBtn1 {
-    font-size: 13px;
+    font-size: 20px;
     background: #fff;
     border: none;
     cursor: pointer;
     color: black;
     width: 20px;
     height: 20px;
-    margin-right: 20px;
+    font-weight: bold;
+    opacity: 0.3;
 }
 
 .agreeBtn2 {
-    font-size: 13px;
+    font-size: 20px;
     background: #fff;
     border: none;
     cursor: pointer;
     color: black;
     width: 20px;
     height: 20px;
-    margin-right: 20px;
+    font-weight: bold;
+    opacity: 0.3;
 }
 
 .agreeBtn3 {
-    font-size: 13px;
+    font-size: 20px;
     background: #fff;
     border: none;
     cursor: pointer;
@@ -387,7 +397,8 @@
     height: 20px;
     margin-left: auto;
     margin-bottom: 4px;
-    margin-right: 20px;
+    font-weight: bold;
+    opacity: 0.3;
 }
 
 .payAgree1 {
@@ -405,4 +416,9 @@
 
 body.modal-open {
     overflow: hidden;
+}
+
+.payComfirmBtn {
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px gray;
 }
