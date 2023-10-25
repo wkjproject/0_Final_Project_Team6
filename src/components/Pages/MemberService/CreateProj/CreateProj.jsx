@@ -7,6 +7,7 @@ import Endpoint from "../../../../config/Endpoint";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setProjForm } from "../../../../redux/reducer/createProj";
+import { height } from "@mui/system";
 
 const CreateProj = () => {
   const [state, setState] = useState({
@@ -140,15 +141,16 @@ const CreateProj = () => {
   const endpoint = Endpoint();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-    // 리덕스의 userId 가져오기
-    const userName = useSelector((state) => state.auth.auth.userName)
+  
+  // 리덕스의 userId 가져오기
+  const userName = useSelector((state) => state.auth.auth.userName)
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Submitted Data:", state);
-  // };
+  const handler = (e) => {
+    e.preventDefault();
+  };
+
   // 서밋 버튼을 누르면 state 내용이 넘어감...?
-  const submit = async (evt) =>{
+  const handleSubmit = async (evt) =>{
     evt.preventDefault();
     try{
       const projData = state;
@@ -171,11 +173,11 @@ const CreateProj = () => {
   return (
     <div>
       <div className="form">
-        <p>
+        <p style={{lineHeight:'30px'}}>
           {userName}님, 반가워요! <br /> 프로젝트가 성공할 수 있도록 <b>WW</b>가
           함께할게요.
         </p>
-        <form onSubmit={submit}>
+        <form onSubmit={handler}>
           <div className="createform">
             <h3>프로젝트 카테고리</h3>
             <select
@@ -351,31 +353,33 @@ const CreateProj = () => {
 
           <div className="rule">
             <h3>심사기준</h3>
-            <div className="rule-detail">
+            <div className="rule-detail yes">
               <h4>O</h4>
               <ul>
-                <li>기존에 없던 새로운 시도</li>
-                <li>기존에 없던 작품, 제품, 디지털 콘텐츠, 활동, 행사</li>
+                <li>· 기존에 없던 새로운 시도</li>
+                <li>· 기존에 없던 작품, 디지털 콘텐츠, 활동, 행사</li>
                 <li>
-                  창작자의 이전 제품 및 콘텐츠는 <br />
+                · 창작자의 이전 제품 및 콘텐츠는 <br />
                   새로운 선물에 부수적으로 제공 가능
                 </li>
               </ul>
             </div>
-            <div className="rule-detail">
+            <div className="rule-detail no">
               <h4>X</h4>
               <ul>
-                <li>기존 상품·콘텐츠의 판매 및 홍보</li>
-                <li>시중에 판매 및 유통되었던 제품·콘텐츠 제공</li>
-                <li>추첨을 통해서만 제공되는 선물</li>
-                <li>무기, 군용장비, 라이터 등 위험 품목</li>
+                <li>· 기존 상품·콘텐츠의 판매 및 홍보</li>
+                <li>· 시중에 판매 및 유통되었던 제품·콘텐츠 제공</li>
+                <li>· 추첨을 통해서만 제공되는 선물</li>
+                <li>· 무기, 군용장비, 라이터 등 위험 품목</li>
               </ul>
             </div>
           </div>
           <hr></hr>
           <button
+            name="submit"
             type="submit"
             className="submit"
+            onClick={handleSubmit}
             disabled={!isButtonEnabled()}
           >
             심사 등록하기

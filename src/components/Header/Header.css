@@ -30,7 +30,7 @@
 .header-container .logo {
   grid-area: box1;
   margin-left: 30px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .header-container .logo img {
@@ -46,7 +46,7 @@
 
 .navbar ul {
   list-style: none;
-  margin-top: 80px;
+  margin-top: 78px;
   padding: 0;
   text-align: left;
 }
@@ -95,12 +95,16 @@
 }
 
 .navButton {
+  margin-top: -5px;
   text-align: center;
   vertical-align: middle;
   font-size: 18px;
   margin-right: 20px;
   height: 40px;
   width: 160px;
+  background-color: #FE9A00;
+  border: 0;
+  border-radius: 5px;
 }
 
 .navButton a:link,
