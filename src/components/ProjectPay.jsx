@@ -13,7 +13,7 @@ const ProjectPay = () => {
     const selectedRewards = location.state.data;
     const projectInfo = location2.state.data2;
     const rewardsArray = selectedRewards;
-    console.log(location);
+    //console.log(location);
 
     // 숫자를 세 자리마다 쉼표(,)를 추가하는 함수
     function addCommasToNumber(number) {
@@ -201,86 +201,88 @@ const ProjectPay = () => {
                         결제확인
                     </div>
                     <div className='payCheck'>
-                        <table>
-                            <tr>
-                                <td>상품금액</td>
-                                <td>:</td>
-                                <td>{addCommasToNumber(totalAmount)}원</td>
-                            </tr>
-                            <tr>
-                                <td>할인 금액</td>
-                                <td>:</td>
-                                <td>0원</td>
-                            </tr>
-                            <tr>
-                                <td>총 결제 금액</td>
-                                <td>:</td>
-                                <td>{addCommasToNumber(totalAmount)}원</td>
-                            </tr>
-                        </table>
-                        <div>
-                            <div className='payAgree1'>
-                                <label className='payCheck-label1'>
-                                    <input type="checkbox" checked={isChecked1} onChange={handleCheckboxChange1} />
-                                    <div className="payCheck-checkbox1"></div>
-                                    <div className='agreeText1'>
-                                        결제 진행 필수 동의
-                                    </div>
-                                </label>
-                            </div>
-                            <div className='payAgree2'>
-                                <label className='payCheck-label2'>
-                                    <input type="checkbox" checked={isChecked2} onChange={() => setChecked2(!isChecked2)} />
-                                    <div className="payCheck-checkbox2"></div>
-                                    <div className='agreeText2'>
-                                        구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
-                                    </div>
-                                </label>
+                        <div className='payCheckArea'>
+                            <table>
+                                <tr>
+                                    <td>상품금액</td>
+                                    <td>:</td>
+                                    <td>{addCommasToNumber(totalAmount)}원</td>
+                                </tr>
+                                <tr>
+                                    <td>할인 금액</td>
+                                    <td>:</td>
+                                    <td>0원</td>
+                                </tr>
+                                <tr>
+                                    <td>총 결제 금액</td>
+                                    <td>:</td>
+                                    <td>{addCommasToNumber(totalAmount)}원</td>
+                                </tr>
+                            </table>
+                            <div>
+                                <div className='payAgree1'>
+                                    <label className='payCheck-label1'>
+                                        <input type="checkbox" checked={isChecked1} onChange={handleCheckboxChange1} />
+                                        <div className="payCheck-checkbox1"></div>
+                                        <div className='agreeText1'>
+                                            결제 진행 필수 동의
+                                        </div>
+                                    </label>
+                                </div>
+                                <div className='payAgree2'>
+                                    <label className='payCheck-label2'>
+                                        <input type="checkbox" checked={isChecked2} onChange={() => setChecked2(!isChecked2)} />
+                                        <div className="payCheck-checkbox2"></div>
+                                        <div className='agreeText2'>
+                                            구매조건, 결제 진행 및 결제 대행 서비스 동의(필수)
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <ul className='payAgreeList'>
+                                        <li>
+                                            <td className='payAgreeTd1'>
+                                                전자금융거래 이용약관
+                                            </td>
+                                            <td>
+                                                <button className='agreeBtn1' onClick={showModal1}>
+                                                    &#5171;
+                                                </button>
+                                            </td>
+                                        </li>
+
+                                        <li>
+                                            <td className='payAgreeTd2'>
+                                                개인정보 제3자 제공 동의
+                                            </td>
+                                            <td>
+                                                <button className='agreeBtn2' onClick={showModal2}>
+                                                    &#5171;
+                                                </button>
+                                            </td>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className='payAgree3'>
+                                    <label className='payCheck-label3'>
+                                        <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
+                                        <div className="payCheck-checkbox3"></div>
+                                        <div className='agreeText3'>
+                                            개인정보 제3자 제공 동의(필수)
+                                        </div>
+                                        <div>
+                                            <button className='agreeBtn3' onClick={showModal3}>
+                                                &#5171;
+                                            </button>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                             <div>
-                                <ul className='payAgreeList'>
-                                    <li>
-                                        <td className='payAgreeTd1'>
-                                            전자금융거래 이용약관
-                                        </td>
-                                        <td>
-                                            <button className='agreeBtn1' onClick={showModal1}>
-                                                &#5171;
-                                            </button>
-                                        </td>
-                                    </li>
-
-                                    <li>
-                                        <td className='payAgreeTd2'>
-                                            개인정보 제3자 제공 동의
-                                        </td>
-                                        <td>
-                                            <button className='agreeBtn2' onClick={showModal2}>
-                                                &#5171;
-                                            </button>
-                                        </td>
-                                    </li>
-                                </ul>
+                                <button onClick={handlePayment} className='payComfirmBtn'>
+                                    {addCommasToNumber(totalAmount)}원 결제하기
+                                </button>
                             </div>
-                            <div className='payAgree3'>
-                                <label className='payCheck-label3'>
-                                    <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
-                                    <div className="payCheck-checkbox3"></div>
-                                    <div className='agreeText3'>
-                                        개인정보 제3자 제공 동의(필수)
-                                    </div>
-                                    <div>
-                                        <button className='agreeBtn3' onClick={showModal3}>
-                                            &#5171;
-                                        </button>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div>
-                            <button onClick={handlePayment}>
-                                {addCommasToNumber(totalAmount)}원 결제하기
-                            </button>
                         </div>
                     </div>
                 </div>
