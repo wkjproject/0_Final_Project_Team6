@@ -13,11 +13,7 @@
 
 .header-container a:hover {
   font-weight: #1e1e1e;
-  color: navy;
-}
-
-.header-container .active {
-  background-color: rgb(241, 238, 238);
+  color: #FE9A00;
 }
 
 .header-container {
@@ -26,13 +22,15 @@
   grid-template-areas:
     'box1 box2 box3'
     'box1 box2 box4';
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--Brightgary);
 }
 
 /* ===== 로고 ===== */
 .header-container .logo {
   grid-area: box1;
   margin-left: 30px;
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .header-container .logo img {
@@ -48,7 +46,7 @@
 
 .navbar ul {
   list-style: none;
-  margin-top: 60px;
+  margin-top: 78px;
   padding: 0;
   text-align: left;
 }
@@ -69,6 +67,7 @@
 
 /* ===== 로그인 & 회원가입 ===== */
 .login-signup {
+  width: 450px;
   margin-top: 20px;
   grid-area: box3;
 }
@@ -81,7 +80,7 @@
 
 .login-signup li {
   display: inline;
-  font-size: 20px;
+  font-size: 18px;
   margin-right: 10px;
 }
 
@@ -92,7 +91,26 @@
 
 .login-signup li:hover {
   cursor: pointer;
-  color: rgb(12, 0, 127);
+  color: #FE9A00;
+}
+
+.navButton {
+  margin-top: -5px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  margin-right: 20px;
+  height: 40px;
+  width: 160px;
+  background-color: #FE9A00;
+  border: 0;
+  border-radius: 5px;
+}
+
+.navButton a:link,
+.navButton a:hover,
+.navButton a:visited {
+  color: white;
 }
 
 /* ===== 검색창 ===== */
@@ -100,8 +118,8 @@
   grid-area: box4;
   position: relative;
   width: 400px;
-  margin-left: auto;
-  margin-right: 30px;
+  margin-left: 30px;
+  margin-right: 0px;
 }
 
 .searchBox input {
