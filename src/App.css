@@ -13,7 +13,7 @@
 }
 
 @font-face {
-	font-family: 'GmarketSans';
+	font-family: 'GmarketSansMiddle';
 	font-weight: 500;
 	font-style: normal;
 	src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
@@ -45,23 +45,23 @@
 
 /* ===== Reset 및 공통 스타일 ===== */
 * {
-	font-family: 'GmarketSans';
+	font-family: 'GmarketSansMiddle';
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-:root{
+:root {
 	--Black: #1e1e1e;
 	--Darkgray: #606060;
-	--Middlegray:#8F8F8F;
-	--Lightgray:#AAAAAA;
-	--Brightgary:#CECCCD;
-/* 버튼 OR 메인컬러 */
+	--Middlegray: #8F8F8F;
+	--Lightgray: #AAAAAA;
+	--Brightgary: #CECCCD;
+	/* 버튼 OR 메인컬러 */
 	--ButtonHover: #FFC976;
-	--ButtonDefault:#FE9A00;
-	--ButtonPressed:#FF7301;
-/* 텍스트 사이즈 */
+	--ButtonDefault: #FE9A00;
+	--ButtonPressed: #FF7301;
+	/* 텍스트 사이즈 */
 	--TextLarge: 28px;
 	--TextMidium: 18px;
 	--TextSmall: 14px;
