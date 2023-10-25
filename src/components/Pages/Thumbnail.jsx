@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 export default function Thumbnail({
   projId,
+  projName,
   image,
   isNew,
   projStatus,
@@ -14,6 +15,7 @@ export default function Thumbnail({
   MypageImageClass,
   MypageDivClass,
   MypageDivContent,
+  cancelLike,
 }) {
   const navigate = useNavigate();
 
@@ -23,8 +25,10 @@ export default function Thumbnail({
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
   const day = ('0' + date.getDate()).slice(-2);
   const today = `${year}-${month}-${day}`;
+  // console.log(`Thumbnail: ${projId} => ${projName}`);
   // console.log('시작일 < 오늘', sday < today);
   // console.log('시작일 > 오늘', sday > today);
+  // console.log(`오늘: ${today}, 시작일: ${sday}`);
 
   /* ----- 리덕스의 userId, isAdmin. isLogin 가져오기 ----- */
   const userId = useSelector((state) => state.auth.auth['_id']); // 로그인한 userID
@@ -59,7 +63,9 @@ export default function Thumbnail({
   return (
     <div
       className={`thumbnail ${
-        MypageDivClass === 'fundingProjectImgX' ? 'fundingProjectImgX' : ''
+        MypageDivClass && MypageDivClass === 'fundingProjectImgX'
+          ? 'fundingProjectImgX'
+          : ''
       }`}
       onClick={openProjDetails}
     >
@@ -70,10 +76,24 @@ export default function Thumbnail({
             ? 'fundingProjectTextWait'
             : MypageDivClass === 'fundingProjectTextConfirm'
             ? 'fundingProjectTextConfirm'
+            : MypageDivClass === 'LikeProjectImg'
+            ? 'LikeProjectImg'
             : ''
         }
       >
-        {MypageDivContent}
+        {MypageDivClass === 'LikeProjectImg' ? (
+          <button
+            className='LikeProjectButton'
+            onClick={(evt) => {
+              cancelLike(evt);
+              evt.stopPropagation(); // 이벤트 전파 중단
+            }}
+          >
+            {MypageDivContent}
+          </button>
+        ) : (
+          MypageDivContent
+        )}
       </div>
       {isNew && <span className='new-tag'>new</span>}
     </div>

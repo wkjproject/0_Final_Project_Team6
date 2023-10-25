@@ -7,7 +7,7 @@ import { useLocation } from 'react-router';
 function ProjectData2() {
     const location = useLocation();
     const { _id } = location.state || {};
-
+    
     const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
 
     if (!projectData) {
@@ -22,7 +22,8 @@ function ProjectData2() {
     }
 
     const { projName, projMainImgPath, projIntro } = selectedProject;
-
+    // 현재 _id(proj_id)값과 리덕스의 userId값이 일치하면 펀딩현황을 보여주도록
+    
     return (
         <div>
             <h1 className='titlealign'>{projName}</h1>
