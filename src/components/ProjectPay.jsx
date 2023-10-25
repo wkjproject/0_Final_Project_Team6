@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ProjectPay.css';
 import { useSelector } from 'react-redux';
+import Modal1 from './AgreeModal/Modal1'
+import Modal2 from './AgreeModal/Modal2'
+import Modal3 from './AgreeModal/Modal3'
 
 const ProjectPay = () => {
     const location = useLocation();
@@ -56,6 +59,37 @@ const ProjectPay = () => {
         }
     };
 
+    const [modalOpen1, setModalOpen1] = useState(false);
+    const [modalOpen2, setModalOpen2] = useState(false);
+    const [modalOpen3, setModalOpen3] = useState(false);
+
+    // 모달창 노출
+    const showModal1 = () => {
+        setModalOpen1(true);
+        // 스크롤 비활성화
+        document.body.classList.add('modal-open');
+    };
+    // 모달창 노출
+    const showModal2 = () => {
+        setModalOpen2(true);
+        // 스크롤 비활성화
+        document.body.classList.add('modal-open');
+    };
+    // 모달창 노출
+    const showModal3 = () => {
+        setModalOpen3(true);
+        // 스크롤 비활성화
+        document.body.classList.add('modal-open');
+    };
+
+    // 모달창 닫기
+    const closeModal = () => {
+        setModalOpen1(false);
+        setModalOpen2(false);
+        setModalOpen3(false);
+        // 스크롤 활성화
+        document.body.classList.remove('modal-open');
+    };
 
     return (
         <div className='payDiv'>
@@ -198,7 +232,7 @@ const ProjectPay = () => {
                             </div>
                             <div>
                                 <ul className='payAgreeList'>
-                                    <li>
+                                    <li onClick={showModal1}>
                                         <td className='payAgreeTd1'>
                                             전자금융거래 이용약관
                                         </td>
@@ -208,7 +242,8 @@ const ProjectPay = () => {
                                             </button>
                                         </td>
                                     </li>
-                                    <li>
+
+                                    <li onClick={showModal2}>
                                         <td className='payAgreeTd2'>
                                             개인정보 제3자 제공 동의
                                         </td>
@@ -224,11 +259,11 @@ const ProjectPay = () => {
                                 <label className='payCheck-label3'>
                                     <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
                                     <div className="payCheck-checkbox3"></div>
-                                    <div className='agreeText3'>
+                                    <div className='agreeText3' onClick={showModal3}>
                                         개인정보 제3자 제공 동의(필수)
                                     </div>
                                     <div>
-                                        <button className='agreeBtn3'>
+                                        <button className='agreeBtn3' onClick={showModal3}>
                                             &#5171;
                                         </button>
                                     </div>
@@ -243,6 +278,9 @@ const ProjectPay = () => {
                     </div>
                 </div>
             </div>
+            {modalOpen1 && <Modal1 setModalOpen={closeModal} />}
+            {modalOpen2 && <Modal2 setModalOpen={closeModal} />}
+            {modalOpen3 && <Modal3 setModalOpen={closeModal} />}
         </div >
     );
 };
