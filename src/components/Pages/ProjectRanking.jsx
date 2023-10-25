@@ -44,6 +44,8 @@ export default function ProjectRanking() {
       : res;
   });
 
+  const ranking = filteredProjects.slice(0, 5); // 상위 5개만 표시
+
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
     return <p>❄️</p>;
   }
@@ -53,8 +55,9 @@ export default function ProjectRanking() {
       <div className='project-ranking-list'>
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {filteredProjects.length > 0 &&
-          filteredProjects.map((proj, index) => (
+        <h3 className='ranking-title'> 실시간 순위 </h3>
+        {ranking.length > 0 &&
+          ranking.map((proj, index) => (
             <ProjectRankingCard
               key={proj.proj_id + proj.projName}
               projLike={proj.projLike}
