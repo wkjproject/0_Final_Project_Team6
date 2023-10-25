@@ -1,20 +1,26 @@
 import React, { useState } from "react";
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import EditorBox from "./EditorBox";
 import "./CreateProj.css";
+import Endpoint from "../../../../config/Endpoint";
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setProjForm } from "../../../../redux/reducer/createProj";
 
 const CreateProj = () => {
   const [state, setState] = useState({
-    category: "",
-    region: "",
-    title: "",
+    projTag: "0",
+    projRegion: "0",
+    projName: "",
     selectedImage: null,
     imageUrl: "",
     projDesc: "",
     projFundStartDate: "",
-    projFundEndDatee: "",
+    projFundEndDate: "",
     projReward: [{ time: "", price: "", amount: "" }],
     goalAmount: "",
-    projRegion: "",
+    projPlace: "",
     checkbox1Checked: false,
     checkbox2Checked: false,
   });
@@ -56,22 +62,17 @@ const CreateProj = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted Data:", state);
-  };
-
   const handleStartDateChange = (e) => {
     setState((prevState) => ({
       ...prevState,
-      startDate: e.target.value,
+      projFundStartDate: e.target.value,
     }));
   };
 
   const handleEndDateChange = (e) => {
     setState((prevState) => ({
       ...prevState,
-      endDate: e.target.value,
+      projFundEndDate: e.target.value,
     }));
   };
 
@@ -134,41 +135,71 @@ const CreateProj = () => {
     // 두 개의 체크박스가 모두 체크되었을 때만 버튼이 활성화됨
     return checkbox1Checked && checkbox2Checked;
   };
+
   const { imageUrl, goalAmount, projReward } = state;
+  const endpoint = Endpoint();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+    // 리덕스의 userId 가져오기
+    const userName = useSelector((state) => state.auth.auth.userName)
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Submitted Data:", state);
+  // };
+  // 서밋 버튼을 누르면 state 내용이 넘어감...?
+  const submit = async (evt) =>{
+    evt.preventDefault();
+    try{
+      const projData = state;
+      await axios.post(`${endpoint}/createProj`,{
+        projData
+      }).then((res)=>{
+        console.log(state);
+        if(res.data.createProjSuccess){
+          dispatch(setProjForm(res.data.state));  
+          alert('심사 등록 완료!');
+          navigate('/home');
+        }
+      })
+    }
+    catch(e){
+      alert('등록을 실패하였습니다.');
+    }
+  };
 
   return (
     <div>
       <div className="form">
         <p>
-          000님, 반가워요! <br /> 프로젝트가 성공할 수 있도록 <b>WW</b>가
+          {userName}님, 반가워요! <br /> 프로젝트가 성공할 수 있도록 <b>WW</b>가
           함께할게요.
         </p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submit}>
           <div className="createform">
             <h3>프로젝트 카테고리</h3>
             <select
-              name="category"
-              value={state.category}
+              name="projTag"
+              value={state.projTag}
               onChange={handleInputChange}
             >
-              <option value="모임/커뮤니티">모임/커뮤니티</option>
-              <option value="관광/투어">관광/투어</option>
-              <option value="강연/세미나">강연/세미나</option>
+              <option value="0">모임/커뮤니티</option>
+              <option value="1">관광/투어</option>
+              <option value="2">강연/세미나</option>
             </select>
             <select
-              name="region"
-              value={state.region}
+              name="projRegion"
+              value={state.projRegion}
               onChange={handleInputChange}
               className="selectRegion"
             >
-              <option value="전체">전체</option>
-              <option value="서울/경기/인천">서울/경기/인천</option>
-              <option value="부산/울산/경남">부산/울산/경남</option>
-              <option value="대구/경북">대구/경북</option>
-              <option value="충청/대전/세종">충청/대전/세종</option>
-              <option value="전라/광주">전라/광주</option>
-              <option value="강원도">강원도</option>
-              <option value="제주도">제주도</option>
+              <option value="0">서울/경기/인천</option>
+              <option value="1">부산/울산/경남</option>
+              <option value="2">대구/경북</option>
+              <option value="3">충청/대전/세종</option>
+              <option value="4">전라/광주</option>
+              <option value="5">강원도</option>
+              <option value="6">제주도</option>
             </select>
           </div>
 
@@ -177,8 +208,8 @@ const CreateProj = () => {
             <input
               placeholder="제목을 입력해주세요! (최대 60자)"
               type="text"
-              name="title"
-              value={state.title}
+              name="projName"
+              value={state.projName}
               onChange={handleInputChange}
               maxLength="60"
               className="inputBox"
@@ -195,7 +226,7 @@ const CreateProj = () => {
             <EditorBox
               value={state.projDesc}
               onChange={(value) =>
-                handleEditorChange({ name: "description", value })
+                handleEditorChange({ name: "projDesc", value })
               }
               className="editorbox"
             />
@@ -215,9 +246,10 @@ const CreateProj = () => {
           <div className="createform">
             <h3>펀딩 위치</h3>
             <input
+              name="projPlace"
               type="text"
               placeholder="펀딩 위치"
-              value={state.projRegion}
+              value={state.projPlace}
               onChange={handleInputChange}
               className="inputBox"
             />
