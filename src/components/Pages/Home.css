@@ -171,3 +171,7 @@
   background-color: transparent;
   font-size: 0.6rem;
 }
+
+.silde-img {
+  cursor: pointer;
+}
