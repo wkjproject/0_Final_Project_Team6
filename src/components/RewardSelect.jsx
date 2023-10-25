@@ -251,7 +251,7 @@ const RewardSelect = () => {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-        {projStatus == 1 ? (
+        {projStatus === '1' ? (
           <div>
             <button className='fundingBtn' onClick={handleApplyClick}>신청하기</button>
             <div className='button-group'>
@@ -259,7 +259,7 @@ const RewardSelect = () => {
                 className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
                 onClick={toggleHeart}
               >
-                {heartClicked ? '❤️' : '🤍'} {heartClicked ? clickedCount : '0'}
+                {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : 0}
               </button>
               <button className='shareBtn' style={{ marginLeft: '20px' }}>
                 공유하기
@@ -269,7 +269,7 @@ const RewardSelect = () => {
             {/* 관리자 or 리덕스 userId 와 _id가 일치할때 펀딩현황, 수정 버튼 보이도록 */}
             {isAdmin || _id === userId ? (<div><button className='fundStatus' onClick={moveFundingStatus}>펀딩현황</button><button>수정</button></div>):('')}
           </div>
-        ) : projStatus == 2 ? (
+        ) : projStatus === '2' ? (
           <div className='closed-project-message'>
             마감된 프로젝트입니다.
           </div>

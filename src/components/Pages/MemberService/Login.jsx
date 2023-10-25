@@ -4,7 +4,10 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Kakao } from './SocialLogin/Kakao';
 import { setUserName } from '../../../redux/reducer/userNameActions';
-import {MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort} from '../../../css/MemberService/MemberShipCss'
+import { setUserAddr } from '../../../redux/reducer/userAddrActions';
+import { setUserPhoneNum } from '../../../redux/reducer/userPhoneNumActions';
+import { setUserMail } from '../../../redux/reducer/userMailActions';
+import { MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort } from '../../../css/MemberService/MemberShipCss'
 import Endpoint from '../../../config/Endpoint';
 
 export const Login = () => {
@@ -37,7 +40,7 @@ export const Login = () => {
         // 이 페이지에서 14~15번째 줄에 선언한 변수인 userMail, userPassword를 post로 nodejs에 보내는거에요.
         userMail,
         userPassword,
-      }).then((res)=> {
+      }).then((res) => {
         // 리덕스에 userName 저장해요. 
         // axios로 받은 응답데이터는 항상 then((인자)) 인자.data로 와요. 여기서는 제가 res로 썼기때문에 res.data로 와요.
         // res.data.userName에서 userName부분은 server.mjs 43줄에 보시면 userName: userFind.userName 을 가져오는 부분이에요.
@@ -46,9 +49,12 @@ export const Login = () => {
         // userNameAction 에서 받은 데이터는 src/redux/reducer/userNameReducer.js 에서 case 'SET_USERNAME': 부분으로 넘어가게돼요
         // userNameAction 에서 정의한 type: 'SET_USERNAME', 이 부분의 SET_USERNAME과 userNameReducer 의 case 'SET_USERNAME' 의 SET_USERNAME이 같은쪽으로 넘어가는거에요
         // 리듀서는 redux/store.js 에 다 저장되어서 하나로 관리되고있어요.
-        if(res.data.loginSuccess){
+        if (res.data.loginSuccess) {
           // 리덕스에 userName 저장
           dispatch(setUserName(res.data.userName));
+          dispatch(setUserAddr(res.data.userAddr));
+          dispatch(setUserPhoneNum(res.data.userPhoneNum));
+          dispatch(setUserMail(res.data.userMail));
           //로컬스토리지 x_auth에 토큰 저장
           localStorage.setItem('x_auth', res.data.token);
           if (location.state && location.state.from) {
@@ -57,34 +63,34 @@ export const Login = () => {
             navigate('/home');
           }
         }
-        if(!res.data.loginSuccess){
+        if (!res.data.loginSuccess) {
           alert(res.data.message);
         }
 
       })
     }
-    catch(e){
+    catch (e) {
       console.log(e)
     }
   }
-  return (    
-      <MemberShipContainer>
+  return (
+    <MemberShipContainer>
       <MemberShipDivCenter>
-      <h2>로그인</h2>
-      <br />
-      <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력" onKeyPress={handleKeyPress}></MemberShipInput>
-      <br />
-      <br />
-      <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력" onKeyPress={handleKeyPress} ></MemberShipInput>
-      <br />
-      <p style={{position: 'relative',top: '5px',left: '70px',color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
-      <br />
-      <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
-      <br />
-      <Kakao />
-      <br />
-      <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
+        <h2>로그인</h2>
+        <br />
+        <MemberShipInput type="text" ref={userMailRef} placeholder="이메일 입력" onKeyPress={handleKeyPress}></MemberShipInput>
+        <br />
+        <br />
+        <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력" onKeyPress={handleKeyPress} ></MemberShipInput>
+        <br />
+        <p style={{ position: 'relative', top: '5px', left: '70px', color: 'var(--Darkgray)' }} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
+        <br />
+        <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
+        <br />
+        <Kakao />
+        <br />
+        <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
       </MemberShipDivCenter>
-      </MemberShipContainer>
+    </MemberShipContainer>
   )
-  }
+}

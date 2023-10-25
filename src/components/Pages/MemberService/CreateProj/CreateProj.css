@@ -6,17 +6,21 @@ button:disabled {
   height: 50px;
   width: 150px;
 }
+
 button {
   border: 1px solid #fe9a00;
   background-color: #fe9a00;
+
   color: white;
   border-radius: 8px;
   height: 50px;
   width: 150px;
 }
+
 input::placeholder {
   text-align: center;
 }
+
 .form p {
   margin: 50px;
   text-align: center;
@@ -25,6 +29,7 @@ input::placeholder {
 .form b {
   color: #fe9a00;
 }
+
 .checkbefore {
   margin: 50px;
   text-align: center;
@@ -35,6 +40,7 @@ input::placeholder {
   margin: 0 auto;
   position: relative;
 }
+
 .createform {
   font-weight: 300;
   display: flex;
@@ -43,21 +49,26 @@ input::placeholder {
   align-items: center;
   margin-bottom: 30px;
 }
+
 .createform h3 {
   padding: 10px;
   width: 250px;
   text-align: right;
   margin-right: 50px;
 }
+
 .createform select {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
   height: 30px;
   width: 200px;
 }
+
 .createform .selectRegion {
   margin-left: 30px;
 }
+
+
 .createform .inputBox {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
@@ -91,12 +102,14 @@ input::placeholder {
   width: 200px;
   margin-bottom: 10px;
 }
+
 .createform .rewardsinput2 {
   border: 1px solid #8f8f8f;
   border-radius: 8px;
   height: 30px;
   margin-left: 30px;
 }
+
 .createform .rewardsButton {
   margin-left: 10px;
   height: 30px;
@@ -110,15 +123,23 @@ input::placeholder {
   overflow: hidden;
   justify-content: center;
 }
+
 .checkbox p {
   margin: 0px;
 }
+
 .checkbox2 {
   margin-bottom: 0px;
 }
+
 .checkbox p,
 .checkbox2 p {
   margin-left: 20px;
+}
+
+.warnmessage {
+  text-align: center;
+  margin: 50px;
 }
 
 /* 세부사항 */
@@ -144,6 +165,8 @@ input::placeholder {
   text-align: left;
   width: 50%;
 }
+
+
 .rule-detail h4 {
   margin-bottom: 30px;
   text-align: center;
