@@ -1,10 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: var(--Black);
-}
-
 /* 공통 폰트 */
 .sub-text {
   font-size: var(--TextMidium);
@@ -28,11 +21,15 @@
 /* ===== 1. Intro ===== */
 
 .intro {
+  background-image: url('../../../public/img/landing_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat; /* 배경 이미지 반복 금지 */
+  height: 940px;
   display: grid;
   place-items: center;
   grid-template-columns: 5fr 3fr;
   grid-template-areas: 	"box1 box2";
-  margin-bottom: 400px;
+  overflow: hidden;
 }
 
 .intro-text-section {
@@ -70,7 +67,7 @@
 .go-button {
   display: inline-block;
   padding: 18px 30px 8px 30px;
-  background-color: #ff9a00;
+  background-color: var(--ButtonDefault);
   color: #fff;
   border: none;
   border-radius: 0 0 30px 30px;
@@ -78,6 +75,7 @@
   text-align: center;
   text-decoration: none;
   font-size: 30px;
+  line-height: 15px;
   letter-spacing: 5px;
   font-family: 'yg-jalnan';
   font-weight: normal;
@@ -89,37 +87,63 @@
 }
 
 .go-button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
-  background-color: #ffc976;
+  background-color: var(--ButtonHover);
 }
 
 .go-button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
-  background-color: #ff7301;
+  background-color: var(--ButtonPressed);
 }
 
 /* ===== 2. About Us ===== */
 .about {
+  background-color: rgba(250, 245, 238, 0.6);
   display: grid;
   place-items: center;
   grid-template-columns: 4fr 5fr;
   grid-template-areas: 	"box1 box2";
-  margin-bottom: 400px;
+  padding-top: 300px;
+  padding-bottom: 300px;
 }
 
-.about-image-section {grid-area: box1;}
+.about-image-section {
+  grid-area: box1;
+}
+
 .about-image-section img {
-  width: 350px;
+  width: 800px;
   height: auto;
-  margin-left: 50px;
+  margin-left: 0px;
 }
 .about-text-section {
   grid-area: box2;
-  padding-right: 100px;
+  padding-right: 90px;
+}
+
+.about-button {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  height: 50px;
+  width: 150px;
+  font-size: var(--TextMidium);
+  background-color: var(--ButtonDefault);
+  color: white;
+}
+
+.about-button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+  background-color: var(--ButtonHover);
+}
+
+.about-button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+  background-color: var(--ButtonPressed);
 }
 
 /* ===== 3. Service ===== */
 .service {
   text-align: center;
-  padding-bottom: 1000px;
+  padding-top: 200px;
+  padding-bottom: 300px;
+  margin-bottom: 600px;
 }
 
 .service-section-bottom {

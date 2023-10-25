@@ -6,11 +6,8 @@ import './LandingPage.css';
 // import { faPerson } from "@fortawesome/free-solid-svg-icons";
 
 const Background = styled.div`
-  // background-image: url('./img/landing_bg.png');
-  // background-size: cover;
-  // background-repeat: no-repeat; /* 배경 이미지 반복 금지 */
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 `;
 
 export default function LandingPage() {
@@ -18,7 +15,7 @@ export default function LandingPage() {
 
   const serviceDesc = [
     {
-      image: "./img/users-solid.png",
+      image: "./img/user-solid.png",
       title: "혼자하기",
       text: "최소 필요 인원 및 비용 문제 발생",
     },
@@ -55,7 +52,7 @@ export default function LandingPage() {
         {/* 2. About Us */}
         <div className='about'>
           <div className='about-image-section'>
-          <img src='./img/logo.png' alt='랜딩로고' />
+          <img src='./img/landing_mock2.png' alt='랜딩목업' />
           </div>
           <div className='about-text-section'>
             <p className='sub-text'>W & W란?</p>
@@ -77,7 +74,7 @@ export default function LandingPage() {
               {serviceDesc.map((data) => (
                 <div className='service-info'>
                   <div className='service-info-img'>
-                    <img src={data.image} alt="서비스 이미지" width={'50px'} height={'50px'} />
+                    <img src={data.image} alt="서비스 이미지" height={'60px'} />
                   </div>
                   <h2>{data.title}</h2>
                   <p>{data.text}</p>
