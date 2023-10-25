@@ -105,7 +105,7 @@ function Tab3Content() {
     const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
 
     return (
-        <div>
+        <div className='menuTabQnA'>
             {ProjectData.map((item) => (
                 <div dangerouslySetInnerHTML={{ __html: item.QnA }} />
             ))}

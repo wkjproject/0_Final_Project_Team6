@@ -1,10 +1,11 @@
 .backgroundArea {
     background: white;
-    border: solid 1px skyblue;
+    border: solid 1px #fe9a00;
     margin: auto;
     border-radius: 10px;
     width: 400px;
     text-align: center;
+    box-shadow: 4px 4px 5px 0px gray;
 }
 
 /* 모달 스크롤 스타일 */
@@ -52,7 +53,7 @@
 .projPlace {
     padding-bottom: 10px;
     font-size: 15px;
-    color: blue;
+    color: #fe9a00;
 }
 
 .projAddr {
@@ -63,6 +64,7 @@
 .projDate {
     padding-bottom: 0px;
     font-size: 15px;
+    line-height: 2;
 }
 
 .select option {
@@ -109,6 +111,10 @@
     padding: 0;
     text-align: left;
     color: #1E1E1E;
+}
+
+.arrow {
+    margin-right: 10px;
 }
 
 .selectButton {
@@ -250,7 +256,7 @@ ul.no-bullets2 hr {
     flex-direction: row;
     /* 버튼을 세로로 나열 */
     align-items: center;
-    width: 100%;
+    width: 360px;
     box-sizing: border-box;
     margin-top: 10px;
     /* 버튼 그룹과 신청하기 버튼 사이에 여백 추가 */
@@ -267,12 +273,14 @@ ul.no-bullets2 hr {
     border: none;
     cursor: pointer;
     margin-bottom: 10px;
-    background-color: rgba(0, 0, 255, 0.4);
+    background-color: #fe9a00;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     /* 텍스트 수직 중앙 정렬 */
+    /* box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3); */
+
 }
 
 .heartBtn,
@@ -285,13 +293,14 @@ ul.no-bullets2 hr {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-
+    background-color: white;
     display: flex;
-
+    margin-bottom: 20px;
     align-items: center;
     /* 텍스트 수직 중앙 정렬 */
     width: 100%;
     /* 버튼의 너비 100%로 변경 */
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .heartBtn {
@@ -316,7 +325,7 @@ ul.no-bullets2 hr {
 }
 
 .shareBtn {
-    width: 235px;
+    width: 240px;
     height: 50px;
     color: black;
     justify-content: center;

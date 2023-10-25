@@ -136,14 +136,22 @@
 
 
 /* 결제 확인 영역 */
+.payCheckDiv {
+    width: 500px;
+    margin-left: 20px;
+}
+
 .payCheck {
     width: 500px;
     border: 1px solid rgba(30, 30, 30, 0.2);
     border-radius: 5px;
-    margin-left: 20px;
-    height: 600px;
-    padding-left: 20px;
-    padding-top: 20px;
+    height: 400px;
+}
+
+.payCheckArea {
+    width: 460px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .payCheck-label1 {
@@ -153,11 +161,13 @@
     color: #333;
     /* 레이블 텍스트 색상 설정 */
     user-select: none;
+
 }
 
 .payCheck-label1 input {
     display: none;
     /* 기본 체크박스를 숨깁니다. */
+    width: 20px;
 }
 
 .payCheck-checkbox1 {
@@ -173,6 +183,13 @@
     /* 체크박스 모서리 둥글게 */
     margin-right: 8px;
     /* 체크박스와 레이블 사이 간격 조절 */
+}
+
+.agreeText1 {
+    text-align: left;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+    flex: 1;
 }
 
 .payCheck-label1 input:checked+.payCheck-checkbox1::before {
@@ -246,6 +263,44 @@
     /* 체크된 상태의 테두리 색상 */
 }
 
+.agreeText2 {
+    text-align: left;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+    flex: 1;
+}
+
+.payAgreeList {
+    list-style: none;
+    padding-left: 30px;
+}
+
+.payAgreeList li {
+    display: flex;
+    justify-content: space-between;
+    /* 버튼을 오른쪽으로 이동시킵니다. */
+    align-items: center;
+    /* 세로 중앙 정렬을 유지합니다. */
+    cursor: pointer;
+}
+
+.payAgreeTd1 {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.payAgreeTd2 {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+
+.payCheck-label2 ul li {
+    padding-top: 10px;
+    margin-left: 15px;
+    opacity: 0.4;
+}
+
 .payCheck-label3 {
     display: flex;
     align-items: center;
@@ -253,6 +308,11 @@
     color: #333;
     /* 레이블 텍스트 색상 설정 */
     user-select: none;
+    justify-content: space-between;
+    /* 버튼을 오른쪽 끝으로 이동시킵니다. */
+    align-items: center;
+    /* 세로 중앙 정렬을 유지합니다. */
+    margin-top: 20px;
 }
 
 .payCheck-label3 input {
@@ -294,4 +354,71 @@
     /* 체크된 상태의 배경색 */
     border-color: #45bff0;
     /* 체크된 상태의 테두리 색상 */
+}
+
+.agreeText3 {
+    text-align: left;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3);
+    flex: 1;
+}
+
+.agreeBtn1 {
+    font-size: 20px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    opacity: 0.3;
+}
+
+.agreeBtn2 {
+    font-size: 20px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    opacity: 0.3;
+}
+
+.agreeBtn3 {
+    font-size: 20px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-bottom: 4px;
+    font-weight: bold;
+    opacity: 0.3;
+}
+
+.payAgree1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.payAgree2 {
+    margin-bottom: 20px;
+}
+
+.payAgree3 {
+    margin-bottom: 20px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.payComfirmBtn {
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px gray;
 }
