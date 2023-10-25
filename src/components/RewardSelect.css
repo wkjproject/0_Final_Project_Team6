@@ -5,7 +5,7 @@
     border-radius: 10px;
     width: 400px;
     text-align: center;
-    box-shadow: 4px 4px 5px 0px gray;
+    box-shadow: 4px 4px 5px 0px rgba(254, 154, 0, 0.3);
 }
 
 /* 모달 스크롤 스타일 */
