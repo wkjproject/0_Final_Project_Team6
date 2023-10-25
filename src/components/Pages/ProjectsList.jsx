@@ -16,7 +16,7 @@ function ProjectList({ listtype }) {
   });
 
   if (!Array.isArray(allProjects) || !allProjects.length) {
-    return <p> allProjects Nothing 😖</p>;
+    return <p></p>;
   }
 
   /**
@@ -68,7 +68,7 @@ function ProjectList({ listtype }) {
   });
 
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p>Nothing</p>;
+    return <p></p>;
   }
 
   return (
