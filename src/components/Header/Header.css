@@ -5,18 +5,18 @@
   box-sizing: border-box;
 }
 
-a:link,
-a:visited {
+.header-container a:link,
+.header-container a:visited {
   text-decoration: none;
   color: #1e1e1e;
 }
 
-a:hover {
+.header-container a:hover {
   font-weight: #1e1e1e;
   color: navy;
 }
 
-.active {
+.header-container .active {
   background-color: rgb(241, 238, 238);
 }
 
@@ -29,13 +29,13 @@ a:hover {
 }
 
 /* ===== 로고 ===== */
-.logo {
+.header-container .logo {
   grid-area: box1;
   margin-left: 30px;
   margin-top: 10px;
 }
 
-.logo img {
+.header-container .logo img {
   float: left;
   width: 100px;
   height: auto;
