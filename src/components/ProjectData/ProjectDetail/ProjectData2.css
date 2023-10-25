@@ -98,31 +98,7 @@
   padding-top: 20px;
 }
 
-/* 탭 목록을 수평으로 배열 */
-.tab-list {
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
 
-/* 각 탭 항목 스타일링 */
-.tab-list li {
-  flex: 1;
-  /* 동일한 너비로 나누기 */
-  text-align: center;
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-}
-
-/* 활성 탭 스타일링 */
-.tab-list li.active {
-  background-color: #007bff;
-  /* 활성 탭 배경색 변경 */
-  color: #fff;
-  /* 텍스트 색상 변경 */
-}
 
 .button-container {
   display: flex;
@@ -140,11 +116,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-/* 로그인버튼이랑 충돌나서 class 지정해주시는게 좋을거같아요
-button {
-  flex: 1;
-  padding: 20px;
-  text-align: center;
-}
- */

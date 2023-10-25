@@ -5,15 +5,19 @@
     margin: 0;
 }
 
+/* 탭 목록을 수평으로 배열 */
 .tab-list li {
     cursor: pointer;
-    padding: 10px;
     border-bottom: 2px solid transparent;
     /* 초기에는 투명한 밑줄 */
     color: #1e1e1e;
     /* 탭의 텍스트 색상 */
     border: 0;
     background-color: rgb(240, 240, 240);
+    flex: 1;
+    /* 동일한 너비로 나누기 */
+    text-align: center;
+    padding: 10px 20px;
 }
 
 .tab-list li:hover {
@@ -23,9 +27,9 @@
 
 .tab-list li.active {
     border-bottom: 2px solid #fe9a00;
+    /* 활성 탭의 밑줄 색상 변경 */
     color: #1e1e1e;
     background-color: rgb(240, 240, 240);
-    /* 활성 탭의 밑줄 색상 변경 */
 }
 
 /* 소개글 영역 */

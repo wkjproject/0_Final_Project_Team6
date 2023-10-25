@@ -2,26 +2,26 @@
 import React from 'react'
 import { useLocation } from 'react-router';
 import useFetch from '../../hooks/useFetch';
-import MenuTabs from '../../MenuTabs';
+import MenuTabs from '../../ProjectData/Menu/MenuTabs';
 
 export default function ComingProj() {
-	const location = useLocation();
-	const { _id } = location.state || {};
+    const location = useLocation();
+    const { _id } = location.state || {};
 
-	const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
 
-	if (!projectData) {
-			return <div>Loading...</div>;
-	}
+    if (!projectData) {
+        return <div>Loading...</div>;
+    }
 
-	// "proj_id" 값을 기반으로 해당 "projName"을 찾기
-	const selectedProject = projectData.find(item => item.proj_id === _id);
+    // "proj_id" 값을 기반으로 해당 "projName"을 찾기
+    const selectedProject = projectData.find(item => item.proj_id === _id);
 
-	if (!selectedProject) {
-			return <div>Project not found</div>;
-	}
+    if (!selectedProject) {
+        return <div>Project not found</div>;
+    }
 
-	const { projName, projMainImgPath, projIntro } = selectedProject;
+    const { projName, projMainImgPath, projIntro } = selectedProject;
 
     return (
         <div>
