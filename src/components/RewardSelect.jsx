@@ -267,7 +267,7 @@ const RewardSelect = () => {
             </div>
             {/* 펀딩현황 버튼 추가 */}
             {/* 관리자 or 리덕스 userId 와 projects 컬렉션(selectedProject)의 userMade_id가 일치할때 펀딩현황, 수정 버튼 보이도록 */}
-            {isAdmin || userId === selectedProject.userMade_id ? (<div><button className='fundStatus' onClick={moveFundingStatus}>펀딩현황</button><button>수정</button></div>):('')}
+            {isAdmin || userId === selectedProject.userMade_id ? (<div className='fundStatusContainer'><button className='fundStatusBtn' onClick={moveFundingStatus}>펀딩현황</button><button className='fundStatusBtn'>수정</button></div>):('')}
           </div>
         ) : projStatus === '2' ? (
           <div className='closed-project-message'>

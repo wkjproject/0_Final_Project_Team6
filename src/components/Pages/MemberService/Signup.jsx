@@ -112,6 +112,7 @@ export default function Signup() {
 				<div>
 					<br/>
 					<Kakao />
+					<img style={{width: '40px', height: '40px', position:'relative', top:'-39px', left:'85px'}} src='/img/kakaoLogo.png' alt="Kakao Login" />
 					<br/>
 					<br/>
 					<br/>

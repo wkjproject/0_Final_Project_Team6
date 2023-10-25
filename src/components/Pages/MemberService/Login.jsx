@@ -83,13 +83,15 @@ export const Login = () => {
         <br />
         <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력" onKeyPress={handleKeyPress} ></MemberShipInput>
         <br />
-        <p style={{ position: 'relative', top: '5px', left: '70px', color: 'var(--Darkgray)' }} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
+        <p style={{ position: 'relative', top: '5px', left: '70px', color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind" style={{textDecoration:'none'}}>아이디/비밀번호 찾기</NavLink></p>
         <br />
         <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
         <br />
-        <Kakao />
         <br />
-        <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
+        <Kakao />
+        <img style={{width: '40px', height: '40px', position:'relative', top:'-39px', left:'-85px'}} src='/img/kakaoLogo.png' alt="Kakao Login" />
+        <br />
+        <p style={{ position: 'relative', top: '-30px', left: '60px', color: 'var(--Darkgray)' }}>계정이 없나요? <NavLink to="/signup" style={{textDecoration:'none'}}>회원가입</NavLink></p>
       </MemberShipDivCenter>
     </MemberShipContainer>
   )

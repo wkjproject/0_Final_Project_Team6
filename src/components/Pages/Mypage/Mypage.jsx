@@ -32,8 +32,12 @@ export default function Mypage() {
 
   return (
     <div style={{textAlign:'center'}}>
+      <br/>
+      <br/>
       <img src='/img/person.png' style={{height:'128px', width:'128px'}} alt='person'/>
-      <h1>{userName}</h1>
+      <h1 style={{marginTop:'10px'}}>{userName}</h1>
+      <br/>
+      <br/>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
         {/* 승인 대기 프로젝트 탭 */}

@@ -10,7 +10,7 @@ Modal.setAppElement('#root'); // 모달을 사용하기 위한 설정
 export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => {
   const customStyles = {
   content: {
-    width: '50%',
+    width: '1000px',
     margin: 'auto',
   },
   };
@@ -70,9 +70,11 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
       style={customStyles}
     >
       <button style={{marginLeft: 'auto', display: 'block'}} onClick={closeModal}>닫기</button>
-      <div>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', textAlign:'center'}}>
+        <br/>
         <h1>리워드 별 펀딩현황</h1>
-        <table>
+        <br/>
+        <table className='fundingStatusModalTable'>
           <tr>
             <th>리워드</th>
             <th>리워드 가격</th>
@@ -93,8 +95,14 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
             })
           }
         </table>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h2>펀딩 세부내역</h2>
-        <table>
+        <br/>
+        <table className='fundingStatusModalTable'>
           <tr>
             <th>결제일</th>
             <th>유저 닉네임</th>
@@ -110,7 +118,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
 
                 return item.rewards.map((result, key) => (
                   <tr key={key}>
-                    <td>{item.fundingData}</td>
+                    <td>{item.fundingDate}</td>
                     <td>{userName}</td>
                     <td>{result.reward_id}</td>
                     <td>{result.count}</td>

@@ -33,12 +33,13 @@ export const Kakao = () => {
   return (
     <div>
     <KakaoLogin style={{  width: '100%',
-  backgroundColor: 'rgb(252,235,30)',
+  backgroundColor: 'white',
   color: 'var(--Black)', /* 텍스트 색상 */
   padding: '10px 20px', /* 내부 여백 */
   border: 'none', /* 테두리 제거 */
   cursor: 'pointer', /* 커서 스타일 */
-  borderRadius: '4px' /* 둥근 모서리 */}} token={kakaoClientId} onSuccess={kakaoSuccess} onFail={kakaoFail} />
+  borderRadius: '10px', /* 둥근 모서리 */
+  boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.1)'}} token={kakaoClientId} onSuccess={kakaoSuccess} onFail={kakaoFail} />
     </div>
   )
 }

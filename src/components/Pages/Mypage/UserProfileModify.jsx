@@ -115,7 +115,7 @@ export default function UserProfileModify() {
 					<AddressSearch userProfileUserAddr={authUserAddr}/>
 					<br/>
 					<br/>
-					<MemberShipButton onClick={submit}>회원정보 수정</MemberShipButton>
+					<MemberShipButton style={{marginBottom:'100px'}} onClick={submit}>회원정보 수정</MemberShipButton>			
 				</div>
 		</div>
 	)
