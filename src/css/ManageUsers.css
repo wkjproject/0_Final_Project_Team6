@@ -1,6 +1,72 @@
+.user-container {text-align: center;}
+
 .user-container h1 {
 	font-size: var(--TextLarge);
-	text-align: center;
 	margin-top: 100px;
-	letter-spacing: 2px;
+	margin-bottom: 10px;
+	letter-spacing: 3px;
+}
+
+.user-container p{
+	font-size: var(--TextMidium);
+	color: var(--Darkgray);
+	margin-bottom: 20px;
+}
+
+.user-container li{
+	text-align: center;
+	text-decoration: none;
+  display: inline-block;
+  margin: 0 30px 30px 0;
+	color: var(--Darkgray);
+}
+
+.user-container li:not(:last-of-type) {
+  padding-right: 30px;
+  border-right: 1px solid var(--Darkgray);
+}
+
+.user-container li:hover {
+  cursor: pointer;
+  color: var(--Black);
+	font-weight: bold;
+}
+
+
+.user-table {
+  border-collapse: collapse;
+  width: 80%; /* 원하는 너비로 조정 */
+  margin: 0 auto 100px;
+}
+
+.user-table th {
+	background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 8px;
+	font-size: var(--TextMidiuml);
+}
+
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 6px;
+	font-size: var(--TextSmall);
+}
+
+.user-table tr:hover {
+  background-color: #ddd;
+}
+
+.user-table button {
+	background-color: var(--ButtonDefault);
+	width: 90px;
+	height: 30px;
+	border: none;
+}
+
+.user-table button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
+  background-color: #ffc976;
+}
+
+.user-table button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
+  background-color: #ff7301;
 }

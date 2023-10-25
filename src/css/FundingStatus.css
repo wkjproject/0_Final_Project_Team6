@@ -1,0 +1,17 @@
+.fundingStatusTable {
+  width: 800px;
+  height: 100px;
+  border: 1px solid var(--Brightgary);
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.fundingStatusTr {
+  text-align: center;
+}
+.fundingStatusTr th {
+  color: red;
+}
+.fundingStatusTr td {
+  font-size: var(--TextLarge);
+}

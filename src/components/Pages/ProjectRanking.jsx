@@ -38,14 +38,14 @@ export default function ProjectRanking() {
       a.projFundCollect === b.projFundCollect
         ? b.projLike - a.projLike
         : b.projFundCollect - a.projFundCollect;
-    console.log('sort ret: ', res, isNaN);
+
     return isNaN(a.projFundCollect) || isNaN(a.projLike) || isNaN(res)
       ? 1
       : res;
   });
 
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p> No active projects😖</p>;
+    return <p>❄️</p>;
   }
 
   return (

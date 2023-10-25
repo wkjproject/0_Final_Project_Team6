@@ -14,6 +14,12 @@ const RewardSelect = () => {
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
 
+  // 리덕스에서 userId 가져오기
+  const userId = useSelector((state) => state.auth.auth.userId);
+
+  // 리덕스에서 관리자여부 가져오기
+  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
   const { _id } = location.state || {};
@@ -119,6 +125,11 @@ const RewardSelect = () => {
     }
   }
 
+  // 펀딩현황 눌렀을때
+  const moveFundingStatus = (evt) => {
+    evt.preventDefault();
+    navigate('/fundingStatus', { state: { _id: _id } });
+  }
 
   // 컴포넌트 렌더링
   return (
@@ -254,6 +265,9 @@ const RewardSelect = () => {
                 공유하기
               </button>
             </div>
+            {/* 펀딩현황 버튼 추가 */}
+            {/* 관리자 or 리덕스 userId 와 projects 컬렉션(selectedProject)의 userMade_id가 일치할때 펀딩현황, 수정 버튼 보이도록 */}
+            {isAdmin || userId === selectedProject.userMade_id ? (<div><button className='fundStatus' onClick={moveFundingStatus}>펀딩현황</button><button>수정</button></div>):('')}
           </div>
         ) : projStatus === '2' ? (
           <div className='closed-project-message'>
