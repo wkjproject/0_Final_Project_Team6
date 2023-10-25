@@ -184,10 +184,6 @@
     flex: 1;
 }
 
-
-
-
-
 .payCheck-label1 input:checked+.payCheck-checkbox1::before {
     content: '\2714';
     /* 유니코드 체크 마크 (✓) */
