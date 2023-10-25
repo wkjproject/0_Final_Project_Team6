@@ -4,8 +4,8 @@
 
 .titlealign {
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .center {
@@ -58,7 +58,7 @@
 }
 
 .shortDesc {
-  background: #ffc976;
+  background: white;
   color: #1e1e1e;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -68,6 +68,7 @@
   font-size: 20px;
   padding: 20px;
   text-align: center;
+  box-shadow: 4px 4px 5px 0px gray;
 }
 
 .RewardSelect {
