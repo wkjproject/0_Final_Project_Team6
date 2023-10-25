@@ -279,7 +279,8 @@ ul.no-bullets2 hr {
     justify-content: center;
     align-items: center;
     /* 텍스트 수직 중앙 정렬 */
-    box-shadow: 4px 4px 5px 0px gray;
+    /* box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3); */
+
 }
 
 .heartBtn,
@@ -294,12 +295,12 @@ ul.no-bullets2 hr {
     cursor: pointer;
     background-color: white;
     display: flex;
-
+    margin-bottom: 20px;
     align-items: center;
     /* 텍스트 수직 중앙 정렬 */
     width: 100%;
     /* 버튼의 너비 100%로 변경 */
-    box-shadow: 4px 4px 5px 0px gray;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .heartBtn {
