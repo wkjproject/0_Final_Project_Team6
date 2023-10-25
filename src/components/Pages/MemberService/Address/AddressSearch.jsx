@@ -46,8 +46,10 @@ function AddressSearch({ userProfileUserAddr }) {
 
   return (
     <div>
-      <input className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
+      <div style={{display:'flex', alignItems:'center'}}>
+      <input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
       <button className='AddressSearchButtonShort' onClick={(evt) => {evt.preventDefault(); setModalIsOpen(true)}}>주소검색</button>
+      </div>
       {/* 모달 다이얼로그 */}
       <Modal
         isOpen={modalIsOpen}

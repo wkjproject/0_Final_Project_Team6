@@ -342,6 +342,8 @@ ul.no-bullets2 hr {
 
 /* 상세페이지 펀드현황, 수정 버튼 */
 .fundStatusContainer {
+  position: relative;
+  top: -15px;
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
@@ -354,5 +356,6 @@ ul.no-bullets2 hr {
   border: none;
   font-size: 20px;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }

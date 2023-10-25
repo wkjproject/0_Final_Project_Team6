@@ -116,8 +116,10 @@ export default function Signup() {
 					<br/>
 					<br/>
 					<br/>
+					<div style={{display:'flex', alignItems:'center', marginBottom:'-20px'}}>
 					<MemberShipInputShort type='text' ref={userMailRef} placeholder='이메일 입력' ></MemberShipInputShort>
 					<MemberShipButtonShort onClick={userMailCheck}>중복확인</MemberShipButtonShort>
+					</div>
 					<br/>
 					<br/>
 					<MemberShipInput type='text' ref={userNameRef} placeholder='이름' ></MemberShipInput>

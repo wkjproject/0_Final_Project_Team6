@@ -14,6 +14,7 @@ export const MemberShipDivCenter = styled.div`
 
 export const MemberShipInput = styled.input`
   width: 100%;
+  height: 36px;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
@@ -27,6 +28,7 @@ export const MemberShipInput = styled.input`
 
 export const MemberShipInputShort = styled.input`
   width: 72%;
+  height: 36px;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
