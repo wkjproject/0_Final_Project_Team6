@@ -35,6 +35,13 @@
   box-sizing: border-box;
 }
 
+/* 마지막 줄의 카드를 왼쪽 정렬하도록 스타일 추가 */
+/* .project-list::after {
+  content: '';
+  flex: 1;
+  width: 80%;
+  height: 100%;
+} */
 .project-card {
   position: static;
   width: 320px;
@@ -88,10 +95,34 @@
   visibility: hidden;
 }
 
+.text-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-line-clamp: 2; /* 원하는 줄 수 지정 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; /* 긴 단어를 줄 바꿈하여 두 줄에 맞추는 옵션 */
+}
+
 .pc-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-line-clamp: 2; /* 원하는 줄 수 지정 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; /* 긴 단어를 줄 바꿈하여 두 줄에 맞추는 옵션 */
+
+  width: 100%;
   background-color: transparent;
   padding: 0.5rem 0;
   font-size: 1.05em;
+  height: 2.8em;
 }
 
 .pc-location {
@@ -103,6 +134,14 @@
   font-size: 0.7rem;
 }
 
+.ranking-title {
+  width: 100%;
+  margin: 0.95rem 10px;
+  /* border-bottom: solid 1px var(--Brightgary); */
+  color: var(--ButtonDefault);
+  font-size: 1.2em;
+}
+
 .project-ranking-list {
   display: flex;
   flex-direction: column;
@@ -110,6 +149,8 @@
   /* background-color: burlywood; */
   /* border: solid yellowgreen; */
   box-sizing: border-box;
+  border-left: solid 1px var(--Brightgary);
+  padding-left: 15px;
 }
 
 .project-ranking-card {
@@ -142,7 +183,8 @@
   /* flex-direction: row; */
   position: relative;
   width: 50%;
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.5rem;
+  align-items: baseline;
 }
 
 .text-container {
@@ -153,11 +195,13 @@
 }
 
 .pcr-title {
+  width: 100%;
   background-color: transparent;
-  font-size: 0.7rem;
-  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
   overflow: hidden; /* 오버플로우(넘침)시 내용 숨기기 */
-  height: 2em;
+  text-overflow: ellipsis;
+  /* height: 2em; */
   margin: 0.1rem;
   /* background-color: aquamarine; */
 }
@@ -170,4 +214,8 @@
 .pcr-price {
   background-color: transparent;
   font-size: 0.6rem;
+}
+
+.silde-img {
+  cursor: pointer;
 }

@@ -7,8 +7,8 @@ import LikeProject from './LikeProject';
 import UserProfileModify from './UserProfileModify';
 
 export default function Mypage() {
-  // 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
+  // 리덕스의 userName 가져오기
+  const userName = useSelector((state) => state.auth.auth.userName)
   // 펀딩프로젝트는 fundings 컬렉션에서 user_id가 현재 리덕스 userId랑 일치하는것만 가져와서 project_id 와 projects 컬렉션의 proj_id가 일치하는것만 뿌림
   // 펀딩프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projPlace // fundings 의 rewards 갯수로 map 돌려서 반복
 
@@ -31,8 +31,9 @@ export default function Mypage() {
   // 관심프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projReward[0]
 
   return (
-    <div>
-      <h1>홍길동</h1>
+    <div style={{textAlign:'center'}}>
+      <img src='/img/person.png' style={{height:'128px', width:'128px'}} alt='person'/>
+      <h1>{userName}</h1>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
         {/* 승인 대기 프로젝트 탭 */}

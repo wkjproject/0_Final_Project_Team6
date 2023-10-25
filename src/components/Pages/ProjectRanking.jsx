@@ -38,14 +38,16 @@ export default function ProjectRanking() {
       a.projFundCollect === b.projFundCollect
         ? b.projLike - a.projLike
         : b.projFundCollect - a.projFundCollect;
-    console.log('sort ret: ', res, isNaN);
+
     return isNaN(a.projFundCollect) || isNaN(a.projLike) || isNaN(res)
       ? 1
       : res;
   });
 
+  const ranking = filteredProjects.slice(0, 5); // 상위 5개만 표시
+
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p> No active projects😖</p>;
+    return <p>❄️</p>;
   }
 
   return (
@@ -53,8 +55,9 @@ export default function ProjectRanking() {
       <div className='project-ranking-list'>
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {filteredProjects.length > 0 &&
-          filteredProjects.map((proj, index) => (
+        <h3 className='ranking-title'> 실시간 순위 </h3>
+        {ranking.length > 0 &&
+          ranking.map((proj, index) => (
             <ProjectRankingCard
               key={proj.proj_id + proj.projName}
               projLike={proj.projLike}

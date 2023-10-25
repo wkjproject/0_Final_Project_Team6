@@ -1,24 +1,26 @@
-button:disabled {
+.form button:disabled {
   border: 1px solid #ffdfaf;
   background-color: #ffddab;
   color: white;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 50px;
   width: 150px;
+  font-size: 15px;
 }
 
-button {
+.form button {
   border: 1px solid #fe9a00;
   background-color: #fe9a00;
-
   color: white;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 50px;
   width: 150px;
+  font-size: 15px;
 }
 
-input::placeholder {
+.form input::placeholder {
   text-align: center;
+  vertical-align: center;
 }
 
 .form p {
@@ -59,8 +61,8 @@ input::placeholder {
 
 .createform select {
   border: 1px solid #8f8f8f;
-  border-radius: 8px;
-  height: 30px;
+  border-radius: 5px;
+  height: 35px;
   width: 200px;
 }
 
@@ -68,17 +70,20 @@ input::placeholder {
   margin-left: 30px;
 }
 
+.createform label {
+  font-weight: 500;
+}
 
 .createform .inputBox {
   border: 1px solid #8f8f8f;
-  border-radius: 8px;
-  height: 30px;
+  border-radius: 5px;
+  height: 35px;
   width: 430px;
 }
 
 .createform .dateinput {
   border: 1px solid #8f8f8f;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
   margin-left: 10px;
   width: 200px;
@@ -97,7 +102,7 @@ input::placeholder {
 
 .createform .rewardsinput {
   border: 1px solid #8f8f8f;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
   width: 200px;
   margin-bottom: 10px;
@@ -105,13 +110,13 @@ input::placeholder {
 
 .createform .rewardsinput2 {
   border: 1px solid #8f8f8f;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 30px;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .createform .rewardsButton {
-  margin-left: 10px;
+  margin-left: 20px;
   height: 30px;
   width: 100px;
 }
@@ -166,14 +171,25 @@ input::placeholder {
   width: 50%;
 }
 
+.yes h4 {
+  margin-top: -20px;
+  color: green;
+}
+
+.no h4 {
+  color: red;
+}
 
 .rule-detail h4 {
+  font-size: 30px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 .rule li {
+  list-style-type: none;
   margin-bottom: 20px;
+  line-height: 25px;
 }
 
 .submit {
@@ -182,4 +198,5 @@ input::placeholder {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
+  font-weight: 600;
 }
