@@ -42,6 +42,10 @@
     display: flex;
 }
 
+.CommentProfile_profileContainer___eLYZ a {
+    text-decoration: none;
+}
+
 /* 닉네임과 시간/ 팔로우 영역을 한행으로 배치 */
 .CommentProfile_profile__2rcAX {
     display: flex;
@@ -68,11 +72,13 @@
 /* 닉네임하고 시간 영역 */
 .CommentProfile_writerArea__1bk5r {
     padding-left: 0px;
+    text-decoration: none;
 }
 
 /* 닉네임 영역 */
 .CommentProfile_nickName__1igw3 {
     padding-left: 0px;
+    color: #1e1e1e;
 }
 
 /* 시간 영역(span) */
@@ -182,6 +188,15 @@
 
 .media-body {
     margin-bottom: 55px;
+}
+
+.link-stretched {
+    text-decoration: none;
+    color: #1e1e1e;
+}
+
+.read-more-link {
+    color: #1e1e1e;
 }
 
 /* 주최자 소개 css  */
