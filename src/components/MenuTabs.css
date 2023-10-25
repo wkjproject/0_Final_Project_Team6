@@ -192,7 +192,7 @@
     margin: 70px auto 500px;
     width: 50%;
     border-radius: 5px;
-    box-shadow: 4px 4px 5px 0px gray;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .makerTable {
