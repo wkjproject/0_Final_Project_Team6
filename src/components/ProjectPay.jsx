@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Modal1 from './AgreeModal/Modal1'
 import Modal2 from './AgreeModal/Modal2'
 import Modal3 from './AgreeModal/Modal3'
+import { useEffect } from 'react';
 
 const ProjectPay = () => {
     const location = useLocation();
@@ -39,6 +40,12 @@ const ProjectPay = () => {
         setChecked2(isChecked);
         setChecked3(isChecked);
     };
+
+    useEffect(() => {
+        if (isChecked2 && isChecked3) {
+            setChecked1(true);
+        }
+    }, [isChecked2, isChecked3])
 
     const handlePayment = () => {
         // 2번째와 3번째 체크박스가 모두 체크되지 않았을 때 확인 메시지 표시
@@ -232,23 +239,23 @@ const ProjectPay = () => {
                             </div>
                             <div>
                                 <ul className='payAgreeList'>
-                                    <li onClick={showModal1}>
+                                    <li>
                                         <td className='payAgreeTd1'>
                                             전자금융거래 이용약관
                                         </td>
                                         <td>
-                                            <button className='agreeBtn1'>
+                                            <button className='agreeBtn1' onClick={showModal1}>
                                                 &#5171;
                                             </button>
                                         </td>
                                     </li>
 
-                                    <li onClick={showModal2}>
+                                    <li>
                                         <td className='payAgreeTd2'>
                                             개인정보 제3자 제공 동의
                                         </td>
                                         <td>
-                                            <button className='agreeBtn2'>
+                                            <button className='agreeBtn2' onClick={showModal2}>
                                                 &#5171;
                                             </button>
                                         </td>
@@ -259,7 +266,7 @@ const ProjectPay = () => {
                                 <label className='payCheck-label3'>
                                     <input type="checkbox" checked={isChecked3} onChange={() => setChecked3(!isChecked3)} />
                                     <div className="payCheck-checkbox3"></div>
-                                    <div className='agreeText3' onClick={showModal3}>
+                                    <div className='agreeText3'>
                                         개인정보 제3자 제공 동의(필수)
                                     </div>
                                     <div>
