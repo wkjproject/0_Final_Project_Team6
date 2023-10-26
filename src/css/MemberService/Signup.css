@@ -13,8 +13,9 @@
   background-color: #ddd;
 }
 .SignupTermsBtn {
+  width: 300px;
   font-size: 12px;
-  color: var(--Brightgary);
+  color: white;
   background-color: var(--Darkgray);
   border: none;
   cursor: pointer;
@@ -23,7 +24,8 @@
 }
 
 .SignupTermsBtn:hover {
-  color: var(--ButtonDefault);
+  color: var(--Black);
+  background-color: var(--Brightgary);
 }
 .SignupTermsBtnX {
   margin-left: auto;

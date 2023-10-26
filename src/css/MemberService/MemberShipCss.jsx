@@ -43,7 +43,7 @@ export const MemberShipInputShort = styled.input`
 export const MemberShipButton = styled.button`
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 100%;
-  color: var(--Black); /* 텍스트 색상 */
+  color: white; /* 텍스트 색상 */
   padding: 10px 20px; /* 내부 여백 */
   border: none; /* 테두리 제거 */
   cursor: pointer; /* 커서 스타일 */
@@ -59,7 +59,7 @@ export const MemberShipButton = styled.button`
 export const MemberShipButtonShort = styled.button`
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 25%;
-  color: var(--Black); /* 텍스트 색상 */
+  color: white; /* 텍스트 색상 */
   padding: 10px 20px; /* 내부 여백 */
   margin-left: 10px;
   border: none; /* 테두리 제거 */

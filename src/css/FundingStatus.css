@@ -14,7 +14,7 @@
 }
 .fundingStatusTr th {
   width: 25%;
-  color: red;
+  color: var(--ButtonDefault);
 }
 .fundingStatusTr td {
   font-size: var(--TextLarge);

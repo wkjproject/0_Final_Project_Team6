@@ -149,20 +149,34 @@ export default function IdpwFind() {
     window.removeEventListener('beforeunload', handleBeforeUnload);
   }
 }, []);
+ const [currTab, setCurrTab] = useState('idFind');
+ const handleTabClick = (tabName) => {
+    setCurrTab(tabName);
+    /* setCurrPage(1); // 탭 변경시, 1페이지로 초기화 */
+  };
 	return (
 		<div className='IdpwFindContainer'>
-			<button button className='IdpwFindButton' onClick={moveIdFind}>
-        아이디 찾기
-      </button>
+			<div className='tabs'>
+        <ul>
+          <li
+            className={`tab ${currTab === 'idFind' ? 'active' : ''}`}
+            onClick={() => handleTabClick('idFind')}
+          >
+            아이디 찾기
+          </li>
+          <li
+            className={`tab ${currTab === 'pwFind' ? 'active' : ''}`}
+            onClick={() => handleTabClick('pwFind')}
+          >
+            비밀번호 찾기
+          </li>
+        </ul>
+      </div>
 			<br/>
-			<button button className='IdpwFindButton' onClick={movePwFind}>
-        비밀번호 찾기
-      </button>
 			<br/>
 			<br/>
 			<br/>
-			<br/>
-			{IdpwFindState ? (
+			{currTab === 'idFind' ? (
 				IdFind ? (
 				<>
 				<p>{getUserMail}</p>

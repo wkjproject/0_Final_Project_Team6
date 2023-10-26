@@ -149,21 +149,24 @@ const CreateProj = () => {
     e.preventDefault();
   };
 
-  // 서밋 버튼을 누르면 state 내용이 넘어감...?
+  // 심사등록하기 버튼 누를 경우
   const handleSubmit = async (evt) =>{
     evt.preventDefault();
     try{
-      const projData = state;
-      await axios.post(`${endpoint}/createProj`,{
-        projData
-      }).then((res)=>{
-        console.log(state);
-        if(res.data.createProjSuccess){
-          dispatch(setProjForm(res.data.state));  
-          alert('심사 등록 완료!');
-          navigate('/home');
-        }
-      })
+/*       // 이미지 업로드 API 사용해서 url로 변경하기
+      const response = await axios.post('https://api.imgbb.com/1/upload', null, {
+      params: {
+        key: '04ee2299a6c1b4578ea914699922672d',
+      },
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      data: {
+        image: state.imageUrl,
+      },
+    });
+      console.log('Image uploaded:', response.data); */
+      console.log(state)
     }
     catch(e){
       alert('등록을 실패하였습니다.');
