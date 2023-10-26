@@ -25,7 +25,9 @@ export const Terms = () => {
 
   return (
     <>
-      <button onClick={openModal}>약관 내용 펼쳐보기</button>
+      <div style={{display:'flex', justifyContent:'center'}}>
+      <button style={{}} onClick={openModal}>약관 내용 펼쳐보기</button>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
