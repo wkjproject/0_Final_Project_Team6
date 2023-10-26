@@ -65,16 +65,23 @@
 
 .user-table button {
 	background-color: var(--ButtonDefault);
-	width: 90px;
+	width: 100px;
 	height: 30px;
 	border: none;
-	border-radius: 5px;
+	border-radius: 8px;
+	color: white;
+	letter-spacing: 1px;
+	box-shadow: 2px 2px 2px var(--Brightgary);
 }
 
 .user-table button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
-  background-color: #ffc976;
+  background-color: var(--ButtonHover);
+	cursor: pointer;
+	font-weight: bold;
 }
 
 .user-table button:active { /* 버튼 활성화 상태 스타일 (클릭 시 스타일) */
-  background-color: #ff7301;
+  background-color: var(--ButtonPressed);
+	cursor: pointer;
+	font-weight: bold;
 }

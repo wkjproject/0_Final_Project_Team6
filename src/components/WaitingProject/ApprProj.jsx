@@ -12,22 +12,7 @@ import './ApprProj.css';
 
 export default function ApprProj() {
 	const navigate = useNavigate();	
-
-  /* -----  (전체)projStatus 받아오는 부분 ----- */
-  // const [projStatusState, setProjStatusState] = useState([]);
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const endpoint = Endpoint();
-  //   axios.get(`${endpoint}/projStatus`)
-  //   .then((res) => {
-  //     dispatch(setProjStatus(res.data.projStatus));  
-  //     setProjStatusState(res.data.projStatus);
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // },[dispatch]);
-  // const projStatus = useSelector((state)=> state.projStatus.projStatus);
-
+  const dispatch = useDispatch();  
 	
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
 	const location = useLocation();
@@ -61,7 +46,6 @@ export default function ApprProj() {
       }
     })
   }
-
 
 	const RejectProj = async () => {
     // 프로젝트 승인 거절: '거절하기'를 누르면 : projStatus가 0 --> 3
