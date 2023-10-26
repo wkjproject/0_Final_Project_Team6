@@ -52,7 +52,7 @@ export default function LandingPage() {
         {/* 2. About Us */}
         <div className='about'>
           <div className='about-image-section'>
-          <img src='./img/landing_mock2.png' alt='랜딩목업' />
+          <img src='./img/landing_mockUp2.png' alt='랜딩목업' />
           </div>
           <div className='about-text-section'>
             <p className='sub-text'>W & W란?</p>
