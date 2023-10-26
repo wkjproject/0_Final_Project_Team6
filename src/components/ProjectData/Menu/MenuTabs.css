@@ -5,15 +5,19 @@
     margin: 0;
 }
 
+/* 탭 목록을 수평으로 배열 */
 .tab-list li {
     cursor: pointer;
-    padding: 10px;
     border-bottom: 2px solid transparent;
     /* 초기에는 투명한 밑줄 */
     color: #1e1e1e;
     /* 탭의 텍스트 색상 */
     border: 0;
     background-color: rgb(240, 240, 240);
+    flex: 1;
+    /* 동일한 너비로 나누기 */
+    text-align: center;
+    padding: 10px 20px;
 }
 
 .tab-list li:hover {
@@ -23,9 +27,9 @@
 
 .tab-list li.active {
     border-bottom: 2px solid #fe9a00;
+    /* 활성 탭의 밑줄 색상 변경 */
     color: #1e1e1e;
     background-color: rgb(240, 240, 240);
-    /* 활성 탭의 밑줄 색상 변경 */
 }
 
 /* 소개글 영역 */
@@ -40,6 +44,10 @@
 /* 닉네임과 시간/ 팔로우 영역을 한행으로 배치 */
 .CommentProfile_profileContainer___eLYZ {
     display: flex;
+}
+
+.CommentProfile_profileContainer___eLYZ a {
+    text-decoration: none;
 }
 
 /* 닉네임과 시간/ 팔로우 영역을 한행으로 배치 */
@@ -68,11 +76,13 @@
 /* 닉네임하고 시간 영역 */
 .CommentProfile_writerArea__1bk5r {
     padding-left: 0px;
+    text-decoration: none;
 }
 
 /* 닉네임 영역 */
 .CommentProfile_nickName__1igw3 {
     padding-left: 0px;
+    color: #1e1e1e;
 }
 
 /* 시간 영역(span) */
@@ -182,6 +192,15 @@
 
 .media-body {
     margin-bottom: 55px;
+}
+
+.link-stretched {
+    text-decoration: none;
+    color: #1e1e1e;
+}
+
+.read-more-link {
+    color: #1e1e1e;
 }
 
 /* 주최자 소개 css  */

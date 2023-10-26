@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useFetch from './hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
 import { useSelector } from 'react-redux';

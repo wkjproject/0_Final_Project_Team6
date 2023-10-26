@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import useFetch from '../components/hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import './MenuTabs.css'
 import { useLocation } from 'react-router';
 

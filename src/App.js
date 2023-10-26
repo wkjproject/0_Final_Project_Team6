@@ -1,8 +1,8 @@
 import './App.css';
-import './components/ProjectData2.css';
+
 //import ProjectData from './components/ProjectData';
-import ProjectData2 from './components/ProjectData2';
-import RewardSelect from './components/RewardSelect';
+import ProjectData2 from '../src/components/ProjectData/ProjectDetail/ProjectData2';
+import RewardSelect from '../src/components/ProjectData/RewardSelect/RewardSelect';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -21,7 +21,7 @@ import ManageProj from './components/Pages/ManageProj';
 import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
 import PopularProj from './components/Pages/PopularProj';
-import ProjectPay from './components/ProjectPay';
+import ProjectPay from './components/ProjectData/ProjectPay/ProjectPay';
 import Mypage from './components/Pages/Mypage/Mypage';
 import CreateProj from './components/Pages/MemberService/CreateProj/CreateProj';
 import WaitingProj from './components/Pages/WaitingProject/WaitingProj';
