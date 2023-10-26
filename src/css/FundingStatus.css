@@ -6,6 +6,9 @@
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+.fundingStatusTable:hover {
+  background-color: #ddd;
+}
 .fundingStatusTr {
   text-align: center;
 }
