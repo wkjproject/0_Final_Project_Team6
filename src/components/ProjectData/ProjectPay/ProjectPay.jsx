@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ProjectPay.css';
 import { useSelector } from 'react-redux';
-import Modal1 from './AgreeModal/Modal1'
-import Modal2 from './AgreeModal/Modal2'
-import Modal3 from './AgreeModal/Modal3'
+import Modal1 from '../AgreeModal/Modal1'
+import Modal2 from '../AgreeModal/Modal2'
+import Modal3 from '../AgreeModal/Modal3'
 import { useEffect } from 'react';
 
 const ProjectPay = () => {

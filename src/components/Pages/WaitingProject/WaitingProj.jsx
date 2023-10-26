@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // 리덕스 액션쪽으로 데이터 보내기
 
 import ApprProj from './ApprProj';
-import MenuTabs from '../../MenuTabs';
+import MenuTabs from '../../ProjectData/Menu/MenuTabs';
 
 export default function WaitingProj() {
   const location = useLocation();

@@ -1,7 +1,7 @@
 import React from 'react';
 import useFetch from '../components/hooks/useFetch';
 import MenuTabs from './MenuTabs';
-import RewardSelect from './RewardSelect';
+import RewardSelect from '../RewardSelect/RewardSelect';
 import { useLocation } from 'react-router';
 
 //const apiUrl = process.env.REACT_APP_API_KEY;

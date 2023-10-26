@@ -1,4 +1,4 @@
-import useFetch from '../components/hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 const apiUrl = process.env.REACT_APP_API_KEY;
 
 console.log(apiUrl);

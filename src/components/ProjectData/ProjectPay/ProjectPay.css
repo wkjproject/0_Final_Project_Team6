@@ -146,6 +146,7 @@
     border: 1px solid rgba(30, 30, 30, 0.2);
     border-radius: 5px;
     height: 400px;
+    font-size: 20px;
 }
 
 .payCheckArea {
@@ -187,8 +188,8 @@
 
 .agreeText1 {
     text-align: left;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
     flex: 1;
 }
 
@@ -265,8 +266,8 @@
 
 .agreeText2 {
     text-align: left;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
     flex: 1;
 }
 
@@ -285,13 +286,13 @@
 }
 
 .payAgreeTd1 {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
 }
 
 .payAgreeTd2 {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
 }
 
 
@@ -358,8 +359,8 @@
 
 .agreeText3 {
     text-align: left;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
     flex: 1;
 }
 
@@ -420,4 +421,10 @@ body.modal-open {
 
 .payComfirmBtn {
     width: 100%;
+    background-color: #fe9a00;
+    border: 1px solid #fe9a00;
+    border-radius: 5px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
 }
