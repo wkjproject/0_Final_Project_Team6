@@ -1,10 +1,13 @@
-.user-container {text-align: center;}
+.user-container {
+	text-align: center;
+	height: 100%;
+}
 
 .user-container h1 {
 	font-size: var(--TextLarge);
 	margin-top: 100px;
 	margin-bottom: 10px;
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 }
 
 .user-container p{
@@ -19,6 +22,7 @@
   display: inline-block;
   margin: 0 30px 30px 0;
 	color: var(--Darkgray);
+	font-size: var(--TextMidium);
 }
 
 .user-container li:not(:last-of-type) {
@@ -28,10 +32,13 @@
 
 .user-container li:hover {
   cursor: pointer;
-  color: var(--Black);
-	font-weight: bold;
+  color: var(--ButtonPressed);
 }
 
+.user-container .active {
+	color: var(--ButtonPressed);
+	font-weight: bold;
+}
 
 .user-table {
   border-collapse: collapse;
@@ -61,6 +68,7 @@
 	width: 90px;
 	height: 30px;
 	border: none;
+	border-radius: 5px;
 }
 
 .user-table button:hover { /* 버튼 호버 효과 (마우스를 올리면 색깔 바뀜) */
