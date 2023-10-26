@@ -8,6 +8,7 @@ import { useState } from 'react';
 Modal.setAppElement('#root'); // 모달을 사용하기 위한 설정
 
 export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => {
+  const endpoint = Endpoint();
   const customStyles = {
   content: {
     width: '1000px',
@@ -56,7 +57,35 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
   });
   });
   }
-  // fundingDetailData 에 rewards에 들어있는 데이터로 리워드별 구분해서 
+  // funding_id로 찾아서 대기 / 확정 / 거절 누르면 DB에 상태값이 바뀌도록
+  const fundingStatusHandler = async (funding_id, statusChangeNumber) => {
+      try {
+    await axios.post(`${endpoint}/fundingStatusModalChangeStatus`, {
+      funding_id,
+      statusChangeNumber
+    }).then((res) => {
+      if(res.data.statusChangeSuccess){
+        // 변경 성공시 데이터 다시불러오기
+      const FundingStatusModalData = async () => {
+          try {
+            await axios.post(`${endpoint}/fundingStatusModal`, {
+              _id
+            }).then((res) => {
+              setFundingDetailData(res.data.fundingStatusModalData)
+              setFundingUserName(res.data.fundingStatusModalUserName)
+              setMount(true);
+            })
+          } catch (err) {
+            console.log(err);
+          }
+       }
+        FundingStatusModalData();
+      }
+    })
+  } catch (err) {
+    console.log(err);
+  }
+  }
   console.log('projectData',projectData)
   console.log('fundingDetailData',fundingDetailData)
   console.log('fundingUserName',fundingUserName)
@@ -75,7 +104,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
         <h1>리워드 별 펀딩현황</h1>
         <br/>
         <table className='fundingStatusModalTable'>
-          <tr>
+          <tr className='fundingStatusModalTrHead'>
             <th>리워드</th>
             <th>리워드 가격</th>
             <th>남은갯수 / 총 갯수</th>
@@ -85,7 +114,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
             projectData.projReward.map((reward, index) => {
               const rewardAmountData = groupedData[reward.projRewardName]
               return (
-              <tr key={index}>
+              <tr key={index} className='fundingStatusModalTr'>
                 <td>{reward.projRewardName}</td>
                 <td>{reward.projRewardAmount}</td>
                 <td>{`${reward.projRewardAvailable} / ${reward.projRewardCount}`}</td>
@@ -103,7 +132,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
         <h2>펀딩 세부내역</h2>
         <br/>
         <table className='fundingStatusModalTable'>
-          <tr>
+          <tr className='fundingStatusModalTrHead'>
             <th>결제일</th>
             <th>유저 닉네임</th>
             <th>펀딩 리워드</th>
@@ -117,13 +146,16 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
                 const userName = user ? user.userName : "알 수 없음"; // userName이 없는 경우에 대비
 
                 return item.rewards.map((result, key) => (
-                  <tr key={key}>
+                  <tr key={key} className='fundingStatusModalTr'>
                     <td>{item.fundingDate}</td>
                     <td>{userName}</td>
                     <td>{result.reward_id}</td>
                     <td>{result.count}</td>
                     <td>{result.price}</td>
-                    <td>{item.fundingStatus}</td>
+                    {/* 0이면 대기, 1이면 확정, 나머지 거절 */}
+                    <td>  <span className='fundingStatusModalStatus' onClick={() => (fundingStatusHandler(item.funding_id,0))} style={{color: item.fundingStatus === 0 ? 'var(--ButtonDefault)' : 'black'}}>대기</span>&nbsp; / &nbsp;
+                          <span className='fundingStatusModalStatus' onClick={() => (fundingStatusHandler(item.funding_id,1))} style={{color: item.fundingStatus === 1 ? 'var(--ButtonDefault)' : 'black'}}>확정</span>&nbsp; / &nbsp; 
+                          <span className='fundingStatusModalStatus' onClick={() => (fundingStatusHandler(item.funding_id,3))} style={{color: item.fundingStatus === 3 ? 'var(--ButtonDefault)' : 'black'}}>거절</span></td>
                   </tr>
                 ));
               })
