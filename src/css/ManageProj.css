@@ -86,6 +86,7 @@
 }
 
 .pagination button:hover {
+	background-color: var(--ButtonHover);
 	cursor: pointer;
 }
 
