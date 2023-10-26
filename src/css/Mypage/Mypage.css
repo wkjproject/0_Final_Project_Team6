@@ -124,4 +124,7 @@
   z-index: 9999;
 }
 .LikeProjectButton {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

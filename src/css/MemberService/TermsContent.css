@@ -1,0 +1,11 @@
+.termsContentH2 {
+  margin-bottom: 7px;
+}
+
+.termsContentLi {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+.termsContentOl li:last-child {
+  margin-bottom: 35px;
+}

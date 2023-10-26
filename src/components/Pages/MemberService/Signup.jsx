@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/reducer/userNameActions';
 import { Terms } from './termsModal/Terms';
 import Endpoint from '../../../config/Endpoint';
+import '../../../css/MemberService/Signup.css'
 
 export default function Signup() {
 	const endpoint = Endpoint();
@@ -112,8 +113,11 @@ export default function Signup() {
 				<div>
 					<br/>
 					<Kakao />
-					<img style={{width: '40px', height: '40px', position:'relative', top:'-39px', left:'85px'}} src='/img/kakaoLogo.png' alt="Kakao Login" />
-					<br/>
+					<img style={{width: '40px', height: '40px', position:'relative', top:'-28px', left:'85px', marginBottom:'-15px'}} src='/img/kakaoLogo.png' alt="Kakao Login" />
+					<button className='socialLogin'>네이버로 로그인하기</button>
+					<img style={{width: '32px', height: '32px', position:'relative', top:'-25px', left:'89px', marginBottom:'-9px'}} src='/img/naverLogo.png' alt="Naver Login" />
+					<button className='socialLogin'>구글로 로그인하기</button>
+					<img style={{width: '30px', height: '30px', position:'relative', top:'-23px', left:'90px', marginBottom:'25px'}} src='/img/googleLogo.png' alt="Google Login" />
 					<br/>
 					<br/>
 					<div style={{display:'flex', alignItems:'center', marginBottom:'-20px'}}>
@@ -140,7 +144,7 @@ export default function Signup() {
 					<label for="myCheckbox">약관 동의</label>
 					<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
 					<Terms />
-					<MemberShipButton onClick={submit}>가입하기</MemberShipButton>
+					<MemberShipButton style={{marginTop:'10px'}}onClick={submit}>가입하기</MemberShipButton>
 				</div>
     </MemberShipContainer>
 	)
