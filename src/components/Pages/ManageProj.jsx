@@ -52,7 +52,7 @@ export default function ManageProj() {
   };
 
   return (
-    <div>
+    <div className='manage-project-container'>
       <h1 className='manage-project'>프로젝트 관리</h1>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
@@ -101,8 +101,8 @@ export default function ManageProj() {
         <div className='pagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
-            {' '}
-            {currPage}/{totalPages}{' '}
+            {'  '}
+            {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
         </div>
