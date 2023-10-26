@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Modal1 from '../AgreeModal/Modal1'
 import Modal2 from '../AgreeModal/Modal2'
 import Modal3 from '../AgreeModal/Modal3'
+import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
 
 const ProjectPay = () => {
@@ -19,6 +20,14 @@ const ProjectPay = () => {
     function addCommasToNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    //ProjectPayCard에서 모든 결제 정보가 입력되면 ProjectPay로 "1" 발송
+    const [paymentStatus, setPaymentStatus] = useState(0);
+    console.log(paymentStatus);
+
+    const handlePaymentStatus = (status) => {
+        setPaymentStatus(status);
+    };
 
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
     const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userName
@@ -194,6 +203,7 @@ const ProjectPay = () => {
                         <div className='payTypeHeader'>결제 수단</div>
                         <hr className='payHr' />
                         <br />
+                        <ProjectPayCard onPaymentStatus={handlePaymentStatus}></ProjectPayCard>
                     </div>
                 </div>
                 <div className='payCheckDiv'>
