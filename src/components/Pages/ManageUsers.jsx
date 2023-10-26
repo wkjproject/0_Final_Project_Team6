@@ -5,15 +5,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Endpoint from '../../config/Endpoint';
 import '../../css/ManageUsers.css';
-import { CornerDownLeft } from 'react-feather';
-// import useFetch from '../hooks/useFetch';
 
 export default function ManageUsers() {
-	// const userData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/users");
-	// const userList = Object.values(userData); // 유저 값을 배열로
   const [usersInfo, setUsersInfo] = useState([]); // 몽고DB에서 불러온 데이터 관련
   const [sortKey, setSortKey] = useState(null);   // 회원 정렬 Key
   const [userMail, setUserMail] = useState(null);
+  const [activeSort, setActiveSort] = useState(null); // 탭 활성화 여부
+
 	const endpoint = Endpoint();
 
   useEffect(() => {
@@ -31,6 +29,7 @@ export default function ManageUsers() {
 
   const userSort = (key) => {
     setSortKey(key);
+    setActiveSort(key);
   };
 
   // 회원정보 정렬조건 함수
@@ -47,7 +46,6 @@ export default function ManageUsers() {
       }
       return 0;
     });
-
 
     const byeUser = (userMail) => {
       setUserMail(userMail)
@@ -69,13 +67,22 @@ export default function ManageUsers() {
 	return (
 		<div className='user-container'>
 			<h1>회원관리</h1>
+      <p>(총 회원수: {sortedUserList.length}명)</p>
 			<div className='user-list'>
-        <p>(총 회원수: {sortedUserList.length}명)</p>
         <div className="sort-tabs">
           <ul>
-            <li onClick={() => userSort('userName')}>이름순</li>
-            <li onClick={() => userSort('userMail')}>이메일순</li>
-            <li onClick={() => userSort('userPhoneNum')}>연락처순</li>
+            <li 
+            onClick={() => userSort('userName')} 
+            className={activeSort === 'userName' ? 'active' : ''}
+            >이름순</li>
+            <li 
+            onClick={() => userSort('userMail')}
+            className={activeSort === 'userMail' ? 'active' : ''}
+            >이메일순</li>
+            <li 
+            onClick={() => userSort('userPhoneNum')}
+            className={activeSort === 'userPhoneNum' ? 'active' : ''}
+            >연락처순</li>
           </ul>
         </div>
         {/* 사용자 목록을 표(테이블)로 표시 */}

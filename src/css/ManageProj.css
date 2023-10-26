@@ -1,4 +1,9 @@
 /* 프로젝트 기본 설정 */
+.manage-project-container {
+	height: 700px;
+	margin-bottom: 100px;
+	position: relative;
+}
 
 .manage-project {
 	font-size: var(--TextLarge);
@@ -9,11 +14,8 @@
 
 .tabs .active {
 	font-weight: bold;
-	background-color: white;
-	color: var(--Black);
+	color: var(--ButtonPressed);
 }
-
-.tabs p {color: blue;}
 
 .tabs ul {
 	text-align:center;
@@ -30,7 +32,8 @@
 }
 
 .tabs li:hover {
-	font-weight: bold;
+	color: var(--ButtonPressed);
+	cursor: pointer;
 }
 
 .tabs li:not(:last-of-type) {
@@ -41,7 +44,6 @@
 
 /* 프로젝트 내역(리스트) 설정 */
 .projects-container {
-	position: relative;
 	display: flex;
 	justify-content: center;
 }
@@ -61,6 +63,33 @@
 /* 페이지 이동(pagination) 버튼 설정 */
 .pagination {
 	position: absolute;
-	top: 550px;
+	top: 620px;
 	text-align: center;
+}
+
+.pagination span {
+	font-size: var(--TextMidium);
+	margin: auto 5px;
+	/* font-weight: bold; */
+	display: inline-block;
+	width: 50px;
+}
+.pagination button {
+	font-size: var(--TextMidium);
+	background-color: var(--ButtonDefault);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	width: 55px;
+	padding: 5px;
+	box-shadow: 2px 2px 2px var(--Brightgary);
+}
+
+.pagination button:hover {
+	background-color: var(--ButtonHover);
+	cursor: pointer;
+}
+
+.pagination button:active {
+	background-color: var(--ButtonPressed);
 }
