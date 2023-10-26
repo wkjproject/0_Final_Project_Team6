@@ -64,6 +64,7 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
             // 모든 필드가 최대치로 채워져 있는지 확인
             if (cardNumber.length === 16 && mmYy.length === 4 && pW.length === 2 && birTh.length === 6) {
                 onPaymentStatus(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
+                alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
             } else {
                 alert("모든 결제 정보를 입력해주세요.");
             }
