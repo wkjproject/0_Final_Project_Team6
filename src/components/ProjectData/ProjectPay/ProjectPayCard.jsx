@@ -14,10 +14,11 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
 
     const handleCancel = () => {
         // 입력된 데이터 초기화
-
-        if (inputRefs.ref.current) {
-            inputRefs.ref.current.value = "";
-        }
+        inputRefs.forEach(ref => {
+            if (ref.current) {
+                ref.current.value = "";
+            }
+        });
 
         // MM/YY 입력란 초기화
         if (mmYyInputRef.current) {
@@ -62,7 +63,7 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
 
             // 모든 필드가 최대치로 채워져 있는지 확인
             if (cardNumber.length === 16 && mmYy.length === 4 && pW.length === 2 && birTh.length === 6) {
-                onPaymentStatus(777); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
+                onPaymentStatus(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
             } else {
                 alert("모든 결제 정보를 입력해주세요.");
             }
