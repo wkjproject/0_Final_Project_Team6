@@ -13,12 +13,13 @@
   background-color: #ddd;
 }
 .SignupTermsBtn {
+  font-size: 12px;
   color: var(--Brightgary);
   background-color: var(--Darkgray);
   border: none;
   cursor: pointer;
   border-radius: 3px;
-  padding: 1px;
+  padding: 4px;
 }
 
 .SignupTermsBtn:hover {

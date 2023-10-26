@@ -190,8 +190,10 @@ export default function IdpwFind() {
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
 				<br/>
 				<div style={{textAlign:'center'}}>
+				<div style={{display:'flex', justifyContent:'center', marginBottom:'-25px'}}>
 				<input className='IdpwFindInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 				<button className='IdpwFindButtonShort' onClick={verifiCodeMailSend} disabled={isButtonDisabled}>{isButtonDisabled ? `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}` : '인증번호 받기'}</button>
+				</div>
 				<br/>
 				<br/>
 				<input className='IdpwFindInputInDiv' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>

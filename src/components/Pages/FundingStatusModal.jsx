@@ -69,7 +69,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <button style={{marginLeft: 'auto', display: 'block'}} onClick={closeModal}>닫기</button>
+      <button style={{marginLeft: 'auto', display: 'block'}} onClick={closeModal}>X</button>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', textAlign:'center'}}>
         <br/>
         <h1>리워드 별 펀딩현황</h1>

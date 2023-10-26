@@ -141,9 +141,13 @@ export default function Signup() {
 					<AddressSearch />
 					<br/>
 					<br/>
-					<label for="myCheckbox">약관 동의</label>
-					<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
+					<div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+						<div style={{display:'flex', alignItems:'center'}}>
+							<label for="myCheckbox">약관 동의</label>
+							<input type="checkbox" id="myCheckbox" checked={checkboxCheck} onChange={(e) => setCheckboxCheck(e.target.checked)}/>
+						</div>
 					<Terms />
+					</div>
 					<MemberShipButton style={{marginTop:'10px'}}onClick={submit}>가입하기</MemberShipButton>
 				</div>
     </MemberShipContainer>
