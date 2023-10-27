@@ -8,7 +8,7 @@
 .manage-project {
 	font-size: var(--TextLarge);
 	text-align: center;
-	margin-top: 100px;
+	margin-top: 75px;
 	letter-spacing: 2px;
 }
 
@@ -63,7 +63,7 @@
 /* 페이지 이동(pagination) 버튼 설정 */
 .pagination {
 	position: absolute;
-	top: 620px;
+	top: 680px;
 	text-align: center;
 }
 
