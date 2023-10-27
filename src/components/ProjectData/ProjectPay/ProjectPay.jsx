@@ -24,11 +24,25 @@ const ProjectPay = () => {
     }
 
     //ProjectPayCard에서 모든 결제 정보가 입력되면 ProjectPay로 "111" 발송
-    const [paymentStatus, setPaymentStatus] = useState(0);
-    console.log(paymentStatus);
+    const [paymentStatus1, setPaymentStatus1] = useState(0);
+    console.log(paymentStatus1);
 
-    const handlePaymentStatus = (status) => {
-        setPaymentStatus(status);
+    const handlePaymentStatus1 = (status) => {
+        setPaymentStatus1(status);
+    };
+
+    const [paymentStatus2, setPaymentStatus2] = useState(1);
+    console.log(paymentStatus2);
+
+    const handlePaymentStatus2 = (status) => {
+        setPaymentStatus2(status);
+    };
+
+    const [paymentStatus3, setPaymentStatus3] = useState(2);
+    console.log(paymentStatus3);
+
+    const handlePaymentStatus3 = (status) => {
+        setPaymentStatus3(status);
     };
 
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
@@ -71,7 +85,15 @@ const ProjectPay = () => {
                 setChecked3(true);
             }
         }
-        else if (isChecked2 && isChecked3 && paymentStatus === 111) {
+        else if (isChecked2 && isChecked3 && paymentStatus1 === 111) {
+            alert("결제완료");
+            navigate('/home');
+        }
+        else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
+            alert("결제완료");
+            navigate('/home');
+        }
+        else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
             alert("결제완료");
             navigate('/home');
         }
@@ -208,7 +230,7 @@ const ProjectPay = () => {
                         <div className='payTypeHeader'>결제 수단</div>
                         <hr className='payHr' />
                         <br />
-                        <ProjectPayCard onPaymentStatus={handlePaymentStatus}></ProjectPayCard>
+                        <ProjectPayCard onPaymentStatus1={handlePaymentStatus1} onPaymentStatus2={handlePaymentStatus2} onPaymentStatus3={handlePaymentStatus3}></ProjectPayCard>
                     </div>
                 </div>
                 <div className='payCheckDiv'>

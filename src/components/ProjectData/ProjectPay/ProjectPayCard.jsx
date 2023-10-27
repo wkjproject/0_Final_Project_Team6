@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import './ProjectPayCard.css'
 
-const ProjectPayCard = ({ onPaymentStatus }) => {
+const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }) => {
     const [selectedOption, setSelectedOption] = useState('option1');
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const mmYyInputRef = useRef(null);
@@ -54,7 +54,7 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
             // }
         };
 
-        const handleSave = () => {
+        const handleSave1 = () => {
             // 모든 input 값 가져오기
             const cardNumber = inputRefs.map(ref => ref.current.value).join('');
             const mmYy = mmYyInputRef.current.value;
@@ -63,7 +63,10 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
 
             // 모든 필드가 최대치로 채워져 있는지 확인
             if (cardNumber.length === 16 && mmYy.length === 4 && pW.length === 2 && birTh.length === 6) {
-                onPaymentStatus(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
+                onPaymentStatus1(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
+                onPaymentStatus2(1);
+                onPaymentStatus3(2);
+                alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
             } else {
                 alert("모든 결제 정보를 입력해주세요.");
             }
@@ -118,18 +121,75 @@ const ProjectPayCard = ({ onPaymentStatus }) => {
                 </div>
                 <div className="creditCardBtnDiv">
                     <button className="creditCardBtn" onClick={handleCancel}>취소</button>
-                    <button className="creditCardBtn" onClick={handleSave}>저장</button>
+                    <button className="creditCardBtn" onClick={handleSave1}>저장</button>
                 </div>
             </div>
         );
     };
 
     const Option2Content = () => {
-        return <div>무통장 입금</div>;
+        const [selectedOption, setSelectedOption] = useState('카카오뱅크'); // 초기 선택 항목
+
+        const handleSelectChange = (event) => {
+            setSelectedOption(event.target.value);
+        };
+
+        const handleSave2 = () => {
+            onPaymentStatus2(222);
+            onPaymentStatus1(0);
+            onPaymentStatus3(2);
+            alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+        }
+
+        return (
+            <div className="payBankDiv">
+                <div>입금할 은행을 선택해주세요.</div>
+                <select value={selectedOption} onChange={handleSelectChange} className="payBankSelect">
+                    <option value="카카오뱅크">카카오뱅크</option>
+                    <option value="토스뱅크">토스뱅크</option>
+                    <option value="농협은행">농협은행</option>
+                    <option value="국민은행">국민은행</option>
+                    <option value="신한은행">신한은행</option>
+                    <option value="우리은행">우리은행</option>
+                    <option value="기업은행">기업은행</option>
+                    <option value="하나은행">하나은행</option>
+                    <option value="새마을금고">새마을금고</option>
+                    <option value="우체국">우체국</option>
+                </select>
+                <p>선택한 은행: {selectedOption}</p>
+                <button className="payBankSaveBtn" onClick={handleSave2}>저장</button>
+            </div>
+        );
     };
 
     const Option3Content = () => {
-        return <div>간편결제</div>;
+        const [selectedOption, setSelectedOption] = useState('카카오페이'); // 초기 선택 항목
+
+        const handleSelectChange = (event) => {
+            setSelectedOption(event.target.value);
+        };
+
+        const handleSave3 = () => {
+            onPaymentStatus3(333);
+            onPaymentStatus1(0);
+            onPaymentStatus2(1);
+            alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+        }
+
+        return (
+            <div className="payBankDiv">
+                <div>결제할 페이 방식을 선택해주세요.</div>
+                <select value={selectedOption} onChange={handleSelectChange} className="payBankSelect">
+                    <option value="카카오페이">카카오페이</option>
+                    <option value="네이버페이">네이버페이</option>
+                    <option value="Samsung Pay">Samsung Pay</option>
+                    <option value="KB Pay">KB Pay</option>
+                    <option value="애플페이">애플페이</option>
+                </select>
+                <p>선택한 페이: {selectedOption}</p>
+                <button className="payBankSaveBtn" onClick={handleSave3}>저장</button>
+            </div>
+        );
     };
 
     let content = null;
