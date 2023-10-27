@@ -16,6 +16,11 @@
   color: #fe9a00;
 }
 
+.header-container .navbar .active {
+  font-weight: 700;
+  color: #fe9a00;
+}
+
 .header-container {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr;
