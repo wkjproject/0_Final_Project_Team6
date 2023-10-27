@@ -86,7 +86,7 @@ export default function ManageProj() {
               key={proj.projName}
               projId={proj.proj_id}
               image={proj.projMainImgPath}
-              title={proj.projName}
+              projName={proj.projName}
               location={proj.projAddr.split(' ', 2)[1]}
               dday={proj.projDate}
               sday={proj.projFundDate[0].projFundStartDate}
