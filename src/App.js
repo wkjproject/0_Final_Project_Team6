@@ -57,6 +57,7 @@ function App() {
             <Route path='newProj' element={<NewProj />} />
             <Route path='deadlineProj' element={<DeadlineProj />} />
             <Route path='searchPage' element={<SearchPage />} />
+            <Route path='searchPage/:keyword' element={<SearchPage />} />
           </Route>
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
