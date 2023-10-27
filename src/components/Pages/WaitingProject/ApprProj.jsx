@@ -112,12 +112,14 @@ export default function ApprProj() {
         <button className='apprBtn' onClick={() => ApproveProj()}>
           프로젝트 승인
         </button>
-        <button className='rejectBtn' onClick={() => RejectProj()}>
-          프로젝트 승인 거절
-        </button>
-        <button className='holdBtn' onClick={() => navigate(-1)}>
-          보류
-        </button>
+        <div className='buttons-group'>
+          <button className='rejectBtn' onClick={() => RejectProj()}>
+            프로젝트 승인 거절
+          </button>
+          <button className='holdBtn' onClick={() => navigate(-1)}>
+            보류
+          </button>
+        </div>
       </div>
     </div>
   );
