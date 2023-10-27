@@ -3,7 +3,7 @@ import ProjectCard from './ProjectCard';
 import { useProjectsApi } from '../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 
-function ProjectList({ listtype }) {
+function ProjectList({ listType, keyword }) {
   // const { keyword } = useParams();
   const { projects } = useProjectsApi();
   const {
@@ -36,7 +36,7 @@ function ProjectList({ listtype }) {
     fundStartDate.setHours(0, 0, 0, 0);
     fundEndDate.setHours(23, 59, 59, 0);
 
-    switch (listtype) {
+    switch (listType) {
       case 'home':
         return (
           proj.projStatus === '1' &&
@@ -60,6 +60,19 @@ function ProjectList({ listtype }) {
           daysBetween(today, fundEndDate) < 3
         );
       case 'searchPage':
+        console.log(proj.projName);
+        console.log(keyword);
+        console.log(
+          `${proj.projName} includes ${keyword}=> `,
+          proj.projName.includes(keyword.toLowerCase())
+        );
+        return (
+          proj.projStatus === '1' &&
+          // fundStartDate <= today &&
+          // today <= fundEndDate &&
+          (proj.projName.toLowerCase().includes(keyword.toLowerCase()) ||
+            proj.projIntro.toLowerCase().includes(keyword.toLowerCase()))
+        );
         break;
       default:
         break;
