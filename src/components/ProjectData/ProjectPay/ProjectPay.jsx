@@ -89,6 +89,14 @@ const ProjectPay = () => {
             alert("결제완료");
             navigate('/home');
         }
+        else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
+            alert("결제완료");
+            navigate('/home');
+        }
+        else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
+            alert("결제완료");
+            navigate('/home');
+        }
         else {
             alert("결제 정보를 입력해주세요.");
         }
