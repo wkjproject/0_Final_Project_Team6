@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './ProjectPay.css';
 import { useSelector } from 'react-redux';
 import Modal1 from '../AgreeModal/Modal1'
 import Modal2 from '../AgreeModal/Modal2'
 import Modal3 from '../AgreeModal/Modal3'
+import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
 
 const ProjectPay = () => {
@@ -15,10 +16,20 @@ const ProjectPay = () => {
     const rewardsArray = selectedRewards;
     //console.log(location);
 
+    const navigate = useNavigate();
+
     // 숫자를 세 자리마다 쉼표(,)를 추가하는 함수
     function addCommasToNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    //ProjectPayCard에서 모든 결제 정보가 입력되면 ProjectPay로 "111" 발송
+    const [paymentStatus, setPaymentStatus] = useState(0);
+    console.log(paymentStatus);
+
+    const handlePaymentStatus = (status) => {
+        setPaymentStatus(status);
+    };
 
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
     const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userName
@@ -60,9 +71,12 @@ const ProjectPay = () => {
                 setChecked3(true);
             }
         }
+        else if (isChecked2 && isChecked3 && paymentStatus === 111) {
+            alert("결제완료");
+            navigate('/home');
+        }
         else {
-            alert("메인 페이지 이동 예정")
-            // 결제 로직 실행
+            alert("결제 정보를 입력해주세요.");
         }
     };
 
@@ -194,6 +208,7 @@ const ProjectPay = () => {
                         <div className='payTypeHeader'>결제 수단</div>
                         <hr className='payHr' />
                         <br />
+                        <ProjectPayCard onPaymentStatus={handlePaymentStatus}></ProjectPayCard>
                     </div>
                 </div>
                 <div className='payCheckDiv'>

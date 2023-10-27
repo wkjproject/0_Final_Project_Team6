@@ -1,0 +1,78 @@
+.ProjectPayCardMain {
+    padding-left: 20px;
+}
+
+.ProjectPayCardMainRadio {
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+.creditCardInputHeader1 {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.creditCardInput1 {
+    width: 175px;
+    margin-top: 10px;
+    margin-right: 19px;
+    height: 30px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.creditCardInput1:last-child {
+    margin-right: 0;
+}
+
+.creditCardInputHeader2 {
+    display: flex;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.creditCardInputHeader2-1 {
+    margin-left: 125px;
+}
+
+.creditCardInput2 {
+    margin-top: 10px;
+    height: 30px;
+    width: 175px;
+    font-size: 30px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.creditCardInput2::placeholder {
+    text-align: center;
+}
+
+.creditCardInputHeader3 {
+    display: flex;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.creditCardInput3 {
+    margin-top: 10px;
+    height: 30px;
+    width: 175px;
+    font-size: 30px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.creditCardBtnDiv {
+    margin-top: 20px;
+}
+
+.creditCardBtn {
+    width: 368px;
+    margin-right: 20px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+}
