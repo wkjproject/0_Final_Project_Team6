@@ -5,7 +5,7 @@ import ProjectRanking from './ProjectRanking';
 export default function PopularProj() {
   return (
     <>
-      <ProjectList listtype='home' />
+      <ProjectList listType='home' />
       <ProjectRanking />
     </>
   );
