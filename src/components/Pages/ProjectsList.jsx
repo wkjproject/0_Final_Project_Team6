@@ -60,17 +60,18 @@ function ProjectList({ listType, keyword }) {
           daysBetween(today, fundEndDate) < 3
         );
       case 'searchPage':
-        // console.log(proj.projName);
-        // console.log(keyword);
-        // console.log(
-        //   `${proj.projName} includes ${keyword}=> `,
-        //   proj.projName.includes(keyword.toLowerCase())
-        // );
+        console.log(proj.projName);
+        console.log(keyword);
+        console.log(
+          `${proj.projName} includes ${keyword}=> `,
+          proj.projName.includes(keyword.toLowerCase())
+        );
         return (
           proj.projStatus === '1' &&
-          fundStartDate <= today &&
-          today <= fundEndDate &&
-          proj.projName.toLowerCase().includes(keyword.toLowerCase())
+          // fundStartDate <= today &&
+          // today <= fundEndDate &&
+          (proj.projName.toLowerCase().includes(keyword.toLowerCase()) ||
+            proj.projIntro.toLowerCase().includes(keyword.toLowerCase()))
         );
         break;
       default:
