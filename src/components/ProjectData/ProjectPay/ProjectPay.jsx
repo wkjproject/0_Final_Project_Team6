@@ -38,6 +38,13 @@ const ProjectPay = () => {
         setPaymentStatus2(status);
     };
 
+    const [paymentStatus3, setPaymentStatus3] = useState(2);
+    console.log(paymentStatus3);
+
+    const handlePaymentStatus3 = (status) => {
+        setPaymentStatus3(status);
+    };
+
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
     const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userName
     const userAddr = useSelector((state) => state.userAddr.userAddr); // 로그인한 userAddr
@@ -215,7 +222,7 @@ const ProjectPay = () => {
                         <div className='payTypeHeader'>결제 수단</div>
                         <hr className='payHr' />
                         <br />
-                        <ProjectPayCard onPaymentStatus1={handlePaymentStatus1} onPaymentStatus2={handlePaymentStatus2}></ProjectPayCard>
+                        <ProjectPayCard onPaymentStatus1={handlePaymentStatus1} onPaymentStatus2={handlePaymentStatus2} onPaymentStatus3={handlePaymentStatus3}></ProjectPayCard>
                     </div>
                 </div>
                 <div className='payCheckDiv'>
