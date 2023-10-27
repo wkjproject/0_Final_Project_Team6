@@ -71,9 +71,10 @@ function ProjectList({ listType, keyword }) {
           // fundStartDate <= today &&
           // today <= fundEndDate &&
           (proj.projName.toLowerCase().includes(keyword.toLowerCase()) ||
-            proj.projIntro.toLowerCase().includes(keyword.toLowerCase()))
+            proj.projIntro.toLowerCase().includes(keyword.toLowerCase()) ||
+            proj.projPlace.toLowerCase().includes(keyword.toLowerCase()) ||
+            proj.projAddr.toLowerCase().includes(keyword.toLowerCase()))
         );
-        break;
       default:
         break;
     }
@@ -81,7 +82,14 @@ function ProjectList({ listType, keyword }) {
   });
 
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
-    return <p></p>;
+    return (
+      <>
+        <br />
+        <h4>해당하는 프로젝트가 없습니다.</h4>
+        <br />
+        <br />
+      </>
+    );
   }
 
   return (
