@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setProjForm } from "../../../../redux/reducer/createProj";
 import { height } from "@mui/system";
+import AddressSearch from "../Address/AddressSearch";
 
 const CreateProj = () => {
   const [state, setState] = useState({
@@ -16,10 +17,11 @@ const CreateProj = () => {
     projName: "",
     selectedImage: null,
     imageUrl: "",
+    imageBase64: "",
     projDesc: "",
     projFundStartDate: "",
     projFundEndDate: "",
-    projReward: [{ time: "", price: "", amount: "" }],
+    projReward: [{ projRewardName: "", projRewardAmount: "", projRewardCount: "" }],
     goalAmount: "",
     projPlace: "",
     checkbox1Checked: false,
@@ -40,21 +42,41 @@ const CreateProj = () => {
       [name]: value,
     }));
   };
+  // Blob URL을 base64로 변환하는 함수
+  function blobUrlToBase64(blobUrl, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = () => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        callback(reader.result.split(',')[1]); // base64 데이터 부분 추출
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', blobUrl);
+    xhr.send();
+  }
 
-  //이미지 핸들
+  // 이미지 업로드 핸들러
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
-      // 이미지 파일이 선택된 경우
-      const imageUrl = URL.createObjectURL(file); // 파일을 URL로 변환
+      const imageUrl = URL.createObjectURL(file);
       setState((prevState) => ({
         ...prevState,
         selectedImage: file,
         imageUrl,
       }));
+
+      // Blob URL을 base64로 변환
+      blobUrlToBase64(imageUrl, (base64Data) => {
+        setState((prevState) => ({
+        ...prevState,
+        imageBase64: base64Data,
+      }));
+      });
     } else {
-      // 이미지 파일이 선택 해제된 경우
       setState((prevState) => ({
         ...prevState,
         selectedImage: null,
@@ -142,34 +164,77 @@ const CreateProj = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  // 리덕스의 userId 가져오기
+  // 리덕스의 userName, userId, userAddr 가져오기
   const userName = useSelector((state) => state.auth.auth.userName)
-
+  const userId = useSelector((state) => state.auth.auth.userId)
+  const projPlace = useSelector((state) => {
+  const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
+  return projPlaceAddr ? projPlaceAddr.projPlace : undefined;
+  });
+  const projAddr = useSelector((state) => {
+  const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
+  return projPlaceAddr ? projPlaceAddr.projAddr : undefined;
+  });
   const handler = (e) => {
     e.preventDefault();
   };
+  
+  // 이미지 업로드 API 사용해서 url로 변경하기
+  const uploadImage = async (img) => {
+    const body = new FormData();
+    body.set('key', '04ee2299a6c1b4578ea914699922672d');
+    body.append('image', img);
+    try {
+      const response = await axios.post('https://api.imgbb.com/1/upload', body);
+      return response.data.data.display_url;
+    } catch (error) {
+      // 오류 처리 로직을 추가할 수 있습니다.
+      console.log('이미지 업로드 중 오류 발생:', error);
+    }
+  };
+
 
   // 심사등록하기 버튼 누를 경우
   const handleSubmit = async (evt) =>{
     evt.preventDefault();
     try{
-/*       // 이미지 업로드 API 사용해서 url로 변경하기
-      const response = await axios.post('https://api.imgbb.com/1/upload', null, {
-      params: {
-        key: '04ee2299a6c1b4578ea914699922672d',
-      },
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      data: {
-        image: state.imageUrl,
-      },
-    });
-      console.log('Image uploaded:', response.data); */
-      console.log(state)
+      // img 태그 base64 정규 패턴
+      const imgPattern = /<img src="data:image\/.+?;base64,(.+?)">/;
+      // state.projDesc에서 패턴에 일치하는 값 확인
+      const matches = state.projDesc.match(imgPattern);
+
+      // 모든 match 값을 확인
+      if (matches) {
+        for (const match of matches) {
+          const matchResult = match.match(/<img src="data:image\/.+?;base64,(.+?)">/);
+          if (matchResult && matchResult[1]) {
+            const base64ImageData = matchResult[1];
+            const newUrl = await uploadImage(base64ImageData);
+            state.projDesc = state.projDesc.replace(match, `<img src="${newUrl}" />`);
+          }
+        }
+      }
+      console.log(state);
+      const uploadImgUrl = await uploadImage(state.imageBase64)
+      // state에서 imageBase64를 제외한 속성을 postData로 복사
+      const { imageBase64, ...postData } = state; 
+      await axios.post(`${endpoint}/createProj`, {
+        ...postData,
+        uploadImgUrl,
+        userId,
+        projPlace,
+        projAddr,
+      }).then((res)=> {
+        if(res.data.success){
+          alert('등록 성공')
+        }
+      })
     }
-    catch(e){
-      alert('등록을 실패하였습니다.');
+    catch(err){
+      console.error(`에러 유형: ${err.name}`);
+      console.error(`에러 메시지: ${err.message}`);
+      // 필요한 경우 에러 객체의 다른 프로퍼티를 출력
+      console.error(err);
     }
   };
 
@@ -250,14 +315,8 @@ const CreateProj = () => {
 
           <div className="createform">
             <h3>펀딩 위치</h3>
-            <input
-              name="projPlace"
-              type="text"
-              placeholder="펀딩 위치"
-              value={state.projPlace}
-              onChange={handleInputChange}
-              className="inputBox"
-            />
+            {/* AddressSearch css수정 */}
+            <AddressSearch />
           </div>
 
           <div className="createform">
@@ -291,25 +350,25 @@ const CreateProj = () => {
                 >
                   <input
                     type="datetime-local"
-                    name="time"
+                    name="projRewardName"
                     placeholder="시간"
-                    value={projReward.time}
+                    value={projReward.projRewardName}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput"
                   />
                   <input
                     type="number"
-                    name="price"
+                    name="projRewardAmount"
                     placeholder="가격"
-                    value={projReward.price}
+                    value={projReward.projRewardAmount}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput rewardsinput2"
                   />
                   <input
                     type="number"
-                    name="amount"
+                    name="projRewardCount"
                     placeholder="개수"
-                    value={projReward.amount}
+                    value={projReward.projRewardCount}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput rewardsinput2"
                   />

@@ -73,7 +73,7 @@ export default function FundingStatus() {
         
         
         
-      : ('')}
+      : (<div></div>)}
     </div>
   );
 }

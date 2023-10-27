@@ -4,6 +4,7 @@ import DaumPostcode from 'react-daum-postcode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddr } from '../../../../redux/reducer/userAddrActions';
 import '../../../../css/MemberService/AddressSearch.css';
+import { setProjPlaceAddr } from '../../../../redux/reducer/projPlaceAddrAction'
 
 function AddressSearch({ userProfileUserAddr }) {
   const dispatch = useDispatch();
@@ -36,9 +37,10 @@ function AddressSearch({ userProfileUserAddr }) {
   };
 
   const saveDetailedAddress = () => {
-    const userAddressResult = userAddress + ' ' + detailedAddress
+    const userAddressResult = userAddress + '  ' + detailedAddress
     setUserAddress(userAddressResult)
     dispatch(setUserAddr(userAddressResult));
+    dispatch(setProjPlaceAddr({ projPlace: detailedAddress, projAddr: userAddress }));
     setDetailedAddress('');
     setModalIsOpen(false);
     setShowDetailedAddress(false);

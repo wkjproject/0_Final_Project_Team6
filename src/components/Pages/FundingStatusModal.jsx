@@ -28,9 +28,15 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
         await axios.post(`${endpoint}/fundingStatusModal`, {
           _id
         }).then((res) => {
-          setFundingDetailData(res.data.fundingStatusModalData)
-          setFundingUserName(res.data.fundingStatusModalUserName)
-          setMount(true);
+          if (res.data.fundingStatusModalDataSuccess){
+            setFundingDetailData(res.data.fundingStatusModalData)
+            setFundingUserName(res.data.fundingStatusModalUserName)
+            setMount(true);
+          }
+          if (!res.data.fundingStatusModalDataSuccess){
+            alert('펀딩 데이터가 없습니다.');
+            window.history.back();
+          }
         })
       } catch (err) {
         console.log(err);
@@ -42,20 +48,20 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
   // fundings 컬렉션에 user_id 기반으로 users컬렉션에서 userName 받아와서 닉네임 설정
   // 리워드 별 총합산액 계산
   const groupedData = {};
-  if(fundingDetailData) {
-  fundingDetailData.forEach((item) => {
-  item.rewards.forEach((reward) => {
-    const rewardId = reward.reward_id;
-    if (!groupedData[rewardId]) {
-      groupedData[rewardId] = {
-        totalPrice: 0,
-        totalCount: 0,
-      };
-    }
-    groupedData[rewardId].totalPrice += reward.price;
-    groupedData[rewardId].totalCount += reward.count;
-  });
-  });
+  if(mount) {
+    fundingDetailData.forEach((item) => {
+    item.rewards.forEach((reward) => {
+      const rewardId = reward.reward_id;
+      if (!groupedData[rewardId]) {
+        groupedData[rewardId] = {
+          totalPrice: 0,
+          totalCount: 0,
+        };
+      }
+      groupedData[rewardId].totalPrice += reward.price;
+      groupedData[rewardId].totalCount += reward.count;
+    });
+    });
   }
   // funding_id로 찾아서 대기 / 확정 / 거절 누르면 DB에 상태값이 바뀌도록
   const fundingStatusHandler = async (funding_id, statusChangeNumber) => {
@@ -89,7 +95,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
   console.log('projectData',projectData)
   console.log('fundingDetailData',fundingDetailData)
   console.log('fundingUserName',fundingUserName)
-  console.log('groupedData',groupedData['일반'])
+  console.log('groupedData',groupedData)
   return (
     <>
     {mount ? (
