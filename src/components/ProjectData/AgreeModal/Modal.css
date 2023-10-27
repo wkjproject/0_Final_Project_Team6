@@ -1,0 +1,21 @@
+.AgreeModalDiv {
+    display: flex;
+    background-color: wheat;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    height: 80%;
+}
+
+.AgreeModalDesc {
+    padding-top: 60px;
+}
+
+.AgreeModalBtn {
+    position: absolute;
+    right: 100px;
+    top: 520px;
+    width: 100px;
+    height: 40px;
+}

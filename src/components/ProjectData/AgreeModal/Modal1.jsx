@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import styles from './Modal.module.css';
+import './Modal.css'
 
 function Modal1({ setModalOpen }) {
 
@@ -38,8 +39,14 @@ function Modal1({ setModalOpen }) {
             <button className={styles.close} onClick={closeModal}>
                 X
             </button>
-            <p>동의 약관 추가 예정</p>
-            <p>1번 약관</p>
+            <div className='AgreeModalDiv'>
+                <div className='AgreeModalDesc'>
+                    동의 약관 추가 예정
+                    <br />
+                    1번 약관
+                </div>
+            </div>
+            <button onClick={closeModal} className='AgreeModalBtn'>확인</button>
         </div>
     );
 }
