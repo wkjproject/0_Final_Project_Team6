@@ -86,7 +86,7 @@ export const Login = () => {
         <br />
         <p style={{ position: 'relative', top: '5px', left: '105px', color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind" className='LoginNavLink' style={{textDecoration:'none'}}>아이디/비밀번호 찾기</NavLink></p>
         <br />
-        <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
+        <MemberShipButton type="submit" onClick={submit} style={{fontSize:'var(--TextMedium'}}>로그인</MemberShipButton>
         <br />
         <br />
         <br />

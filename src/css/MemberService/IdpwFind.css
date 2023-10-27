@@ -70,9 +70,13 @@
   text-align: center; /* placeholder 텍스트를 가운데 정렬 */
 }
 
-.IdpwFindButton:hover {
+.IdpwFindButton:hover,
+.IdpwFindButtonInDiv:hover,
+.IdpwFindButtonShort:hover {
   background-color: var(--ButtonHover);
 }
-.IdpwFindButton:active {
+.IdpwFindButton:active,
+.IdpwFindButtonInDiv:active,
+.IdpwFindButtonShort:active {
   background-color: var(--ButtonPressed);
 }

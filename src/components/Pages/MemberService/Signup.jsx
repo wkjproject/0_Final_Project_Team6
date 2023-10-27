@@ -148,7 +148,7 @@ export default function Signup() {
 						</div>
 					<Terms />
 					</div>
-					<MemberShipButton style={{marginTop:'10px'}}onClick={submit}>가입하기</MemberShipButton>
+					<MemberShipButton style={{marginTop:'15px', fontSize:'var(--textMedium)'}}onClick={submit}>가입하기</MemberShipButton>
 				</div>
     </MemberShipContainer>
 	)
