@@ -4,7 +4,7 @@ import ProjectList from './ProjectsList';
 export default function NewProj() {
   return (
     <>
-      <ProjectList listtype='newProj' />
+      <ProjectList listType='newProj' />
     </>
   );
 }
