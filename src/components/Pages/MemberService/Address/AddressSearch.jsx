@@ -4,6 +4,7 @@ import DaumPostcode from 'react-daum-postcode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddr } from '../../../../redux/reducer/userAddrActions';
 import '../../../../css/MemberService/AddressSearch.css';
+import { setProjPlaceAddr } from '../../../../redux/reducer/projPlaceAddrAction'
 
 function AddressSearch({ userProfileUserAddr }) {
   const dispatch = useDispatch();
@@ -36,9 +37,10 @@ function AddressSearch({ userProfileUserAddr }) {
   };
 
   const saveDetailedAddress = () => {
-    const userAddressResult = userAddress + ' ' + detailedAddress
+    const userAddressResult = userAddress + '  ' + detailedAddress
     setUserAddress(userAddressResult)
     dispatch(setUserAddr(userAddressResult));
+    dispatch(setProjPlaceAddr({ projPlace: detailedAddress, projAddr: userAddress }));
     setDetailedAddress('');
     setModalIsOpen(false);
     setShowDetailedAddress(false);
@@ -46,8 +48,10 @@ function AddressSearch({ userProfileUserAddr }) {
 
   return (
     <div>
-      <input className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
+      <div style={{display:'flex', alignItems:'center'}}>
+      <input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
       <button className='AddressSearchButtonShort' onClick={(evt) => {evt.preventDefault(); setModalIsOpen(true)}}>주소검색</button>
+      </div>
       {/* 모달 다이얼로그 */}
       <Modal
         isOpen={modalIsOpen}

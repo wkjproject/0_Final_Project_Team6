@@ -25,14 +25,16 @@ export const Terms = () => {
 
   return (
     <>
-      <button onClick={openModal}>약관 내용 펼쳐보기</button>
+      <div style={{display:'flex', justifyContent:'center', float:'right'}}>
+      <button className='SignupTermsBtn' onClick={openModal}>약관 내용 펼쳐보기</button>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="약관 동의 모달"
       >
-        <button style={{ marginLeft: 'auto', display: 'block' }} onClick={closeModal}>X</button>
+        <button className='SignupTermsBtnX' onClick={closeModal}>X</button>
         <TermsContent />
       </Modal>
     </>

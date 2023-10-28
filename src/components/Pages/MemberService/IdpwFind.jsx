@@ -149,34 +149,43 @@ export default function IdpwFind() {
     window.removeEventListener('beforeunload', handleBeforeUnload);
   }
 }, []);
+ const [currTab, setCurrTab] = useState('idFind');
+ const handleTabClick = (tabName) => {
+    setCurrTab(tabName);
+    /* setCurrPage(1); // 탭 변경시, 1페이지로 초기화 */
+  };
 	return (
 		<div className='IdpwFindContainer'>
-			<button button className='IdpwFindButton' onClick={moveIdFind}>
-        아이디 찾기
-      </button>
-			<br/>
-			<button button className='IdpwFindButton' onClick={movePwFind}>
-        비밀번호 찾기
-      </button>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			{IdpwFindState ? (
+			<div className='tabs' style={{position:'absolute', top:'400px'}}>
+        <ul>
+          <li
+            className={`tab ${currTab === 'idFind' ? 'active' : ''}`}
+            onClick={() => handleTabClick('idFind')}
+          >
+            아이디 찾기
+          </li>
+          <li
+            className={`tab ${currTab === 'pwFind' ? 'active' : ''}`}
+            onClick={() => handleTabClick('pwFind')}
+          >
+            비밀번호 찾기
+          </li>
+        </ul>
+      </div>
+			{currTab === 'idFind' ? (
 				IdFind ? (
 				<>
-				<p>{getUserMail}</p>
+				<p style={{fontSize:'var(--TextLarge'}}>{getUserMail}</p>
 				<br/>
-				<p>회원으로 등록된 이메일 아이디입니다.</p>
+				<p style={{fontSize:'var(--TextMedium', marginBottom:'30px'}}>회원으로 등록된 이메일 아이디입니다.</p>
 				<button className='IdpwFindButton' onClick={moveLogin} >로그인</button>
-				</>) : (				<>
+				</>) : (				
+				<div style={{textAlign:'center', width:'400px', marginTop:'-49px'}}>
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
 				<br/>
-				<input className='IdpwFindInput' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
-				<br/>
-				<br/>
-				<button className='IdpwFindButton' onClick={userMailFind}>로그인 아이디 확인</button>
-				</>)
+				<input className='IdpwFindInputInDiv' type='text' ref={userMailRef} placeholder='이메일 입력' style={{marginBottom:'30px'}}></input>
+				<button className='IdpwFindButtonInDiv' onClick={userMailFind}>로그인 아이디 확인</button>
+				</div>)
 
 			) : ( verifiConfirmState ? 
 			(<> 					
@@ -189,15 +198,14 @@ export default function IdpwFind() {
 			(<>
 				<p>가입하실 때 사용하신 이메일을 입력해주세요.</p>
 				<br/>
-				<div style={{textAlign:'center'}}>
+				<div style={{textAlign:'center', width:'400px'}}>
+				<div style={{display:'flex', justifyContent:'center', marginBottom:'-25px'}}>
 				<input className='IdpwFindInputShort' type='text' ref={userMailRef} placeholder='이메일 입력' ></input>
 				<button className='IdpwFindButtonShort' onClick={verifiCodeMailSend} disabled={isButtonDisabled}>{isButtonDisabled ? `${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}` : '인증번호 받기'}</button>
+				</div>
 				<br/>
 				<br/>
-				<input className='IdpwFindInputInDiv' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' ></input>
-				<br/>
-				<br/>
-				<br/>
+				<input className='IdpwFindInputInDiv' type='text' ref={verifiCodeRef} placeholder='인증번호 입력' style={{marginBottom:'30px'}}></input>
 				<button className='IdpwFindButtonInDiv' onClick={verifiConfirm}>비밀번호 재설정</button>
 				</div>
 				</>)

@@ -31,9 +31,13 @@ export default function Mypage() {
   // 관심프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projReward[0]
 
   return (
-    <div style={{textAlign:'center'}}>
+    <div style={{textAlign:'center', minHeight:'100vh'}}>
+      <br/>
+      <br/>
       <img src='/img/person.png' style={{height:'128px', width:'128px'}} alt='person'/>
-      <h1>{userName}</h1>
+      <h1 style={{marginTop:'10px'}}>{userName}</h1>
+      <br/>
+      <br/>
       {/* 프로젝트 탭 */}
       <div className='tabs'>
         {/* 승인 대기 프로젝트 탭 */}

@@ -35,7 +35,7 @@ export default function ProjectCard({
         MypageDivContent={MypageDivContent}
         cancelLike={cancelLike}
       />
-      <h5 className='pc-title'>{projName}</h5>
+      {projName ? <h5 className='pc-title'>{projName}</h5>:(<p style={{marginBottom:'8px'}}></p>)}
       <span className='pc-location'>{location}</span>
       <span className=''> | </span>
       <span className='pc-price'>

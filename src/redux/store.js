@@ -9,6 +9,7 @@ import { projStatusReducer } from './reducer/projStatusReducer';
 import { authReducer } from './reducer/authReducer';
 import { userPhoneNumReducer } from './reducer/userPhoneNumReducer';
 import { userMailReducer } from './reducer/userMailReducer';
+import { projPlaceAddrReducer } from './reducer/projPlaceAddrReducer';
 // 일단은 이렇게 변수 하나당 한개의 리듀서로 가다가
 // 최종안 나오면 user끼리 project끼리 합치는게 나을거같아요.
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   userMail: userMailReducer,
   projStatus: projStatusReducer,
   auth: authReducer,
+  projPlaceAddr: projPlaceAddrReducer,
 });
 
 export const store = createStore(

@@ -97,8 +97,8 @@ export default function FundingProject() {
             onRequestClose={() => setModalIsOpen(false)}
             style={{
               content: {
-                width: '500px',
-                height: '300px',
+                width: '400px',
+                height: '165px',
                 overflow: 'hidden',
                 top: '50%',
                 left: '50%',
@@ -110,10 +110,12 @@ export default function FundingProject() {
               },
             }}
           >
-        <button style={{ marginLeft: 'auto', display: 'block' }} onClick={() => setModalIsOpen(false)}>X</button>
+        <button className='fundingCancelBtn' onClick={() => setModalIsOpen(false)}>X</button>
         <h2>결제 취소</h2>
+        <br/>
+        <br/>
         <p>정말로 결제를 취소하시겠습니까?</p>
-        <button style={{ marginLeft: 'auto', display: 'block' }} onClick={cancelPayDB}>결제취소</button>
+        <button className='fundingCancelBtn'style={{backgroundColor: 'var(--ButtonDefault)', width: '75px', height: '30px'}} onClick={cancelPayDB}>결제취소</button>
       </Modal>
           </>
           ))

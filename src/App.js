@@ -42,7 +42,7 @@ function App() {
   const AuthMypage = Auth(Mypage, true);
   const AuthManageProj = Auth(ManageProj, true, true);
   const AuthManageUsers = Auth(ManageUsers, true, true);
-
+  const AuthFundingStatus = Auth(FundingStatus, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -74,7 +74,7 @@ function App() {
           <Route path='/createProj' element={<CreateProj />} />
           <Route path='/manageUsers' element={<AuthManageUsers />} />
           <Route path='/manageUsers' element={<ManageUsers />} />
-          <Route path='/fundingStatus' element={<FundingStatus />} />
+          <Route path='/fundingStatus' element={<AuthFundingStatus />} />
         </Routes>
       </BrowserRouter>
       <Footer />
