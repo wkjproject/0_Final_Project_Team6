@@ -6,7 +6,7 @@ import { setUserAddr } from '../../../../redux/reducer/userAddrActions';
 import '../../../../css/MemberService/AddressSearch.css';
 import { setProjPlaceAddr } from '../../../../redux/reducer/projPlaceAddrAction'
 
-function AddressSearch({ userProfileUserAddr, CallClassName }) {
+function AddressSearch({ userProfileUserAddr, CallClassName, defaultValue }) {
   const dispatch = useDispatch();
   let userAddr = useSelector((state)=>state.userAddr.userAddr);
   if(userProfileUserAddr !== undefined){
@@ -57,7 +57,7 @@ function AddressSearch({ userProfileUserAddr, CallClassName }) {
   return (
     <div>
       <div style={{display:'flex', alignItems:'center'}}>
-      {CallClassName === 'createProjButtonShort' ? (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={projAddress} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>)}
+      {CallClassName === 'createProjButtonShort' ? defaultValue === undefined ? (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={projAddress} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={defaultValue} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>)}
       <button id={`${
         CallClassName === 'createProjButtonShort'
           ? 'createProjButtonShort'
