@@ -431,7 +431,7 @@ export default function ModifyProj() {
                     type="datetime-local"
                     name="projRewardName"
                     placeholder="시간"
-                    value={reward.projRewardName}
+                    value={new Date(reward.projRewardName)}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput"
                   />
