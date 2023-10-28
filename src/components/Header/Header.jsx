@@ -1,14 +1,31 @@
 import './Header.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
 import { Logout } from '../Pages/MemberService/Logout';
+import { BsSearch } from 'react-icons/bs';
+import { useEffect } from 'react';
 
 export default function Header() {
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
   // 리덕스에서 운영자 확인
   const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+
+  const { keyword } = useParams();
+  const navigate = useNavigate();
+  const [text, setText] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/home/searchPage/${text}`);
+    setText('');
+    //navigate('/waitingProj', { state: { _id: props.projId } });
+  };
+
+  useEffect(() => {
+    console.log('Header: ', keyword);
+    setText(keyword || '');
+  }, [keyword]);
 
   return (
     <header className='header-container'>
@@ -86,15 +103,20 @@ export default function Header() {
 
       {/* 검색창 */}
       <div className='searchBox'>
-        <input type='text' />
-        <Link to='/home/searchPage'>
+        <form action='' onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Search...'
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <img
             src='https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png'
             alt=''
+            onClick={handleSubmit}
           />
-        </Link>
+        </form>
       </div>
-    
     </header>
   );
 }
