@@ -168,13 +168,13 @@ const CreateProj = () => {
   const userName = useSelector((state) => state.auth.auth.userName)
   const userId = useSelector((state) => state.auth.auth.userId)
   const projPlace = useSelector((state) => {
-  const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
-  return projPlaceAddr ? projPlaceAddr.projPlace : undefined;
-  });
+    const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
+    return projPlaceAddr ? projPlaceAddr.projPlace : undefined;
+    });
   const projAddr = useSelector((state) => {
-  const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
-  return projPlaceAddr ? projPlaceAddr.projAddr : undefined;
-  });
+    const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
+    return projPlaceAddr ? projPlaceAddr.projAddr : undefined;
+    });
   const handler = (e) => {
     e.preventDefault();
   };
@@ -197,6 +197,46 @@ const CreateProj = () => {
   // 심사등록하기 버튼 누를 경우
   const handleSubmit = async (evt) =>{
     evt.preventDefault();
+    if(state.projName === ""){
+      alert('프로젝트 제목을 입력해주세요.')
+      return;
+    }
+    if(state.imageBase64 === ""){
+      alert('대표 이미지를 업로드 해주세요.')
+      return;
+    }
+    if(state.projDesc === ""){
+      alert('프로젝트 소개를 입력해주세요.')
+      return;
+    }
+    if(state.projFundStartDate === ""){
+      alert('펀딩 시작일을 입력해주세요.')
+      return;
+    }
+    if(state.projFundEndDate === ""){
+      alert('펀딩 종료일을 입력해주세요.')
+      return;
+    }
+    if(state.projFundEndDate === ""){
+      alert('펀딩 종료일을 입력해주세요.')
+      return;
+    }
+    if(state.projReward.length === 0){
+      alert('리워드를 입력해주세요.')
+      return;
+    }
+    if(state.goalAmount === ""){
+      alert('목표금액을 입력해주세요.')
+      return;
+    }
+    if(state.projReward.length === 0){
+      alert('리워드를 입력해주세요.')
+      return;
+    }
+    if (projAddr === undefined){
+			alert('펀딩위치를 입력해주세요.')
+			return;
+		}
     try{
       // img 태그 base64 정규 패턴
       const imgPattern = /<img src="data:image\/.+?;base64,(.+?)">/;
@@ -316,7 +356,7 @@ const CreateProj = () => {
           <div className="createform">
             <h3>펀딩 위치</h3>
             {/* AddressSearch css수정 */}
-            <AddressSearch />
+            <AddressSearch CallClassName={'createProjButtonShort'} />
           </div>
 
           <div className="createform">
