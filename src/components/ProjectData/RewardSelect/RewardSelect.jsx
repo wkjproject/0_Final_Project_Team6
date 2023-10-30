@@ -108,6 +108,8 @@ const RewardSelect = () => {
   const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
   //console.log(`프로젝트 상태 : ${projStatus}`)
   //console.log(`하트수 : ${projLike}`)
+  //setClickedCount(selectedProject.projLike);
+
 
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
