@@ -30,6 +30,7 @@ import ManageUsers from './components/Pages/ManageUsers';
 
 import Footer from './components/Footer/Footer';
 import FundingStatus from './components/Pages/FundingStatus';
+import ModifyProj from './components/Pages/MemberService/ModifyProj/ModifyProj';
 
 function App() {
   //null => 아무나 출입이 가능한 페이지
@@ -43,6 +44,7 @@ function App() {
   const AuthManageProj = Auth(ManageProj, true, true);
   const AuthManageUsers = Auth(ManageUsers, true, true);
   const AuthFundingStatus = Auth(FundingStatus, true);
+  const AuthModifyProj = Auth(ModifyProj, true);
   return (
     <div className='App'>
       {/* <ProjectData></ProjectData> */}
@@ -75,6 +77,7 @@ function App() {
           <Route path='/manageUsers' element={<AuthManageUsers />} />
           <Route path='/manageUsers' element={<ManageUsers />} />
           <Route path='/fundingStatus' element={<AuthFundingStatus />} />
+          <Route path='/modifyProj' element={<AuthModifyProj />} />
         </Routes>
       </BrowserRouter>
       <Footer />

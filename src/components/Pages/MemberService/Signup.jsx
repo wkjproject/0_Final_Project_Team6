@@ -64,7 +64,10 @@ export default function Signup() {
 			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
 		}
-
+		if (userAddr === undefined){
+			alert('주소를 입력해주세요.')
+			return;
+		}
 		const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 		if (!emailRegex.test(userMail)) {
 			alert('이메일 형식이 올바르지 않습니다.');

@@ -10,7 +10,7 @@
   text-align: center; /* placeholder 텍스트를 가운데 정렬 */
 }
 
-.AddressSearchButtonShort {
+#AddressSearchButtonShort {
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 25%;
   color: white;
@@ -20,9 +20,20 @@
   cursor: pointer; /* 커서 스타일 */
   border-radius: 4px; /* 둥근 모서리 */
 }
-.AddressSearchButtonShort:hover {
+#AddressSearchButtonShort:hover {
   background-color: var(--ButtonHover);
 }
-.AddressSearchButtonShort:active {
+#AddressSearchButtonShort:active {
   background-color: var(--ButtonPressed);
+}
+.createProjAddressSearchInputShort {
+  border: 1px solid #8f8f8f;
+  border-radius: 5px;
+  height: 35px;
+  width: 300px;
+}
+#createProjButtonShort {
+  margin-left: 20px;
+  height: 36px;
+  width: 110px;
 }
