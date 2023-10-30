@@ -91,7 +91,8 @@ function ProjectList({ listType, keyword }) {
       </>
     );
   }
-
+  console.log('projects',projects)
+  console.log('allProjects',allProjects)
   return (
     <div className='project-list'>
       {isLoading && <p>Loading...</p>}
