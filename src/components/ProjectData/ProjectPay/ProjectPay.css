@@ -430,3 +430,11 @@ body.modal-open {
     color: white;
     font-size: 20px;
 }
+
+.payComfirmBtn:hover {
+    background-color: #FFC976;
+}
+
+.payComfirmBtn {
+    background-color: #FF7301;
+}
