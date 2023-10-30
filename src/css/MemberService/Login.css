@@ -1,41 +1,6 @@
-.LoginContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-.LoginIdpwFind {
-  position: relative;
-  top: 5px;
-  left: 140px;
-  color: var(--Darkgray);
-}
-.LoginInput {
-  width: 100%;
-  border: 1px solid #000000;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 20px;
+.LoginNavLink {
   color: var(--Black);
 }
-.LoginButton {
-  background-color: var(--ButtonDefault); /* 버튼색 설정 */
-  width: 100%;
-  color: var(--Black); /* 텍스트 색상 */
-  padding: 10px 20px; /* 내부 여백 */
-  border: none; /* 테두리 제거 */
-  cursor: pointer; /* 커서 스타일 */
-  border-radius: 4px; /* 둥근 모서리 */
-}
-
-.LoginInput::placeholder {
-  text-align: center; /* placeholder 텍스트를 가운데 정렬 */
-}
-
-.LoginButton:hover {
-  background-color: var(--ButtonHover);
-}
-.LoginButton:active {
-  background-color: var(--ButtonPressed);
+.LoginNavLink:hover {
+  color: var(--ButtonDefault);
 }

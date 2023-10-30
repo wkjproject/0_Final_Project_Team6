@@ -4,8 +4,9 @@ import DaumPostcode from 'react-daum-postcode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddr } from '../../../../redux/reducer/userAddrActions';
 import '../../../../css/MemberService/AddressSearch.css';
+import { setProjPlaceAddr } from '../../../../redux/reducer/projPlaceAddrAction'
 
-function AddressSearch({ userProfileUserAddr }) {
+function AddressSearch({ userProfileUserAddr, CallClassName, defaultValue }) {
   const dispatch = useDispatch();
   let userAddr = useSelector((state)=>state.userAddr.userAddr);
   if(userProfileUserAddr !== undefined){
@@ -13,6 +14,7 @@ function AddressSearch({ userProfileUserAddr }) {
   }
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [userAddress, setUserAddress] = useState(userAddr);
+  const [projAddress, setProjAddress] = useState();
   const [detailedAddress, setDetailedAddress] = useState(''); // 상세 주소 입력
   const [showDetailedAddress, setShowDetailedAddress] = useState(false)
 
@@ -36,18 +38,32 @@ function AddressSearch({ userProfileUserAddr }) {
   };
 
   const saveDetailedAddress = () => {
-    const userAddressResult = userAddress + ' ' + detailedAddress
-    setUserAddress(userAddressResult)
-    dispatch(setUserAddr(userAddressResult));
-    setDetailedAddress('');
-    setModalIsOpen(false);
-    setShowDetailedAddress(false);
+    const userAddressResult = userAddress + '  ' + detailedAddress
+    if(CallClassName === 'createProjButtonShort'){
+      setProjAddress(userAddressResult)
+      dispatch(setProjPlaceAddr({ projPlace: detailedAddress, projAddr: userAddress }));
+      setDetailedAddress('');
+      setModalIsOpen(false);
+      setShowDetailedAddress(false);
+    } else {
+      setUserAddress(userAddressResult)
+      dispatch(setUserAddr(userAddressResult));
+      setDetailedAddress('');
+      setModalIsOpen(false);
+      setShowDetailedAddress(false);
+    }
   };
 
   return (
     <div>
-      <input className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>
-      <button className='AddressSearchButtonShort' onClick={(evt) => {evt.preventDefault(); setModalIsOpen(true)}}>주소검색</button>
+      <div style={{display:'flex', alignItems:'center'}}>
+      {CallClassName === 'createProjButtonShort' ? defaultValue === undefined ? (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={projAddress} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={defaultValue} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>)}
+      <button id={`${
+        CallClassName === 'createProjButtonShort'
+          ? 'createProjButtonShort'
+          : 'AddressSearchButtonShort'
+      }`} onClick={(evt) => {evt.preventDefault(); setModalIsOpen(true)}}>주소검색</button>
+      </div>
       {/* 모달 다이얼로그 */}
       <Modal
         isOpen={modalIsOpen}
@@ -78,6 +94,7 @@ function AddressSearch({ userProfileUserAddr }) {
           autoMapping
           style={{ width: '100%', height: 'calc(100% - 50px)' }}
         />
+        <div style={{display:'flex', alignItems:'center'}}>
         {/* 상세 주소 입력 필드 */}
         {showDetailedAddress && (
               <input className='AddressSearchInputShort'
@@ -89,8 +106,9 @@ function AddressSearch({ userProfileUserAddr }) {
             )}
         {/* 상세 주소 저장 버튼 */}
         {showDetailedAddress && (
-          <button className='AddressSearchButtonShort' onClick={saveDetailedAddress}>상세주소 저장</button>
+          <button id='AddressSearchButtonShort' style={{height:'46.67px'}} onClick={saveDetailedAddress}>상세주소 저장</button>
         )}
+        </div>
       </Modal>
     </div>
   );

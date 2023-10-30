@@ -4,7 +4,7 @@ import ProjectList from './ProjectsList';
 export default function OpenProj() {
   return (
     <>
-      <ProjectList listtype='openProj' />
+      <ProjectList listType='openProj' />
     </>
   );
 }

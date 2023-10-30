@@ -6,7 +6,8 @@
   height: 100vh;
 }
 .IdpwFindInput {
-  width: 25%;
+  width: 20%;
+  height: 36px;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
@@ -15,8 +16,8 @@
 }
 .IdpwFindButton {
   background-color: var(--ButtonDefault);
-  width: 25%;
-  color: var(--Black);
+  width: 20%;
+  color: white;
   padding: 10px 20px; /* 내부 여백 */
   border: none; /* 테두리 제거 */
   cursor: pointer; /* 커서 스타일 */
@@ -25,6 +26,7 @@
 
 .IdpwFindInputShort {
   width: 60%;
+  height: 36px;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
@@ -35,7 +37,7 @@
 .IdpwFindButtonShort {
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 30%;
-  color: var(--Black); /* 텍스트 색상 */
+  color: white;
   padding: 10px 20px; /* 내부 여백 */
   margin-left: 10px;
   border: none; /* 테두리 제거 */
@@ -45,6 +47,7 @@
 
 .IdpwFindInputInDiv {
   width: 93%;
+  height: 36px;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px 12px;
@@ -54,7 +57,7 @@
 .IdpwFindButtonInDiv {
   background-color: var(--ButtonDefault); /* 버튼색 설정 */
   width: 93%;
-  color: var(--Black); /* 텍스트 색상 */
+  color: white;
   padding: 10px 20px; /* 내부 여백 */
   border: none; /* 테두리 제거 */
   cursor: pointer; /* 커서 스타일 */
@@ -62,13 +65,18 @@
 }
 
 .IdpwFindInput::placeholder,
-.IdpwFindInputShort::placeholder {
+.IdpwFindInputShort::placeholder,
+.IdpwFindInputInDiv::placeholder {
   text-align: center; /* placeholder 텍스트를 가운데 정렬 */
 }
 
-.IdpwFindButton:hover {
+.IdpwFindButton:hover,
+.IdpwFindButtonInDiv:hover,
+.IdpwFindButtonShort:hover {
   background-color: var(--ButtonHover);
 }
-.IdpwFindButton:active {
+.IdpwFindButton:active,
+.IdpwFindButtonInDiv:active,
+.IdpwFindButtonShort:active {
   background-color: var(--ButtonPressed);
 }

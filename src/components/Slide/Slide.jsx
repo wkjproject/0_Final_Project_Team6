@@ -63,10 +63,10 @@ export default function Slide() {
   }
 
   const slides = filteredProjects.slice(0, 5);
-  console.log('slides count: ', slides.length);
-  slides.forEach((proj) =>
-    console.log(`${proj.proj_id} => ${proj.projFundDate[0].projFundStartDate}`)
-  );
+  // console.log('slides count: ', slides.length);
+  // slides.forEach((proj) =>
+  //   console.log(`${proj.proj_id} => ${proj.projFundDate[0].projFundStartDate}`)
+  // );
 
   const toProjectPage = (proj_id) => {
     navigate('/project2', { state: { _id: proj_id } });

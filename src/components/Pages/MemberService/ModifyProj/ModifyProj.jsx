@@ -1,17 +1,22 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import EditorBox from "./EditorBox";
-import "./CreateProj.css";
+import EditorBox from "../CreateProj/EditorBox";
+import "../CreateProj/CreateProj.css";
 import Endpoint from "../../../../config/Endpoint";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setProjForm } from "../../../../redux/reducer/createProj";
-import { height } from "@mui/system";
 import AddressSearch from "../Address/AddressSearch";
 
-const CreateProj = () => {
-  const [state, setState] = useState({
+
+export default function ModifyProj() {
+  // location 으로 _id(proj_id) 값 받아오기
+  const location = useLocation();
+  const { _id } = location.state || {};
+  // 데이터 mount 될때까지 false
+  const [mount, setMount] = useState(false);
+  const [modifyProjData, setModifyProjData] = useState();
+    const [state, setState] = useState({
     projTag: "0",
     projRegion: "0",
     projName: "",
@@ -27,6 +32,40 @@ const CreateProj = () => {
     checkbox1Checked: false,
     checkbox2Checked: false,
   });
+  // useEffet를 써서 페이지 로딩 시 projects 컬렉션에서 _id(proj_id)값에 해당하는 정보들을 가져오기
+  // 필요한정보 projects 컬렉션의 밑에 있는 정보들, 
+  // 이미지 관련 로직들은 그대로 둬서 활용하고 기존에 서버에 올라가있는 이미지URL은 받아서 따로 저장
+  // 메인이미지는 projMainImgPath
+    useEffect(() => {
+    const endpoint = Endpoint();
+    const ModifyProjData = async () => {
+      try {
+        await axios.post(`${endpoint}/modifyProj`, {
+          _id
+        }).then((res) => {
+          setState({
+                projTag: res.data.modifyProjData.projTag,
+                projRegion: res.data.modifyProjData.projRegion,
+                projName: res.data.modifyProjData.projName,
+                projDesc: res.data.modifyProjData.projDesc,
+                projFundStartDate: res.data.modifyProjData.projFundDate[0].projFundStartDate,
+                projFundEndDate: res.data.modifyProjData.projFundDate[0].projFundEndDate,
+                projReward: res.data.modifyProjData.projReward,
+                goalAmount: res.data.modifyProjData.projFundGoal,
+                projAddr: res.data.modifyProjData.projAddr,
+                projPlace: res.data.modifyProjData.projPlace,
+                projMainImgPath: res.data.modifyProjData.projMainImgPath,
+          })
+          setMount(true);
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    ModifyProjData();
+  }, []);
+
 
   const handleEditorChange = ({ name, value }) => {
     setState((prevState) => ({
@@ -278,9 +317,9 @@ const CreateProj = () => {
     }
   };
 
-  return (
+	return (
     <div>
-      <div className="form">
+      {mount ? (<div className="form">
         <p style={{lineHeight:'30px'}}>
           {userName}님, 반가워요! <br /> 프로젝트가 성공할 수 있도록 <b>WW</b>가
           함께할게요.
@@ -356,7 +395,7 @@ const CreateProj = () => {
           <div className="createform">
             <h3>펀딩 위치</h3>
             {/* AddressSearch css수정 */}
-            <AddressSearch CallClassName={'createProjButtonShort'} />
+            <AddressSearch CallClassName={'createProjButtonShort'} defaultValue={state.projAddr+' '+state.projPlace} />
           </div>
 
           <div className="createform">
@@ -381,7 +420,7 @@ const CreateProj = () => {
           <div className="createform">
             <h3>리워드 및 가격 추가</h3>
             <div>
-              {projReward.map((reward, index) => (
+              {state.projReward.map((reward, index) => (
                 <div
                   key={index}
                   className={`reward-input-container ${
@@ -392,7 +431,7 @@ const CreateProj = () => {
                     type="datetime-local"
                     name="projRewardName"
                     placeholder="시간"
-                    value={projReward.projRewardName}
+                    value={new Date(reward.projRewardName)}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput"
                   />
@@ -400,7 +439,7 @@ const CreateProj = () => {
                     type="number"
                     name="projRewardAmount"
                     placeholder="가격"
-                    value={projReward.projRewardAmount}
+                    value={reward.projRewardAmount}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput rewardsinput2"
                   />
@@ -408,7 +447,7 @@ const CreateProj = () => {
                     type="number"
                     name="projRewardCount"
                     placeholder="개수"
-                    value={projReward.projRewardCount}
+                    value={reward.projRewardCount}
                     onChange={(e) => handleRewardChange(index, e)}
                     className="rewardsinput rewardsinput2"
                   />
@@ -487,9 +526,7 @@ const CreateProj = () => {
             심사 등록하기
           </button>
         </form>
-      </div>
+      </div>):(<div></div>)}
     </div>
   );
-};
-
-export default CreateProj;
+}

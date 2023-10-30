@@ -13,7 +13,12 @@
 
 .header-container a:hover {
   font-weight: #1e1e1e;
-  color: #FE9A00;
+  color: #fe9a00;
+}
+
+.header-container .navbar .active {
+  font-weight: 700;
+  color: #fe9a00;
 }
 
 .header-container {
@@ -91,7 +96,7 @@
 
 .login-signup li:hover {
   cursor: pointer;
-  color: #FE9A00;
+  color: #fe9a00;
 }
 
 .navButton {
@@ -102,7 +107,7 @@
   margin-right: 20px;
   height: 40px;
   width: 160px;
-  background-color: #FE9A00;
+  background-color: #fe9a00;
   border: 0;
   border-radius: 5px;
 }
@@ -136,4 +141,5 @@
   top: 12.5px;
   right: 15px;
   margin: 0;
+  cursor: pointer;
 }

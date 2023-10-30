@@ -49,12 +49,12 @@ export default function FundingStatus() {
   return (
     <div>
       {mount ? 
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', marginTop:'50px' ,minHeight:'100vh'}}>
         <img src={fundingProjectData.projMainImgPath} alt='프로젝트 대표사진'/>
-        <h1>대시보드</h1>
-        <h2>{fundingProjectData.projName}</h2>
-        <p>시작일:{fundingProjectData.projFundDate[0].projFundStartDate}&nbsp;&nbsp;&nbsp;마감일:{fundingProjectData.projFundDate[0].projFundEndDate}</p>
-        <table className='fundingStatusTable' onClick={modalOpen}> 
+        <h1 style={{marginTop:'50px'}}>대시보드</h1>
+        <h2 style={{marginTop:'15px'}}>{fundingProjectData.projName}</h2>
+        <p style={{marginTop:'10px'}}>시작일:{fundingProjectData.projFundDate[0].projFundStartDate}&nbsp;&nbsp;&nbsp;마감일:{fundingProjectData.projFundDate[0].projFundEndDate}</p>
+        <table className='fundingStatusTable' onClick={modalOpen} style={{marginTop:'50px', marginBottom:'300px'}}> 
             <tr className='fundingStatusTr'>
                 <th>총 후원금액</th>
                 <th>달성률</th>
@@ -73,7 +73,7 @@ export default function FundingStatus() {
         
         
         
-      : ('')}
+      : (<div></div>)}
     </div>
   );
 }
