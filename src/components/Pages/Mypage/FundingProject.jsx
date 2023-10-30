@@ -12,7 +12,7 @@ export default function FundingProject() {
   const endpoint = Endpoint();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   // 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
+  const user_id = useSelector((state) => state.userData.userData.userId)
 
   const [fundings, setFundings] = useState();
   const [fundingProject, setFundingProject] = useState();

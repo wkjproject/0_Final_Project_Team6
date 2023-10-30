@@ -165,8 +165,8 @@ const CreateProj = () => {
   const dispatch = useDispatch();
   
   // 리덕스의 userName, userId, userAddr 가져오기
-  const userName = useSelector((state) => state.auth.auth.userName)
-  const userId = useSelector((state) => state.auth.auth.userId)
+  const userName = useSelector((state) => state.userData.userData.userName)
+  const userId = useSelector((state) => state.userData.userData.userId)
   const projPlace = useSelector((state) => {
     const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
     return projPlaceAddr ? projPlaceAddr.projPlace : undefined;
