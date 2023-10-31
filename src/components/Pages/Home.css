@@ -26,15 +26,34 @@
   margin: 0 auto 1rem;
 }
 
+.project-list-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+}
+
 .project-list {
+  width: fit-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  width: 80%;
   height: 100%;
-  /* background-color: beige; */
-  box-sizing: border-box;
   margin: 0 auto;
+  /* background-color: beige; */
+}
+
+.projects-list {
+  /* display: flex;
+  flex-wrap: wrap; */
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px 10px; /* 줄간격, 칼럼 간격 */
+  /* width: 50%; */
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /* 마지막 줄의 카드를 왼쪽 정렬하도록 스타일 추가 */
@@ -154,7 +173,7 @@
   box-sizing: border-box;
   border-left: solid 1px var(--Brightgary);
   padding: 0 15px;
-  margin: 0 auto;
+  margin: 0 15px;
 }
 
 .project-ranking-card {

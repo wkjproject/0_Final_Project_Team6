@@ -121,27 +121,29 @@ function ProjectList({ listType, keyword }) {
 
   return (
     <>
-      <div className='project-list'>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        {displayedProjectsList.length > 0 &&
-          displayedProjectsList.map((proj, index) => {
-            return (
-              <ProjectCard
-                key={proj.proj_id + proj.projName}
-                projId={proj.proj_id}
-                projName={proj.projName}
-                image={proj.projMainImgPath}
-                location={proj.projAddr.split(' ', 2)[1]}
-                dday={proj.projDate}
-                sday={proj.projFundDate[0].projFundStartDate}
-                price={proj.projReward[0].projRewardAmount}
-                isNew={true}
-                projStatus={proj.projStatus}
-                maderId={proj.userMade_id}
-              />
-            );
-          })}
+      <div className='project-list-container'>
+        <div className='projects-home-list'>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {displayedProjectsList.length > 0 &&
+            displayedProjectsList.map((proj, index) => {
+              return (
+                <ProjectCard
+                  key={proj.proj_id + proj.projName}
+                  projId={proj.proj_id}
+                  projName={proj.projName}
+                  image={proj.projMainImgPath}
+                  location={proj.projAddr.split(' ', 2)[1]}
+                  dday={proj.projDate}
+                  sday={proj.projFundDate[0].projFundStartDate}
+                  price={proj.projReward[0].projRewardAmount}
+                  isNew={true}
+                  projStatus={proj.projStatus}
+                  maderId={proj.userMade_id}
+                />
+              );
+            })}
+        </div>
         {/* 페이지 이동(pagination) 버튼 */}
         {filteredProjects.length > projectPerPage && (
           <div className='pagination-p'>
