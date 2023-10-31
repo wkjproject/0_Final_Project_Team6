@@ -123,7 +123,9 @@ function Tab4Content() {
 
 
     if (!projectData) {
-        return <div>Loading...</div>;
+        return <div>
+            <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+        </div>;
     }
 
     // "proj_id" 값을 기반으로 해당 "userMade_id"를 찾기
@@ -139,7 +141,9 @@ function Tab4Content() {
 
 
     if (!usersData) {
-        return <div>Loading...</div>;
+        return <div>
+            <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+        </div>;
     }
 
     // "userMade_id" 값을 기반으로 해당 "users_id"를 찾기
