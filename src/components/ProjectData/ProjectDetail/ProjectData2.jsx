@@ -10,6 +10,8 @@ import { useQuery } from '@tanstack/react-query';
 function ProjectData2() {
     const location = useLocation();
     const { _id } = location.state || {};
+    
+    // 몽고DB 연결
     const { projects } = useProjectsApi();
     const {
         data: projectData,
