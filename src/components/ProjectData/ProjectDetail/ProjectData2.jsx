@@ -19,7 +19,9 @@ function ProjectData2() {
     const selectedProject = projectData.find(item => item.proj_id === _id);
 
     if (!selectedProject) {
-        return <div>Project not found</div>;
+        return <div className='loadingImage'>
+            <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+        </div>;
     }
 
     const { projName, projMainImgPath, projIntro } = selectedProject;
