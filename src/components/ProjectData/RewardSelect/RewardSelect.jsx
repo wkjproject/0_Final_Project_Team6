@@ -103,7 +103,9 @@ const RewardSelect = () => {
 
   // 프로젝트가 없으면 "Project not found" 표시
   if (!selectedProject) {
-    return <div>Project not found</div>;
+    return <div>
+      <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+    </div>;
   }
 
   // 프로젝트 정보 추출
