@@ -58,6 +58,7 @@ function App() {
             <Route path='openProj' element={<OpenProj />} />
             <Route path='newProj' element={<NewProj />} />
             <Route path='deadlineProj' element={<DeadlineProj />} />
+            <Route path='project2' element={<ProjectData2 />} />
             <Route path='searchPage' element={<SearchPage />} />
             <Route path='searchPage/:keyword' element={<SearchPage />} />
           </Route>
@@ -65,7 +66,7 @@ function App() {
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
-          <Route path='/project2' element={<ProjectData2 />} />
+
           <Route path='/projectPay' element={<ProjectPay />} />
           <Route path='/reward' element={<RewardSelect />} />
           <Route path='/reduxTest' element={<ReduxTest />} />
