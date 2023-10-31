@@ -16,6 +16,10 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
     useEffect(() => {
       const fetchData = async () => {
         const res = await dispatch(setAuth(_id));
+        if(res.payload.accessToken !== ''){
+          console.log(res.payload.accessToken);
+          localStorage.setItem('x_auth', res.payload.accessToken);
+        }
         setLoading(false); // 요청이 완료되면 로딩 상태를 false로 변경
 
         //로그인 하지 않은 상태
