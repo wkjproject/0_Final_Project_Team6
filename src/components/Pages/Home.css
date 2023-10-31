@@ -23,15 +23,34 @@
   /* height: 400px; */
   /* background-color: blanchedalmond; */
   box-sizing: content-box;
+  margin: 0 auto 1rem;
+}
+
+.project-list-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .project-list {
+  width: fit-content;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 80%;
+  justify-content: flex-start;
   height: 100%;
+  margin: 0 auto;
   /* background-color: beige; */
+}
+
+.projects-home-list {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px 10px; /* 줄간격, 칼럼 간격 */
+  /* width: 50%; */
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -121,6 +140,7 @@
   width: 100%;
   background-color: transparent;
   padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
   font-size: 1.05em;
   height: 2.8em;
 }
@@ -150,7 +170,8 @@
   /* border: solid yellowgreen; */
   box-sizing: border-box;
   border-left: solid 1px var(--Brightgary);
-  padding-left: 15px;
+  padding: 0 15px;
+  margin: 0 15px;
 }
 
 .project-ranking-card {
@@ -218,4 +239,38 @@
 
 .silde-img {
   cursor: pointer;
+}
+
+/* 페이지 이동(pagination) 버튼 설정 */
+.pagination-p {
+  flex: 1 1 100%;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.pagination-p span {
+  font-size: var(--TextMidium);
+  margin: auto 5px;
+  /* font-weight: bold; */
+  display: inline-block;
+  width: 50px;
+}
+.pagination-p button {
+  font-size: var(--TextMidium);
+  background-color: var(--ButtonDefault);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 55px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px var(--Brightgary);
+}
+
+.pagination-p button:hover {
+  background-color: var(--ButtonHover);
+  cursor: pointer;
+}
+
+.pagination-p button:active {
+  background-color: var(--ButtonPressed);
 }

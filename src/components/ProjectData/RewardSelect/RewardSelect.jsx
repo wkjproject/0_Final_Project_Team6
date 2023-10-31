@@ -9,7 +9,7 @@ const RewardSelect = () => {
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
-  const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
+  const [clickedCount, setClickedCount] = useState(); // 하트 클릭 수
 
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
@@ -112,9 +112,6 @@ const RewardSelect = () => {
   const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
   //console.log(`프로젝트 상태 : ${projStatus}`)
   //console.log(`하트수 : ${projLike}`)
-  //setClickedCount(selectedProject.projLike);
-
-
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
       alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
