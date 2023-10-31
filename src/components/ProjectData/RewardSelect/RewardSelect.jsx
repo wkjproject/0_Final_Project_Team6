@@ -33,6 +33,8 @@ const RewardSelect = () => {
       setHeartClicked(true);
       setClickedCount(clickedCount + 1);
     }
+    const updatedProjLike = projLike + (heartClicked ? 0 : 1);
+    setClickedCount(updatedProjLike)
   };
 
   // useRef를 사용하여 모달 및 배경 영역의 참조 생성
