@@ -15,7 +15,7 @@ export default function ProjectRanking() {
     queryKey: ['projects'],
     queryFn: () => projects.getProjects(),
   });
-
+  
   if (!Array.isArray(allProjects) || !allProjects.length) {
     return <p> Nothing 😅</p>;
   }
@@ -49,7 +49,6 @@ export default function ProjectRanking() {
   if (!Array.isArray(filteredProjects) || !filteredProjects.length) {
     return <p>❄️</p>;
   }
-
   return (
     <>
       <div className='project-ranking-list'>
