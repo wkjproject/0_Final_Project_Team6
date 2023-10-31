@@ -1,6 +1,6 @@
-export const authReducer = (
+export const userDataReducer = (
   state = {
-    auth: {
+    userData: {
       _id: null,
       isLogin: false,
       isAdmin: false,
@@ -9,16 +9,15 @@ export const authReducer = (
       userName: null,
       userPhoneNum: null,
       userMail: null,
-      accessToken: null,
     },
   },
   action
 ) => {
   switch (action.type) {
-    case 'SET_AUTHUSER':
+    case 'SET_USERDATA':
       return {
         ...state,
-        auth: action.payload,
+        userData: action.payload,
       };
     default:
       return state;

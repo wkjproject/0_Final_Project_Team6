@@ -4,12 +4,23 @@ import MenuTabs from '../Menu/MenuTabs';
 import RewardSelect from '../RewardSelect/RewardSelect';
 import './ProjectData2.css'
 import { useLocation } from 'react-router';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 function ProjectData2() {
     const location = useLocation();
     const { _id } = location.state || {};
+    
+    // 몽고DB 연결
+    const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
 
-    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+    /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
 
     if (!projectData) {
         return <div>Loading...</div>;

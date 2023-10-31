@@ -11,6 +11,7 @@ import { height } from "@mui/system";
 import AddressSearch from "../Address/AddressSearch";
 
 const CreateProj = () => {
+  axios.defaults.withCredentials = false;
   const [state, setState] = useState({
     projTag: "0",
     projRegion: "0",
@@ -165,8 +166,8 @@ const CreateProj = () => {
   const dispatch = useDispatch();
   
   // 리덕스의 userName, userId, userAddr 가져오기
-  const userName = useSelector((state) => state.auth.auth.userName)
-  const userId = useSelector((state) => state.auth.auth.userId)
+  const userName = useSelector((state) => state.userData.userData.userName)
+  const userId = useSelector((state) => state.userData.userData.userId)
   const projPlace = useSelector((state) => {
     const projPlaceAddr = state.projPlaceAddr?.projPlaceAddr;
     return projPlaceAddr ? projPlaceAddr.projPlace : undefined;
@@ -254,8 +255,8 @@ const CreateProj = () => {
           }
         }
       }
-      console.log(state);
       const uploadImgUrl = await uploadImage(state.imageBase64)
+      console.log(uploadImgUrl);
       // state에서 imageBase64를 제외한 속성을 postData로 복사
       const { imageBase64, ...postData } = state; 
       await axios.post(`${endpoint}/createProj`, {

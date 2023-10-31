@@ -16,11 +16,11 @@ export default function UserProfileModify() {
 	const [userPasswordCheck, setUserPasswordCheck] = useState('');
   const userPhoneNumRef = useRef();
 	// 리덕스 정보 가져오기
-	const userId = useSelector((state) => state.auth.auth.userId)
-	const userMail = useSelector((state) => state.auth.auth.userMail)
-	const userName = useSelector((state) => state.auth.auth.userName)
-	const userPhoneNum = useSelector((state) => state.auth.auth.userPhoneNum)
-	const authUserAddr = useSelector((state) => state.auth.auth.userAddr)
+	const userId = useSelector((state) => state.userData.userData.userId)
+	const userMail = useSelector((state) => state.userData.userData.userMail)
+	const userName = useSelector((state) => state.userData.userData.userName)
+	const userPhoneNum = useSelector((state) => state.userData.userData.userPhoneNum)
+	const authUserAddr = useSelector((state) => state.userData.userData.userAddr)
 	const userAddr = useSelector((state) => state.userAddr.userAddr)
 
 	// 회원가입 수정 버튼을 누르면 데이터 서버로 넘김
