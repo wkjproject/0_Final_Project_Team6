@@ -137,3 +137,6 @@
   right: 15px;
   margin: 0;
 }
+
+.login-signup button:hover{background-color: var(--ButtonHover);}
+.login-signup button:active{background-color: var(--ButtonPressed);}
