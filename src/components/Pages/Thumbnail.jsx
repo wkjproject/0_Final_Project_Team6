@@ -89,7 +89,15 @@ export default function Thumbnail({
               evt.stopPropagation(); // 이벤트 전파 중단
             }}
           >
-            {MypageDivContent}
+            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
+              <path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l 2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085"
+                fill="red" 
+                fill-opacity="1"
+                stroke="red" 
+                stroke-width="2"
+                shape-rendering="crispEdges"
+              ></path>
+            </svg>
           </button>
         ) : (
           MypageDivContent

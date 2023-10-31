@@ -9,6 +9,7 @@ import { setUserPhoneNum } from '../../../redux/reducer/userPhoneNumActions';
 import { setUserMail } from '../../../redux/reducer/userMailActions';
 import { MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort } from '../../../css/MemberService/MemberShipCss'
 import Endpoint from '../../../config/Endpoint';
+import '../../../css/MemberService/Login.css'
 
 export const Login = () => {
   const endpoint = Endpoint();
@@ -83,13 +84,20 @@ export const Login = () => {
         <br />
         <MemberShipInput type="password" ref={userPasswordRef} placeholder="비밀번호 입력" onKeyPress={handleKeyPress} ></MemberShipInput>
         <br />
-        <p style={{ position: 'relative', top: '5px', left: '70px', color: 'var(--Darkgray)' }} className='LoginIdpwFind'><NavLink to="/IdpwFind">아이디/비밀번호 찾기</NavLink></p>
+        <p style={{ position: 'relative', top: '5px', left: '105px', color: 'var(--Darkgray)'}} className='LoginIdpwFind'><NavLink to="/IdpwFind" className='LoginNavLink' style={{textDecoration:'none'}}>아이디/비밀번호 찾기</NavLink></p>
         <br />
-        <MemberShipButton type="submit" onClick={submit}>로그인</MemberShipButton>
+        <MemberShipButton type="submit" onClick={submit} style={{fontSize:'var(--TextMedium'}}>로그인</MemberShipButton>
+        <br />
+        <br />
         <br />
         <Kakao />
+        <img style={{width: '40px', height: '40px', position:'relative', top:'-28px', left:'-85px', marginBottom:'-17px'}} src='/img/kakaoLogo.png' alt="Kakao Login" />
         <br />
-        <p>계정이 없나요? <NavLink to="/signup">회원가입</NavLink></p>
+        <button className='socialLogin'>네이버로 로그인하기</button>
+					<img style={{width: '32px', height: '32px', position:'relative', top:'-24px', left:'-84px', marginBottom:'-9px'}} src='/img/naverLogo.png' alt="Naver Login" />
+					<button className='socialLogin'>구글로 로그인하기</button>
+					<img style={{width: '30px', height: '30px', position:'relative', top:'-22px', left:'-84px', marginBottom:'25px'}} src='/img/googleLogo.png' alt="Google Login" />
+        <p style={{ position: 'relative', top: '-30px', left: '97px', color: 'var(--Darkgray)' }}>계정이 없나요? <NavLink to="/signup" className='LoginNavLink' style={{textDecoration:'none'}}>회원가입</NavLink></p>
       </MemberShipDivCenter>
     </MemberShipContainer>
   )
