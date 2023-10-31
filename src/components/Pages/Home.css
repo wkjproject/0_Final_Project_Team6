@@ -44,9 +44,7 @@
   /* background-color: beige; */
 }
 
-.projects-list {
-  /* display: flex;
-  flex-wrap: wrap; */
+.projects-home-list {
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
