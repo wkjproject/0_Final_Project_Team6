@@ -277,6 +277,14 @@ ul.no-bullets2 hr {
   /* box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3); */
 }
 
+.fundingBtn:hover {
+  background-color: #FFC976;
+}
+
+.fundingBtn:active {
+  background-color: #FF7301;
+}
+
 .heartBtn,
 .shareBtn {
   font-size: 20px;
@@ -295,6 +303,7 @@ ul.no-bullets2 hr {
   width: 100%;
   /* 버튼의 너비 100%로 변경 */
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .heartBtn {
@@ -314,7 +323,7 @@ ul.no-bullets2 hr {
   margin-bottom: 2px;
   width: 24px;
   height: 24px;
-  opacity: 0.4;
+  fill: red;
   margin-right: 10px;
 }
 

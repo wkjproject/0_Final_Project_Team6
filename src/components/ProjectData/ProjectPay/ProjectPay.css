@@ -30,6 +30,7 @@
     width: 500px;
     font-size: 30px;
     margin-bottom: 20px;
+    padding-left: 20px;
 }
 
 /* 오른쪽 헤더 */
@@ -428,4 +429,12 @@ body.modal-open {
     height: 50px;
     color: white;
     font-size: 20px;
+}
+
+.payComfirmBtn:hover {
+    background-color: #FFC976;
+}
+
+.payComfirmBtn {
+    background-color: #FF7301;
 }
