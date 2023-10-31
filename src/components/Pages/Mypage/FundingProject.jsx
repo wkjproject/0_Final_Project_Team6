@@ -70,8 +70,7 @@ export default function FundingProject() {
     })
 
   }
-  console.log(fundings)
-  console.log(fundingProject);
+
   return (
       <>
         {mount && fundingProject.map((projectArray, index) => {

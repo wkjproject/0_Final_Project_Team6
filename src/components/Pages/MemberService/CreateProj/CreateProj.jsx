@@ -11,6 +11,7 @@ import { height } from "@mui/system";
 import AddressSearch from "../Address/AddressSearch";
 
 const CreateProj = () => {
+  axios.defaults.withCredentials = false;
   const [state, setState] = useState({
     projTag: "0",
     projRegion: "0",
@@ -254,8 +255,8 @@ const CreateProj = () => {
           }
         }
       }
-      console.log(state);
       const uploadImgUrl = await uploadImage(state.imageBase64)
+      console.log(uploadImgUrl);
       // state에서 imageBase64를 제외한 속성을 postData로 복사
       const { imageBase64, ...postData } = state; 
       await axios.post(`${endpoint}/createProj`, {
