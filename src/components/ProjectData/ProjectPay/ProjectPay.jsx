@@ -86,6 +86,8 @@ const ProjectPay = () => {
             }
         }
         else if (isChecked2 && isChecked3 && paymentStatus1 === 111) {
+            // 결제시 fundings 컬렉션에 user_id, project_id, rewards, fundingDate(현재날짜) 보내기
+            
             alert("결제완료");
             navigate('/home');
         }
