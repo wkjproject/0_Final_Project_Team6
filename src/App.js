@@ -31,8 +31,17 @@ import ManageUsers from './components/Pages/ManageUsers';
 import Footer from './components/Footer/Footer';
 import FundingStatus from './components/Pages/FundingStatus';
 import ModifyProj from './components/Pages/MemberService/ModifyProj/ModifyProj';
+import { ProjApiProvider } from '../src/context/ProjectsApiContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 5,
+      },
+    },
+  });
   //null => 아무나 출입이 가능한 페이지
   //true => 로그인한 유저만 출입이 가능한 페이지
   //false => 로그인 한 유저는 출입 불가능한 페이지
@@ -58,21 +67,65 @@ function App() {
             <Route path='openProj' element={<OpenProj />} />
             <Route path='newProj' element={<NewProj />} />
             <Route path='deadlineProj' element={<DeadlineProj />} />
-            <Route path='project2' element={<ProjectData2 />} />
             <Route path='searchPage' element={<SearchPage />} />
             <Route path='searchPage/:keyword' element={<SearchPage />} />
           </Route>
+          <Route
+            path='/project2'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <ProjectData2 />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<IdpwFind />} />
           <Route path='/*' element={<NotFound />} />
-
           <Route path='/projectPay' element={<ProjectPay />} />
-          <Route path='/reward' element={<RewardSelect />} />
+          <Route
+            path='/reward'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <RewardSelect />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
           <Route path='/reduxTest' element={<ReduxTest />} />
-          <Route path='/manageProj' element={<AuthManageProj />} />
-          <Route path='/comingProj' element={<ComingProj />} />
-          <Route path='/waitingProj' element={<WaitingProj />} />
+          <Route
+            path='/manageProj'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <AuthManageProj />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
+          <Route
+            path='/comingProj'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <ComingProj />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
+          <Route
+            path='/waitingProj'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <WaitingProj />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
           <Route path='/mypage' element={<AuthMypage />} />
           <Route path='/createProj' element={<CreateProj />} />
           <Route path='/manageUsers' element={<AuthManageUsers />} />

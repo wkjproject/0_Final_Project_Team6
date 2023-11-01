@@ -3,6 +3,8 @@ import useFetch from '../../hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
 import { useSelector } from 'react-redux';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 const RewardSelect = () => {
   // 상태 변수 초기화
@@ -89,9 +91,17 @@ const RewardSelect = () => {
     );
     setSelectedRewards(updatedRewards);
   };
+  // 몽고DB 연결
+  const { projects } = useProjectsApi();
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
 
   // API를 사용하여 프로젝트 데이터 가져오기
-  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+  /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
 
   // 데이터 로딩 중이면 "Loading..." 표시
   if (!projectData) {

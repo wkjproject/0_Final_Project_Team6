@@ -9,6 +9,8 @@ import { setProjStatus } from './../../../redux/reducer/projStatusAction';
 import { useSelector } from 'react-redux';
 import Endpoint from '../../../config/Endpoint';
 import './ApprProj.css';
+import { useProjectsApi } from '../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 export default function ApprProj() {
 	const navigate = useNavigate();	
@@ -17,9 +19,17 @@ export default function ApprProj() {
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
 	const location = useLocation();
 	const { _id } = location.state || {};
-  
+  // 몽고DB 연결
+  const { projects } = useProjectsApi();
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
+
   // 데이터 처리 부분
-  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); // API를 사용하여 프로젝트 데이터 가져오기
+ /*  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */ // API를 사용하여 프로젝트 데이터 가져오기
   const selectedProject = projectData.find(item => item.proj_id === _id);  // 선택한 프로젝트 찾기
   
   if (!selectedProject) {
