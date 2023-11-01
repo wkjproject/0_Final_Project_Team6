@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'; // 리덕스 액션쪽으로 데이�
 
 import ApprProj from './ApprProj';
 import MenuTabs from '../../ProjectData/Menu/MenuTabs';
+import TopBtn from '../../TopBtn/TopBtn';
 
 export default function WaitingProj() {
   const location = useLocation();
@@ -32,6 +33,7 @@ export default function WaitingProj() {
 
   return (
     <div>
+      <TopBtn />
       <h1 className='titlealign'>{projName}</h1>
       <div className='center'>
         <div>
