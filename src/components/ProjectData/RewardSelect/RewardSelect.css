@@ -278,11 +278,11 @@ ul.no-bullets2 hr {
 }
 
 .fundingBtn:hover {
-  background-color: #FFC976;
+  background-color: #ffc976;
 }
 
 .fundingBtn:active {
-  background-color: #FF7301;
+  background-color: #ff7301;
 }
 
 .heartBtn,
@@ -366,5 +366,6 @@ ul.no-bullets2 hr {
   font-size: 20px;
   border-radius: 5px;
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }

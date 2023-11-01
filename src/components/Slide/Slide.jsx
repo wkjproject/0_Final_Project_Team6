@@ -69,7 +69,7 @@ export default function Slide() {
   // );
 
   const toProjectPage = (proj_id) => {
-    navigate('/home/project2', { state: { _id: proj_id } });
+    navigate('/project2', { state: { _id: proj_id } });
   };
 
   // 슬라이더 설정

@@ -14,6 +14,7 @@ export const Logout = () => {
     }).then(res => {
       if(res.data.logoutSuccess){
         localStorage.removeItem('x_auth');
+        localStorage.removeItem('persist:root');
         navigate('/home');
         window.location.reload();
       } else {
