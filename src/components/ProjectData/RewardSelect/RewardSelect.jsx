@@ -5,13 +5,60 @@ import './RewardSelect.css'
 import { useSelector } from 'react-redux';
 import { useProjectsApi } from '../../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Endpoint from '../../../config/Endpoint';
 
 const RewardSelect = () => {
+    // 외부를 클릭했을 때 모달 닫기 위한 useEffect
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        backgroundAreaRef.current &&
+        !backgroundAreaRef.current.contains(event.target)
+      ) {
+        setShowModal(false);
+      }
+    };
+    // _id(proj_id)와 userId 를 post로 보내서 해당 유저가 현재 proj_id를 좋아요 눌렀는지 확인
+      const userHeartClicked = async () => {
+        try {
+          await axios.post(`${endpoint}/userHeartClicked`, {
+            userId,
+            _id
+          }).then((res) => {
+            if(res.data.Success){
+              setHeartClicked(true);
+            } else {
+              setHeartClicked(false);
+            }
+          })
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    userHeartClicked()
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  // 몽고DB 연결
+  const { projects } = useProjectsApi();
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
+
+  //console.log(`프로젝트 상태 : ${projStatus}`)
+  //console.log(`하트수 : ${projLike}`)
+
   // 상태 변수 초기화
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
-  const [clickedCount, setClickedCount] = useState(); // 하트 클릭 수
 
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
@@ -26,40 +73,44 @@ const RewardSelect = () => {
   const location = useLocation();
   const { _id } = location.state || {};
 
-  // 하트 클릭 토글 함수
+  const endpoint = Endpoint();
+
+  // 선택한 프로젝트 찾기
+  const selectedProject = projectData.find(item => item.proj_id === _id);
+   // 프로젝트 정보 추출
+  const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
+
+  const initialClickedCount = selectedProject ? selectedProject.projLike : 0;
+  const [clickedCount, setClickedCount] = useState(initialClickedCount); // 하트 클릭 수
+
+  // 하트 클릭 토글 함수, 클릭하면 DB에 저장
   const toggleHeart = () => {
     if (heartClicked) {
       setHeartClicked(false);
       setClickedCount(clickedCount - 1);
+      axios.post(`${endpoint}/heartClicked`, {
+        _id,
+        userId,
+        heartStatus:0,
+      })
     } else {
       setHeartClicked(true);
       setClickedCount(clickedCount + 1);
+      axios.post(`${endpoint}/heartClicked`, {
+        _id,
+        userId,
+        heartStatus:1,
+      })
     }
-    const updatedProjLike = projLike + (heartClicked ? 0 : 1);
-    setClickedCount(updatedProjLike)
+    const updatedProjLike = (projLike !== null ? projLike : 0) + (heartClicked ? 0 : 1);
+    setClickedCount(updatedProjLike);
   };
 
   // useRef를 사용하여 모달 및 배경 영역의 참조 생성
   const modalRef = useRef(null);
   const backgroundAreaRef = useRef(null);
 
-  // 외부를 클릭했을 때 모달 닫기 위한 useEffect
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        backgroundAreaRef.current &&
-        !backgroundAreaRef.current.contains(event.target)
-      ) {
-        setShowModal(false);
-      }
-    };
 
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   // 금액을 숫자 형식으로 포맷하는 함수
   const formatAmount = (amount) => {
@@ -91,14 +142,7 @@ const RewardSelect = () => {
     );
     setSelectedRewards(updatedRewards);
   };
-  // 몽고DB 연결
-  const { projects } = useProjectsApi();
-  const {
-      data: projectData,
-      } = useQuery({
-      queryKey: ['projects'],
-      queryFn: () => projects.getProjects(),
-  });
+
 
   // API를 사용하여 프로젝트 데이터 가져오기
   /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
@@ -108,9 +152,6 @@ const RewardSelect = () => {
     return <div>Loading...</div>;
   }
 
-  // 선택한 프로젝트 찾기
-  const selectedProject = projectData.find(item => item.proj_id === _id);
-
   // 프로젝트가 없으면 "Project not found" 표시
   if (!selectedProject) {
     return <div>
@@ -118,10 +159,6 @@ const RewardSelect = () => {
     </div>;
   }
 
-  // 프로젝트 정보 추출
-  const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
-  //console.log(`프로젝트 상태 : ${projStatus}`)
-  //console.log(`하트수 : ${projLike}`)
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
       alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
