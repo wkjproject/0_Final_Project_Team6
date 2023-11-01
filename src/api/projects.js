@@ -7,6 +7,6 @@ export default class Projects {
     return {};
   }
   async getProjects() {
-    return this.apiClient.getProjects().then((res) => res.data.projects);
+    return this.apiClient.getProjects().then((res) => res.data);
   }
 }

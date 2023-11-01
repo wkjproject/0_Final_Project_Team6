@@ -1,8 +1,8 @@
 function Endpoint() {
   if (process.env.NODE_ENV === 'development') {
-    return process.env.REACT_APP_LOCAL_SERVER_URL;
+    return 'http://localhost:5000';
   } else if (process.env.NODE_ENV === 'production') {
-    return process.env.REACT_APP_MONGODB_SERVER_URL;
+    return 'https://port-0-final-project-server1-euegqv2blntuic8i.sel5.cloudtype.app';
   }
 }
 

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import './LandingPage.css';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faPerson } from "@fortawesome/free-solid-svg-icons";
-import TopBtn from './../TopBtn/TopBtn';
 
 const Background = styled.div`
   height: 100%;
@@ -34,7 +33,6 @@ export default function LandingPage() {
 
   return (
     <Background>
-      <TopBtn/>
       <div className='landing-container'>
         {/* 1. Intro */}
         <div className='intro'>
