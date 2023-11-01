@@ -9,7 +9,7 @@ export default function LikeProject() {
 	// Like프로젝트는 리덕스의 userId를 가져와서 userprojects에서 
 	// 해당 users_id에서 userLikeProject를 가져와 projects 에서 userLikeProject와 proj_id가 같은걸 가져옴
 	// 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
+  const user_id = useSelector((state) => state.userData.userData.userId)
 	// 데이터 불러올때까지 mount 값 false
   const [mount, setMount] = useState(false);
 	// likeProject에 서버로부터 받아온 값 넣어주기

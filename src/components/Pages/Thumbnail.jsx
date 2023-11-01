@@ -31,8 +31,8 @@ export default function Thumbnail({
   // console.log(`오늘: ${today}, 시작일: ${sday}`);
 
   /* ----- 리덕스의 userId, isAdmin. isLogin 가져오기 ----- */
-  const userId = useSelector((state) => state.auth.auth['_id']); // 로그인한 userID
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin); // 서비스 관리자 여부: true=관리자
+  const userId = useSelector((state) => state.userData.userData['_id']); // 로그인한 userID
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin); // 서비스 관리자 여부: true=관리자
   const isLogin = useSelector((state) => state.auth.auth.isLogin); // 로그인 여부
 
   const openProjDetails = () => {
@@ -48,10 +48,10 @@ export default function Thumbnail({
         ? isLogin && (isAdmin === true || userId === maderId)
           ? navigate('/comingProj', { state: { _id: projId } })
           : alert('오픈예정 프로젝트입니다.')
-        : navigate('/project2', { state: { _id: projId } }); // 진행중 --> 상세페이지로
+        : navigate('/home/project2', { state: { _id: projId } }); // 진행중 --> 상세페이지로
     } else if (projStatus === '2') {
       // 마감된(2) --> 프로젝트 상세페이지로
-      navigate('/project2', { state: { _id: projId } });
+      navigate('/home/project2', { state: { _id: projId } });
     } else if (projStatus === '3') {
       // 거절된(3) --> 경고창
       alert('승인거절된 프로젝트입니다.');

@@ -2,6 +2,11 @@
   display: inline-block;
 }
 
+.loadingImage {
+  margin: auto;
+  padding-left: 800px;
+}
+
 .titlealign {
   text-align: center;
   margin-bottom: 50px;
@@ -28,7 +33,6 @@
   position: sticky;
   top: 0;
 }
-
 
 .mainImage {
   flex: 1;
@@ -97,8 +101,6 @@
   border-radius: 5px;
   padding-top: 20px;
 }
-
-
 
 .button-container {
   display: flex;

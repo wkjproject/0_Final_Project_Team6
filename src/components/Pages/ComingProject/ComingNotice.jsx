@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function ComingNotice() {
-  
+
   // 상태 변수 초기화
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
@@ -15,10 +15,10 @@ export default function ComingNotice() {
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
 
   // 리덕스에서 userId 가져오기
-  const userId = useSelector((state) => state.auth.auth.userId);
+  const userId = useSelector((state) => state.userData.userData.userId);
 
   // 리덕스에서 관리자여부 가져오기
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin);
 
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
@@ -82,7 +82,9 @@ export default function ComingNotice() {
 
   // 데이터 로딩 중이면 "Loading..." 표시
   if (!projectData) {
-    return <div>Loading...</div>;
+    return <div>
+      <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+    </div>;
   }
 
   // 선택한 프로젝트 찾기
@@ -90,7 +92,9 @@ export default function ComingNotice() {
 
   // 프로젝트가 없으면 "Project not found" 표시
   if (!selectedProject) {
-    return <div>Project not found</div>;
+    return <div>
+      <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+    </div>;
   }
 
   // 프로젝트 정보 추출
@@ -216,9 +220,9 @@ export default function ComingNotice() {
 
       {/* 신청하기, 하트, 공유하기 버튼 */}
       <div className='button-container'>
-          <div className='closed-project-message'>
-            오픈예정 프로젝트입니다.
-          </div>
+        <div className='closed-project-message'>
+          오픈예정 프로젝트입니다.
+        </div>
       </div>
     </div>
   );

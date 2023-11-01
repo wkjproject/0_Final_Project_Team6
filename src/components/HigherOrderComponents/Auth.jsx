@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setAuth } from '../../redux/reducer/authAction';
 
 export default function Auth(SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
+    // 리덕스에서 _id 가져오기
+    const _id = useSelector((state) => state._id._id);
+    // 리덕스에서 isAdmin 가져오기
+    const isAdmin = useSelector((state) => state.userData.userData.isAdmin)
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
       const fetchData = async () => {
-        const res = await dispatch(setAuth());
+        const res = await dispatch(setAuth(_id));
+        if(res.payload.accessToken !== ''){
+          console.log(res.payload.accessToken);
+          localStorage.setItem('x_auth', res.payload.accessToken);
+        }
         setLoading(false); // 요청이 완료되면 로딩 상태를 false로 변경
 
         //로그인 하지 않은 상태
@@ -21,7 +29,7 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
           }
         } else {
           //로그인 한 상태
-          if (adminRoute && !res.payload.isAdmin) {
+          if (adminRoute && !isAdmin) {
             navigate('/home');
           } else {
             if (option === false) {

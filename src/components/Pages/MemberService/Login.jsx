@@ -10,8 +10,11 @@ import { setUserMail } from '../../../redux/reducer/userMailActions';
 import { MemberShipContainer, MemberShipDivCenter, MemberShipInput, MemberShipInputShort, MemberShipButton, MemberShipButtonShort } from '../../../css/MemberService/MemberShipCss'
 import Endpoint from '../../../config/Endpoint';
 import '../../../css/MemberService/Login.css'
+import { setId } from '../../../redux/reducer/idAction';
+import { setUserData } from '../../../redux/reducer/userDataAction';
 
 export const Login = () => {
+  axios.defaults.withCredentials = true;
   const endpoint = Endpoint();
   const navigate = useNavigate();
   const userMailRef = useRef();  // 사용자에게 입력받은 userMail을 Ref로 통해서 추적해요
@@ -56,8 +59,10 @@ export const Login = () => {
           dispatch(setUserAddr(res.data.userAddr));
           dispatch(setUserPhoneNum(res.data.userPhoneNum));
           dispatch(setUserMail(res.data.userMail));
-          //로컬스토리지 x_auth에 토큰 저장
-          localStorage.setItem('x_auth', res.data.token);
+          dispatch(setId(res.data._id));
+          dispatch(setUserData(res.data));
+          //로컬스토리지 x_auth에 엑세스토큰 저장
+          localStorage.setItem('x_auth', res.data.accessToken);
           if (location.state && location.state.from) {
             navigate(location.state.from);
           } else {

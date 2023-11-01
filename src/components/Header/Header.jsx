@@ -10,7 +10,7 @@ export default function Header() {
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
   // 리덕스에서 운영자 확인
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin);
 
   const { keyword } = useParams();
   const navigate = useNavigate();
