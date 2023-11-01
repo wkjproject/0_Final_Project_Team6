@@ -23,10 +23,6 @@ export default function FundingProject() {
   const [funding_id, setFunding_id] = useState(false);
   // 출발일 하루 전 결제취소누르면 정말 취소하냐고 한번 더 물어본 뒤 거기서 결제취소 누르면 취소되고 fundings 컬렉션에서 데이터 삭제
 
-
-
-  // 관심프로젝트는 userProjects 컬렉션에서 users_id가 현재 리덕스 userId랑 일치하는것만 가져와서 userLikeProject 와 projects 컬렉션의 proj_id가 일치하는것만 뿌림
-  // 관심프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projReward[0]
   useEffect(() => {
     const endpoint = Endpoint();
     const fundingProjectData = async () => {

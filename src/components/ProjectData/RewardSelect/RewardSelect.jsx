@@ -165,7 +165,7 @@ const RewardSelect = () => {
     } else {
       if (isLogin) {
         navigate('/projectPay', {
-          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
+          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate, _id } }
         });
       } else {
         const userConfirmed = window.confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동할까요?");
