@@ -60,7 +60,7 @@ export default function ApprProj() {
   const ApproveProj = async () => {
     // 프로젝트 승인: '승인하기'를 누르면 : projStatus가 0 --> 1
     await axios
-      .post(`${endpoint}/newProjStatus`, { projStatus: 1 })
+      .post(`${endpoint}/newProjStatus`, { proj_id: _id, projStatus: "1" })
       .then((res) => {
         if (res.data.newProjStatusSuccess) {
           alert(res.data.message);
@@ -77,7 +77,7 @@ export default function ApprProj() {
   const RejectProj = async () => {
     // 프로젝트 승인 거절: '거절하기'를 누르면 : projStatus가 0 --> 3
     await axios
-      .post(`${endpoint}/newProjStatus`, { projStatus: 3 })
+      .post(`${endpoint}/newProjStatus`, { proj_id: _id, projStatus: "3" })
       .then((res) => {
         if (res.data.newProjStatusSuccess) {
           alert(res.data.message);
