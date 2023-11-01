@@ -57,7 +57,7 @@ function AddressSearch({ userProfileUserAddr, CallClassName, defaultValue }) {
   return (
     <div>
       <div style={{display:'flex', alignItems:'center'}}>
-      {CallClassName === 'createProjButtonShort' ? defaultValue === undefined ? (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={projAddress} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={defaultValue} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>)}
+      {CallClassName === 'createProjButtonShort' ? defaultValue === undefined ? (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={projAddress} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px'}} className='createProjAddressSearchInputShort' type='text' value={defaultValue} placeholder='주소' readOnly required></input>) : (<input style={{height:'36px',border:'1px solid var(--Darkgray)'}} className='AddressSearchInputShort' type='text' value={userAddress} placeholder='주소' readOnly required></input>)}
       <button id={`${
         CallClassName === 'createProjButtonShort'
           ? 'createProjButtonShort'
