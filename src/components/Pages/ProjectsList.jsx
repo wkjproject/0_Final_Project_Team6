@@ -52,14 +52,14 @@ function ProjectList({ listType, keyword }) {
           proj.projStatus === '1' &&
           fundStartDate <= today &&
           today <= fundEndDate &&
-          daysBetween(fundStartDate, today) < 3
+          daysBetween(fundStartDate, today) < 9
         );
       case 'deadlineProj':
         return (
           proj.projStatus === '1' &&
           fundStartDate <= today &&
           today <= fundEndDate &&
-          daysBetween(today, fundEndDate) < 3
+          daysBetween(today, fundEndDate) < 9
         );
       case 'searchPage':
         console.log(proj.projName);
