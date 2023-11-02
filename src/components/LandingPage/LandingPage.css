@@ -7,17 +7,17 @@
 }
 
 .primary-heading {
-  font-size: 70px;
+  letter-spacing: 5px;
   margin-bottom: 40px;
   font-size: 50px;
   line-height: 70px;
 }
 
 .primary-text {
-  font-size: 24px;
+  font-size: var(--TextLarge);
   color: var(--Middlegray);
   margin-bottom: 40px;
-  line-height: 40px;
+  line-height: 50px;
 }
 
 /* ===== 1. Intro ===== */
@@ -122,7 +122,7 @@
 }
 
 .about-text-section {
-  margin-left: 260px;
+  margin-left: 100px;
   grid-area: box2;
   padding-right: 90px;
 }
@@ -136,7 +136,6 @@
   font-size: var(--TextMidium);
   background-color: var(--ButtonDefault);
   color: white;
-  cursor: pointer;
 }
 
 .about-button:hover {
@@ -155,9 +154,7 @@
   margin-top: 200px;
   margin-bottom: 600px;
 }
-.service-section-top .sub {
-  color: var(--ButtonDefault);
-  font-weight: bold;}
+
 .service-section-bottom {
   width: 1200px;
   margin-left: auto;
@@ -189,11 +186,3 @@
 .service-info p {
   color: var(--Middlegray);
 }
-
-/* ===== 4. Outro ===== */
-.outro {
-  text-align: center;
-  margin-top: 400px;
-  margin-bottom: 400px;
-}
-

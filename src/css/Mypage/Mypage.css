@@ -1,3 +1,17 @@
+.MypageContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.MypageProjectList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .fundingProjectImg {
   filter: brightness(75%);
 }
@@ -113,37 +127,4 @@
   background: none;
   border: none;
   cursor: pointer;
-}
-/* 페이지 이동(pagination) 버튼 설정 */
-.mypagePagination {
-  position: absolute;
-  top: 970px;
-  text-align: center;
-}
-
-.mypagePagination span {
-  font-size: var(--TextMidium);
-  margin: auto 5px;
-  /* font-weight: bold; */
-  display: inline-block;
-  width: 50px;
-}
-.mypagePagination button {
-  font-size: var(--TextMidium);
-  background-color: var(--ButtonDefault);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  width: 55px;
-  padding: 5px;
-  box-shadow: 2px 2px 2px var(--Brightgary);
-}
-
-.mypagePagination button:hover {
-  background-color: var(--ButtonHover);
-  cursor: pointer;
-}
-
-.mypagePagination button:active {
-  background-color: var(--ButtonPressed);
 }

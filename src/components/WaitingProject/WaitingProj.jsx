@@ -4,29 +4,29 @@
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; // 리덕스 액션쪽으로 데이터 보내기
+import { useDispatch } from 'react-redux';  // 리덕스 액션쪽으로 데이터 보내기
 
+import MenuTabs from './../MenuTabs';
 import ApprProj from './ApprProj';
-import MenuTabs from '../../ProjectData/Menu/MenuTabs';
-import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useProjectsApi } from '../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 
 export default function WaitingProj() {
   const location = useLocation();
   const { _id } = location.state || {};
-
-  // 몽고DB
+  // 몽고DB 연결
   const { projects } = useProjectsApi();
-    const {
-        data: projectData,
-        } = useQuery({
-        queryKey: ['projects'],
-        queryFn: () => projects.getProjects(),
-    });
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
+
   /* const projectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
-  ); */
-
+  );
+ */
   if (!projectData) {
     return <div>Loading...</div>;
   }

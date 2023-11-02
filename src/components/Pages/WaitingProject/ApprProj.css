@@ -48,7 +48,7 @@
   height: auto;
   min-height: 20px;
   border-radius: 5px;
-  border: 1px solid var(--Brightgary);
+  border: none;
   cursor: pointer;
   background-color: white;
   display: flex;

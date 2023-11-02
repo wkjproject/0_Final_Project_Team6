@@ -33,7 +33,6 @@ import FundingStatus from './components/Pages/FundingStatus';
 import ModifyProj from './components/Pages/MemberService/ModifyProj/ModifyProj';
 import { ProjApiProvider } from '../src/context/ProjectsApiContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ToastContainer } from 'react-toastify';
 
 function App() {
   const queryClient = new QueryClient({
@@ -70,18 +69,6 @@ function App() {
       {/* <ProjectData></ProjectData> */}
 
       <BrowserRouter>
-        <ToastContainer
-          position='top-center'
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme='light'
-        />
         <Header />
         <Routes>
           <Route path='/' element={<LandingPage />} />

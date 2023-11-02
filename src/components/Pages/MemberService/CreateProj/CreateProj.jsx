@@ -267,8 +267,7 @@ const CreateProj = () => {
         projAddr,
       }).then((res)=> {
         if(res.data.success){
-          alert('등록 성공');
-          navigate('/mypage');
+          alert('등록 성공')
         }
       })
     }

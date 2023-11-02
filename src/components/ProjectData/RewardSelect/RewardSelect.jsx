@@ -130,10 +130,6 @@ const RewardSelect = () => {
   // 리워드 선택 처리 함수
   const handleRewardSelect = (reward) => {
     if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
-      if(reward.projRewardAvailable === 0){
-        alert('잔여 수량이 없습니다.')
-        return
-      }
       setSelectedRewards([...selectedRewards, reward]);
     }
     setShowModal(false); // 리스트가 선택되면 모달 닫기
@@ -169,7 +165,7 @@ const RewardSelect = () => {
     } else {
       if (isLogin) {
         navigate('/projectPay', {
-          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate, _id } }
+          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
         });
       } else {
         const userConfirmed = window.confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동할까요?");
@@ -244,7 +240,7 @@ const RewardSelect = () => {
                           </tr>
                           <tr>
                             <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
+                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
                           </tr>
                         </table>
                       </button>
@@ -290,7 +286,7 @@ const RewardSelect = () => {
                   </tr>
                   <tr >
                     <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
+                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
                   </tr>
                 </table>
               </li>

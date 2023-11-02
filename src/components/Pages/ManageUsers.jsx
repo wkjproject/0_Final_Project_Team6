@@ -2,7 +2,6 @@
 // 필요 데이터: 총 인원, 순번 | 이름(userName) | 이메일(userMail) | 연락처(userPhoneNum) | 주소(userAddr)
 
 import React, { useState, useEffect } from 'react';
-import TopBtn from '../TopBtn/TopBtn';
 import axios from 'axios';
 import Endpoint from '../../config/Endpoint';
 import '../../css/ManageUsers.css';
@@ -63,10 +62,10 @@ export default function ManageUsers() {
           alert(res.data.message);
           window.location.reload();
         }})}
+  
 
 	return (
 		<div className='user-container'>
-      <TopBtn />
 			<h1>회원관리</h1>
       <p>(총 회원수: {sortedUserList.length}명)</p>
 			<div className='user-list'>
@@ -113,6 +112,5 @@ export default function ManageUsers() {
         </table>
 			</div>
 		</div>
-    
 	)
 }

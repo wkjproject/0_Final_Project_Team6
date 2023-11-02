@@ -5,7 +5,6 @@ import FundingProject from './FundingProject';
 import MadeProject from './MadeProject';
 import LikeProject from './LikeProject';
 import UserProfileModify from './UserProfileModify';
-import { FaUserCircle } from 'react-icons/fa';
 
 export default function Mypage() {
   // 리덕스의 userName 가져오기
@@ -16,10 +15,13 @@ export default function Mypage() {
   
   // 데이터 불러올때까지 mount 값 false
   const [currTab, setCurrTab] = useState('funding');
+
     /* --- 탭 변경 함수 --- */
   const handleTabClick = (tabName) => {
     setCurrTab(tabName);
+    /* setCurrPage(1); // 탭 변경시, 1페이지로 초기화 */
   };
+
   // 출발일 하루 전 결제취소누르면 정말 취소하냐고 한번 더 물어본 뒤 거기서 결제취소 누르면 취소되고 fundings 컬렉션에서 데이터 삭제
 
   // 제작프로젝트는 userProjects 컬렉션에서 users_id가 현재 리덕스 userId랑 일치하는것만 가져와서 userMadeProject 와 projects 컬렉션의 proj_id가 일치하는것만 뿌림
@@ -32,7 +34,7 @@ export default function Mypage() {
     <div style={{textAlign:'center', minHeight:'100vh'}}>
       <br/>
       <br/>
-      <img src='/img/user-solid2.png' alt='person' style={{height:'128px', width:'128px'}}/>
+      <img src='/img/person.png' style={{height:'128px', width:'128px'}} alt='person'/>
       <h1 style={{marginTop:'10px'}}>{userName}</h1>
       <br/>
       <br/>
@@ -69,12 +71,14 @@ export default function Mypage() {
 
       {/* 선택된 탭에 따라 내용을 표시 */}
       
-      <div className='projects-container'>
+      <div className='MypageContainer'>
+        <div className= 'MypageProjectList'>
         {currTab === 'funding' ? (<FundingProject />):(
           currTab === 'made' ? (<MadeProject />) : (
             currTab === 'like' ? (<LikeProject />) : (<UserProfileModify />)
           )
         )}
+        </div>
       </div>
 
     </div>
