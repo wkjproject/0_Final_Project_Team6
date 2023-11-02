@@ -219,7 +219,7 @@ const ProjectPay = () => {
                                         <tr>
                                             <td>남은 수량</td>
                                             <td>:</td>
-                                            <td>{reward.projRewardCount}</td>
+                                            <td>{reward.projRewardAvailable}</td>
                                         </tr>
                                     </table>
                                 </li>

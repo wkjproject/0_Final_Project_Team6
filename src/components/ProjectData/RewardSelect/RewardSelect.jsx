@@ -130,6 +130,10 @@ const RewardSelect = () => {
   // 리워드 선택 처리 함수
   const handleRewardSelect = (reward) => {
     if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
+      if(reward.projRewardAvailable === 0){
+        alert('잔여 수량이 없습니다.')
+        return
+      }
       setSelectedRewards([...selectedRewards, reward]);
     }
     setShowModal(false); // 리스트가 선택되면 모달 닫기
@@ -240,7 +244,7 @@ const RewardSelect = () => {
                           </tr>
                           <tr>
                             <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
                           </tr>
                         </table>
                       </button>
@@ -286,7 +290,7 @@ const RewardSelect = () => {
                   </tr>
                   <tr >
                     <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
+                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
                   </tr>
                 </table>
               </li>
