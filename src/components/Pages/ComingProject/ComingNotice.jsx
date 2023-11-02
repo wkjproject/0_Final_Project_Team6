@@ -168,7 +168,7 @@ export default function ComingNotice() {
                           </tr>
                           <tr>
                             <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
                           </tr>
                         </table>
                       </button>

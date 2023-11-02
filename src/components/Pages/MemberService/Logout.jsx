@@ -7,7 +7,7 @@ import Endpoint from '../../../config/Endpoint';
 export const Logout = () => {
   const endpoint = Endpoint();
   const navigate = useNavigate();
-  const _id = useSelector((state) => state._id._id);
+  const _id = useSelector((state) => state.userData.userData._id);
   const handleLogoutClick = () => {
     axios.post(`${endpoint}/logout`, {
       _id

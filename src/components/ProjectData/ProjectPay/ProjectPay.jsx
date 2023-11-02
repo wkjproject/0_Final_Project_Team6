@@ -7,8 +7,11 @@ import Modal2 from '../AgreeModal/Modal2'
 import Modal3 from '../AgreeModal/Modal3'
 import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
+import axios from 'axios';
+import Endpoint from '../../../config/Endpoint';
 
 const ProjectPay = () => {
+    const endpoint = Endpoint();
     const location = useLocation();
     const location2 = useLocation();
     const selectedRewards = location.state.data;
@@ -46,9 +49,10 @@ const ProjectPay = () => {
     };
 
     const userName = useSelector((state) => state.userName.userName); // 로그인한 userName
-    const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userName
+    const userMail = useSelector((state) => state.userMail.userMail); // 로그인한 userMail
     const userAddr = useSelector((state) => state.userAddr.userAddr); // 로그인한 userAddr
     const userPhoneNum = useSelector((state) => state.userPhoneNum.userPhoneNum); // 로그인한 userPhoneNum
+    const userId = useSelector((state) => state.userData.userData.userId);
     //console.log(`userAddr: ${userAddr}`);
     //console.log(`userName: ${userName}`);
     //console.log(`userPhoneNum: ${userPhoneNum}`);
@@ -72,7 +76,8 @@ const ProjectPay = () => {
         }
     }, [isChecked2, isChecked3])
 
-    const handlePayment = () => {
+    const handlePayment = async () => {
+        const currentTime = new Date();
         // 2번째와 3번째 체크박스가 모두 체크되지 않았을 때 확인 메시지 표시
         if (!isChecked2) {
             const confirmResult = window.confirm("구매조건, 결제 진행 및 결제 대행 서비스 동의가 필요합니다\n동의 하시겠습니까?");
@@ -86,16 +91,38 @@ const ProjectPay = () => {
             }
         }
         else if (isChecked2 && isChecked3 && paymentStatus1 === 111) {
-            // 결제시 fundings 컬렉션에 user_id, project_id, rewards, fundingDate(현재날짜) 보내기
-            
+            // 결제하기 버튼 누르면 fundings 컬렉션에 user_id, project_id, rewards, fundingDate(현재날짜) 보내기
+            await axios.post(`${endpoint}/pay`, {
+                user_id: userId,
+                project_id: projectInfo._id,
+                rewardsList: selectedRewards,
+                fundingDate: currentTime,
+                projFund: totalAmount,
+            })
             alert("결제완료");
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
+            // 결제하기 버튼 누르면 fundings 컬렉션에 user_id, project_id, rewards, fundingDate(현재날짜) 보내기
+            await axios.post(`${endpoint}/pay`, {
+                user_id: userId,
+                project_id: projectInfo._id,
+                rewardsList: selectedRewards,
+                fundingDate: currentTime,
+                projFund: totalAmount,
+            })
             alert("결제완료");
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
+            // 결제하기 버튼 누르면 fundings 컬렉션에 user_id, project_id, rewards, fundingDate(현재날짜), projFund(결제금액) 보내기
+            await axios.post(`${endpoint}/pay`, {
+                user_id: userId,
+                project_id: projectInfo._id,
+                rewardsList: selectedRewards,
+                fundingDate: currentTime,
+                projFund: totalAmount,
+            })
             alert("결제완료");
             navigate('/home');
         }
@@ -192,7 +219,7 @@ const ProjectPay = () => {
                                         <tr>
                                             <td>남은 수량</td>
                                             <td>:</td>
-                                            <td>{reward.projRewardCount}</td>
+                                            <td>{reward.projRewardAvailable}</td>
                                         </tr>
                                     </table>
                                 </li>
