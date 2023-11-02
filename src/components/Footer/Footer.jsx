@@ -37,7 +37,8 @@ function Footer() {
 						<div className="footer-link"></div>
 						<div className="footer-link"></div>							
 					</div>
-
+					</div>
+      </div>
 					<hr></hr>
 
 					<div className='footer-below'>
@@ -53,8 +54,7 @@ function Footer() {
 							</div>
 						</div>
 					</div>
-				</div>
-      </div>
+
     </footer>
   );
 }
