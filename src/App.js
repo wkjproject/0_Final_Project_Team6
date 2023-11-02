@@ -18,7 +18,6 @@ import { Login } from './components/Pages/MemberService/Login';
 import IdpwFind from './components/Pages/MemberService/IdpwFind';
 import ManageProj from './components/Pages/ManageProj';
 
-import ReduxTest from './components/Pages/ReduxTest';
 import Auth from './components/HigherOrderComponents/Auth';
 import PopularProj from './components/Pages/PopularProj';
 import ProjectPay from './components/ProjectData/ProjectPay/ProjectPay';
