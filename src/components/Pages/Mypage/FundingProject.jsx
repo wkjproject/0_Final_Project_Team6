@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 export default function FundingProject() {
+  axios.defaults.withCredentials = false;
   const endpoint = Endpoint();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   // 리덕스의 userId 가져오기

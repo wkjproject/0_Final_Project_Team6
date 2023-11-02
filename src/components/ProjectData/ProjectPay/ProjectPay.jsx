@@ -95,7 +95,7 @@ const ProjectPay = () => {
             await axios.post(`${endpoint}/pay`, {
                 user_id: userId,
                 project_id: projectInfo._id,
-                rewards: selectedRewards,
+                rewardsList: selectedRewards,
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
@@ -107,7 +107,7 @@ const ProjectPay = () => {
             await axios.post(`${endpoint}/pay`, {
                 user_id: userId,
                 project_id: projectInfo._id,
-                rewards: selectedRewards,
+                rewardsList: selectedRewards,
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
@@ -119,7 +119,7 @@ const ProjectPay = () => {
             await axios.post(`${endpoint}/pay`, {
                 user_id: userId,
                 project_id: projectInfo._id,
-                rewards: selectedRewards,
+                rewardsList: selectedRewards,
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })

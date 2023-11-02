@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUserName } from '../../../../redux/reducer/userNameActions';
 import Endpoint from '../../../../config/Endpoint';
+import { setUserData } from '../../../../redux/reducer/userDataAction';
 
 export const Kakao = () => {
   const endpoint = Endpoint();
@@ -13,6 +14,7 @@ export const Kakao = () => {
   const kakaoClientId = '8b2c41b57c3c1eae414552e99b435ce6';
 
   const kakaoSuccess = async (data) => {
+    console.log(data)
     const userMail = data.profile.id;
     const userName = data.profile.properties.nickname;
     dispatch(setUserName(data.profile.properties.nickname));
@@ -24,6 +26,7 @@ export const Kakao = () => {
       }
     ).then((res) => {
       if (res.data.kakaoLoginSuccess) {
+        dispatch(setUserData(res.data));
         localStorage.setItem('x_auth', res.data.accessToken);
         navigate('/home')
       }
