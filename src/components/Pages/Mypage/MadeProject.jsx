@@ -41,6 +41,9 @@ export default function MadeProject() {
             key={proj.projName}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
+            MypageImageClass={proj.projStatus === '1' ? 'fundingProjectImg' : 'fundingProjectImgX'}
+            MypageDivClass={proj.projStatus === '0' ? 'fundingProjectTextWait' : proj.projStatus === '1' ? '' : 'fundingProjectImgX'}
+            MypageDivContent={proj.projStatus === '0' ? '승인대기' : ''}
             image={proj.projMainImgPath}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
