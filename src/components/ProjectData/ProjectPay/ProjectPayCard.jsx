@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import './ProjectPayCard.css'
+import { toast } from 'react-toastify';
 
 const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }) => {
     const [selectedOption, setSelectedOption] = useState('option1');
@@ -7,6 +8,7 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
     const mmYyInputRef = useRef(null);
     const pWInputRef = useRef(null);
     const birThInputRef = useRef(null);
+    const customId = 'msg-id-opening';
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -66,9 +68,15 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
                 onPaymentStatus1(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
                 onPaymentStatus2(1);
                 onPaymentStatus3(2);
-                alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+                //alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+                toast('결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                    toastId: customId,
+                })
             } else {
-                alert("모든 결제 정보를 입력해주세요.");
+                //alert("모든 결제 정보를 입력해주세요.");
+                toast('모든 결제 정보를 입력해주세요.', {
+                    toastId: customId,
+                })
             }
         };
 
@@ -138,7 +146,10 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus2(222);
             onPaymentStatus1(0);
             onPaymentStatus3(2);
-            alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            //alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            toast('무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                toastId: customId,
+            })
         }
 
         return (
@@ -173,7 +184,10 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus3(333);
             onPaymentStatus1(0);
             onPaymentStatus2(1);
-            alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            //alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            toast('간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                toastId: customId,
+            })
         }
 
         return (
