@@ -2,9 +2,11 @@ import './Home.css';
 import ProjectCard from './ProjectCard';
 import { useProjectsApi } from '../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
 function ProjectList({ listType, keyword }) {
   // const { keyword } = useParams();
+  const [currPage, setCurrPage] = useState(1); // 기본 값: 1페이지
   const { projects } = useProjectsApi();
   const {
     isLoading,
@@ -92,48 +94,70 @@ function ProjectList({ listType, keyword }) {
     );
   }
 
+  /* --- 페이지 이동(pagination) 설정 --- */
+  const projectPerPage = 12; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
+  const totalPages = Math.ceil(filteredProjects.length / projectPerPage);
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = filteredProjects.slice(startIndex, endIndex);
+
+  console.log(
+    `item count: ${displayedProjectsList.length}/${filteredProjects.length}`
+  );
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
+
   return (
-    <div className='project-list'>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {filteredProjects.length > 0 &&
-        filteredProjects.map((proj, index) => {
-          return (
-            <ProjectCard
-              key={proj.proj_id + proj.projName}
-              projId={proj.proj_id}
-              projName={proj.projName}
-              image={proj.projMainImgPath}
-              location={proj.projAddr.split(' ', 2)[1]}
-              dday={proj.projDate}
-              sday={proj.projFundDate[0].projFundStartDate}
-              price={proj.projReward[0].projRewardAmount}
-              isNew={true}
-              projStatus={proj.projStatus}
-              maderId={proj.userMade_id}
-            />
-          );
-        })}
-      {/* {[...Array(100)].map((e, i) => (
-        <>
-          <ProjectCard key={i + '1st'}
-            image='https://eventusstorage.blob.core.windows.net/evs/Image/kyrielle/71287/ProjectInfo/Cover/1a6c262bb3664008b6475814bac58626.jpg'
-            title='선데이 어드벤쳐 보드게임'
-            location='춘천시'
-            dday='09월 24일(일)'
-            price='5,000'
-            isNew={true}
-          />
-          <ProjectCard key={i + '2nd'}
-            image='https://eventusstorage.blob.core.windows.net/evs/Image/greentea71/71356/ProjectInfo/Cover/7a96c12df916464891b9de7b4e8cf35b.jpg'
-            title='부산 세븐브릿지 을숙도대교 아웃도어미션게임<새이마이네임>'
-            location='부산'
-            price='11,000'
-            isNew={true}
-          />
-        </>
-      ))} */}
-    </div>
+    <>
+      <div className='project-list-container'>
+        <div className='projects-home-list'>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {displayedProjectsList.length > 0 &&
+            displayedProjectsList.map((proj, index) => {
+              return (
+                <ProjectCard
+                  key={proj.proj_id + proj.projName}
+                  projId={proj.proj_id}
+                  projName={proj.projName}
+                  image={proj.projMainImgPath}
+                  location={proj.projAddr.split(' ', 2)[1]}
+                  dday={proj.projDate}
+                  sday={proj.projFundDate[0].projFundStartDate}
+                  price={proj.projReward[0].projRewardAmount}
+                  isNew={true}
+                  projStatus={proj.projStatus}
+                  maderId={proj.userMade_id}
+                />
+              );
+            })}
+        </div>
+        {/* 페이지 이동(pagination) 버튼 */}
+        {filteredProjects.length > projectPerPage && (
+          <div className='pagination-p'>
+            <button onClick={toPrevPage}>이전</button>
+            <span>
+              {'  '}
+              {currPage} / {totalPages}
+              {'  '}
+            </span>
+            <button onClick={toNextPage}>다음</button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

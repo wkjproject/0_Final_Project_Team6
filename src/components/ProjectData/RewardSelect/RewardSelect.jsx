@@ -9,7 +9,7 @@ import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
 
 const RewardSelect = () => {
-  // 외부를 클릭했을 때 모달 닫기 위한 useEffect
+    // 외부를 클릭했을 때 모달 닫기 위한 useEffect
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -20,22 +20,22 @@ const RewardSelect = () => {
       }
     };
     // _id(proj_id)와 userId 를 post로 보내서 해당 유저가 현재 proj_id를 좋아요 눌렀는지 확인
-    const userHeartClicked = async () => {
-      try {
-        await axios.post(`${endpoint}/userHeartClicked`, {
-          userId,
-          _id
-        }).then((res) => {
-          if (res.data.Success) {
-            setHeartClicked(true);
-          } else {
-            setHeartClicked(false);
-          }
-        })
-      } catch (err) {
-        console.log(err);
+      const userHeartClicked = async () => {
+        try {
+          await axios.post(`${endpoint}/userHeartClicked`, {
+            userId,
+            _id
+          }).then((res) => {
+            if(res.data.Success){
+              setHeartClicked(true);
+            } else {
+              setHeartClicked(false);
+            }
+          })
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
     userHeartClicked()
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -46,10 +46,10 @@ const RewardSelect = () => {
   // 몽고DB 연결
   const { projects } = useProjectsApi();
   const {
-    data: projectData,
-  } = useQuery({
-    queryKey: ['projects'],
-    queryFn: () => projects.getProjects(),
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
   });
 
   //console.log(`프로젝트 상태 : ${projStatus}`)
@@ -77,7 +77,7 @@ const RewardSelect = () => {
 
   // 선택한 프로젝트 찾기
   const selectedProject = projectData.find(item => item.proj_id === _id);
-  // 프로젝트 정보 추출
+   // 프로젝트 정보 추출
   const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
 
   const initialClickedCount = selectedProject ? selectedProject.projLike : 0;
@@ -91,7 +91,7 @@ const RewardSelect = () => {
       axios.post(`${endpoint}/heartClicked`, {
         _id,
         userId,
-        heartStatus: 0,
+        heartStatus:0,
       })
     } else {
       setHeartClicked(true);
@@ -99,7 +99,7 @@ const RewardSelect = () => {
       axios.post(`${endpoint}/heartClicked`, {
         _id,
         userId,
-        heartStatus: 1,
+        heartStatus:1,
       })
     }
     const updatedProjLike = (projLike !== null ? projLike : 0) + (heartClicked ? 0 : 1);
