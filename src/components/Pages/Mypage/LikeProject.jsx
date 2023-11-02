@@ -9,7 +9,7 @@ export default function LikeProject() {
 	// Like프로젝트는 리덕스의 userId를 가져와서 userprojects에서 
 	// 해당 users_id에서 userLikeProject를 가져와 projects 에서 userLikeProject와 proj_id가 같은걸 가져옴
 	// 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
+  const user_id = useSelector((state) => state.userData.userData.userId)
 	// 데이터 불러올때까지 mount 값 false
   const [mount, setMount] = useState(false);
 	// likeProject에 서버로부터 받아온 값 넣어주기
@@ -48,10 +48,34 @@ export default function LikeProject() {
 			console.log('cancelLike', err)
 		}
 	}
-	console.log(likeProject)
+	    /* --- 페이지 이동(pagination) 설정 --- */
+  const [currPage, setCurrPage] = useState(1);
+
+  const projectPerPage = 6;
+
+  const totalPages = likeProject ? Math.ceil(likeProject.length / projectPerPage): '';
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = likeProject ? likeProject.slice(startIndex, endIndex): '';
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
 	return (
 		<>
-    {mount && likeProject.map((proj, index) => (          
+    <div className='projects-list'>
+    {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
             key={proj.projName}
             projId={proj.proj_id}
@@ -65,8 +89,16 @@ export default function LikeProject() {
 						MypageDivClass={'LikeProjectImg'}
 						cancelLike={(evt) => cancelLike(evt, proj.proj_id)}
           />)
-
     )}
+    </div>
+        <div className='mypagePagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>
+            {'  '}
+            {currPage} / {totalPages}{'  '}
+          </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
     </>
 	)
 }

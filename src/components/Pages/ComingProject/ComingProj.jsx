@@ -4,14 +4,23 @@ import { useLocation } from 'react-router';
 import useFetch from '../../hooks/useFetch';
 import MenuTabs from '../../ProjectData/Menu/MenuTabs';
 import ComingNotice from './ComingNotice';
+import { useQuery } from '@tanstack/react-query';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
 
 export default function ComingProj() {
   const location = useLocation();
   const { _id } = location.state || {};
-
-  const projectData = useFetch(
+    // 몽고DB
+  const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+/*   const projectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
-  );
+  ); */
 
   if (!projectData) {
     return <div>Loading...</div>;
@@ -21,7 +30,9 @@ export default function ComingProj() {
   const selectedProject = projectData.find((item) => item.proj_id === _id);
 
   if (!selectedProject) {
-    return <div>Project not found</div>;
+    return <div className='loadingImage'>
+      <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+    </div>;
   }
 
   const { projName, projMainImgPath, projIntro } = selectedProject;

@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import './MenuTabs.css'
 import { useLocation } from 'react-router';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Endpoint from '../../../config/Endpoint';
 
 class MenuTabs extends Component {
 
@@ -62,8 +66,15 @@ function Tab1Content() {
 
     const location = useLocation();
     const { _id } = location.state || {};
-
-    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+       // 몽고DB
+    const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+    /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
 
     if (!projectData) {
         return <div>Loading...</div>;
@@ -88,7 +99,15 @@ function Tab1Content() {
 
 function Tab2Content() {
     //QnA와 코멘트 페이지는 json서버에서 받아오는 형식. 고정적으로 처리할 예정
-    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
+       // 몽고DB
+    const { projects } = useProjectsApi();
+    const {
+        data: ProjectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+    /* const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api */
 
     return (
         <div>
@@ -102,7 +121,15 @@ function Tab2Content() {
 
 function Tab3Content() {
     //QnA와 코멘트 페이지는 json서버에서 받아오는 형식. 고정적으로 처리할 예정
-    const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
+    // 몽고DB
+    const { projects } = useProjectsApi();
+    const {
+        data: ProjectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+    /* const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api */
 
     return (
         <div className='menuTabQnA'>
@@ -115,46 +142,55 @@ function Tab3Content() {
 }
 
 function Tab4Content() {
+    const endpoint = Endpoint();
     const location = useLocation();
     const { _id } = location.state || {};
+    const { projects } = useProjectsApi();
+    const { data: projectData } = useQuery({
+    queryKey: ['projects'],
+    queryFn: () => projects.getProjects(),
+    enabled: !!projects,
+    });
+    const [usersData, setUsersData] = useState();
 
-    const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
-    const usersData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/users");
+    useEffect(() => {
+        async function fetchData() {
+            try {
+            const selectedProject = projectData.find(item => item.proj_id === _id);
+            if (!selectedProject) {
+                console.error('Project not found');
+                return;
+            }
+            const { userMade_id } = selectedProject;
+            const res = await axios.post(`${endpoint}/menuTabs`, {
+                userMade_id,
+            });
+            if(res.data){
+                setUsersData(res.data);
+            }
+            } catch (err) {
+                setUsersData('none');
+                console.error('에러 발생: ', err);
+                console.error('에러 스택 트레이스: ', err.stack);
+            }
+        }
 
+        fetchData();
+    }, [_id, projectData, endpoint]);
 
-    if (!projectData) {
-        return <div>Loading...</div>;
+    if (!projectData || !usersData) {
+        return <div>
+            <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+        </div>;
     }
 
-    // "proj_id" 값을 기반으로 해당 "userMade_id"를 찾기
-    const selectedProject = projectData.find(item => item.proj_id === _id);
-
-    if (!selectedProject) {
-        return <div>Project not found</div>;
-    }
-
-    const { userMade_id } = selectedProject;
-
-    //console.log(`프로젝트 만든 아이디 : ${userMade_id}`);
-
-
-    if (!usersData) {
-        return <div>Loading...</div>;
-    }
-
-    // "userMade_id" 값을 기반으로 해당 "users_id"를 찾기
-    const selectedUser = usersData.find(item => item.users_id === userMade_id);
-
-    if (!selectedUser) {
-        return <div>User not found</div>;
-    }
-
-    const { users_id, userName, userMail, userPhoneNum } = selectedUser;
+    const { users_id, userName, userMail, userPhoneNum } = usersData;
 
     console.log(`프로젝트를 등록한 아이디 : ${users_id}`);
 
     return (
-        <div id='makerIntro'>
+        <>
+        {usersData === 'none' ? (<div>User not found</div>):(<div id='makerIntro'>
             <h2>주최자</h2>
             <br />
             <div>
@@ -176,7 +212,8 @@ function Tab4Content() {
                     </tr>
                 </table>
             </div>
-        </div>
+        </div>)  }
+        </>
     );
 }
 

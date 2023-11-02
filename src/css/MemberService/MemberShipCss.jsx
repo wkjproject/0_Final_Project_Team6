@@ -15,7 +15,7 @@ export const MemberShipDivCenter = styled.div`
 export const MemberShipInput = styled.input`
   width: 100%;
   height: 36px;
-  border: 1px solid #000000;
+  border: 1px solid var(--Darkgray);
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 20px;

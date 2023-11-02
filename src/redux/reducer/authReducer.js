@@ -9,6 +9,7 @@ export const authReducer = (
       userName: null,
       userPhoneNum: null,
       userMail: null,
+      accessToken: null,
     },
   },
   action

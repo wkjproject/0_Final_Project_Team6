@@ -5,11 +5,14 @@ import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // 리덕스 액션쪽으로 데이터 보내기
+import { ToastContainer, toast } from 'react-toastify';
 import { setProjStatus } from './../../../redux/reducer/projStatusAction';
 import { useSelector } from 'react-redux';
 
 import './ApprProj.css';
 import Endpoint from '../../../config/Endpoint';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 export default function ApprProj() {
   const navigate = useNavigate();
@@ -32,11 +35,18 @@ export default function ApprProj() {
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
   const { _id } = location.state || {};
-
+     // 몽고DB
+  const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
   // 데이터 처리 부분
-  const projectData = useFetch(
+/*   const projectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
-  ); // API를 사용하여 프로젝트 데이터 가져오기
+  ); // API를 사용하여 프로젝트 데이터 가져오기 */
   const selectedProject = projectData.find((item) => item.proj_id === _id); // 선택한 프로젝트 찾기
 
   if (!selectedProject) {
@@ -44,20 +54,19 @@ export default function ApprProj() {
     return <div>Loading...</div>; // 또는 다른 처리를 수행
   }
 
-  const { projName, projPlace, projAddr, projDate, projStatus } =
+  const { proj_id, projName, projPlace, projAddr, projDate, projStatus } =
     selectedProject; // 프로젝트 정보 추출
   const endpoint = Endpoint();
-
-  const ApproveProj = async () => {
+  const customId = "custom-id-yes";
+  const ApproveProj = async (proj_id) => {
     // 프로젝트 승인: '승인하기'를 누르면 : projStatus가 0 --> 1
     await axios
-      .post(`${endpoint}/newProjStatus`, { projStatus: 1 })
+      .post(`${endpoint}/newProjStatus`, { proj_id, projStatus: 1 })
       .then((res) => {
         if (res.data.newProjStatusSuccess) {
-          alert(res.data.message);
-          alert(`프로젝트가 승인되었습니다 => ${projStatus}`);
-          navigate(-1);
-          window.location.reload();
+          toast(`프로젝트가 승인되었습니다.`, {toastId: customId});
+          navigate('/manageProj');
+          // window.location.reload();
         }
         if (!res.data.newProjStatusSuccess) {
           alert(res.data.message);
@@ -65,16 +74,15 @@ export default function ApprProj() {
       });
   };
 
-  const RejectProj = async () => {
+  const RejectProj = async (proj_id) => {
     // 프로젝트 승인 거절: '거절하기'를 누르면 : projStatus가 0 --> 3
     await axios
-      .post(`${endpoint}/newProjStatus`, { projStatus: 3 })
+      .post(`${endpoint}/newProjStatus`, { proj_id, projStatus: 3 })
       .then((res) => {
         if (res.data.newProjStatusSuccess) {
-          alert(res.data.message);
-          alert(`프로젝트가 거절되었습니다 => ${projStatus}`);
-          navigate(-1);
-          window.location.reload();
+          toast(`프로젝트가 거절되었습니다.`, { toastId: customId});
+          navigate('/manageProj');
+          // window.location.reload();
         }
         if (!res.data.newProjStatusSuccess) {
           alert(res.data.message);
@@ -109,11 +117,11 @@ export default function ApprProj() {
 
       {/* 프로젝트 승인, 반려, 보류 버튼 */}
       <div className='buttons-container'>
-        <button className='apprBtn' onClick={() => ApproveProj()}>
+        <button className='apprBtn' onClick={() => ApproveProj(proj_id)}>
           프로젝트 승인
         </button>
         <div className='buttons-group'>
-          <button className='rejectBtn' onClick={() => RejectProj()}>
+          <button className='rejectBtn' onClick={() => RejectProj(proj_id)}>
             프로젝트 승인 거절
           </button>
           <button className='holdBtn' onClick={() => navigate(-1)}>

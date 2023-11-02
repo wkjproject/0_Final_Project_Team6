@@ -2,13 +2,25 @@ import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import ProjectCard from './ProjectCard';
 import '../../css/ManageProj.css';
+import { useProjectsApi } from '../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 // import ProjectList from './ProjectsList';
 
 export default function ManageProj() {
-  const ProjectData = useFetch(
+   // 몽고DB
+  const { projects } = useProjectsApi();
+    const {
+        data: ProjectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+
+  /* const ProjectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
-  );
-  const projList = Object.values(ProjectData); // 프로젝트 값을 배열로
+  ); */
+
+  const projList = ProjectData ? Object.values(ProjectData) : [];
 
   const projectPerPage = 6; // 페이지 당 표시할 프로젝트 수(※일단 2개로)
   const [currTab, setCurrTab] = useState('waiting'); // 기본 값: 승인대기 프로젝트

@@ -116,7 +116,7 @@ const RewardSelect = () => {
                             </tr>
                             <tr>
                               <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
                             </tr>
                           </table>
                         </button>
@@ -165,7 +165,7 @@ const RewardSelect = () => {
                   </tr>
                   <tr >
                     <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
+                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
                   </tr>
                 </table>
                 {/* {index !== selectedRewards.length - 1 ? <hr /> : null} */}

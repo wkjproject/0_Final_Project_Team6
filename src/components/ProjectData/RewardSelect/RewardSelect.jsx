@@ -3,43 +3,13 @@ import useFetch from '../../hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import './RewardSelect.css'
 import { useSelector } from 'react-redux';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Endpoint from '../../../config/Endpoint';
 
 const RewardSelect = () => {
-  // 상태 변수 초기화
-  const [showModal, setShowModal] = useState(false); // 모달 표시 여부
-  const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
-  const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
-  const [clickedCount, setClickedCount] = useState(0); // 하트 클릭 수
-
-  // 리덕스에서 로그인 상태 확인
-  const isLogin = useSelector((state) => state.auth.auth.isLogin);
-
-  // 리덕스에서 userId 가져오기
-  const userId = useSelector((state) => state.auth.auth.userId);
-
-  // 리덕스에서 관리자여부 가져오기
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
-
-  // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
-  const location = useLocation();
-  const { _id } = location.state || {};
-
-  // 하트 클릭 토글 함수
-  const toggleHeart = () => {
-    if (heartClicked) {
-      setHeartClicked(false);
-      setClickedCount(clickedCount - 1);
-    } else {
-      setHeartClicked(true);
-      setClickedCount(clickedCount + 1);
-    }
-  };
-
-  // useRef를 사용하여 모달 및 배경 영역의 참조 생성
-  const modalRef = useRef(null);
-  const backgroundAreaRef = useRef(null);
-
-  // 외부를 클릭했을 때 모달 닫기 위한 useEffect
+    // 외부를 클릭했을 때 모달 닫기 위한 useEffect
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -49,13 +19,98 @@ const RewardSelect = () => {
         setShowModal(false);
       }
     };
-
+    // _id(proj_id)와 userId 를 post로 보내서 해당 유저가 현재 proj_id를 좋아요 눌렀는지 확인
+      const userHeartClicked = async () => {
+        try {
+          await axios.post(`${endpoint}/userHeartClicked`, {
+            userId,
+            _id
+          }).then((res) => {
+            if(res.data.Success){
+              setHeartClicked(true);
+            } else {
+              setHeartClicked(false);
+            }
+          })
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    userHeartClicked()
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  // 몽고DB 연결
+  const { projects } = useProjectsApi();
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
+
+  //console.log(`프로젝트 상태 : ${projStatus}`)
+  //console.log(`하트수 : ${projLike}`)
+
+  // 상태 변수 초기화
+  const [showModal, setShowModal] = useState(false); // 모달 표시 여부
+  const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
+  const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
+
+  // 리덕스에서 로그인 상태 확인
+  const isLogin = useSelector((state) => state.auth.auth.isLogin);
+
+  // 리덕스에서 userId 가져오기
+  const userId = useSelector((state) => state.userData.userData.userId);
+
+  // 리덕스에서 관리자여부 가져오기
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin);
+
+  // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
+  const location = useLocation();
+  const { _id } = location.state || {};
+
+  const endpoint = Endpoint();
+
+  // 선택한 프로젝트 찾기
+  const selectedProject = projectData.find(item => item.proj_id === _id);
+   // 프로젝트 정보 추출
+  const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
+
+  const initialClickedCount = selectedProject ? selectedProject.projLike : 0;
+  const [clickedCount, setClickedCount] = useState(initialClickedCount); // 하트 클릭 수
+
+  // 하트 클릭 토글 함수, 클릭하면 DB에 저장
+  const toggleHeart = () => {
+    if (heartClicked) {
+      setHeartClicked(false);
+      setClickedCount(clickedCount - 1);
+      axios.post(`${endpoint}/heartClicked`, {
+        _id,
+        userId,
+        heartStatus:0,
+      })
+    } else {
+      setHeartClicked(true);
+      setClickedCount(clickedCount + 1);
+      axios.post(`${endpoint}/heartClicked`, {
+        _id,
+        userId,
+        heartStatus:1,
+      })
+    }
+    const updatedProjLike = (projLike !== null ? projLike : 0) + (heartClicked ? 0 : 1);
+    setClickedCount(updatedProjLike);
+  };
+
+  // useRef를 사용하여 모달 및 배경 영역의 참조 생성
+  const modalRef = useRef(null);
+  const backgroundAreaRef = useRef(null);
+
+
 
   // 금액을 숫자 형식으로 포맷하는 함수
   const formatAmount = (amount) => {
@@ -75,6 +130,10 @@ const RewardSelect = () => {
   // 리워드 선택 처리 함수
   const handleRewardSelect = (reward) => {
     if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
+      if(reward.projRewardAvailable === 0){
+        alert('잔여 수량이 없습니다.')
+        return
+      }
       setSelectedRewards([...selectedRewards, reward]);
     }
     setShowModal(false); // 리스트가 선택되면 모달 닫기
@@ -88,25 +147,21 @@ const RewardSelect = () => {
     setSelectedRewards(updatedRewards);
   };
 
+
   // API를 사용하여 프로젝트 데이터 가져오기
-  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+  /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
 
   // 데이터 로딩 중이면 "Loading..." 표시
   if (!projectData) {
     return <div>Loading...</div>;
   }
 
-  // 선택한 프로젝트 찾기
-  const selectedProject = projectData.find(item => item.proj_id === _id);
-
   // 프로젝트가 없으면 "Project not found" 표시
   if (!selectedProject) {
-    return <div>Project not found</div>;
+    return <div>
+      <img src="/Image20231031143853.gif" alt="로딩 이미지" />
+    </div>;
   }
-
-  // 프로젝트 정보 추출
-  const { projName, projPlace, projAddr, projDate, projStatus } = selectedProject;
-  console.log(`프로젝트 상태 : ${projStatus}`)
 
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
@@ -114,7 +169,7 @@ const RewardSelect = () => {
     } else {
       if (isLogin) {
         navigate('/projectPay', {
-          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate } }
+          state: { data: selectedRewards, data2: { projName, projPlace, projAddr, projDate, _id } }
         });
       } else {
         const userConfirmed = window.confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동할까요?");
@@ -125,10 +180,10 @@ const RewardSelect = () => {
     }
   }
 
-  // 펀딩현황 눌렀을때
-  const moveFundingStatus = (evt) => {
+  // 펀딩현황 혹은 수정 눌렀을때
+  const moveToPage = (evt, moveWhere) => {
     evt.preventDefault();
-    navigate('/fundingStatus', { state: { _id: _id } });
+    navigate(moveWhere, { state: { _id: _id } });
   }
 
   // 컴포넌트 렌더링
@@ -189,7 +244,7 @@ const RewardSelect = () => {
                           </tr>
                           <tr>
                             <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardCount}</td>
+                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
                           </tr>
                         </table>
                       </button>
@@ -235,7 +290,7 @@ const RewardSelect = () => {
                   </tr>
                   <tr >
                     <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardCount}</td>
+                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
                   </tr>
                 </table>
               </li>
@@ -258,7 +313,7 @@ const RewardSelect = () => {
                 className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
                 onClick={toggleHeart}
               >
-                {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : 0}
+                {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : projLike}
               </button>
               <button className='shareBtn' style={{ marginLeft: '20px' }}>
                 공유하기
@@ -266,7 +321,7 @@ const RewardSelect = () => {
             </div>
             {/* 펀딩현황 버튼 추가 */}
             {/* 관리자 or 리덕스 userId 와 projects 컬렉션(selectedProject)의 userMade_id가 일치할때 펀딩현황, 수정 버튼 보이도록 */}
-            {isAdmin || userId === selectedProject.userMade_id ? (<div className='fundStatusContainer'><button className='fundStatusBtn' onClick={moveFundingStatus}>펀딩현황</button><button className='fundStatusBtn'>수정</button></div>):('')}
+            {isAdmin || userId === selectedProject.userMade_id ? (<div className='fundStatusContainer'><button className='fundStatusBtn' onClick={(evt) => moveToPage(evt, '/fundingStatus')}>펀딩현황</button><button className='fundStatusBtn' onClick={(evt) => moveToPage(evt, '/modifyProj')}>수정</button></div>) : ('')}
           </div>
         ) : projStatus === '2' ? (
           <div className='closed-project-message'>

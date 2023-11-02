@@ -2,6 +2,11 @@
   display: inline-block;
 }
 
+.loadingImage {
+  margin: auto;
+  padding-left: 800px;
+}
+
 .titlealign {
   text-align: center;
   margin-bottom: 50px;
@@ -29,14 +34,12 @@
   top: 0;
 }
 
-
 .mainImage {
   flex: 1;
   /* 이미지 요소가 남은 공간을 모두 차지하도록 설정 */
   max-width: 1150px;
   /* 이미지가 너무 크면 컨테이너에 맞게 조절 */
   width: 1150px;
-  height: 700px;
   /* 가로 비율 유지 */
   object-fit: cover;
   /* 이미지 비율 유지하며 채우기 */
@@ -69,6 +72,7 @@
   padding: 20px;
   text-align: center;
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .RewardSelect {
@@ -97,8 +101,6 @@
   border-radius: 5px;
   padding-top: 20px;
 }
-
-
 
 .button-container {
   display: flex;
