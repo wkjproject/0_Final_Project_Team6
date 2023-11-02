@@ -65,6 +65,9 @@ export default function Slide() {
   //   navigate('/home/project2', { state: { _id: proj_id } });
   // }; */}
   </>
+  const toProjectPage = (proj_id) => {
+    navigate('/project2', { state: { _id: proj_id } });
+  };
 
   /* 슬라이더 이미지 src */
   const slides = [  
