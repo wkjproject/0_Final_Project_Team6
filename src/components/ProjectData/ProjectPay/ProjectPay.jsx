@@ -28,21 +28,21 @@ const ProjectPay = () => {
 
     //ProjectPayCard에서 모든 결제 정보가 입력되면 ProjectPay로 "111" 발송
     const [paymentStatus1, setPaymentStatus1] = useState(0);
-    //console.log(paymentStatus1);
+    console.log(paymentStatus1);
 
     const handlePaymentStatus1 = (status) => {
         setPaymentStatus1(status);
     };
 
     const [paymentStatus2, setPaymentStatus2] = useState(1);
-    //console.log(paymentStatus2);
+    console.log(paymentStatus2);
 
     const handlePaymentStatus2 = (status) => {
         setPaymentStatus2(status);
     };
 
     const [paymentStatus3, setPaymentStatus3] = useState(2);
-    //console.log(paymentStatus3);
+    console.log(paymentStatus3);
 
     const handlePaymentStatus3 = (status) => {
         setPaymentStatus3(status);

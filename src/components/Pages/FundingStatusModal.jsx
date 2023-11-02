@@ -29,9 +29,14 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
           _id
         }).then((res) => {
           if (res.data.fundingStatusModalDataSuccess){
+            if (res.data.fundingStatusModalData.length === 0){
+              alert('펀딩 데이터가 없습니다.');
+              window.history.back();
+            } else {
             setFundingDetailData(res.data.fundingStatusModalData)
             setFundingUserName(res.data.fundingStatusModalUserName)
             setMount(true);
+            }
           }
           if (!res.data.fundingStatusModalDataSuccess){
             alert('펀딩 데이터가 없습니다.');
