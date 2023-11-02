@@ -3,6 +3,8 @@ import useFetch from '../../hooks/useFetch';
 import { useLocation, useNavigate } from 'react-router-dom'; // 추가된 import
 import '../../ProjectData/RewardSelect/RewardSelect.css';
 import { useSelector } from 'react-redux';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 
 export default function ComingNotice() {
@@ -15,10 +17,10 @@ export default function ComingNotice() {
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
 
   // 리덕스에서 userId 가져오기
-  const userId = useSelector((state) => state.auth.auth.userId);
+  const userId = useSelector((state) => state.userData.userData.userId);
 
   // 리덕스에서 관리자여부 가져오기
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin);
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin);
 
   // React Router의 useLocation 훅을 사용하여 현재 위치 가져오기
   const location = useLocation();
@@ -76,9 +78,16 @@ export default function ComingNotice() {
     );
     setSelectedRewards(updatedRewards);
   };
-
+   // 몽고DB
+  const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
   // API를 사용하여 프로젝트 데이터 가져오기
-  const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects");
+  /* const projectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); */
 
   // 데이터 로딩 중이면 "Loading..." 표시
   if (!projectData) {

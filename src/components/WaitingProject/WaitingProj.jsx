@@ -8,15 +8,25 @@ import { useDispatch } from 'react-redux';  // 리덕스 액션쪽으로 데이�
 
 import MenuTabs from './../MenuTabs';
 import ApprProj from './ApprProj';
+import { useProjectsApi } from '../../context/ProjectsApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 export default function WaitingProj() {
   const location = useLocation();
   const { _id } = location.state || {};
+  // 몽고DB 연결
+  const { projects } = useProjectsApi();
+  const {
+      data: projectData,
+      } = useQuery({
+      queryKey: ['projects'],
+      queryFn: () => projects.getProjects(),
+  });
 
-  const projectData = useFetch(
+  /* const projectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
   );
-
+ */
   if (!projectData) {
     return <div>Loading...</div>;
   }

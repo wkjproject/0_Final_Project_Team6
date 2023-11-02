@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 export default function MadeProject() {
 	// 리덕스의 userId 가져오기
-  const user_id = useSelector((state) => state.auth.auth.userId)
+  const user_id = useSelector((state) => state.userData.userData.userId)
   // 데이터 불러올때까지 mount 값 false
   const [mount, setMount] = useState(false);
 

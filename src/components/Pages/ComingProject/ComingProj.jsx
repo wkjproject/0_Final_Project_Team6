@@ -4,14 +4,23 @@ import { useLocation } from 'react-router';
 import useFetch from '../../hooks/useFetch';
 import MenuTabs from '../../ProjectData/Menu/MenuTabs';
 import ComingNotice from './ComingNotice';
+import { useQuery } from '@tanstack/react-query';
+import { useProjectsApi } from '../../../context/ProjectsApiContext';
 
 export default function ComingProj() {
   const location = useLocation();
   const { _id } = location.state || {};
-
-  const projectData = useFetch(
+    // 몽고DB
+  const { projects } = useProjectsApi();
+    const {
+        data: projectData,
+        } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+    });
+/*   const projectData = useFetch(
     'https://json-server-vercel-sepia-omega.vercel.app/projects'
-  );
+  ); */
 
   if (!projectData) {
     return <div>Loading...</div>;

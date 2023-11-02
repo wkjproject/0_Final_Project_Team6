@@ -31,8 +31,8 @@ export default function Thumbnail({
   // console.log(`오늘: ${today}, 시작일: ${sday}`);
 
   /* ----- 리덕스의 userId, isAdmin. isLogin 가져오기 ----- */
-  const userId = useSelector((state) => state.auth.auth['_id']); // 로그인한 userID
-  const isAdmin = useSelector((state) => state.auth.auth.isAdmin); // 서비스 관리자 여부: true=관리자
+  const userId = useSelector((state) => state.userData.userData['_id']); // 로그인한 userID
+  const isAdmin = useSelector((state) => state.userData.userData.isAdmin); // 서비스 관리자 여부: true=관리자
   const isLogin = useSelector((state) => state.auth.auth.isLogin); // 로그인 여부
 
   const openProjDetails = () => {
