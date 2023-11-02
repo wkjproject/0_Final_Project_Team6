@@ -65,9 +65,6 @@ export default function Slide() {
   //   navigate('/home/project2', { state: { _id: proj_id } });
   // }; */}
   </>
-  const toProjectPage = (proj_id) => {
-    navigate('/project2', { state: { _id: proj_id } });
-  };
 
   /* 슬라이더 이미지 src */
   const slides = [  
@@ -125,11 +122,11 @@ export default function Slide() {
             alt={proj.projName}
           />
         ))} */}
-          <div><img src={slides[0]} onClick={() => {navigate('/home/project2', { state: { _id: 18 } });}}/></div>
-          <div><img src={slides[1]} onClick={() => {navigate('/home/project2', { state: { _id: 101 } });}}/></div>
-          <div><img src={slides[2]} onClick={() => {navigate('/home/project2', { state: { _id: 22 } });}}/></div>
-          <div><img src={slides[3]} onClick={() => {navigate('/home/project2', { state: { _id: 33 } });}}/></div>
-          <div><img src={slides[4]} onClick={() => {navigate('/home/project2', { state: { _id: 40 } });}}/></div>
+          <div><img src={slides[0]} onClick={() => {navigate('/project2', { state: { _id: 18 } });}}/></div>
+          <div><img src={slides[1]} onClick={() => {navigate('/project2', { state: { _id: 101 } });}}/></div>
+          <div><img src={slides[2]} onClick={() => {navigate('/project2', { state: { _id: 22 } });}}/></div>
+          <div><img src={slides[3]} onClick={() => {navigate('/project2', { state: { _id: 33 } });}}/></div>
+          <div><img src={slides[4]} onClick={() => {navigate('/project2', { state: { _id: 40 } });}}/></div>
       </Slider>
     </div>
   );
