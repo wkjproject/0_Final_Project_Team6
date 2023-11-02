@@ -32,7 +32,7 @@ function Footer() {
 								<a href="#"><p>☎: 012-345-6789</p></a>
 								<a href="#"><p>Email: WW123@google.com </p></a>
 								<a href="#"><p>서울특별시 중구 세종대로 110</p></a>
-							</div>		
+							</div>
 							<div className="footer-link"></div>
 							<div className="footer-link"></div>							
 						</div>
