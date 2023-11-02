@@ -37,7 +37,7 @@ function Footer() {
 							<div className="footer-link"></div>							
 						</div>
 					</div>
-					</div>
+				</div>
 
 					<hr></hr>
 
