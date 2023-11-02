@@ -33,22 +33,57 @@ export default function MadeProject() {
 
     MadeProjectData();
   }, []);
-  console.log(madeProject)
+    /* --- 페이지 이동(pagination) 설정 --- */
+  const [currPage, setCurrPage] = useState(1);
+
+  const projectPerPage = 6;
+
+  const totalPages = madeProject ? Math.ceil(madeProject.length / projectPerPage): '';
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = madeProject ? madeProject.slice(startIndex, endIndex): '';
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
 	return (
 		<>
-    {mount && madeProject.map((proj, index) => (          
+    <div className='projects-list'>
+    {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
             key={proj.projName}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
+            MypageImageClass={proj.projStatus === '1' ? 'fundingProjectImg' : 'fundingProjectImgX'}
+            MypageDivClass={proj.projStatus === '0' ? 'fundingProjectTextWait' : proj.projStatus === '1' ? '' : 'fundingProjectImgX'}
+            MypageDivContent={proj.projStatus === '0' ? '승인대기' : ''}
             image={proj.projMainImgPath}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
             dday={proj.projDate}
             price={proj.projReward[0].projRewardAmount}
           />)
-
     )}
+    </div>
+        <div className='mypagePagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>
+            {'  '}
+            {currPage} / {totalPages}{'  '}
+          </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
     </>
 	)
 }

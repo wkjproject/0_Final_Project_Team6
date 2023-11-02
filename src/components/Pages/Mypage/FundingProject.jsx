@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 export default function FundingProject() {
+  axios.defaults.withCredentials = false;
   const endpoint = Endpoint();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   // 리덕스의 userId 가져오기
@@ -23,10 +24,6 @@ export default function FundingProject() {
   const [funding_id, setFunding_id] = useState(false);
   // 출발일 하루 전 결제취소누르면 정말 취소하냐고 한번 더 물어본 뒤 거기서 결제취소 누르면 취소되고 fundings 컬렉션에서 데이터 삭제
 
-
-
-  // 관심프로젝트는 userProjects 컬렉션에서 users_id가 현재 리덕스 userId랑 일치하는것만 가져와서 userLikeProject 와 projects 컬렉션의 proj_id가 일치하는것만 뿌림
-  // 관심프로젝트에서 필요한 데이터는 projects 의 projName, projAddr, projReward[0]
   useEffect(() => {
     const endpoint = Endpoint();
     const fundingProjectData = async () => {
@@ -70,11 +67,38 @@ export default function FundingProject() {
     })
 
   }
+  /* --- 페이지 이동(pagination) 설정 --- */
+  const [currPage, setCurrPage] = useState(1);
+
+  const projectPerPage = 6;
+
+  const totalPages = fundingProject ? Math.ceil(fundingProject.length / projectPerPage): '';
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = fundingProject ? fundingProject.slice(startIndex, endIndex): '';
+  const displayedFundingList = fundings ? fundings.slice(startIndex, endIndex): '';
+
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
 
   return (
       <>
-        {mount && fundingProject.map((projectArray, index) => {
-          const funding = fundings[index]
+      <div className='projects-list'>
+        {mount && displayedProjectsList.map((projectArray, index) => {
+          const funding = displayedFundingList[index]
           return projectArray.map((proj) => (
           <>
           <ProjectCard
@@ -116,10 +140,18 @@ export default function FundingProject() {
         <p>정말로 결제를 취소하시겠습니까?</p>
         <button className='fundingCancelBtn'style={{backgroundColor: 'var(--ButtonDefault)', width: '75px', height: '30px'}} onClick={cancelPayDB}>결제취소</button>
       </Modal>
-          </>
+      </>
           ))
         })}
-
-      </>
+        </div>
+        <div className='mypagePagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>
+            {'  '}
+            {currPage} / {totalPages}{'  '}
+          </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
+    </>
   );
 }
