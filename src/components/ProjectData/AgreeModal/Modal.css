@@ -1,61 +1,21 @@
-.AgreeModalDivHeader {
-    font-size: 30px;
-    position: absolute;
-    top: 30px;
-    left: 58px;
-    font-weight: bold;
-}
-
 .AgreeModalDiv {
     display: flex;
+    background-color: wheat;
     width: 80%;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 40px;
     margin-bottom: 60px;
-    max-height: 80%;
-    /* 최대 높이를 설정 */
-    overflow-y: auto;
-    /* 세로 스크롤을 활성화 */
-    font-size: 13px;
+    height: 80%;
 }
 
-.AgreeModalDiv dt {
-    font-weight: bold;
-}
-
-.AgreeModalDiv table {
-    border-collapse: collapse;
-    /* 테이블 경계선이 서로 겹치도록 설정 */
-    width: 100%;
-    /* 테이블 너비를 100%로 설정 */
-}
-
-.AgreeModalDiv table,
-.AgreeModalDiv th,
-.AgreeModalDiv td {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    /* 테두리에 1px 두께의 검은 선을 추가 */
-}
-
-.AgreeModalDiv th,
-.AgreeModalDiv td {
-    padding: 8px;
-    /* 셀 내부 여백 설정 (원하는 크기로 조정) */
+.AgreeModalDesc {
+    padding-top: 60px;
 }
 
 .AgreeModalBtn {
     position: absolute;
-    right: 60px;
-    top: 720px;
+    right: 100px;
+    top: 520px;
     width: 100px;
     height: 40px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fe9a00;
-    color: white;
-    font-size: 20px;
-}
-
-.AgreeModalBtn:hover {
-    background-color: #FFC976;
 }
