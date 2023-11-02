@@ -9,6 +9,7 @@ import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { toast } from 'react-toastify';
 
 const ProjectPay = () => {
     const endpoint = Endpoint();
@@ -18,6 +19,7 @@ const ProjectPay = () => {
     const projectInfo = location2.state.data2;
     const rewardsArray = selectedRewards;
     //console.log(location);
+    const customId = 'msg-id-opening';
 
     const navigate = useNavigate();
 
@@ -99,7 +101,10 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId,
+            })
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
@@ -111,7 +116,10 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId,
+            })
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
@@ -123,11 +131,17 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId,
+            })
             navigate('/home');
         }
         else {
-            alert("결제 정보를 입력해주세요.");
+            //alert("결제 정보를 입력해주세요.");
+            toast('결제 정보를 입력해주세요.', {
+                toastId: customId,
+            })
         }
     };
 
