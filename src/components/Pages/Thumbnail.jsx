@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router';
 // import axios from 'axios';
 import { useSelector } from 'react-redux';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Thumbnail({
   projId,
   projName,
@@ -38,23 +41,27 @@ export default function Thumbnail({
   const openProjDetails = () => {
     // console.log(`isAdmin: ${isAdmin}, userId: ${userId}, maderId: ${maderId}`); // maderId = 해당 프로젝트 제작자 ID
     // console.log(`isLogin = ${isLogin}`);
-
     if (projStatus === '0') {
       // 승인대기(0) --> 승인대기 프로젝트
       navigate('/waitingProj', { state: { _id: projId } });
     } else if (projStatus === '1') {
       // 승인된(1)
+      const customId = 'msg-id-opening';
       today < sday // 오픈예정 --> 관리자&제작자: 오픈 예정 상세페이지 / 이외 : 경고창
         ? isLogin && (isAdmin === true || userId === maderId)
           ? navigate('/comingProj', { state: { _id: projId } })
-          : alert('오픈예정 프로젝트입니다.')
+          : // : alert('오픈예정 프로젝트입니다.')
+            toast('오픈예정 프로젝트입니다.', {
+              toastId: customId,
+            })
         : navigate('/project2', { state: { _id: projId } }); // 진행중 --> 상세페이지로
     } else if (projStatus === '2') {
       // 마감된(2) --> 프로젝트 상세페이지로
       navigate('/project2', { state: { _id: projId } });
     } else if (projStatus === '3') {
       // 거절된(3) --> 경고창
-      alert('승인거절된 프로젝트입니다.');
+      // alert('승인거절된 프로젝트입니다.');
+      toast('승인거절된 프로젝트입니다.');
     }
   };
 
@@ -89,13 +96,20 @@ export default function Thumbnail({
               evt.stopPropagation(); // 이벤트 전파 중단
             }}
           >
-            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true">
-              <path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l 2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085"
-                fill="red" 
-                fill-opacity="1"
-                stroke="red" 
-                stroke-width="2"
-                shape-rendering="crispEdges"
+            <svg
+              viewBox='0 0 32 32'
+              focusable='false'
+              role='presentation'
+              class='withIcon_icon__3VTbq'
+              aria-hidden='true'
+            >
+              <path
+                d='M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l 2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085'
+                fill='red'
+                fill-opacity='1'
+                stroke='red'
+                stroke-width='2'
+                shape-rendering='crispEdges'
               ></path>
             </svg>
           </button>
