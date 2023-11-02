@@ -3,7 +3,7 @@
     background-color: wheat;
     width: 80%;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 70px;
     margin-bottom: 60px;
     height: 80%;
 }
@@ -14,8 +14,10 @@
 
 .AgreeModalBtn {
     position: absolute;
-    right: 100px;
-    top: 520px;
+    right: 60px;
+    top: 720px;
     width: 100px;
     height: 40px;
+    border: none;
+    border-radius: 5px;
 }
