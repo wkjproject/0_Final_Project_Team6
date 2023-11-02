@@ -93,8 +93,7 @@ export default function FundingProject() {
       setCurrPage(currPage + 1);
     }
   };
-  console.log(displayedProjectsList)
-  console.log(fundingProject)
+
   return (
       <>
         {mount && displayedProjectsList.map((projectArray, index) => {

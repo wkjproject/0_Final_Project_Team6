@@ -48,10 +48,33 @@ export default function LikeProject() {
 			console.log('cancelLike', err)
 		}
 	}
-	console.log(likeProject)
+	    /* --- 페이지 이동(pagination) 설정 --- */
+  const [currPage, setCurrPage] = useState(1);
+
+  const projectPerPage = 6;
+
+  const totalPages = likeProject ? Math.ceil(likeProject.length / projectPerPage): '';
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = likeProject ? likeProject.slice(startIndex, endIndex): '';
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
 	return (
 		<>
-    {mount && likeProject.map((proj, index) => (          
+    {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
             key={proj.projName}
             projId={proj.proj_id}
@@ -65,8 +88,15 @@ export default function LikeProject() {
 						MypageDivClass={'LikeProjectImg'}
 						cancelLike={(evt) => cancelLike(evt, proj.proj_id)}
           />)
-
     )}
+        <div className='pagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>
+            {'  '}
+            {currPage} / {totalPages}{'  '}
+          </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
     </>
 	)
 }
