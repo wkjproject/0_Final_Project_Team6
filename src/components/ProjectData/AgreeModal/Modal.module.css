@@ -1,7 +1,7 @@
 .container {
     /* 모달창 크기 */
     width: 600px;
-    height: 85%;
+    height: 800px;
 
     /* 최상단 위치 */
     z-index: 999;
@@ -34,14 +34,10 @@
     background-color: white;
     position: absolute;
     border: none;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
     color: black;
     width: 20px;
     height: 20px;
     font-size: 20px;
-}
-
-.AgreeModalDesc {
-    background-color: wheat;
 }
