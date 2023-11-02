@@ -1,5 +1,5 @@
 # :running:  W & W : Who Want? We Want!
-<a href="#"><img src="https://0-final-project-team6-w6x1.vercel.app/img/logo.png" width="300px" alt="logo"></a> 
+<p align="center"><img src="https://0-final-project-team6-w6x1.vercel.app/img/logo.png" width="300px" alt="logo"></p>
 
 
 ## :computer: 프로젝트 소개
@@ -18,7 +18,7 @@
 > 개발기간 : 2023. 10. 4. ~ 11. 9.
 <br/>
 
-구채현 | 권경민 | [박지애](https://github.com/jiiiiiaiiiii "박지애") | 안성민 | 이서준 | 조원혁 
+구채현 | 권경민 | [박지애](https://github.com/jiiiiiaiiiii, "박지애") | 안성민 | 이서준 | 조원혁 
 ------------ | ------------- | ------------- | ------------- | ------------- | ------------- 
 <img src="https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/b52d009a-f37c-4ed5-8e05-a31f143a8d60" width="600px"> | <img src="https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/8773e7ee-b1fa-4134-9ee8-255b214ff8f7" width="600px"> | <img src="https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/ad7d0791-63cb-4c23-9a5a-efb6a6163390" width="600px"> |![안성민](https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/1a6899c8-0cf6-44e1-8e77-851c9b891852) | ![이서준](https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/9da29dca-6621-4d3f-8342-7b586fba7dfd) | ![조원혁](https://github.com/whiteNib/0_Final_Project_Team6/assets/93249652/e8ccda31-7186-4889-9c7f-55c96945af6c)
 Front + UI/UX | Front + Server | Front + 조장 | Front + Server | 기획 + 문서 | Front + DB
@@ -58,23 +58,23 @@ Front + UI/UX | Front + Server | Front + 조장 | Front + Server | 기획 + 문�
 ## :tv: 화면구성
 시현영상: 링크 추가
 
-*랜딩페이지 | *HOME
+*Landing | *HOME
 ------------ | ------------- 
 img | img 
 Main Page | 슬라이더: Slick <br/> 실시간 랭킹, 화면 클릭하면 썸네일 이동
 *프로젝트 등록&수정 | *프로젝트 상세
 img | img 
 설명 | 설명
-*회원가입&로그인 | *ID/PW 찾기
+*프로젝트 결제 | *회원가입&로그인
 img | img 
 설명 | 설명
-*마이페이지 | *회원정보 수정
+*ID/PW 찾기 | *마이페이지
+img | img 
+설명 | 설명
+*회원정보 수정 | *회원관리
 img | img 
 설명 | 설명
 *프로젝트 관리 | *프로젝트 승인
-img | img 
-설명 | 설명
-*회원 관리 | ???
 img | img 
 설명 | 설명
 
