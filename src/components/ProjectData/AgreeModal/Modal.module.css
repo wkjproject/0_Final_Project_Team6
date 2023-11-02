@@ -34,14 +34,10 @@
     background-color: white;
     position: absolute;
     border: none;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
     color: black;
     width: 20px;
     height: 20px;
     font-size: 20px;
-}
-
-.AgreeModalDesc {
-    background-color: wheat;
 }
