@@ -113,7 +113,7 @@ export default function FundingProject() {
             location={proj.projAddr.split(' ', 2)[1]}
             dday={proj.projDate}
             price={proj.projReward[0].projRewardAmount}
-            cancelPay={funding.fundingStatus === 3? '' : (evt) => cancelPay(evt, funding.funding_id, proj.projName, proj.projDate, proj.projReward)}
+            cancelPay={funding.fundingStatus === 2? '' : (evt) => cancelPay(evt, funding.funding_id, proj.projName, proj.projDate, proj.projReward)}
           />
           <Modal
             isOpen={modalIsOpen}

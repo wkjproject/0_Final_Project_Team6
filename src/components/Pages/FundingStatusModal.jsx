@@ -52,22 +52,23 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
   }, []);
   // fundings 컬렉션에 user_id 기반으로 users컬렉션에서 userName 받아와서 닉네임 설정
   // 리워드 별 총합산액 계산
-  const groupedData = {};
-  if(mount) {
-    fundingDetailData.forEach((item) => {
-    item.rewards.forEach((reward) => {
-      const rewardId = reward.reward_id;
-      if (!groupedData[rewardId]) {
-        groupedData[rewardId] = {
-          totalPrice: 0,
-          totalCount: 0,
-        };
-      }
-      groupedData[rewardId].totalPrice += reward.price;
-      groupedData[rewardId].totalCount += reward.count;
-    });
-    });
-  }
+  const groupedData = fundingDetailData ? fundingDetailData.reduce((accumulator, item) => {
+  item.rewards.forEach((reward) => {
+    const rewardId = reward.reward_id;
+
+    if (!accumulator[rewardId]) {
+      accumulator[rewardId] = {
+        totalPrice: 0,
+        totalCount: 0,
+      };
+    }
+
+    accumulator[rewardId].totalPrice += reward.price;
+    accumulator[rewardId].totalCount += reward.count;
+  });
+
+  return accumulator;
+  }, {}): 0;
   // funding_id로 찾아서 대기 / 확정 / 거절 누르면 DB에 상태값이 바뀌도록
   const fundingStatusHandler = async (funding_id, statusChangeNumber) => {
       try {
@@ -123,15 +124,17 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
           </tr>
           {
             projectData.projReward.map((reward, index) => {
+              if (groupedData[reward.projRewardName]){
               const rewardAmountData = groupedData[reward.projRewardName]
               return (
-              <tr key={index} className='fundingStatusModalTr'>
-                <td>{reward.projRewardName}</td>
-                <td>{reward.projRewardAmount}</td>
-                <td>{`${reward.projRewardAvailable} / ${reward.projRewardCount}`}</td>
-                <td>{rewardAmountData.totalPrice}</td>
-              </tr>
+                <tr key={index} className='fundingStatusModalTr'>
+                  <td>{reward.projRewardName}</td>
+                  <td>{reward.projRewardAmount}</td>
+                  <td>{`${reward.projRewardAvailable} / ${reward.projRewardCount}`}</td>
+                  <td>{rewardAmountData.totalPrice}</td>
+                </tr>
             );
+              }
             })
           }
         </table>
