@@ -67,11 +67,38 @@ export default function FundingProject() {
     })
 
   }
+  /* --- 페이지 이동(pagination) 설정 --- */
+  const [currPage, setCurrPage] = useState(1);
 
+  const projectPerPage = 6;
+
+  const totalPages = fundingProject ? Math.ceil(fundingProject.length / projectPerPage): '';
+  const startIndex = (currPage - 1) * projectPerPage;
+  const endIndex = startIndex + projectPerPage;
+  const displayedProjectsList = fundingProject ? fundingProject.slice(startIndex, endIndex): '';
+  const displayedFundingList = fundings ? fundings.slice(startIndex, endIndex): '';
+
+
+  /* --- 페이지 이동 함수 --- */
+  const toPrevPage = () => {
+    if (currPage > 1) {
+      // 현재 페이지가 1페이지보다 크면
+      setCurrPage(currPage - 1);
+    }
+  };
+
+  const toNextPage = () => {
+    if (currPage < totalPages) {
+      // 현재 페이지가 마지막 페이지가 아니면
+      setCurrPage(currPage + 1);
+    }
+  };
+  console.log(displayedProjectsList)
+  console.log(fundingProject)
   return (
       <>
-        {mount && fundingProject.map((projectArray, index) => {
-          const funding = fundings[index]
+        {mount && displayedProjectsList.map((projectArray, index) => {
+          const funding = displayedFundingList[index]
           return projectArray.map((proj) => (
           <>
           <ProjectCard
@@ -116,7 +143,14 @@ export default function FundingProject() {
           </>
           ))
         })}
-
+        <div className='pagination'>
+          <button onClick={toPrevPage}>이전</button>
+          <span>
+            {'  '}
+            {currPage} / {totalPages}{'  '}
+          </span>
+          <button onClick={toNextPage}>다음</button>
+        </div>
       </>
   );
 }
