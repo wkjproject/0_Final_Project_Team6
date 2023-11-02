@@ -59,6 +59,7 @@ export default function MadeProject() {
   };
 	return (
 		<>
+    <div className='projects-list'>
     {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
             key={proj.projName}
@@ -74,7 +75,8 @@ export default function MadeProject() {
             price={proj.projReward[0].projRewardAmount}
           />)
     )}
-        <div className='pagination'>
+    </div>
+        <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
             {'  '}

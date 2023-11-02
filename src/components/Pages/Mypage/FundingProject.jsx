@@ -96,6 +96,7 @@ export default function FundingProject() {
 
   return (
       <>
+      <div className='projects-list'>
         {mount && displayedProjectsList.map((projectArray, index) => {
           const funding = displayedFundingList[index]
           return projectArray.map((proj) => (
@@ -139,10 +140,11 @@ export default function FundingProject() {
         <p>정말로 결제를 취소하시겠습니까?</p>
         <button className='fundingCancelBtn'style={{backgroundColor: 'var(--ButtonDefault)', width: '75px', height: '30px'}} onClick={cancelPayDB}>결제취소</button>
       </Modal>
-          </>
+      </>
           ))
         })}
-        <div className='pagination'>
+        </div>
+        <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
             {'  '}
@@ -150,6 +152,6 @@ export default function FundingProject() {
           </span>
           <button onClick={toNextPage}>다음</button>
         </div>
-      </>
+    </>
   );
 }

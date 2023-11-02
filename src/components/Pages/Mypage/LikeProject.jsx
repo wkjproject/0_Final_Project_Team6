@@ -74,6 +74,7 @@ export default function LikeProject() {
   };
 	return (
 		<>
+    <div className='projects-list'>
     {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
             key={proj.projName}
@@ -89,7 +90,8 @@ export default function LikeProject() {
 						cancelLike={(evt) => cancelLike(evt, proj.proj_id)}
           />)
     )}
-        <div className='pagination'>
+    </div>
+        <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
             {'  '}

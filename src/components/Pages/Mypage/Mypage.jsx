@@ -5,6 +5,7 @@ import FundingProject from './FundingProject';
 import MadeProject from './MadeProject';
 import LikeProject from './LikeProject';
 import UserProfileModify from './UserProfileModify';
+import { FaUserCircle } from 'react-icons/fa';
 
 export default function Mypage() {
   // 리덕스의 userName 가져오기
@@ -31,7 +32,7 @@ export default function Mypage() {
     <div style={{textAlign:'center', minHeight:'100vh'}}>
       <br/>
       <br/>
-      <img src='/img/person.png' style={{height:'128px', width:'128px'}} alt='person'/>
+      <img src='/img/user-solid2.png' alt='person' style={{height:'128px', width:'128px'}}/>
       <h1 style={{marginTop:'10px'}}>{userName}</h1>
       <br/>
       <br/>
@@ -68,14 +69,12 @@ export default function Mypage() {
 
       {/* 선택된 탭에 따라 내용을 표시 */}
       
-      <div className='MypageContainer'>
-        <div className= 'MypageProjectList'>
+      <div className='projects-container'>
         {currTab === 'funding' ? (<FundingProject />):(
           currTab === 'made' ? (<MadeProject />) : (
             currTab === 'like' ? (<LikeProject />) : (<UserProfileModify />)
           )
         )}
-        </div>
       </div>
 
     </div>
