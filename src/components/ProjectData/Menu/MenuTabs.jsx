@@ -66,11 +66,11 @@ function Tab1Content() {
 
     const location = useLocation();
     const { _id } = location.state || {};
-       // 몽고DB
+    // 몽고DB
     const { projects } = useProjectsApi();
     const {
         data: projectData,
-        } = useQuery({
+    } = useQuery({
         queryKey: ['projects'],
         queryFn: () => projects.getProjects(),
     });
@@ -99,11 +99,11 @@ function Tab1Content() {
 
 function Tab2Content() {
     //QnA와 코멘트 페이지는 json서버에서 받아오는 형식. 고정적으로 처리할 예정
-       // 몽고DB
+    // 몽고DB
     const { projects } = useProjectsApi();
     const {
         data: ProjectData,
-        } = useQuery({
+    } = useQuery({
         queryKey: ['projects'],
         queryFn: () => projects.getProjects(),
     });
@@ -125,7 +125,7 @@ function Tab3Content() {
     const { projects } = useProjectsApi();
     const {
         data: ProjectData,
-        } = useQuery({
+    } = useQuery({
         queryKey: ['projects'],
         queryFn: () => projects.getProjects(),
     });
@@ -147,27 +147,27 @@ function Tab4Content() {
     const { _id } = location.state || {};
     const { projects } = useProjectsApi();
     const { data: projectData } = useQuery({
-    queryKey: ['projects'],
-    queryFn: () => projects.getProjects(),
-    enabled: !!projects,
+        queryKey: ['projects'],
+        queryFn: () => projects.getProjects(),
+        enabled: !!projects,
     });
     const [usersData, setUsersData] = useState();
 
     useEffect(() => {
         async function fetchData() {
             try {
-            const selectedProject = projectData.find(item => item.proj_id === _id);
-            if (!selectedProject) {
-                console.error('Project not found');
-                return;
-            }
-            const { userMade_id } = selectedProject;
-            const res = await axios.post(`${endpoint}/menuTabs`, {
-                userMade_id,
-            });
-            if(res.data){
-                setUsersData(res.data);
-            }
+                const selectedProject = projectData.find(item => item.proj_id === _id);
+                if (!selectedProject) {
+                    //console.error('Project not found');
+                    return;
+                }
+                const { userMade_id } = selectedProject;
+                const res = await axios.post(`${endpoint}/menuTabs`, {
+                    userMade_id,
+                });
+                if (res.data) {
+                    setUsersData(res.data);
+                }
             } catch (err) {
                 setUsersData('none');
                 console.error('에러 발생: ', err);
@@ -186,33 +186,33 @@ function Tab4Content() {
 
     const { users_id, userName, userMail, userPhoneNum } = usersData;
 
-    console.log(`프로젝트를 등록한 아이디 : ${users_id}`);
+    //console.log(`프로젝트를 등록한 아이디 : ${users_id}`);
 
     return (
         <>
-        {usersData === 'none' ? (<div>User not found</div>):(<div id='makerIntro'>
-            <h2>주최자</h2>
-            <br />
-            <div>
-                <table className='makerTable'>
-                    <tr>
-                        <td>이름 </td>
-                        <td> : </td>
-                        <td>{userName}</td>
-                    </tr>
-                    <tr>
-                        <td>메일 주소 </td>
-                        <td> : </td>
-                        <td>{userMail}</td>
-                    </tr>
-                    <tr>
-                        <td>연락처 </td>
-                        <td> : </td>
-                        <td>{userPhoneNum}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>)  }
+            {usersData === 'none' ? (<div>User not found</div>) : (<div id='makerIntro'>
+                <h2>주최자</h2>
+                <br />
+                <div>
+                    <table className='makerTable'>
+                        <tr>
+                            <td>이름 </td>
+                            <td> : </td>
+                            <td>{userName}</td>
+                        </tr>
+                        <tr>
+                            <td>메일 주소 </td>
+                            <td> : </td>
+                            <td>{userMail}</td>
+                        </tr>
+                        <tr>
+                            <td>연락처 </td>
+                            <td> : </td>
+                            <td>{userPhoneNum}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>)}
         </>
     );
 }
