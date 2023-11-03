@@ -6,6 +6,7 @@ import { useProjectsApi } from '../../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { useParams } from 'react-router-dom';
 
 class MenuTabs extends Component {
 
@@ -63,9 +64,8 @@ class MenuTabs extends Component {
 
 // 각 탭에 대한 컴포넌트
 function Tab1Content() {
-
-    const location = useLocation();
-    const { _id } = location.state || {};
+    const { projectId } = useParams();
+    const _id = Number(projectId);
     // 몽고DB
     const { projects } = useProjectsApi();
     const {
