@@ -1,7 +1,7 @@
 import useFetch from '../../hooks/useFetch';
 const apiUrl = process.env.REACT_APP_API_KEY;
 
-console.log(apiUrl);
+//console.log(apiUrl);
 
 function ProjectData() {
 
@@ -9,7 +9,7 @@ function ProjectData() {
     if (ProjectData !== undefined && ProjectData !== null && ProjectData.length) { // 데이터가 언디파인이 아니거나 존재하거나 데이터가 조회되면
         //console.log(ProjectData);
         //console.log(ProjectData[0]);
-        console.log(apiUrl);
+        //console.log(apiUrl);
     }
 
     return (

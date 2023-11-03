@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import './ProjectPayCard.css'
+import { toast } from 'react-toastify';
 
 const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }) => {
     const [selectedOption, setSelectedOption] = useState('option1');
@@ -7,6 +8,12 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
     const mmYyInputRef = useRef(null);
     const pWInputRef = useRef(null);
     const birThInputRef = useRef(null);
+    const customId1 = 'msg-id-opening1';
+    const customId2 = 'msg-id-opening2';
+    const customId3 = 'msg-id-opening3';
+    const customStyle = {
+        whiteSpace: 'pre-line'
+    };
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -66,9 +73,17 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
                 onPaymentStatus1(111); // 모든 칸이 채워져 있을 때 완료 상태를 나타내는 값 전달
                 onPaymentStatus2(1);
                 onPaymentStatus3(2);
-                alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+                //alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+                toast('결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                    toastId: customId1,
+                    style: customStyle
+                })
             } else {
-                alert("모든 결제 정보를 입력해주세요.");
+                //alert("모든 결제 정보를 입력해주세요.");
+                toast('모든 결제 정보를 입력해주세요.', {
+                    toastId: customId1,
+                    style: customStyle
+                })
             }
         };
 
@@ -91,22 +106,26 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
                         <div className="creditCardInputHeader2-1">카드 비밀번호</div>
                     </div>
                     <div>
-                        <input
-                            type="text"
-                            ref={mmYyInputRef} // MM/YY 입력란에 참조 추가
-                            className="creditCardInput2"
-                            placeholder="MM/YY"
-                            onChange={(e) => handleInputChange(e, 0, 4)} // 4자리까지 입력 가능
-                            maxLength={4}
-                        />
-                        <input
-                            type="password"
-                            ref={pWInputRef}
-                            className="creditCardInput2"
-                            placeholder="앞 2자리"
-                            onChange={(e) => handleInputChange(e, 1, 2)} // 2자리까지 입력 가능
-                            maxLength={2}
-                        />
+                        <form>
+                            <input
+                                type="text"
+                                ref={mmYyInputRef} // MM/YY 입력란에 참조 추가
+                                className="creditCardInput2"
+                                placeholder="MM/YY"
+                                onChange={(e) => handleInputChange(e, 0, 4)} // 4자리까지 입력 가능
+                                maxLength={4}
+                            />
+
+                            <input
+                                type="password"
+                                ref={pWInputRef}
+                                className="creditCardInput2"
+                                placeholder="앞 2자리"
+                                onChange={(e) => handleInputChange(e, 1, 2)} // 2자리까지 입력 가능
+                                maxLength={2}
+                                autocomplete="new-password"
+                            />
+                        </form>
                     </div>
                 </div>
                 <div>
@@ -138,7 +157,11 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus2(222);
             onPaymentStatus1(0);
             onPaymentStatus3(2);
-            alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            //alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            toast('무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                toastId: customId2,
+                style: customStyle
+            })
         }
 
         return (
@@ -173,7 +196,11 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus3(333);
             onPaymentStatus1(0);
             onPaymentStatus2(1);
-            alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            //alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
+            toast('간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
+                toastId: customId3,
+                style: customStyle
+            })
         }
 
         return (

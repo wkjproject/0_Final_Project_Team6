@@ -9,6 +9,7 @@ import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { toast } from 'react-toastify';
 
 const ProjectPay = () => {
     const endpoint = Endpoint();
@@ -18,6 +19,8 @@ const ProjectPay = () => {
     const projectInfo = location2.state.data2;
     const rewardsArray = selectedRewards;
     //console.log(location);
+    const customId1 = 'msg-id-opening1';
+    const customId2 = 'msg-id-opening2';
 
     const navigate = useNavigate();
 
@@ -28,21 +31,21 @@ const ProjectPay = () => {
 
     //ProjectPayCard에서 모든 결제 정보가 입력되면 ProjectPay로 "111" 발송
     const [paymentStatus1, setPaymentStatus1] = useState(0);
-    console.log(paymentStatus1);
+    //console.log(paymentStatus1);
 
     const handlePaymentStatus1 = (status) => {
         setPaymentStatus1(status);
     };
 
     const [paymentStatus2, setPaymentStatus2] = useState(1);
-    console.log(paymentStatus2);
+    //console.log(paymentStatus2);
 
     const handlePaymentStatus2 = (status) => {
         setPaymentStatus2(status);
     };
 
     const [paymentStatus3, setPaymentStatus3] = useState(2);
-    console.log(paymentStatus3);
+    //console.log(paymentStatus3);
 
     const handlePaymentStatus3 = (status) => {
         setPaymentStatus3(status);
@@ -99,7 +102,10 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId1,
+            })
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
@@ -111,7 +117,10 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId1,
+            })
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
@@ -123,11 +132,17 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            //alert("결제완료");
+            toast('결제완료', {
+                toastId: customId1,
+            })
             navigate('/home');
         }
         else {
-            alert("결제 정보를 입력해주세요.");
+            //alert("결제 정보를 입력해주세요.");
+            toast('결제 정보를 입력해주세요.', {
+                toastId: customId2,
+            })
         }
     };
 
@@ -203,8 +218,8 @@ const ProjectPay = () => {
                         <hr className='payHr' />
                         <br />
                         <ul className='payUl'>
-                            {rewardsArray.map((reward, index) => (
-                                <li key={index} className='payLi'>
+                            {rewardsArray.map((reward, index2) => (
+                                <li key={index2} className='payLi'>
                                     <table className='payTable'>
                                         <tr>
                                             <td>그룹</td>
