@@ -6,6 +6,7 @@ import MenuTabs from '../../ProjectData/Menu/MenuTabs';
 import ComingNotice from './ComingNotice';
 import { useQuery } from '@tanstack/react-query';
 import { useProjectsApi } from '../../../context/ProjectsApiContext';
+import { useParams } from 'react-router-dom';
 
 export default function ComingProj() {
   const location = useLocation();
