@@ -13,7 +13,7 @@ function ProjectData2() {
     const location = useLocation();
     const { _id } = location.state || {};
 
-    console.log(_id);
+    //console.log(_id);
 
     const ProjectData = useFetch("https://json-server-vercel-sepia-omega.vercel.app/projects"); //api
 
