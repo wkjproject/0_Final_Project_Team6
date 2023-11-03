@@ -62,18 +62,12 @@ function ProjectList({ listType, keyword }) {
           daysBetween(today, fundEndDate) < 9
         );
       case 'searchPage':
-        console.log(proj.projName);
-        console.log(keyword);
-        console.log(
-          `${proj.projName} includes ${keyword}=> `,
-          proj.projName.includes(keyword.toLowerCase())
-        );
         return (
           proj.projStatus === '1' &&
           // fundStartDate <= today &&
           // today <= fundEndDate &&
           (proj.projName.toLowerCase().includes(keyword.toLowerCase()) ||
-            proj.projIntro.toLowerCase().includes(keyword.toLowerCase()) ||
+            // proj.projIntro.toLowerCase().includes(keyword.toLowerCase()) ||
             proj.projPlace.toLowerCase().includes(keyword.toLowerCase()) ||
             proj.projAddr.toLowerCase().includes(keyword.toLowerCase()))
         );
@@ -101,9 +95,6 @@ function ProjectList({ listType, keyword }) {
   const endIndex = startIndex + projectPerPage;
   const displayedProjectsList = filteredProjects.slice(startIndex, endIndex);
 
-  console.log(
-    `item count: ${displayedProjectsList.length}/${filteredProjects.length}`
-  );
   /* --- 페이지 이동 함수 --- */
   const toPrevPage = () => {
     if (currPage > 1) {
