@@ -95,7 +95,7 @@ export default function ManageProj() {
         <div className='projects-list'>
           {displayedProjectsList.map((proj) => (
             <ProjectCard
-              key={proj.projName}
+              key={proj.proj_id}
               projId={proj.proj_id}
               image={proj.projMainImgPath}
               projName={proj.projName}
