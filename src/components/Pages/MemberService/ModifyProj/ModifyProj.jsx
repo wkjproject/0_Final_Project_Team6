@@ -419,7 +419,9 @@ export default function ModifyProj() {
           </div>
 
           <div className="createform">
+          <div style={{position:'absolute', top:'989px'}}>
             <h3>리워드 및 가격 추가</h3>
+            </div>
             <div>
               {state.projReward.map((reward, index) => (
                 <div
