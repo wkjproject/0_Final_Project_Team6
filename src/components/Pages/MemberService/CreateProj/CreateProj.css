@@ -103,8 +103,15 @@
 /* ---------리워드 부분--------- */
 .first-reward {
   display: flex;
-  align-items: center;
-  margin-right: 110px;
+  flex-wrap: nowrap;
+  margin-right: 120px;
+  margin-left: 300px;
+}
+.with-margin {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 15px;
+  margin-left: 300px;
 }
 
 .createform .rewardsinput {

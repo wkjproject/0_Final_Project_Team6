@@ -30,7 +30,7 @@ const CreateProj = () => {
     checkbox1Checked: false,
     checkbox2Checked: false,
   });
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleEditorChange = ({ name, value }) => {
     setState((prevState) => ({
       ...prevState,
@@ -159,7 +159,7 @@ const CreateProj = () => {
   const isButtonEnabled = () => {
     const { startDate, endDate, checkbox1Checked, checkbox2Checked } = state;
     // 두 개의 체크박스가 모두 체크되었을 때만 버튼이 활성화됨
-    return checkbox1Checked && checkbox2Checked;
+    return checkbox1Checked && checkbox2Checked && !isSubmitted;
   };
 
   const { imageUrl, goalAmount, projReward } = state;
@@ -199,47 +199,59 @@ const CreateProj = () => {
 
   // 심사등록하기 버튼 누를 경우
   const handleSubmit = async (evt) =>{
+    setIsSubmitted(true);
     evt.preventDefault();
     if(state.projName === ""){
       toast('프로젝트 제목을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.imageBase64 === ""){
       toast('대표 이미지를 업로드 해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projDesc === ""){
       toast('프로젝트 소개를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundStartDate === ""){
       toast('펀딩 시작일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundEndDate === ""){
       toast('펀딩 종료일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundEndDate === ""){
       toast('펀딩 종료일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projReward.length === 0){
       toast('리워드를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.goalAmount === ""){
       toast('목표금액을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projReward.length === 0){
       toast('리워드를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if (projAddr === undefined){
 			toast('펀딩위치를 입력해주세요.')
+      setIsSubmitted(false);
 			return;
 		}
+    
     try{
       // img 태그 base64 정규 패턴
       const imgPattern = /<img src="data:image\/.+?;base64,(.+?)">/;
@@ -269,6 +281,7 @@ const CreateProj = () => {
         projAddr,
       }).then((res)=> {
         if(res.data.success){
+          setIsSubmitted(false);
           toast('등록 성공');
           navigate('/mypage');
         }
@@ -279,6 +292,7 @@ const CreateProj = () => {
       console.error(`에러 메시지: ${err.message}`);
       // 필요한 경우 에러 객체의 다른 프로퍼티를 출력
       console.error(err);
+      setIsSubmitted(false);
     }
   };
 
@@ -383,7 +397,9 @@ const CreateProj = () => {
           </div>
 
           <div className="createform">
+            <div style={{position:'absolute', top:'989px'}}>
             <h3>리워드 및 가격 추가</h3>
+            </div>
             <div>
               {projReward.map((reward, index) => (
                 <div
