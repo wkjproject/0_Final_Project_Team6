@@ -9,6 +9,8 @@ import { setUserName } from '../../../redux/reducer/userNameActions';
 import { Terms } from './termsModal/Terms';
 import Endpoint from '../../../config/Endpoint';
 import '../../../css/MemberService/Signup.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
 	const endpoint = Endpoint();
@@ -35,11 +37,11 @@ export default function Signup() {
 						})
 						.then((res) => {
 							if(res.data.userMailCheck){
-								alert('사용 가능한 이메일입니다.')
+								toast('사용 가능한 이메일입니다.')
 								setUserMailCheckState(true)
 							}
 							if(!res.data.userMailCheck){
-								alert('사용 불가능한 이메일입니다.')
+								toast('사용 불가능한 이메일입니다.')
 							}
 						})
 					}
@@ -47,7 +49,7 @@ export default function Signup() {
 						console.log(e)
 					}
 		} else {
-			alert('이메일 형식이 올바르지 않습니다.')
+			toast('이메일 형식이 올바르지 않습니다.')
 		}
 		
 	}
@@ -61,24 +63,24 @@ export default function Signup() {
 		const userPasswordCheck = userPasswordCheckRef.current.value;
 		const userPhoneNum = userPhoneNumRef.current.value;
 		if (userPassword !== userPasswordCheck) {
-			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+			toast('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
 		}
 		if (userAddr === undefined){
-			alert('주소를 입력해주세요.')
+			toast('주소를 입력해주세요.')
 			return;
 		}
 		const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 		if (!emailRegex.test(userMail)) {
-			alert('이메일 형식이 올바르지 않습니다.');
+			toast('이메일 형식이 올바르지 않습니다.');
 			return;
 		}
 		if (!phoneRegex.test(userPhoneNum)) {
-			alert('연락처 형식이 올바르지 않습니다.');
+			toast('연락처 형식이 올바르지 않습니다.');
 			return;
 		}
 		if (!checkboxCheck){
-			alert('약관에 동의해야 합니다.')
+			toast('약관에 동의해야 합니다.')
 			return;
 		}
 		if (userMailCheckState){
@@ -95,19 +97,19 @@ export default function Signup() {
 						if(res.data.signupSuccess){
 							setUserMailCheckState(false);
 							dispatch(setUserName(res.data.userName)); // 리덕스로 userName 보냄
-							alert('회원가입 성공!')
+							toast('회원가입 성공!')
 							navigate('/login');
 						}
 					})
 					.catch((e) => {
-						alert(e);
+						toast(e);
 					});
 			} catch (e) {
-				alert(e);
+				toast(e);
 			}
 		}
 		if(!userMailCheckState){
-			alert('이메일 중복확인을 해주세요.')
+			toast('이메일 중복확인을 해주세요.')
 		}
 	};
 	return (

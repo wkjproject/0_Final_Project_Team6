@@ -13,6 +13,7 @@ import './ApprProj.css';
 import Endpoint from '../../../config/Endpoint';
 import { useProjectsApi } from '../../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ApprProj() {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export default function ApprProj() {
           // window.location.reload();
         }
         if (!res.data.newProjStatusSuccess) {
-          alert(res.data.message);
+          toast(res.data.message);
         }
       });
   };
@@ -85,7 +86,7 @@ export default function ApprProj() {
           // window.location.reload();
         }
         if (!res.data.newProjStatusSuccess) {
-          alert(res.data.message);
+          toast(res.data.message);
         }
       });
   };

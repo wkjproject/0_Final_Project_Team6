@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import Endpoint from '../../config/Endpoint';
 import axios from 'axios';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#root'); // 모달을 사용하기 위한 설정
 
@@ -30,7 +32,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
         }).then((res) => {
           if (res.data.fundingStatusModalDataSuccess){
             if (res.data.fundingStatusModalData.length === 0){
-              alert('펀딩 데이터가 없습니다.');
+              toast('펀딩 데이터가 없습니다.');
               window.history.back();
             } else {
             setFundingDetailData(res.data.fundingStatusModalData)
@@ -39,7 +41,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
             }
           }
           if (!res.data.fundingStatusModalDataSuccess){
-            alert('펀딩 데이터가 없습니다.');
+            toast('펀딩 데이터가 없습니다.');
             window.history.back();
           }
         })

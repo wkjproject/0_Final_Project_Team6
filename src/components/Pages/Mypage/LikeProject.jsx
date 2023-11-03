@@ -77,7 +77,7 @@ export default function LikeProject() {
     <div className='projects-list'>
     {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
-            key={proj.projName}
+            key={proj.proj_id}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
             image={proj.projMainImgPath}

@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { setProjForm } from "../../../../redux/reducer/createProj";
 import { height } from "@mui/system";
 import AddressSearch from "../Address/AddressSearch";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProj = () => {
   axios.defaults.withCredentials = false;
@@ -199,43 +201,43 @@ const CreateProj = () => {
   const handleSubmit = async (evt) =>{
     evt.preventDefault();
     if(state.projName === ""){
-      alert('프로젝트 제목을 입력해주세요.')
+      toast('프로젝트 제목을 입력해주세요.')
       return;
     }
     if(state.imageBase64 === ""){
-      alert('대표 이미지를 업로드 해주세요.')
+      toast('대표 이미지를 업로드 해주세요.')
       return;
     }
     if(state.projDesc === ""){
-      alert('프로젝트 소개를 입력해주세요.')
+      toast('프로젝트 소개를 입력해주세요.')
       return;
     }
     if(state.projFundStartDate === ""){
-      alert('펀딩 시작일을 입력해주세요.')
+      toast('펀딩 시작일을 입력해주세요.')
       return;
     }
     if(state.projFundEndDate === ""){
-      alert('펀딩 종료일을 입력해주세요.')
+      toast('펀딩 종료일을 입력해주세요.')
       return;
     }
     if(state.projFundEndDate === ""){
-      alert('펀딩 종료일을 입력해주세요.')
+      toast('펀딩 종료일을 입력해주세요.')
       return;
     }
     if(state.projReward.length === 0){
-      alert('리워드를 입력해주세요.')
+      toast('리워드를 입력해주세요.')
       return;
     }
     if(state.goalAmount === ""){
-      alert('목표금액을 입력해주세요.')
+      toast('목표금액을 입력해주세요.')
       return;
     }
     if(state.projReward.length === 0){
-      alert('리워드를 입력해주세요.')
+      toast('리워드를 입력해주세요.')
       return;
     }
     if (projAddr === undefined){
-			alert('펀딩위치를 입력해주세요.')
+			toast('펀딩위치를 입력해주세요.')
 			return;
 		}
     try{
@@ -267,7 +269,7 @@ const CreateProj = () => {
         projAddr,
       }).then((res)=> {
         if(res.data.success){
-          alert('등록 성공');
+          toast('등록 성공');
           navigate('/mypage');
         }
       })

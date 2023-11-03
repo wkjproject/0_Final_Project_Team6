@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../../../css/MemberService/IdpwFind.css'
 import Endpoint from '../../../config/Endpoint';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function IdpwFind() {
 	const endpoint = Endpoint();
@@ -69,7 +71,7 @@ export default function IdpwFind() {
 		}).then((res) => {
 			if(res.data.sendMailSuccess){
 				setIsButtonDisabled(true);
-				alert('인증번호 발송 성공')
+				toast('인증번호 발송 성공')
 				// 1초마다 countdown 값을 감소
 				const interval = setInterval(() => {
 					setCountdown((prevCountdown) => {
@@ -83,7 +85,7 @@ export default function IdpwFind() {
 				}, 1000); // 1초(1000 밀리초)
 			}
 			if(!res.data.sendMailSuccess){
-				alert(res.data.message);
+				toast(res.data.message);
 			}
 		})
 	}
@@ -100,7 +102,7 @@ export default function IdpwFind() {
 			if(res.data.verificationSuccess){
 				setVerifiConfirmState(true);
 				setUserMailSave(userMail);
-				alert(res.data.message);
+				toast(res.data.message);
 			}
 		})
 	}
@@ -112,7 +114,7 @@ export default function IdpwFind() {
 		const userPassword = userPasswordRef.current.value;
 		const userPasswordCheck = userPasswordCheckRef.current.value;
 		if (userPassword !== userPasswordCheck) {
-			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+			toast('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
 		}
 		await axios.post(`${endpoint}/newPassword`, {
@@ -120,12 +122,12 @@ export default function IdpwFind() {
 			userPassword
 		}).then((res) => {
 			if(res.data.newPasswordSuccess){
-				alert(res.data.message)
+				toast(res.data.message)
 				navigate('/IdpwFind')
 				window.location.reload();
 			}
 			if(!res.data.newPasswordSuccess){
-				alert(res.data.message)
+				toast(res.data.message)
 			}
 		})
 	}

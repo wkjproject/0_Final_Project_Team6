@@ -7,6 +7,9 @@ import { setUserName } from '../../../redux/reducer/userNameActions';
 import Endpoint from '../../../config/Endpoint';
 import AddressSearch from '../MemberService/Address/AddressSearch';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function UserProfileModify() {
 	const endpoint = Endpoint();
@@ -31,13 +34,13 @@ export default function UserProfileModify() {
 		// AddressSearch 컴포넌트에서 dispatch하는 userAddr과 로그인시 auth로 입력하는 authUserAddr가 일치할경우 authUserAddr
 		const userAddrChanged = (userAddr !== undefined && userAddr === authUserAddr) ? userAddr : authUserAddr;
 		if (userPassword !== userPasswordCheck) {
-			alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+			toast('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
 		}
 
 		const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 		if (!phoneRegex.test(userPhoneNum)) {
-			alert('연락처 형식이 올바르지 않습니다.');
+			toast('연락처 형식이 올바르지 않습니다.');
 			return;
 		}
 			try {
@@ -52,11 +55,11 @@ export default function UserProfileModify() {
 					})
 					.then((res) => {
 						if(res.data.userProfileModifySuccess){
-							alert('회원정보 수정 성공')
+							toast('회원정보 수정 성공')
 							window.location.reload();
 						}
 						if(!res.data.userProfileModifySuccess){
-							alert('회원정보 수정 실패')
+							toast('회원정보 수정 실패')
 						}
 					})
 				}
@@ -70,11 +73,11 @@ export default function UserProfileModify() {
 					})
 					.then((res) => {
 						if(res.data.userProfileModifySuccess){
-							alert('회원정보 수정 성공')
+							toast('회원정보 수정 성공')
 							window.location.reload();
 						}
 						if(!res.data.userProfileModifySuccess){
-							alert('회원정보 수정 실패')
+							toast('회원정보 수정 실패')
 						}
 					})
 				}

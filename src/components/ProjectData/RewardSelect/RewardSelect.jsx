@@ -7,6 +7,8 @@ import { useProjectsApi } from '../../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RewardSelect = () => {
     // 외부를 클릭했을 때 모달 닫기 위한 useEffect
@@ -131,7 +133,7 @@ const RewardSelect = () => {
   const handleRewardSelect = (reward) => {
     if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
       if(reward.projRewardAvailable === 0){
-        alert('잔여 수량이 없습니다.')
+        toast('잔여 수량이 없습니다.')
         return
       }
       setSelectedRewards([...selectedRewards, reward]);
@@ -165,7 +167,7 @@ const RewardSelect = () => {
 
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
-      alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
+      toast("선택한 그룹이 없습니다. 그룹을 선택하세요.");
     } else {
       if (isLogin) {
         navigate('/projectPay', {

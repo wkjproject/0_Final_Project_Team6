@@ -9,6 +9,8 @@ import ProjectPayCard from './ProjectPayCard';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProjectPay = () => {
     const endpoint = Endpoint();
@@ -99,7 +101,7 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            toast("결제완료");
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus2 === 222) {
@@ -111,7 +113,7 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            toast("결제완료");
             navigate('/home');
         }
         else if (isChecked2 && isChecked3 && paymentStatus3 === 333) {
@@ -123,11 +125,11 @@ const ProjectPay = () => {
                 fundingDate: currentTime,
                 projFund: totalAmount,
             })
-            alert("결제완료");
+            toast("결제완료");
             navigate('/home');
         }
         else {
-            alert("결제 정보를 입력해주세요.");
+            toast("결제 정보를 입력해주세요.");
         }
     };
 
