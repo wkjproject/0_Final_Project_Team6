@@ -7,9 +7,12 @@ import { useProjectsApi } from '../../../context/ProjectsApiContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Endpoint from '../../../config/Endpoint';
+import { toast } from 'react-toastify';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
 
 const RewardSelect = () => {
-    // 외부를 클릭했을 때 모달 닫기 위한 useEffect
+  // 외부를 클릭했을 때 모달 닫기 위한 useEffect
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -20,22 +23,22 @@ const RewardSelect = () => {
       }
     };
     // _id(proj_id)와 userId 를 post로 보내서 해당 유저가 현재 proj_id를 좋아요 눌렀는지 확인
-      const userHeartClicked = async () => {
-        try {
-          await axios.post(`${endpoint}/userHeartClicked`, {
-            userId,
-            _id
-          }).then((res) => {
-            if(res.data.Success){
-              setHeartClicked(true);
-            } else {
-              setHeartClicked(false);
-            }
-          })
-        } catch (err) {
-          console.log(err);
-        }
+    const userHeartClicked = async () => {
+      try {
+        await axios.post(`${endpoint}/userHeartClicked`, {
+          userId,
+          _id
+        }).then((res) => {
+          if (res.data.Success) {
+            setHeartClicked(true);
+          } else {
+            setHeartClicked(false);
+          }
+        })
+      } catch (err) {
+        console.log(err);
       }
+    }
     userHeartClicked()
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -46,10 +49,10 @@ const RewardSelect = () => {
   // 몽고DB 연결
   const { projects } = useProjectsApi();
   const {
-      data: projectData,
-      } = useQuery({
-      queryKey: ['projects'],
-      queryFn: () => projects.getProjects(),
+    data: projectData,
+  } = useQuery({
+    queryKey: ['projects'],
+    queryFn: () => projects.getProjects(),
   });
 
   //console.log(`프로젝트 상태 : ${projStatus}`)
@@ -59,6 +62,13 @@ const RewardSelect = () => {
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부
   const [selectedRewards, setSelectedRewards] = useState([]); // 선택한 리워드 목록
   const [heartClicked, setHeartClicked] = useState(false); // 하트 클릭 여부
+
+  const customId1 = 'msg-id-opening1';
+  const customId2 = 'msg-id-opening2';
+  const customId3 = 'msg-id-opening3';
+  const customStyle = {
+    whiteSpace: 'pre-line'
+  };
 
   // 리덕스에서 로그인 상태 확인
   const isLogin = useSelector((state) => state.auth.auth.isLogin);
@@ -77,7 +87,7 @@ const RewardSelect = () => {
 
   // 선택한 프로젝트 찾기
   const selectedProject = projectData.find(item => item.proj_id === _id);
-   // 프로젝트 정보 추출
+  // 프로젝트 정보 추출
   const { projName, projPlace, projAddr, projDate, projStatus, projLike } = selectedProject;
 
   const initialClickedCount = selectedProject ? selectedProject.projLike : 0;
@@ -91,7 +101,7 @@ const RewardSelect = () => {
       axios.post(`${endpoint}/heartClicked`, {
         _id,
         userId,
-        heartStatus:0,
+        heartStatus: 0,
       })
     } else {
       setHeartClicked(true);
@@ -99,7 +109,7 @@ const RewardSelect = () => {
       axios.post(`${endpoint}/heartClicked`, {
         _id,
         userId,
-        heartStatus:1,
+        heartStatus: 1,
       })
     }
     const updatedProjLike = (projLike !== null ? projLike : 0) + (heartClicked ? 0 : 1);
@@ -130,8 +140,10 @@ const RewardSelect = () => {
   // 리워드 선택 처리 함수
   const handleRewardSelect = (reward) => {
     if (!selectedRewards.some((r) => r.projRewardName === reward.projRewardName)) {
-      if(reward.projRewardAvailable === 0){
-        alert('잔여 수량이 없습니다.')
+      if (reward.projRewardAvailable === 0) {
+        toast('잔여 수량이 없습니다.', {
+          toastId: customId1
+        })
         return
       }
       setSelectedRewards([...selectedRewards, reward]);
@@ -163,9 +175,22 @@ const RewardSelect = () => {
     </div>;
   }
 
+  const currentURL = window.location.href;
+
+  const handleCopy = () => {
+    toast('URL이 클립보드에 복사되었습니다: \n' + currentURL, {
+      toastId: customId3,
+      style: customStyle
+    });
+  };
+
+
   const handleApplyClick = () => {
     if (selectedRewards.length === 0) {
-      alert("선택한 그룹이 없습니다. 그룹을 선택하세요.");
+      toast("선택한 그룹이 없습니다. \n그룹을 선택하세요.", {
+        toastId: customId2,
+        style: customStyle
+      });
     } else {
       if (isLogin) {
         navigate('/projectPay', {
@@ -315,9 +340,11 @@ const RewardSelect = () => {
               >
                 {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : projLike}
               </button>
-              <button className='shareBtn' style={{ marginLeft: '20px' }}>
-                공유하기
-              </button>
+              <CopyToClipboard text={currentURL} onCopy={handleCopy}>
+                <button className='shareBtn' style={{ marginLeft: '20px' }} >
+                  공유하기
+                </button>
+              </CopyToClipboard>
             </div>
             {/* 펀딩현황 버튼 추가 */}
             {/* 관리자 or 리덕스 userId 와 projects 컬렉션(selectedProject)의 userMade_id가 일치할때 펀딩현황, 수정 버튼 보이도록 */}
