@@ -8,7 +8,12 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
     const mmYyInputRef = useRef(null);
     const pWInputRef = useRef(null);
     const birThInputRef = useRef(null);
-    const customId = 'msg-id-opening';
+    const customId1 = 'msg-id-opening1';
+    const customId2 = 'msg-id-opening2';
+    const customId3 = 'msg-id-opening3';
+    const customStyle = {
+        whiteSpace: 'pre-line'
+    };
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -70,12 +75,14 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
                 onPaymentStatus3(2);
                 //alert("결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
                 toast('결제 정보가 저장되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
-                    toastId: customId,
+                    toastId: customId1,
+                    style: customStyle
                 })
             } else {
                 //alert("모든 결제 정보를 입력해주세요.");
                 toast('모든 결제 정보를 입력해주세요.', {
-                    toastId: customId,
+                    toastId: customId1,
+                    style: customStyle
                 })
             }
         };
@@ -148,7 +155,8 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus3(2);
             //alert("무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
             toast('무통장입금 은행 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
-                toastId: customId,
+                toastId: customId2,
+                style: customStyle
             })
         }
 
@@ -186,7 +194,8 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
             onPaymentStatus2(1);
             //alert("간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.")
             toast('간편결제 페이 선택이 완료되었습니다! \n오른쪽에 결제 약관을 동의하고 결제버튼을 눌러주세요.', {
-                toastId: customId,
+                toastId: customId3,
+                style: customStyle
             })
         }
 
