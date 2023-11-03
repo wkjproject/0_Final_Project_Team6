@@ -102,6 +102,16 @@ function App() {
               </ProjApiProvider>
             }
           />
+          <Route
+            path='/project2/:projectId'
+            element={
+              <ProjApiProvider>
+                <QueryClientProvider client={queryClient}>
+                  <AuthProjectData2 />
+                </QueryClientProvider>
+              </ProjApiProvider>
+            }
+          />
           <Route path='/login' element={<AuthLogin />} />
           <Route path='/signup' element={<AuthSignup />} />
           <Route path='/idpwFind' element={<AuthIdpwFind />} />

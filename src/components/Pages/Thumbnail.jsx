@@ -54,10 +54,12 @@ export default function Thumbnail({
             toast('오픈예정 프로젝트입니다.', {
               toastId: customId,
             })
-        : navigate('/project2', { state: { _id: projId } }); // 진행중 --> 상세페이지로
+        : // : navigate('/project2', { state: { _id: projId } }); // 진행중 --> 상세페이지로
+          navigate(`/project2/${projId}`);
     } else if (projStatus === '2') {
       // 마감된(2) --> 프로젝트 상세페이지로
-      navigate('/project2', { state: { _id: projId } });
+      // navigate('/project2', { state: { _id: projId } });
+      navigate(`/project2/${projId}`);
     } else if (projStatus === '3') {
       // 거절된(3) --> 경고창
       // alert('승인거절된 프로젝트입니다.');

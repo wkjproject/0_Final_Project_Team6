@@ -18,11 +18,13 @@ export default function ProjectRankingThumbnail(props) {
       today < props.sday // 오픈예정 --> 관리자&제작자: 오픈 예정 상세페이지 / 이외 : 경고창
         ? props.isAdmin === true || props.userId === props.maderId
           ? navigate('/comingProj', { state: { _id: props.projId } })
-          : toast('오픈예정 프로젝트입니다.')
-        : navigate('/project2', { state: { _id: props.projId } }); // 진행중 --> 상세페이지로
+          : alert('오픈예정 프로젝트입니다.')
+        : // : navigate('/project2', { state: { _id: props.projId } }); // 진행중 --> 상세페이지로
+          navigate(`/project2/${props.projId}`);
     } else if (props.projStatus === '2') {
       // 마감된(2) --> 프로젝트 상세페이지로
-      navigate('/project2', { state: { _id: props.projId } });
+      // navigate('/project2', { state: { _id: props.projId } });
+      navigate(`/project2/${props.projId}`);
     } else if (props.projStatus === '3') {
       // 거절된(3) --> 경고창
       toast('승인거절된 프로젝트입니다.');
