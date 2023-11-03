@@ -259,18 +259,20 @@ const RewardSelect = () => {
                         className='selectButton'
                       >
                         <table className='firstTable'>
-                          <tr>
-                            <td>그룹 </td>
-                            <td> : {reward.projRewardName}</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>금액 </td>
-                            <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
-                          </tr>
-                          <tr>
-                            <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
-                            <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
-                          </tr>
+                          <tbody>
+                            <tr>
+                              <td>그룹 </td>
+                              <td> : {reward.projRewardName}</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>금액 </td>
+                              <td style={{ paddingTop: '5px' }}> : {formatAmount(reward.projRewardAmount)} 원</td>
+                            </tr>
+                            <tr>
+                              <td style={{ paddingTop: '5px' }}>잔여 수량 </td>
+                              <td style={{ paddingTop: '5px' }}> : {reward.projRewardAvailable}</td>
+                            </tr>
+                          </tbody>
                         </table>
                       </button>
                       {index !== selectedProject.projReward.length - 1 && <hr />}
@@ -295,28 +297,30 @@ const RewardSelect = () => {
                 style={{ marginTop: '10px' }}
               >
                 <table >
-                  <tr>
-                    <td>그룹</td>
-                    <td>: {selectedReward.projRewardName}</td>
-                    <td className='button-cell' >
-                      <button
-                        className='remove-button'
-                        onClick={() => handleRewardRemove(selectedReward)}
-                      >
-                        X
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>금액</td>
-                    <td>
-                      : {formatAmount(selectedReward.projRewardAmount)} 원
-                    </td>
-                  </tr>
-                  <tr >
-                    <td style={{ paddingTop: '5px' }}>잔여 수량</td>
-                    <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>그룹</td>
+                      <td>: {selectedReward.projRewardName}</td>
+                      <td className='button-cell' >
+                        <button
+                          className='remove-button'
+                          onClick={() => handleRewardRemove(selectedReward)}
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>금액</td>
+                      <td>
+                        : {formatAmount(selectedReward.projRewardAmount)} 원
+                      </td>
+                    </tr>
+                    <tr >
+                      <td style={{ paddingTop: '5px' }}>잔여 수량</td>
+                      <td style={{ paddingTop: '5px' }}>: {selectedReward.projRewardAvailable}</td>
+                    </tr>
+                  </tbody>
                 </table>
               </li>
             ))}
@@ -338,7 +342,7 @@ const RewardSelect = () => {
                 className={`heartBtn ${heartClicked ? 'clicked' : ''}`}
                 onClick={toggleHeart}
               >
-                {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : projLike}
+                {heartClicked ? <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path></svg> : <svg viewBox="0 0 32 32" focusable="false" role="presentation" className="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>} {heartClicked ? clickedCount : projLike}
               </button>
               <CopyToClipboard text={currentURL} onCopy={handleCopy}>
                 <button className='shareBtn' style={{ marginLeft: '20px' }} >
