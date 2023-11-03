@@ -77,7 +77,7 @@ export default function LikeProject() {
     <div className='projects-list'>
     {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
-            key={proj.projName}
+            key={proj.proj_id}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
             image={proj.projMainImgPath}
@@ -91,6 +91,7 @@ export default function LikeProject() {
           />)
     )}
     </div>
+      {totalPages === 1 ? (''): (        
         <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
@@ -98,7 +99,7 @@ export default function LikeProject() {
             {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
-        </div>
+        </div>)}
     </>
 	)
 }

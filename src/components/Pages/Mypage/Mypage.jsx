@@ -69,7 +69,7 @@ export default function Mypage() {
 
       {/* 선택된 탭에 따라 내용을 표시 */}
       
-      <div className='projects-container'>
+      <div className='mypageContainer'>
         {currTab === 'funding' ? (<FundingProject />):(
           currTab === 'made' ? (<MadeProject />) : (
             currTab === 'like' ? (<LikeProject />) : (<UserProfileModify />)

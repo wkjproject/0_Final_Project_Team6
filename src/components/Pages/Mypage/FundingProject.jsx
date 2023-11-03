@@ -6,6 +6,9 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import '../../../css/Mypage/Mypage.css';
 import Modal from 'react-modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 Modal.setAppElement('#root');
 
 export default function FundingProject() {
@@ -60,7 +63,7 @@ export default function FundingProject() {
       funding_id
     }).then((res)=>{
       if(res.data.cancelPaySuccess){
-        alert(res.data.message);
+        toast(res.data.message);
         setModalIsOpen(false);
         window.location.reload()
       }
@@ -82,6 +85,7 @@ export default function FundingProject() {
   /* --- 페이지 이동 함수 --- */
   const toPrevPage = () => {
     if (currPage > 1) {
+
       // 현재 페이지가 1페이지보다 크면
       setCurrPage(currPage - 1);
     }
@@ -93,7 +97,6 @@ export default function FundingProject() {
       setCurrPage(currPage + 1);
     }
   };
-
   return (
       <>
       <div className='projects-list'>
@@ -102,7 +105,7 @@ export default function FundingProject() {
           return projectArray.map((proj) => (
           <>
           <ProjectCard
-            key={funding.funding_id}
+            key={proj.proj_id}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
             image={proj.projMainImgPath}
@@ -113,7 +116,7 @@ export default function FundingProject() {
             location={proj.projAddr.split(' ', 2)[1]}
             dday={proj.projDate}
             price={proj.projReward[0].projRewardAmount}
-            cancelPay={funding.fundingStatus === 3? '' : (evt) => cancelPay(evt, funding.funding_id, proj.projName, proj.projDate, proj.projReward)}
+            cancelPay={funding.fundingStatus === 2? '' : (evt) => cancelPay(evt, funding.funding_id, proj.projName, proj.projDate, proj.projReward)}
           />
           <Modal
             isOpen={modalIsOpen}
@@ -144,6 +147,7 @@ export default function FundingProject() {
           ))
         })}
         </div>
+        {totalPages === 1 ? (''): (        
         <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
@@ -151,7 +155,7 @@ export default function FundingProject() {
             {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
-        </div>
+        </div>)}
     </>
   );
 }

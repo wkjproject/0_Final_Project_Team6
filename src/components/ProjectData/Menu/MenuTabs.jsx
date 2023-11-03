@@ -65,7 +65,8 @@ class MenuTabs extends Component {
 // 각 탭에 대한 컴포넌트
 function Tab1Content() {
     const { projectId } = useParams();
-    const _id = Number(projectId);
+    const location = useLocation();
+    const _id = isNaN(Number(projectId)) ? location.state._id || {} : Number(projectId);
     // 몽고DB
     const { projects } = useProjectsApi();
     const {
@@ -144,7 +145,8 @@ function Tab3Content() {
 function Tab4Content() {
     const endpoint = Endpoint();
     const { projectId } = useParams();
-    const _id = Number(projectId);
+    const location = useLocation();
+    const _id = isNaN(Number(projectId)) ? location.state._id || {} : Number(projectId);
     const { projects } = useProjectsApi();
     const { data: projectData } = useQuery({
         queryKey: ['projects'],

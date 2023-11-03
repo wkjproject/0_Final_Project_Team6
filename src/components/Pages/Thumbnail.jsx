@@ -87,6 +87,10 @@ export default function Thumbnail({
             ? 'fundingProjectTextConfirm'
             : MypageDivClass === 'LikeProjectImg'
             ? 'LikeProjectImg'
+            : MypageDivClass === 'fundingProjectRefuse'
+            ? 'fundingProjectRefuse'
+            : MypageDivClass === 'fundingProjectClosed'
+            ? 'fundingProjectClosed'
             : ''
         }
       >

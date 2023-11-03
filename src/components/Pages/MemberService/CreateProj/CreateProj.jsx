@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { setProjForm } from "../../../../redux/reducer/createProj";
 import { height } from "@mui/system";
 import AddressSearch from "../Address/AddressSearch";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProj = () => {
   axios.defaults.withCredentials = false;
@@ -28,7 +30,7 @@ const CreateProj = () => {
     checkbox1Checked: false,
     checkbox2Checked: false,
   });
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleEditorChange = ({ name, value }) => {
     setState((prevState) => ({
       ...prevState,
@@ -157,7 +159,7 @@ const CreateProj = () => {
   const isButtonEnabled = () => {
     const { startDate, endDate, checkbox1Checked, checkbox2Checked } = state;
     // 두 개의 체크박스가 모두 체크되었을 때만 버튼이 활성화됨
-    return checkbox1Checked && checkbox2Checked;
+    return checkbox1Checked && checkbox2Checked && !isSubmitted;
   };
 
   const { imageUrl, goalAmount, projReward } = state;
@@ -197,47 +199,59 @@ const CreateProj = () => {
 
   // 심사등록하기 버튼 누를 경우
   const handleSubmit = async (evt) =>{
+    setIsSubmitted(true);
     evt.preventDefault();
     if(state.projName === ""){
-      alert('프로젝트 제목을 입력해주세요.')
+      toast('프로젝트 제목을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.imageBase64 === ""){
-      alert('대표 이미지를 업로드 해주세요.')
+      toast('대표 이미지를 업로드 해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projDesc === ""){
-      alert('프로젝트 소개를 입력해주세요.')
+      toast('프로젝트 소개를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundStartDate === ""){
-      alert('펀딩 시작일을 입력해주세요.')
+      toast('펀딩 시작일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundEndDate === ""){
-      alert('펀딩 종료일을 입력해주세요.')
+      toast('펀딩 종료일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projFundEndDate === ""){
-      alert('펀딩 종료일을 입력해주세요.')
+      toast('펀딩 종료일을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projReward.length === 0){
-      alert('리워드를 입력해주세요.')
+      toast('리워드를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.goalAmount === ""){
-      alert('목표금액을 입력해주세요.')
+      toast('목표금액을 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if(state.projReward.length === 0){
-      alert('리워드를 입력해주세요.')
+      toast('리워드를 입력해주세요.')
+      setIsSubmitted(false);
       return;
     }
     if (projAddr === undefined){
-			alert('펀딩위치를 입력해주세요.')
+			toast('펀딩위치를 입력해주세요.')
+      setIsSubmitted(false);
 			return;
 		}
+    
     try{
       // img 태그 base64 정규 패턴
       const imgPattern = /<img src="data:image\/.+?;base64,(.+?)">/;
@@ -256,7 +270,7 @@ const CreateProj = () => {
         }
       }
       const uploadImgUrl = await uploadImage(state.imageBase64)
-      console.log(uploadImgUrl);
+
       // state에서 imageBase64를 제외한 속성을 postData로 복사
       const { imageBase64, ...postData } = state; 
       await axios.post(`${endpoint}/createProj`, {
@@ -267,7 +281,8 @@ const CreateProj = () => {
         projAddr,
       }).then((res)=> {
         if(res.data.success){
-          alert('등록 성공');
+          setIsSubmitted(false);
+          toast('등록 성공');
           navigate('/mypage');
         }
       })
@@ -277,6 +292,7 @@ const CreateProj = () => {
       console.error(`에러 메시지: ${err.message}`);
       // 필요한 경우 에러 객체의 다른 프로퍼티를 출력
       console.error(err);
+      setIsSubmitted(false);
     }
   };
 
@@ -381,7 +397,9 @@ const CreateProj = () => {
           </div>
 
           <div className="createform">
+            <div style={{position:'absolute', top:'989px'}}>
             <h3>리워드 및 가격 추가</h3>
+            </div>
             <div>
               {projReward.map((reward, index) => (
                 <div

@@ -10,7 +10,9 @@
 }
 
 .fundingProjectImg:hover + .fundingProjectTextWait,
-.fundingProjectImg:hover + .fundingProjectTextConfirm {
+.fundingProjectImg:hover + .fundingProjectTextConfirm,
+.fundingProjectImg:hover + .fundingProjectRefuse,
+.fundingProjectImg:hover + .fundingProjectClosed {
   display: none;
 }
 
@@ -39,7 +41,30 @@
   color: white;
   font-size: 2.2rem;
 }
-
+.fundingProjectRefuse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(30, 30, 30, 0.88);
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 30%;
+  color: red;
+  font-size: 2.2rem;
+}
+.fundingProjectClosed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(30, 30, 30, 0.88);
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 30%;
+  color: var(--Darkgray);
+  font-size: 2.2rem;
+}
 .fundingProjectImgX::before,
 .fundingProjectImgX::after {
   content: '';
@@ -116,8 +141,10 @@
 }
 /* 페이지 이동(pagination) 버튼 설정 */
 .mypagePagination {
-  position: absolute;
-  top: 970px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -146,4 +173,10 @@
 
 .mypagePagination button:active {
   background-color: var(--ButtonPressed);
+}
+.mypageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

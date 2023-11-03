@@ -46,6 +46,7 @@ export default function MadeProject() {
   /* --- 페이지 이동 함수 --- */
   const toPrevPage = () => {
     if (currPage > 1) {
+
       // 현재 페이지가 1페이지보다 크면
       setCurrPage(currPage - 1);
     }
@@ -53,6 +54,7 @@ export default function MadeProject() {
 
   const toNextPage = () => {
     if (currPage < totalPages) {
+
       // 현재 페이지가 마지막 페이지가 아니면
       setCurrPage(currPage + 1);
     }
@@ -62,12 +64,12 @@ export default function MadeProject() {
     <div className='projects-list'>
     {mount && displayedProjectsList.map((proj, index) => (          
           <ProjectCard
-            key={proj.projName}
+            key={proj.proj_id}
             projId={proj.proj_id}
             projStatus={proj.projStatus}
-            MypageImageClass={proj.projStatus === '1' ? 'fundingProjectImg' : 'fundingProjectImgX'}
-            MypageDivClass={proj.projStatus === '0' ? 'fundingProjectTextWait' : proj.projStatus === '1' ? '' : 'fundingProjectImgX'}
-            MypageDivContent={proj.projStatus === '0' ? '승인대기' : ''}
+            MypageImageClass={proj.projStatus === '0' || proj.projStatus === '1' ? 'fundingProjectImg' : 'fundingProjectImgX'}
+            MypageDivContent={proj.projStatus === '0' ? '대기' : proj.projStatus === '1' ? '승인' : proj.projStatus === '3' ? '반려' : proj.projStatus === '2' ? '마감' : ''}
+            MypageDivClass={proj.projStatus === '0' ? 'fundingProjectTextWait' : proj.projStatus === '1' ? 'fundingProjectTextConfirm' : proj.projStatus === '3' ? 'fundingProjectRefuse' : proj.projStatus === '2' ? 'fundingProjectClosed' : ''}
             image={proj.projMainImgPath}
             title={proj.projName}
             location={proj.projAddr.split(' ', 2)[1]}
@@ -76,6 +78,7 @@ export default function MadeProject() {
           />)
     )}
     </div>
+        {totalPages === 1 ? (''): (        
         <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
@@ -83,7 +86,7 @@ export default function MadeProject() {
             {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
-        </div>
+        </div>)}
     </>
 	)
 }

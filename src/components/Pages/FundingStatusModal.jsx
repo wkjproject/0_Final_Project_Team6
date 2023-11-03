@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import Endpoint from '../../config/Endpoint';
 import axios from 'axios';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#root'); // 모달을 사용하기 위한 설정
 
@@ -30,7 +32,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
         }).then((res) => {
           if (res.data.fundingStatusModalDataSuccess){
             if (res.data.fundingStatusModalData.length === 0){
-              alert('펀딩 데이터가 없습니다.');
+              toast('펀딩 데이터가 없습니다.');
               window.history.back();
             } else {
             setFundingDetailData(res.data.fundingStatusModalData)
@@ -39,7 +41,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
             }
           }
           if (!res.data.fundingStatusModalDataSuccess){
-            alert('펀딩 데이터가 없습니다.');
+            toast('펀딩 데이터가 없습니다.');
             window.history.back();
           }
         })
@@ -52,22 +54,23 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
   }, []);
   // fundings 컬렉션에 user_id 기반으로 users컬렉션에서 userName 받아와서 닉네임 설정
   // 리워드 별 총합산액 계산
-  const groupedData = {};
-  if(mount) {
-    fundingDetailData.forEach((item) => {
-    item.rewards.forEach((reward) => {
-      const rewardId = reward.reward_id;
-      if (!groupedData[rewardId]) {
-        groupedData[rewardId] = {
-          totalPrice: 0,
-          totalCount: 0,
-        };
-      }
-      groupedData[rewardId].totalPrice += reward.price;
-      groupedData[rewardId].totalCount += reward.count;
-    });
-    });
-  }
+  const groupedData = fundingDetailData ? fundingDetailData.reduce((accumulator, item) => {
+  item.rewards.forEach((reward) => {
+    const rewardId = reward.reward_id;
+
+    if (!accumulator[rewardId]) {
+      accumulator[rewardId] = {
+        totalPrice: 0,
+        totalCount: 0,
+      };
+    }
+
+    accumulator[rewardId].totalPrice += reward.price;
+    accumulator[rewardId].totalCount += reward.count;
+  });
+
+  return accumulator;
+  }, {}): 0;
   // funding_id로 찾아서 대기 / 확정 / 거절 누르면 DB에 상태값이 바뀌도록
   const fundingStatusHandler = async (funding_id, statusChangeNumber) => {
       try {
@@ -97,10 +100,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
     console.log(err);
   }
   }
-  console.log('projectData',projectData)
-  console.log('fundingDetailData',fundingDetailData)
-  console.log('fundingUserName',fundingUserName)
-  console.log('groupedData',groupedData)
+
   return (
     <>
     {mount ? (
@@ -109,7 +109,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <button style={{marginLeft: 'auto', display: 'block'}} onClick={closeModal}>X</button>
+      <button className='SignupTermsBtnX' onClick={closeModal}><svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq ConfirmModal_closeIcon__23VbM" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg></button>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', textAlign:'center'}}>
         <br/>
         <h1>리워드 별 펀딩현황</h1>
@@ -123,15 +123,17 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
           </tr>
           {
             projectData.projReward.map((reward, index) => {
+              if (groupedData[reward.projRewardName]){
               const rewardAmountData = groupedData[reward.projRewardName]
               return (
-              <tr key={index} className='fundingStatusModalTr'>
-                <td>{reward.projRewardName}</td>
-                <td>{reward.projRewardAmount}</td>
-                <td>{`${reward.projRewardAvailable} / ${reward.projRewardCount}`}</td>
-                <td>{rewardAmountData.totalPrice}</td>
-              </tr>
+                <tr key={index} className='fundingStatusModalTr'>
+                  <td>{reward.projRewardName}</td>
+                  <td>{reward.projRewardAmount}</td>
+                  <td>{`${reward.projRewardAvailable} / ${reward.projRewardCount}`}</td>
+                  <td>{rewardAmountData.totalPrice}</td>
+                </tr>
             );
+              }
             })
           }
         </table>

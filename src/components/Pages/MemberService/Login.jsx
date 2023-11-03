@@ -12,7 +12,8 @@ import Endpoint from '../../../config/Endpoint';
 import '../../../css/MemberService/Login.css'
 import { setId } from '../../../redux/reducer/idAction';
 import { setUserData } from '../../../redux/reducer/userDataAction';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Login = () => {
   axios.defaults.withCredentials = true;
   const endpoint = Endpoint();
@@ -70,7 +71,7 @@ export const Login = () => {
           }
         }
         if (!res.data.loginSuccess) {
-          alert(res.data.message);
+          toast(res.data.message);
         }
 
       })

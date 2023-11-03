@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProjectRankingThumbnail(props) {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function ProjectRankingThumbnail(props) {
       navigate(`/project2/${props.projId}`);
     } else if (props.projStatus === '3') {
       // 거절된(3) --> 경고창
-      alert('승인거절된 프로젝트입니다.');
+      toast('승인거절된 프로젝트입니다.');
     }
   };
 
@@ -51,6 +53,10 @@ export default function ProjectRankingThumbnail(props) {
             ? 'fundingProjectTextWait'
             : props.MypageDivClass === 'fundingProjectTextConfirm'
             ? 'fundingProjectTextConfirm'
+            : props.MypageDivClass === 'fundingProjectRefuse'
+            ? 'fundingProjectRefuse'
+            : props.MypageDivClass === 'fundingProjectClosed'
+            ? 'fundingProjectClosed'
             : ''
         }
       >
