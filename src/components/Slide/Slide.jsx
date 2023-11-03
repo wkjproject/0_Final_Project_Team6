@@ -24,7 +24,7 @@ export default function Slide() {
 
   /* 이전 코드 */
   <>
-  {/* // if (!Array.isArray(allProjects) || !allProjects.length) {
+    {/* // if (!Array.isArray(allProjects) || !allProjects.length) {
   //   return <p>❄️❄️</p>;
   // }
 
@@ -64,16 +64,16 @@ export default function Slide() {
   // const toProjectPage = (proj_id) => {
   //   navigate('/home/project2', { state: { _id: proj_id } });
   // }; */}
-  </>
+  </>;
 
   /* 슬라이더 이미지 src */
-  const slides = [  
-  '/img/Slide/slideBanner1.png',
-  '/img/Slide/slideBanner2.png',
-  '/img/Slide/slideBanner3.png',
-  '/img/Slide/slideBanner4.png',
-  '/img/Slide/slideBanner5.png',
-];
+  const slides = [
+    '/img/Slide/slideBanner1.png',
+    '/img/Slide/slideBanner2.png',
+    '/img/Slide/slideBanner3.png',
+    '/img/Slide/slideBanner4.png',
+    '/img/Slide/slideBanner5.png',
+  ];
 
   /* 슬라이더 설정 */
   const settings = {
@@ -122,11 +122,46 @@ export default function Slide() {
             alt={proj.projName}
           />
         ))} */}
-          <div><img src={slides[0]} onClick={() => {navigate('/project2', { state: { _id: 18 } });}}/></div>
-          <div><img src={slides[1]} onClick={() => {navigate('/project2', { state: { _id: 101 } });}}/></div>
-          <div><img src={slides[2]} onClick={() => {navigate('/project2', { state: { _id: 22 } });}}/></div>
-          <div><img src={slides[3]} onClick={() => {navigate('/project2', { state: { _id: 33 } });}}/></div>
-          <div><img src={slides[4]} onClick={() => {navigate('/project2', { state: { _id: 40 } });}}/></div>
+        <div>
+          <img
+            src={slides[0]}
+            onClick={() => {
+              navigate(`/project2/18`);
+            }}
+          />
+        </div>
+        <div>
+          <img
+            src={slides[1]}
+            onClick={() => {
+              navigate(`/project2/101`);
+            }}
+          />
+        </div>
+        <div>
+          <img
+            src={slides[2]}
+            onClick={() => {
+              navigate(`/project2/22`);
+            }}
+          />
+        </div>
+        <div>
+          <img
+            src={slides[3]}
+            onClick={() => {
+              navigate(`/project2/33`);
+            }}
+          />
+        </div>
+        <div>
+          <img
+            src={slides[4]}
+            onClick={() => {
+              navigate(`/project2/40`);
+            }}
+          />
+        </div>
       </Slider>
     </div>
   );
