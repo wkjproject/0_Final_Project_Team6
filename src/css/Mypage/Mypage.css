@@ -141,11 +141,10 @@
 }
 /* 페이지 이동(pagination) 버튼 설정 */
 .mypagePagination {
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: -30px;
   text-align: center;
 }
 
@@ -174,4 +173,10 @@
 
 .mypagePagination button:active {
   background-color: var(--ButtonPressed);
+}
+.mypageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

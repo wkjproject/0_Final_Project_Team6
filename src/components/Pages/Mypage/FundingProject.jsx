@@ -147,6 +147,7 @@ export default function FundingProject() {
           ))
         })}
         </div>
+        {totalPages === 1 ? (''): (        
         <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
@@ -154,7 +155,7 @@ export default function FundingProject() {
             {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
-        </div>
+        </div>)}
     </>
   );
 }

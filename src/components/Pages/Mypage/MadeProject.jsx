@@ -78,6 +78,7 @@ export default function MadeProject() {
           />)
     )}
     </div>
+        {totalPages === 1 ? (''): (        
         <div className='mypagePagination'>
           <button onClick={toPrevPage}>이전</button>
           <span>
@@ -85,7 +86,7 @@ export default function MadeProject() {
             {currPage} / {totalPages}{'  '}
           </span>
           <button onClick={toNextPage}>다음</button>
-        </div>
+        </div>)}
     </>
 	)
 }
