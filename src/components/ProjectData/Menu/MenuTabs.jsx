@@ -143,8 +143,8 @@ function Tab3Content() {
 
 function Tab4Content() {
     const endpoint = Endpoint();
-    const location = useLocation();
-    const { _id } = location.state || {};
+    const { projectId } = useParams();
+    const _id = Number(projectId);
     const { projects } = useProjectsApi();
     const { data: projectData } = useQuery({
         queryKey: ['projects'],
