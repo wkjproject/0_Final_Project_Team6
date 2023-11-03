@@ -108,7 +108,7 @@ export default function ComingNotice() {
 
   // 프로젝트 정보 추출
   const { projName, projPlace, projAddr, projDate, projStatus } = selectedProject;
-  console.log(`프로젝트 상태 : ${projStatus}`)
+  //console.log(`프로젝트 상태 : ${projStatus}`)
 
   // 컴포넌트 렌더링
   return (

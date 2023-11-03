@@ -45,7 +45,7 @@ export default function FundingStatus() {
   const deadline = fundingProjectData ? new Date(fundingProjectData.projFundDate[0].projFundEndDate) : null;
   const today = new Date();
   const remainDay = fundingProjectData ? Math.floor((deadline.getTime() - today.getTime()) / (24 * 60 * 60 * 1000)) : null;
-  console.log(fundingProjectData)
+
   return (
     <div>
       {mount ? 

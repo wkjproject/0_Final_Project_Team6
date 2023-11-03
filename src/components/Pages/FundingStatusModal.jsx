@@ -100,10 +100,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
     console.log(err);
   }
   }
-  console.log('projectData',projectData)
-  console.log('fundingDetailData',fundingDetailData)
-  console.log('fundingUserName',fundingUserName)
-  console.log('groupedData',groupedData)
+
   return (
     <>
     {mount ? (

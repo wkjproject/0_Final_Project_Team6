@@ -85,11 +85,7 @@ export default function FundingProject() {
   /* --- 페이지 이동 함수 --- */
   const toPrevPage = () => {
     if (currPage > 1) {
-        console.log('totalPages',totalPages)
-        console.log('startIndex',startIndex)
-        console.log('endIndex',endIndex)
-        console.log('displayedProjectsList',displayedProjectsList)
-        console.log('displayedFundingList',displayedFundingList)
+
       // 현재 페이지가 1페이지보다 크면
       setCurrPage(currPage - 1);
     }

@@ -294,7 +294,7 @@ export default function ModifyProj() {
           }
         }
       }
-      console.log(state);
+
       const uploadImgUrl = await uploadImage(state.imageBase64)
       // state에서 imageBase64를 제외한 속성을 postData로 복사
       const { imageBase64, ...postData } = state; 
