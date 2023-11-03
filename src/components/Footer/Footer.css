@@ -1,9 +1,9 @@
 footer {margin-top: 100px;}
-.footer-container {
+.footer-container, .footer-below {
 	margin: 0 1rem;
 }
 
-.footer-padding{
+.footer-padding, .footer-below {
 	padding: 0.5rem 1rem;
 	display: flex;
 	flex-direction: column;
