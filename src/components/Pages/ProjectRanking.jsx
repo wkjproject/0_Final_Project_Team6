@@ -15,7 +15,7 @@ export default function ProjectRanking() {
     queryKey: ['projects'],
     queryFn: () => projects.getProjects(),
   });
-  
+
   if (!Array.isArray(allProjects) || !allProjects.length) {
     return <p> Nothing 😅</p>;
   }
@@ -34,10 +34,7 @@ export default function ProjectRanking() {
   });
 
   filteredProjects.sort((a, b) => {
-    const res =
-      a.projFundCollect === b.projFundCollect
-        ? b.projLike - a.projLike
-        : b.projFundCollect - a.projFundCollect;
+    const res = b.projLike - a.projLike;
 
     return isNaN(a.projFundCollect) || isNaN(a.projLike) || isNaN(res)
       ? 1
