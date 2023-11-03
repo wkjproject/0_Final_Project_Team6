@@ -19,7 +19,8 @@ const ProjectPay = () => {
     const projectInfo = location2.state.data2;
     const rewardsArray = selectedRewards;
     //console.log(location);
-    const customId = 'msg-id-opening';
+    const customId1 = 'msg-id-opening1';
+    const customId2 = 'msg-id-opening2';
 
     const navigate = useNavigate();
 
@@ -103,7 +104,7 @@ const ProjectPay = () => {
             })
             //alert("결제완료");
             toast('결제완료', {
-                toastId: customId,
+                toastId: customId1,
             })
             navigate('/home');
         }
@@ -118,7 +119,7 @@ const ProjectPay = () => {
             })
             //alert("결제완료");
             toast('결제완료', {
-                toastId: customId,
+                toastId: customId1,
             })
             navigate('/home');
         }
@@ -133,14 +134,14 @@ const ProjectPay = () => {
             })
             //alert("결제완료");
             toast('결제완료', {
-                toastId: customId,
+                toastId: customId1,
             })
             navigate('/home');
         }
         else {
             //alert("결제 정보를 입력해주세요.");
             toast('결제 정보를 입력해주세요.', {
-                toastId: customId,
+                toastId: customId2,
             })
         }
     };
