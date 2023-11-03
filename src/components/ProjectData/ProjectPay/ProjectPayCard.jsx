@@ -106,22 +106,26 @@ const ProjectPayCard = ({ onPaymentStatus1, onPaymentStatus2, onPaymentStatus3 }
                         <div className="creditCardInputHeader2-1">카드 비밀번호</div>
                     </div>
                     <div>
-                        <input
-                            type="text"
-                            ref={mmYyInputRef} // MM/YY 입력란에 참조 추가
-                            className="creditCardInput2"
-                            placeholder="MM/YY"
-                            onChange={(e) => handleInputChange(e, 0, 4)} // 4자리까지 입력 가능
-                            maxLength={4}
-                        />
-                        <input
-                            type="password"
-                            ref={pWInputRef}
-                            className="creditCardInput2"
-                            placeholder="앞 2자리"
-                            onChange={(e) => handleInputChange(e, 1, 2)} // 2자리까지 입력 가능
-                            maxLength={2}
-                        />
+                        <form>
+                            <input
+                                type="text"
+                                ref={mmYyInputRef} // MM/YY 입력란에 참조 추가
+                                className="creditCardInput2"
+                                placeholder="MM/YY"
+                                onChange={(e) => handleInputChange(e, 0, 4)} // 4자리까지 입력 가능
+                                maxLength={4}
+                            />
+
+                            <input
+                                type="password"
+                                ref={pWInputRef}
+                                className="creditCardInput2"
+                                placeholder="앞 2자리"
+                                onChange={(e) => handleInputChange(e, 1, 2)} // 2자리까지 입력 가능
+                                maxLength={2}
+                                autocomplete="new-password"
+                            />
+                        </form>
                     </div>
                 </div>
                 <div>
