@@ -112,7 +112,7 @@ export const FundingStatusModal = ({ isOpen, closeModal, _id, projectData }) => 
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <button style={{marginLeft: 'auto', display: 'block'}} onClick={closeModal}>X</button>
+      <button className='SignupTermsBtnX' onClick={closeModal}><svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq ConfirmModal_closeIcon__23VbM" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg></button>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', textAlign:'center'}}>
         <br/>
         <h1>리워드 별 펀딩현황</h1>
